@@ -77,6 +77,7 @@ The manuscript text and figure assets in `paper/` are excluded from this code li
   title  = {Hard Resets Compose: Exact Time-Parallel Spiking Neurons via Piecewise-Affine Map Scans},
   author = {Yang, Dekun},
   year   = {2026},
-  note   = {arXiv preprint}
+  note   = {arXiv preprint},
+  url    = {https://github.com/cheshireyang/hard-resets-compose}
 }
 ```
