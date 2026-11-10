@@ -1,0 +1,168 @@
+{
+ "rows": [
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 0.5,
+   "L": 4,
+   "mean": 1.7,
+   "max": 3,
+   "bound2d_mean": 5.3
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 0.5,
+   "L": 8,
+   "mean": 4.3,
+   "max": 8,
+   "bound2d_mean": 18.6
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 0.5,
+   "L": 16,
+   "mean": 7.5,
+   "max": 13,
+   "bound2d_mean": 52.6
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 0.5,
+   "L": 32,
+   "mean": 13.85,
+   "max": 22,
+   "bound2d_mean": 243.75
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 0.5,
+   "L": 64,
+   "mean": 16.6,
+   "max": 28,
+   "bound2d_mean": 797.95
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 0.5,
+   "L": 128,
+   "mean": 18.35,
+   "max": 26,
+   "bound2d_mean": null
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 1.0,
+   "L": 4,
+   "mean": 2.1,
+   "max": 4,
+   "bound2d_mean": 5.4
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 1.0,
+   "L": 8,
+   "mean": 3.55,
+   "max": 8,
+   "bound2d_mean": 13.35
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 1.0,
+   "L": 16,
+   "mean": 7.75,
+   "max": 12,
+   "bound2d_mean": 64.3
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 1.0,
+   "L": 32,
+   "mean": 11.75,
+   "max": 15,
+   "bound2d_mean": 232.4
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 1.0,
+   "L": 64,
+   "mean": 17.95,
+   "max": 25,
+   "bound2d_mean": 684.25
+  },
+  {
+   "beta": 0.9,
+   "rho": 0.95,
+   "q": 1.0,
+   "L": 128,
+   "mean": 17.45,
+   "max": 23,
+   "bound2d_mean": null
+  },
+  {
+   "beta": 0.99,
+   "rho": 0.99,
+   "q": 0.25,
+   "L": 4,
+   "mean": 2.15,
+   "max": 5,
+   "bound2d_mean": 5.75
+  },
+  {
+   "beta": 0.99,
+   "rho": 0.99,
+   "q": 0.25,
+   "L": 8,
+   "mean": 4.7,
+   "max": 10,
+   "bound2d_mean": 18.05
+  },
+  {
+   "beta": 0.99,
+   "rho": 0.99,
+   "q": 0.25,
+   "L": 16,
+   "mean": 13.2,
+   "max": 19,
+   "bound2d_mean": 85.55
+  },
+  {
+   "beta": 0.99,
+   "rho": 0.99,
+   "q": 0.25,
+   "L": 32,
+   "mean": 21.35,
+   "max": 35,
+   "bound2d_mean": 328.35
+  },
+  {
+   "beta": 0.99,
+   "rho": 0.99,
+   "q": 0.25,
+   "L": 64,
+   "mean": 40.25,
+   "max": 50,
+   "bound2d_mean": 1300.8
+  },
+  {
+   "beta": 0.99,
+   "rho": 0.99,
+   "q": 0.25,
+   "L": 128,
+   "mean": 57.6,
+   "max": 71,
+   "bound2d_mean": null
+  }
+ ],
+ "mono_checks": 14048,
+ "mono_violations": 0
+}

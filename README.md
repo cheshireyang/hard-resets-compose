@@ -46,6 +46,8 @@ python3 experiments/e7b_gradcheck.py 1024
 python3 experiments/e7c_timing.py
 DATASET=ssc python3 experiments/e7_shd.py scan 1024 0 20 64   # SSC (also needs ssc_*.h5)
 python3 experiments/e9_threelevel.py 0.9                      # long sequences, two- vs three-level
+python3 experiments/e11_auto.py                               # automatic dispatch
+python3 experiments/e12_alif_exact.py                         # ALIF post-reset maps (exact, CPU)
 
 # Paper numbers, figures and PDF
 python3 paper/make_numbers.py && python3 paper/figs/make_figs.py
@@ -62,7 +64,14 @@ from lifscan.triton_lif import lif_tuned
 I = torch.randn(4096, 1024, device="cuda")          # [T, N] input currents (N = batch * neurons)
 u0 = torch.zeros(1024, device="cuda")
 spikes = lif_tuned(I, u0, beta=0.9, theta=1.0, u_r=0.0, mode="scan")   # or mode="serial"
+
+# recommended: pick serial or scan per pass from (N, T); never slower than serial in our tests
+from lifscan.triton_lif import lif_auto
+spikes = lif_auto(I, u0, beta=0.9)
 ```
+
+The dispatch thresholds (`AUTO_FWD_MAX_N`, `AUTO_FWD_MIN_T`, `AUTO_BWD_MAX_N`, `AUTO_BWD_MIN_T` in
+`lifscan/triton_lif.py`) were measured on an RTX 5090; recalibrate them with `experiments/e11_auto.py` on other GPUs.
 
 The scan is faster than a tuned fused serial kernel only when the serial kernel cannot fill the GPU (few
 independent recurrences `N`, long `T`). See Fig. 3 of the paper for the measured crossover.

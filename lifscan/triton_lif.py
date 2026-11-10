@@ -981,3 +981,51 @@ def scan_forward_v4(I, beta, theta, u_r, u0, C=64, G=16, K=16, K2=32, BN=32, nw=
         stats["super_mean_pieces"] = SN.float().mean().item() + 1
         stats["super_max_pieces"] = int(SN.max().item()) + 1
     return U, S
+
+
+# ============================================================================= auto dispatch
+# Time-parallel evaluation only pays when the serial kernel cannot fill the GPU.  "auto" picks
+# serial or scan separately for the forward and the backward pass from (N, T).  Both choices
+# give the same spikes and BPTT-equivalent gradients, so the choice only affects speed.
+# Thresholds were measured on an RTX 5090 (results/e6c_*, results/e9_*); recalibrate per GPU.
+AUTO_FWD_MAX_N = 1024
+AUTO_FWD_MIN_T = 16384
+AUTO_BWD_MAX_N = 8192
+AUTO_BWD_MIN_T = 2048
+
+
+def auto_modes(N, T):
+    fwd = "scan" if (N <= AUTO_FWD_MAX_N and T >= AUTO_FWD_MIN_T) else "serial"
+    bwd = "scan" if (N <= AUTO_BWD_MAX_N and T >= AUTO_BWD_MIN_T) else "serial"
+    return fwd, bwd
+
+
+class LIFAuto(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, I, u0, beta, theta, u_r, alpha, K, repair, fwd_mode, bwd_mode):
+        I = I.contiguous()
+        T, N = I.shape
+        if fwd_mode == "scan":
+            U, S = scan_forward_v3(I, beta, theta, u_r, u0, C=_pick_C(T), K=K, repair=repair)
+        else:
+            U, S = serial_forward_tiled(I, beta, theta, u_r, u0, BN=32, D=8, num_warps=1)
+        ctx.save_for_backward(I, u0, U, S)
+        ctx.cfg = (beta, theta, u_r, alpha, bwd_mode)
+        return S
+
+    @staticmethod
+    def backward(ctx, gS):
+        I, u0, U, S = ctx.saved_tensors
+        beta, theta, u_r, alpha, bwd_mode = ctx.cfg
+        gS = gS.contiguous(); GU = torch.zeros_like(gS)
+        T = I.shape[0]
+        if bwd_mode == "scan":
+            Lam = scan_backward_tiled(I, u0, U, S, gS, GU, beta, theta, u_r, alpha, C=_pick_C(T), BNr=32, D=8, nwr=1)
+        else:
+            Lam = serial_backward_tiled(I, u0, U, S, gS, GU, beta, theta, u_r, alpha, BN=32, D=4, num_warps=1)
+        return Lam, beta * Lam[0], None, None, None, None, None, None, None, None
+
+
+def lif_auto(I, u0, beta=0.9, theta=1.0, u_r=0.0, alpha=4.0, K=16, repair=0):
+    fwd, bwd = auto_modes(I.shape[1], I.shape[0])
+    return LIFAuto.apply(I, u0, beta, theta, u_r, alpha, K, repair, fwd, bwd)

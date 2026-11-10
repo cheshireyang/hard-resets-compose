@@ -38,7 +38,9 @@ class LIFLayer(nn.Module):
         Tn, B, _ = x.shape
         I = self.fc(x).reshape(Tn, -1).contiguous()
         u0 = torch.zeros(I.shape[1], device=I.device)
-        if self.mode in ("serial", "scan"):
+        if self.mode == "auto":
+            s = L.lif_auto(I, u0, beta=self.beta, theta=1.0, u_r=0.0, alpha=4.0, K=self.K, repair=0)
+        elif self.mode in ("serial", "scan"):
             s = L.lif_tuned(I, u0, beta=self.beta, theta=1.0, u_r=0.0, alpha=4.0, mode=self.mode,
                             K=self.K, repair=self.repair)
         else:

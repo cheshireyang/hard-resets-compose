@@ -8,7 +8,7 @@ rows = []
 for T, B in ((1024, 64), (1024, 8), (4096, 16), (8192, 16), (8192, 4)):
     ev, y = load("test", T)
     x = batch_dense(ev, list(range(B)), T); yy = y[:B].cuda()
-    for mode in ("serial", "scan", "scan_norepair", "sj"):
+    for mode in ("serial", "scan", "scan_norepair", "auto", "sj"):
         torch.manual_seed(0); net = Net("scan" if mode.startswith("scan") else mode).cuda()
         if mode == "scan_norepair":
             net.l1.repair = net.l2.repair = 0
@@ -20,4 +20,4 @@ for T, B in ((1024, 64), (1024, 8), (4096, 16), (8192, 16), (8192, 4)):
         for _ in range(10):
             a = time.perf_counter(); step(); torch.cuda.synchronize(); ts.append(time.perf_counter() - a)
         ts.sort(); r = dict(T=T, B=B, mode=mode, ms=1000 * ts[len(ts) // 2]); rows.append(r); print(json.dumps(r), flush=True)
-json.dump(rows, open("results/e7c_timing.json", "w"), indent=1)
+json.dump(rows, open(os.environ.get("E7C_OUT", "results/e7c_timing.json"), "w"), indent=1)
