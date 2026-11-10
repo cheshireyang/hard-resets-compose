@@ -14,8 +14,8 @@ on average. The resulting forward pass is exact, non-iterative, and its depth do
 |---|---|
 | `lifscan/exact.py` | Exact rational-arithmetic reference: serial recurrence, segment maps and their composition, the closed form (Theorem 1), the tree scan, and a generic piecewise-affine class used to count soft-reset pieces |
 | `lifscan/fast.py` | PyTorch prototype (CPU/MPS): two-level scan, pruning, bit-exact repair, affine-scan backward |
-| `lifscan/triton_lif.py` | CUDA kernels (Triton): fused serial baselines (plain and time-tiled), `scan_forward_v3` (envelope bound + pruning + capacity-K maps + overflow fallback + optional repair), tiled backward scan, and the autograd layer `lif_tuned` |
-| `lifscan/shdnet.py` | SHD data loading and the 700-256-256-20 feed-forward LIF network |
+| `lifscan/triton_lif.py` | CUDA kernels (Triton): fused serial baselines (plain and time-tiled), `scan_forward_v3` (two-level: envelope bound + pruning + capacity-K maps + overflow fallback + optional repair), `scan_forward_v4` (three-level composition), tiled backward scan, and the autograd layer `lif_tuned` |
+| `lifscan/shdnet.py` | SHD/SSC data loading and the 700-256-256-20 feed-forward LIF network |
 | `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py` (GPU) |
 | `experiments/` | All experiment scripts (E1–E7, see below) and the GPU job queues |
 | `results/` | Raw JSON results (and server logs in `results/logs/`) behind every number in the paper |
@@ -44,6 +44,8 @@ export SHD_DATA=/path/to/shd
 python3 experiments/e7_shd.py scan 1024 0 30 64      # mode in {serial, scan, sj}, T, seed, epochs, batch
 python3 experiments/e7b_gradcheck.py 1024
 python3 experiments/e7c_timing.py
+DATASET=ssc python3 experiments/e7_shd.py scan 1024 0 20 64   # SSC (also needs ssc_*.h5)
+python3 experiments/e9_threelevel.py 0.9                      # long sequences, two- vs three-level
 
 # Paper numbers, figures and PDF
 python3 paper/make_numbers.py && python3 paper/figs/make_figs.py

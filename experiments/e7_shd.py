@@ -9,12 +9,15 @@ MODE, T, SEED = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
 EPOCHS = int(sys.argv[4]) if len(sys.argv) > 4 else 30
 BATCH = int(sys.argv[5]) if len(sys.argv) > 5 else 64
 dev = "cuda"
+DATASET = os.environ.get("DATASET", "shd")  # shd | ssc
+NOUT = {"shd": 20, "ssc": 35}[DATASET]
+PREFIX = "e7_shd" if DATASET == "shd" else f"e10_{DATASET}"
 torch.manual_seed(SEED); np.random.seed(SEED)
-tr_ev, tr_y = load("train", T); te_ev, te_y = load("test", T)
-net = Net(MODE).to(dev)
+tr_ev, tr_y = load("train", T, DATASET); te_ev, te_y = load("test", T, DATASET)
+net = Net(MODE, n_out=NOUT).to(dev)
 opt = torch.optim.Adam(net.parameters(), lr=1e-3)
 sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, EPOCHS)
-log = dict(mode=MODE, T=T, seed=SEED, batch=BATCH, epochs=[])
+log = dict(dataset=DATASET, mode=MODE, T=T, seed=SEED, batch=BATCH, epochs=[])
 g = torch.Generator().manual_seed(SEED)
 for ep in range(EPOCHS):
     net.train(); perm = torch.randperm(len(tr_y), generator=g)
@@ -40,4 +43,4 @@ for ep in range(EPOCHS):
     e = dict(ep=ep, train_acc=corr / tot, test_acc=tc / tt, compute_s=t_c, epoch_s=ep_s,
              rate1=float(np.mean(r1)), rate2=float(np.mean(r2)))
     log["epochs"].append(e); print(json.dumps(e), flush=True)
-    json.dump(log, open(f"results/e7_shd_{MODE}_T{T}_B{BATCH}_s{SEED}.json", "w"), indent=1)
+    json.dump(log, open(f"results/{PREFIX}_{MODE}_T{T}_B{BATCH}_s{SEED}.json", "w"), indent=1)

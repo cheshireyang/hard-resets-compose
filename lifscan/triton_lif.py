@@ -815,3 +815,169 @@ def scan_forward_v3(I, beta, theta, u_r, u0, C=64, K=16, BN=32, nw=1, BNc=16, nw
         stats["mean_pieces"] = MN.float().mean().item() + 1
         stats["max_pieces"] = int(MN.max().item()) + 1
     return U, S
+
+
+# ============================================================================= v4: three-level scan
+# Chunk maps (capacity K) are composed in groups of G into super-chunk maps (capacity K2),
+# using the monoid operation of Sec. 4: constants of the left map are pushed through the
+# right map, and the right map's breakpoints are pulled back through the left map's affine
+# part and appended (they all lie below the left map's smallest breakpoint).  Then:
+# carry over supers (M/G sequential steps), carry inside each super (G steps, all supers in
+# parallel), replay chunks (C steps).  Depth ~ C + G*compose + M/G + G + C.
+
+@triton.jit
+def compose_group_kernel(MA, MB, MX, MC, MN, OVF, Lo, U0, SA, SB, SX, SC, SN, SOVF, N, G,
+                         theta, u_r, K: tl.constexpr, K2: tl.constexpr, BN: tl.constexpr):
+    s = tl.program_id(0)
+    pid = tl.program_id(1)
+    n = pid * BN + tl.arange(0, BN)
+    mask = n < N
+    ks = tl.arange(0, K)
+    k2 = tl.arange(0, K2)
+    m0 = s * G
+    lo = tl.load(Lo + m0 * N + n, mask=mask, other=0.0)
+    u0 = tl.load(U0 + n, mask=mask, other=0.0)
+    hi = tl.maximum(u0, tl.maximum(theta, u_r))
+    # H := chunk map m0, widened to capacity K2
+    A = tl.load(MA + m0 * N + n, mask=mask, other=1.0)
+    B = tl.load(MB + m0 * N + n, mask=mask, other=0.0)
+    nH = tl.load(MN + m0 * N + n, mask=mask, other=0)
+    ovf = tl.load(OVF + m0 * N + n, mask=mask, other=0)
+    xd = tl.full([BN, K2], float("inf"), tl.float32)
+    cd = tl.zeros([BN, K2], dtype=tl.float32)
+    for j in tl.static_range(K):
+        xj = tl.load(MX + (m0 * K + j) * N + n, mask=mask, other=float("inf"))
+        cj = tl.load(MC + (m0 * K + j) * N + n, mask=mask, other=0.0)
+        xd = tl.where(k2[None, :] == j, xj[:, None], xd)
+        cd = tl.where(k2[None, :] == j, cj[:, None], cd)
+    xmin = tl.min(tl.where(k2[None, :] < nH[:, None], xd, float("inf")), axis=1)
+    for jj in range(1, G):
+        m = m0 + jj
+        Ag = tl.load(MA + m * N + n, mask=mask, other=1.0)
+        Bg = tl.load(MB + m * N + n, mask=mask, other=0.0)
+        ng = tl.load(MN + m * N + n, mask=mask, other=0)
+        ovf = ovf | tl.load(OVF + m * N + n, mask=mask, other=0)
+        offg = (m * K + ks[None, :]) * N + n[:, None]
+        yd = tl.load(MX + offg, mask=mask[:, None], other=float("inf"))
+        dd = tl.load(MC + offg, mask=mask[:, None], other=0.0)
+        gvalid = ks[None, :] < ng[:, None]
+        # 1) push H's constants through g:  c -> g(c)
+        cnt = tl.zeros([BN, K2], dtype=tl.int32)
+        for j in tl.static_range(K):
+            yj = tl.sum(tl.where(ks[None, :] == j, yd, 0.0), axis=1)
+            vj = j < ng
+            cnt += ((yj[:, None] > cd) & vj[:, None]).to(tl.int32)
+        gc = tl.zeros([BN, K2], dtype=tl.float32)
+        for j in tl.static_range(K):
+            dj = tl.sum(tl.where(ks[None, :] == j, dd, 0.0), axis=1)
+            gc = tl.where(cnt == j, dj[:, None], gc)
+        aff = cnt == ng[:, None]
+        cd = tl.where(aff, Ag[:, None] * cd + Bg[:, None], gc)
+        # 2) pull back g's breakpoints through H's affine part and append (descending order)
+        for j in tl.static_range(K):
+            yj = tl.sum(tl.where(ks[None, :] == j, yd, 0.0), axis=1)
+            dj = tl.sum(tl.where(ks[None, :] == j, dd, 0.0), axis=1)
+            num = yj - B
+            z = tl.where(A == 0.0, tl.where(num > 0.0, float("inf"), -float("inf")), num / A)
+            new = (j < ng) & (z < xmin) & (z <= hi) & (xmin > lo)
+            ovf = tl.where(new & (nH >= K2), 1, ovf)
+            new = new & (nH < K2)
+            slot = (k2[None, :] == nH[:, None]) & new[:, None]
+            xd = tl.where(slot, z[:, None], xd)
+            cd = tl.where(slot, dj[:, None], cd)
+            nH = nH + new.to(tl.int32)
+            xmin = tl.where(new, z, xmin)
+        # 3) affine part
+        B = Ag * B + Bg
+        A = Ag * A
+    tl.store(SA + s * N + n, A, mask=mask)
+    tl.store(SB + s * N + n, B, mask=mask)
+    tl.store(SN + s * N + n, nH, mask=mask)
+    tl.store(SOVF + s * N + n, ovf, mask=mask)
+    off = (s * K2 + k2[None, :]) * N + n[:, None]
+    tl.store(SX + off, xd, mask=mask[:, None])
+    tl.store(SC + off, cd, mask=mask[:, None])
+
+
+@triton.jit
+def carry_inner_kernel(I, SStarts, MA, MB, MX, MC, MN, OVF, Starts, N, G, C, beta, theta, u_r,
+                       K: tl.constexpr, BN: tl.constexpr):
+    s = tl.program_id(0)
+    pid = tl.program_id(1)
+    n = pid * BN + tl.arange(0, BN)
+    mask = n < N
+    ks = tl.arange(0, K)
+    u = tl.load(SStarts + s * N + n, mask=mask, other=0.0)
+    for jj in range(G):
+        m = s * G + jj
+        tl.store(Starts + m * N + n, u, mask=mask)
+        bo = m * N + n
+        A = tl.load(MA + bo, mask=mask, other=1.0)
+        B = tl.load(MB + bo, mask=mask, other=0.0)
+        cnt = tl.load(MN + bo, mask=mask, other=0)
+        ovf = tl.load(OVF + bo, mask=mask, other=0)
+        off = (m * K + ks[None, :]) * N + n[:, None]
+        xd = tl.load(MX + off, mask=mask[:, None], other=float("inf"))
+        cd = tl.load(MC + off, mask=mask[:, None], other=0.0)
+        valid = ks[None, :] < cnt[:, None]
+        k = tl.sum(((xd > u[:, None]) & valid).to(tl.int32), axis=1)
+        cval = tl.sum(tl.where(ks[None, :] == k[:, None], cd, 0.0), axis=1)
+        nu = tl.where(k == cnt, A * u + B, cval)
+        if tl.max(ovf, axis=0) > 0:
+            w = u
+            for j in range(C):
+                x = tl.load(I + (m * C + j) * N + n, mask=mask, other=0.0)
+                w, s_, v_ = _step(w, x, beta, theta, u_r)
+            nu = tl.where(ovf > 0, w, nu)
+        u = nu
+
+
+def scan_forward_v4(I, beta, theta, u_r, u0, C=64, G=16, K=16, K2=32, BN=32, nw=1, BNg=16, nwg=1,
+                    BNc=16, nwc=1, BNr=32, D=8, nwr=1, repair=0, stats=None):
+    T, N = I.shape
+    M = T // C
+    assert M % G == 0, "T must be divisible by C*G"
+    M2 = M // G
+    dev = I.device
+    EC = torch.empty(M, N, device=dev); EA = torch.empty(M, N, device=dev); EB = torch.empty(M, N, device=dev)
+    De = D if C % D == 0 else 1
+    env_chunk_kernel[(M, triton.cdiv(N, BNr))](I, EC, EA, EB, N, C, beta, u_r, BN=BNr, D=De, num_warps=nwr)
+    Lo = torch.empty(M, N, device=dev)
+    env_carry_kernel[(triton.cdiv(N, BNc),)](u0, EC, EA, EB, Lo, N, M, 1e-5, BN=BNc, num_warps=nwc)
+    MA = torch.empty(M, N, device=dev); MB = torch.empty(M, N, device=dev)
+    MX = torch.empty(M, K, N, device=dev); MC = torch.empty(M, K, N, device=dev)
+    MN = torch.empty(M, N, device=dev, dtype=torch.int32)
+    OVF = torch.empty(M, N, device=dev, dtype=torch.int32)
+    build3_kernel[(M, triton.cdiv(N, BN))](I, Lo, u0, MA, MB, MX, MC, MN, OVF, N, C, beta, theta, u_r,
+                                           K=K, BN=BN, num_warps=nw)
+    SA = torch.empty(M2, N, device=dev); SB = torch.empty(M2, N, device=dev)
+    SX = torch.empty(M2, K2, N, device=dev); SC = torch.empty(M2, K2, N, device=dev)
+    SN = torch.empty(M2, N, device=dev, dtype=torch.int32)
+    SOVF = torch.empty(M2, N, device=dev, dtype=torch.int32)
+    compose_group_kernel[(M2, triton.cdiv(N, BNg))](MA, MB, MX, MC, MN, OVF, Lo, u0, SA, SB, SX, SC, SN, SOVF,
+                                                    N, G, theta, u_r, K=K, K2=K2, BN=BNg, num_warps=nwg)
+    SStarts = torch.empty(M2, N, device=dev)
+    carry2_kernel[(triton.cdiv(N, BNc),)](I, u0, SA, SB, SX, SC, SN, SOVF, SStarts, N, M2, C * G,
+                                          beta, theta, u_r, K=K2, BN=BNc, STAGES=1, num_warps=nwc)
+    Starts = torch.empty(M, N, device=dev)
+    carry_inner_kernel[(M2, triton.cdiv(N, BNc))](I, SStarts, MA, MB, MX, MC, MN, OVF, Starts, N, G, C,
+                                                  beta, theta, u_r, K=K, BN=BNc, num_warps=nwc)
+    U = torch.empty_like(I); S = torch.empty_like(I); Ends = torch.empty(M, N, device=dev)
+    gr = (M, triton.cdiv(N, BNr))
+    fwd_tiled_kernel[gr](I, Starts, U, S, Ends, N, C, beta, theta, u_r, BN=BNr, D=D, num_warps=nwr)
+    it = 0
+    for it in range(1, repair + 1):
+        new = torch.cat([u0[None], Ends[:-1]], 0)
+        if torch.equal(new, Starts):
+            it -= 1
+            break
+        Starts = new.contiguous()
+        fwd_tiled_kernel[gr](I, Starts, U, S, Ends, N, C, beta, theta, u_r, BN=BNr, D=D, num_warps=nwr)
+    if stats is not None:
+        stats["repair_iters"] = it
+        stats["overflow_frac"] = OVF.float().mean().item()
+        stats["super_overflow_frac"] = SOVF.float().mean().item()
+        stats["mean_pieces"] = MN.float().mean().item() + 1
+        stats["super_mean_pieces"] = SN.float().mean().item() + 1
+        stats["super_max_pieces"] = int(SN.max().item()) + 1
+    return U, S

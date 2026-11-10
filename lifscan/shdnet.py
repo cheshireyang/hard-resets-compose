@@ -6,11 +6,11 @@ import torch.nn as nn
 from . import triton_lif as L
 
 import os
-DATA = os.environ.get("SHD_DATA", "data/shd")  # directory with shd_train.h5 / shd_test.h5
+DATA = os.environ.get("SHD_DATA", "data/shd")  # directory with {shd,ssc}_{train,test}.h5
 
 
-def load(split, T):
-    f = h5py.File(f"{DATA}/shd_{split}.h5", "r")
+def load(split, T, dataset="shd"):
+    f = h5py.File(f"{DATA}/{dataset}_{split}.h5", "r")
     y = torch.tensor(f["labels"][:].astype(np.int64))
     ev = []
     for tt, uu in zip(f["spikes"]["times"][:], f["spikes"]["units"][:]):
@@ -49,11 +49,11 @@ class LIFLayer(nn.Module):
 
 
 class Net(nn.Module):
-    def __init__(self, mode, beta=0.95, H=256):
+    def __init__(self, mode, beta=0.95, H=256, n_out=20):
         super().__init__()
         self.l1 = LIFLayer(700, H, beta, mode)
         self.l2 = LIFLayer(H, H, beta, mode)
-        self.out = nn.Linear(H, 20)
+        self.out = nn.Linear(H, n_out)
 
     def set_mode(self, mode):
         self.l1.mode = self.l2.mode = mode

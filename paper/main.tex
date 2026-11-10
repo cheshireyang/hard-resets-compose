@@ -35,11 +35,11 @@ The hard reset of a leaky integrate-and-fire (LIF) neuron is widely seen as what
 Existing time-parallel methods therefore remove the reset, soften it, relax the spike function and iterate, or commit one output spike per chunk.
 We show that this is unnecessary in discrete time.
 As a function of the incoming membrane potential, the state map of a hard-reset LIF neuron over $L$ steps is affine below a threshold and piecewise constant above it, with at most $L+1$ pieces, and this family is closed under composition, so the recurrence is an associative scan over piecewise-affine maps.
-We give a closed form for these maps, show that the bound is tight, and prove that the corresponding bound for soft reset is quadratic, $1+L(L+1)/2$: in map space the hard reset is the easier nonlinearity.
+We give a closed form for these maps, show that the bound is tight, and prove that the corresponding tight bound for soft reset is quadratic, $1+L(L+1)/2$: in map space the hard reset is the easier nonlinearity.
 Restricted to reachable states, whose lower bound is itself a three-parameter scan, the expected number of pieces is bounded independently of $L$ for leaky neurons; measured maps have 2--5 pieces.
 The resulting forward pass is exact, non-iterative, and has a depth independent of the number of spikes; an optional repair step makes it bit-identical to the serial floating-point loop.
-On an RTX~5090, against fused serial Triton kernels tuned per configuration, the exact forward is up to $\FwdMaxSpeedup\times$ faster and forward+backward up to $\FbMaxSpeedup\times$ faster when few neurons run for many steps, and slower once the serial kernel saturates the GPU; we map this crossover.
-On SHD, training with the scan reproduces serial training: spikes are bit-identical, gradients agree to within $10^{-6}$, and accuracy matches within seed noise.
+On an RTX~5090, against fused serial Triton kernels tuned per configuration, the exact forward is up to $\LongFwdMaxNine\times$ faster and forward+backward up to $\LongFbMaxNine\times$ faster when few neurons run for many steps, and slower once the serial kernel saturates the GPU; we map this crossover.
+On SHD and SSC, training with the scan reproduces serial training: spikes are bit-identical, gradients agree to within $10^{-6}$, and accuracy matches within seed noise.
 \end{abstract}
 
 % ---------------------------------------------------------------------------
@@ -60,11 +60,11 @@ In \emph{map space} --- composing the one-step maps $f_t:u_{t-1}\mapsto u_t$ ins
 For the hard reset the answer is yes, and the structure is simple: a segment map is affine for incoming potentials that do not cause a spike in the segment and constant on each interval of potentials that first spike at the same step, because the reset erases all memory of the incoming potential (Fig.~\ref{fig:segmap}).
 Our contributions:
 \begin{enumerate}[leftmargin=*]
-\item \textbf{Structure (Sec.~\ref{sec:structure}).} A closed form for the $L$-step hard-reset segment map: its breakpoints are the strict running minima of $a_k=(\theta-b_k)/\beta^k$, where $b_k$ is the zero-start free trajectory; hence at most $L+1$ pieces, a bound that is attained. The family is closed under composition, and two maps compose by concatenating breakpoint lists and evaluating the right map at the left map's constants.
-\item \textbf{Hard vs.\ soft (Sec.~\ref{sec:soft}).} For subtractive reset the worst-case bound we prove is quadratic, $1+L(L+1)/2$, and it is attained for small $L$, via a lexicographic monotonicity lemma for (spike count, membrane potential). Empirically, soft-reset segment maps have up to $30\times$ more pieces than hard-reset ones. In map space, the hard reset is the easier nonlinearity.
+\item \textbf{Structure (Sec.~\ref{sec:structure}).} A closed form for the $L$-step hard-reset segment map: its breakpoints are the strict running minima of $a_k=(\theta-b_k)/\beta^k$, where $b_k$ is the zero-start free trajectory; hence at most $L+1$ pieces, a bound that is attained. The family is closed under composition, and two maps compose by concatenating breakpoint lists and evaluating the right map at the left map's constants. The result holds verbatim for time-varying leaks, thresholds and reset values.
+\item \textbf{Hard vs.\ soft (Sec.~\ref{sec:soft}).} For subtractive reset we prove a tight quadratic bound, $1+L(L+1)/2$. The upper bound follows from a lexicographic monotonicity lemma for (spike count, membrane potential); the matching construction uses a constant input and a leak close to 1. Empirically, soft-reset segment maps have up to $30\times$ more pieces than hard-reset ones. In map space, the hard reset is the easier nonlinearity.
 \item \textbf{Typical size (Sec.~\ref{sec:domain}).} Only breakpoints inside the reachable state interval matter. A tight lower end of that interval is itself given by a scan over a three-parameter monoid, and under a bounded-density assumption the expected in-domain size is independent of $L$. Measured chunk maps have 2--5 pieces on average for $\beta$ from 0.9 to 1, whatever the chunk length.
 \item \textbf{Algorithm and exactness (Sec.~\ref{sec:algo}).} A two-level GPU scan (fold chunks into capacity-$K$ maps, carry scalars across chunks, replay chunks in parallel) whose depth is independent of the spike count, with an exact serial fallback on capacity overflow, and a repair iteration that makes the floating-point output bit-identical to the serial kernel. Combined with the (known) affine-scan backward pass, training is BPTT-equivalent.
-\item \textbf{Measurements (Sec.~\ref{sec:exp}).} Exhaustive exact-arithmetic tests, floating-point stress tests, a best-vs-best GPU benchmark against tuned fused serial kernels and SpikingJelly, and SHD training.
+\item \textbf{Measurements (Sec.~\ref{sec:exp}).} Exhaustive exact-arithmetic tests, floating-point stress tests, a best-vs-best GPU benchmark against tuned fused serial kernels and SpikingJelly up to $T=262{,}144$, and training on SHD and SSC.
 \end{enumerate}
 We are explicit about the limits: time-parallelism helps only when the serial kernel cannot fill the GPU (small batch$\times$width, long $T$), the method requires the input currents of a layer to be known in advance (feed-forward connectivity within the layer), and the per-step work of the forward scan grows with the map capacity $K$.
 
@@ -80,7 +80,27 @@ We are explicit about the limits: time-parallelism helps only when the serial ke
 \label{sec:related}
 
 \paragraph{Time-parallel SNN training.}
-PSN~\citep{fang2023psn} drops the reset and computes the membrane potential as a learnable linear filter; follow-ups add estimated or decoupled resets~\citep{li2024psu,zhong2024spikessm,huang2026paralleltraining}. FPT~\citep{feng2025fpt} iterates a fixed-point map for $K\approx 3$ rounds on a sigmoid-relaxed spike function. FidLIF~\citep{he2026fidlif} applies Newton iterations to the relaxed trajectory equation, each iteration being an associative scan, and reports errors relative to the matched \emph{relaxed} serial dynamics. Bullet Trains~\citep{morrill2026bullet} targets continuous-time event-based LIF neurons; it scans the affine inter-spike dynamics within a chunk of input events, locates the first output spike analytically and with Newton--Raphson, commits it, and restarts the next chunk after it --- so the number of sequential chunk iterations grows with the number of output spikes. Tachyon~\citep{tachyon2026} parallelizes the surrogate-gradient adjoint as an affine scan (as do FidLIF and our backward pass) and uses speculative draft-verify-commit for exact forwards. Our forward pass differs from all of these: it is discrete-time, non-iterative, involves no relaxation, and its depth does not depend on the number of spikes.
+PSN~\citep{fang2023psn} drops the reset and computes the membrane potential as a learnable linear filter; follow-ups add estimated or decoupled resets~\citep{li2024psu,zhong2024spikessm,huang2026paralleltraining}. FPT~\citep{feng2025fpt} iterates a fixed-point map for $K\approx 3$ rounds on a sigmoid-relaxed spike function. FidLIF~\citep{he2026fidlif} applies Newton iterations to the relaxed trajectory equation, each iteration being an associative scan, and reports errors relative to the matched \emph{relaxed} serial dynamics. Bullet Trains~\citep{morrill2026bullet} targets continuous-time event-based LIF neurons; it scans the affine inter-spike dynamics within a chunk of input events, locates the first output spike analytically and with Newton--Raphson, commits it, and restarts the next chunk after it --- so the number of sequential chunk iterations grows with the number of output spikes. Tachyon~\citep{tachyon2026} parallelizes the surrogate-gradient adjoint as an affine scan (as do FidLIF and our backward pass) and uses speculative draft-verify-commit for exact forwards. Our forward pass differs from all of these: it is discrete-time, non-iterative, involves no relaxation, and its depth does not depend on the number of spikes (Table~\ref{tab:methods}).
+
+\begin{table}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccc}
+\toprule
+Method & reset & exact & iterative & spike-dependent depth\\
+\midrule
+PSN~\citep{fang2023psn} & removed & -- & no & no\\
+PSU, SPikE-SSM~\citep{li2024psu,zhong2024spikessm} & soft / estimated & no & no & no\\
+FPT~\citep{feng2025fpt} & hard, relaxed & no & yes & no\\
+FidLIF~\citep{he2026fidlif} & hard, relaxed in solve & no & yes (Newton) & no\\
+Bullet Trains~\citep{morrill2026bullet} & hard, continuous time & yes & chunk restarts & yes\\
+Tachyon~\citep{tachyon2026} & hard & yes & speculative rounds & yes\\
+\textbf{This work} & hard, discrete time & yes & no & no\\
+\bottomrule
+\end{tabular}
+\caption{Time-parallel forward passes for LIF neurons, as described by their authors. ``Exact'': the forward pass agrees with the serial hard-reset recurrence in exact arithmetic. ``Spike-dependent depth'': the number of sequential rounds grows with the number of output spikes.}
+\label{tab:methods}
+\end{table}
 
 \paragraph{Scans over function compositions.}
 Parallel prefix computation applies to any associative operator~\citep{blelloch1990prefix}, including composition of functions from a family with a closed, bounded representation, e.g.\ affine maps (linear recurrences~\citep{kogge1973parallel,martin2018parallelizing}) or finite-state transition functions. Generic nonlinear RNNs lack such a representation, which motivates Newton-type parallelization (DEER/ELK~\citep{lim2024deer,gonzalez2024elk}). Our contribution is to identify that the hard-reset LIF family has such a representation, to bound its size, and to make it practical.
@@ -130,6 +150,12 @@ For $0<\beta<1$, $\theta>0$, $u_r=0$ and constant input $I\in\big((1-\beta)\thet
 By \eqref{eq:arec}, $a_k$ is strictly decreasing, so every $k$ is a record. From $u_r=0$ the neuron reaches $I(1-\beta^m)/(1-\beta)<\theta$ after $m\le L$ steps, so it does not fire again after a reset and $G_k=I(1-\beta^{L-k})/(1-\beta)$ are pairwise distinct; no two pieces merge.
 \end{proof}
 
+\begin{corollary}[time-varying parameters]
+\label{cor:tv}
+Let step $t$ be $f_t(u)=\alpha_tu+I_t$ if $\alpha_tu+I_t<\theta_t$ and $f_t(u)=r_t$ otherwise, with $\alpha_t>0$ and arbitrary real $I_t,\theta_t,r_t$. Then Theorem~\ref{thm:structure} holds with $\beta^k$ replaced by $A_k=\prod_{j\le k}\alpha_j$, $b_k$ by the corresponding free response, and $a_k=(\theta_k-b_k)/A_k$.
+\end{corollary}
+The proof of Theorem~\ref{thm:structure} only uses that the free trajectory is increasing in $u_0$ and that a spike erases $u_0$, so it carries over unchanged. This covers input-dependent leaks (e.g.\ conductance-based input $u\mapsto(\beta-g_t)u+g_tE$ while $\beta-g_t>0$), learned per-step time constants, and thresholds that vary in time but do not depend on the neuron's own spikes. The composition operator is unchanged, since it only manipulates $(A,B)$ pairs. In exact arithmetic, composed maps for random time-varying parameters ($\alpha_t$ also above 1) matched the serial recurrence in all 2000 test cases. Refractory periods also preserve forgetting. After a spike the trajectory no longer depends on $u_0$, so segment maps keep the same form; they must be indexed by the refractory counter at the segment start (we have not implemented this).
+
 \paragraph{Closure and composition.}
 Let $\mathcal H$ be the set of maps that are affine with positive slope on $(-\infty,x_0)$ and piecewise constant with finitely many left-closed pieces on $[x_0,\infty)$ (possibly $x_0=+\infty$). The composition of the segment maps of two adjacent segments is the segment map of their concatenation, so by Theorem~\ref{thm:structure}:
 
@@ -153,7 +179,7 @@ Because every pulled-back breakpoint lies below $x_0\le x_i$, the two breakpoint
 \end{figure}
 
 % ---------------------------------------------------------------------------
-\section{Soft reset: a quadratic bound}
+\section{Soft reset: a tight quadratic bound}
 \label{sec:soft}
 
 With subtractive reset, $u_t=v_t-\theta s_t$; every piece of the segment map is affine with slope $\beta^L$, but the map jumps down at each breakpoint and is not monotone.
@@ -170,7 +196,14 @@ Let $N_t$ be the spike count up to $t$. For $u_0<u_0'$ define $d_t=N'_t-N_t$ and
 and an induction gives $d_t\ge0$ and $\Phi_t>0$ for all $t$: the spike count is non-decreasing in $u_0$, and on each level set $\{N_t=n\}$ (an interval) the potential is strictly increasing. A new breakpoint at step $t$ is a continuous crossing $u_{t-1}(u_0)=c_t$, of which there is at most one per level set of $N_{t-1}$, i.e.\ at most $t$. Summing over $t$ gives $L(L+1)/2$ breakpoints.
 \end{proof}
 
-Hill-climbing over inputs in exact arithmetic attains the bound for every $L\le 6$ (and reaches 28 of 29 at $L=7$); the lexicographic lemma held in all $2.66\times10^6$ exact comparisons we made. A general lower-bound construction is open. Fig.~\ref{fig:pieces}a shows the typical gap: on random inputs soft-reset maps have 2--30$\times$ more pieces than hard-reset maps (the ratio grows with $L$ and $\beta$) and approach the quadratic envelope.
+The bound is tight:
+
+\begin{theorem}[tightness]
+\label{thm:softtight}
+Let $L\ge1$, $\theta>0$, and let the input be constant, $I_t\equiv I\in(0,\theta)$, with $I/\theta$ not a rational number of denominator less than $L$. There is $\delta>0$ such that, for all but finitely many $\beta\in(1-\delta,1)$, the soft-reset segment map has exactly $1+L(L+1)/2$ pieces.
+\end{theorem}
+
+The proof (App.~\ref{app:softtight}) shows that at $\beta=1$ the spike pattern switches at the $L(L+1)/2$ distinct points $k\theta-tI$, $1\le k\le t\le L$. All these patterns survive a small decrease of $\beta$, and for generic $\beta$ their intercepts are distinct. In exact arithmetic, the construction gives exactly $1+L(L+1)/2$ pieces for every $L\le16$ we tried at $\beta\in\{0.99,0.999,0.9999\}$; at $\beta=0.9$ it does so up to $L=7$, and at $\beta=1$ it collapses to $L+1$. The lexicographic lemma held in all $2.66\times10^6$ exact comparisons we made. Fig.~\ref{fig:pieces}a shows the typical gap: on random inputs soft-reset maps have 2--30$\times$ more pieces than hard-reset maps (the ratio grows with $L$ and $\beta$) and approach the quadratic envelope.
 The contrast with iterative methods is worth noting: fixed-point formulations are most natural for soft reset~\citep{feng2025fpt}, whereas in map space hard reset is easier, because forgetting collapses all trajectories that fire at the same step into one constant.
 
 % ---------------------------------------------------------------------------
@@ -228,6 +261,9 @@ For GPUs we use a two-level variant (Alg.~\ref{alg:twolevel}). Chunks of $C$ ste
 \hrule
 \end{figure}
 
+\paragraph{Three-level variant.}
+Because the maps form a monoid, chunk maps can themselves be composed. We group $G$ consecutive chunk maps into super-chunk maps (capacity $K_2$, pruned with the envelope bound at the super-chunk entry), carry scalars across the $M/G$ super-chunks, carry inside each super-chunk in parallel, and replay. Composition pushes the left map's constants through the right map and appends the right map's pulled-back breakpoints (Sec.~\ref{sec:structure}). The depth becomes $O(C+G+M/G)$, at the price of $O(KK_2)$ work per composition.
+
 \paragraph{Exactness in floating point.}
 In exact arithmetic, every carried state equals the serial one. In floating point, the scan and the serial loop differ in how the affine part $A=\beta^C$ and the breakpoints are evaluated, so a state within rounding distance of a breakpoint could select a different piece. Since the replay executes the serial instruction sequence, the repair step of Alg.~\ref{alg:twolevel} is a fixed-point iteration whose unique fixed point is the serial trajectory, and it reaches it in at most $M$ rounds (by induction over chunks). In practice it terminates after 0--2 rounds, longer only during long silent stretches when the forgetting property does not apply (Sec.~\ref{sec:exp}).
 
@@ -255,6 +291,16 @@ We compare three float32 implementations, each tuned \emph{per $(N,T)$ cell}: (a
 \label{fig:gpu}
 \end{figure}
 
+\paragraph{Long sequences and three-level composition.}
+On a second RTX~5090 node (same software stack), we extended the sequence length to $T=262{,}144$ and compared the two-level scan with the three-level variant, each again tuned per cell (Table~\ref{tab:long}). The two-level forward speedup grows with $T$, reaching $\LongFwdMaxNine\times$ ($\beta=0.9$) and $\LongFwdMaxNineNine\times$ ($\beta=0.99$) over the tuned serial kernel at $N=128$, $T=262{,}144$; forward+backward reaches $\LongFbMaxNine\times$. The three-level variant was exact in every cell (spike flips before repair: \LongMaxFlipNine), and its super-chunk maps, each composed from $G$ chunk maps covering up to 4096 steps, still had only a few pieces on average. It was nevertheless faster than the two-level scan in \LongVFourBestNine\ of the \LongCellsNine\ cells for $\beta=0.9$ and in \LongVFourBestNineNine\ of the \LongCellsNineNine\ cells for $\beta=0.99$. On this hardware and up to this length, the per-step carry is cheap enough that the extra $O(KK_2)$ composition work does not pay off, and the asymptotic depth advantage would only show at longer sequences.
+
+\begin{table}[t]
+\centering\small
+\input{tab_long.tex}
+\caption{Long sequences on the second RTX~5090 node. Columns 5--8 are speedups over the tuned serial kernel (forward: two-level and three-level exact scan; backward: affine scan; forward+backward: the better forward plus the scan backward). Each implementation is tuned per cell.}
+\label{tab:long}
+\end{table}
+
 \paragraph{Forgetting in the adjoint.}
 With a detached reset, $J_t=0$ at every spike, so the backward recurrence also forgets: a chunk that contains a spike has a composed slope of exactly $0$, and the scan's adjoint inside it is computed by the same instructions as the serial adjoint. On a 1024-step, 4096-neuron test with $\beta=0.95$, the scan's and the serial kernel's float32 adjoints have identical errors relative to a float64 reference ($1.3\times10^{-7}$), at every position within a chunk. Differences arise only from chunks without spikes.
 
@@ -276,14 +322,17 @@ We train a feed-forward 700--256--256--20 hard-reset LIF network ($\beta=0.95$) 
 \label{fig:shd}
 \end{figure}
 
+\paragraph{SSC.}
+To check that the equivalence does not depend on the dataset, we repeated the setup on the Spiking Speech Commands~\citep{cramer2020shd} (35 classes, 75{,}466 training samples), with the same network, $T=1024$, batch 64, 20 epochs and three seeds per kernel. On real batches with identical weights, the scan again produced \SscSpikesEqScan\ spikes bit-identical to the serial kernel, with gradient differences up to $\SscGradRelScan$ (SpikingJelly: $\SscGradRelSJ$). Final test accuracies are $\SscAccSerial\%$ (serial), $\SscAccScan\%$ (scan) and $\SscAccSJ\%$ (SpikingJelly), and the mean paired scan$-$serial difference is $\SscDiff$ points.
+
 % ---------------------------------------------------------------------------
 \section{Limitations and outlook}
 
 \begin{itemize}[leftmargin=*]
 \item \textbf{Regime.} Time-parallel evaluation pays only when serial evaluation leaves the GPU idle. With large batch$\times$width, a well-tuned serial kernel is faster. In our measurements, the exact forward wins for $N\le1$k at $T\ge16$k, forward+backward breaks even near $N\approx8$k, and for $N\ge32$k the scan runs at about half the serial speed.
 \item \textbf{Within-layer recurrence.} The method needs the input currents of a layer for all $t$ in advance; recurrent synaptic connections within a layer break this, as they do for every scan-based method. Current-based synapses are not a problem: the synaptic current is a linear filter of the inputs and can be scanned first.
-\item \textbf{Silent integrators.} With the envelope bound, map sizes are small in every regime we measured except $\beta\to1$ with near-zero drift, where they grow like $\sqrt L$ and overflow becomes more frequent. The output stays exact, but the speed degrades towards serial. Multi-level composition of chunk maps (depth $O(\log^2T)$) is possible thanks to closure, but we have not implemented it.
-\item \textbf{Other neurons.} For adaptive-threshold neurons the reset acts on one coordinate of a two-dimensional state, forgetting is partial, and level sets become planar regions. Extending the structure theory to them is the main open direction.
+\item \textbf{Silent integrators.} With the envelope bound, map sizes are small in every regime we measured except $\beta\to1$ with near-zero drift, where they grow like $\sqrt L$ and overflow becomes more frequent. The output stays exact, but the speed degrades towards serial. A three-level variant reduces the depth further and is exact, but on our hardware it did not beat the two-level scan up to $T=262{,}144$ (Table~\ref{tab:long}).
+\item \textbf{Other neurons.} For adaptive-threshold (ALIF) neurons the reset acts on one coordinate of a two-dimensional state, forgetting is only partial, and the pieces of a segment map become polygons in the $(u_0,w_0)$ plane. A sampling estimate (App.~\ref{app:extra}, Table~\ref{tab:alif}) suggests that their number grows only moderately with $L$ (about 15--22 regions at $L=64$ on a fixed window, against 7 for LIF), so map-space scans may extend to them. A compact representation of polygonal maps and a structure theorem are the main open problems.
 \item \textbf{Floating point and deployment.} Bit-exactness is with respect to a serial program in the same arithmetic. Deploying to fixed-point neuromorphic hardware still requires simulation in that hardware's arithmetic.
 \end{itemize}
 
@@ -312,21 +361,43 @@ For $d_t$: if $d_{t-1}\ge1$ then $N_t\le N_{t-1}+1\le N'_{t-1}\le N'_t$; if $d_{
 
 Between breakpoints all $s_j$ are constant and $u_L$ is affine with slope $\beta^L$, so breakpoints occur only where some $s_t$ changes. Call a point a \emph{new breakpoint of step $t$} if $s_t$ changes there while $s_1,\ldots,s_{t-1}$ do not; there $u_{t-1}$ is continuous and equals $c_t=(\theta-I_t)/\beta$. By the lemma, the level sets of $N_{t-1}$ are intervals on which $u_{t-1}$ is strictly increasing, so each contains at most one solution of $u_{t-1}=c_t$. Since $N_{t-1}\in\{0,\ldots,t-1\}$, step $t$ creates at most $t$ new breakpoints, and the total is at most $\sum_{t=1}^Lt$. \qed
 
+\section{Proof of Theorem~\ref{thm:softtight}}
+\label{app:softtight}
+
+Write $x=u_0$ and $g_t(x)=\lfloor (x+tI)/\theta\rfloor$.
+
+\emph{Step 1 ($\beta=1$).} By induction on $t$, $N_t(x)=\min(t,\max(0,g_t(x)))$. With $\beta=1$, $v_t=x+tI-\theta N_{t-1}$, so $s_t=1$ iff $N_{t-1}+1\le (x+tI)/\theta$, i.e.\ iff $g_t\ge N_{t-1}+1$. Since $0<I<\theta$, $g_t\in\{g_{t-1},g_{t-1}+1\}$. If $N_{t-1}=0\ge g_{t-1}$, the neuron fires iff $g_t=1$. If $N_{t-1}=t-1\le g_{t-1}$, it fires iff $g_t\ge t$. Otherwise $N_{t-1}=g_{t-1}$, and it fires iff $g_t=g_{t-1}+1$. In each case $N_t=\min(t,\max(0,g_t))$.
+
+Hence each $N_t(\cdot)$ is a non-decreasing step function whose jumps are exactly at $x_{t,k}=k\theta-tI$, $1\le k\le t$. By the assumption on $I/\theta$ these $L(L+1)/2$ points are distinct, since $x_{t,k}=x_{t',k'}$ with $t\ne t'$ would give $I/\theta=(k-k')/(t-t')$. They split $\mathbb R$ into $M=1+L(L+1)/2$ open intervals. On each interval the spike pattern $P=(s_1,\ldots,s_L)$ is constant, and the patterns of different intervals are distinct, because $(N_1,\ldots,N_L)$ increases componentwise across every switch point. Moreover $v_t(x)=\theta$ only at the switch point $x_{t,N_{t-1}+1}$, so inside each interval every threshold comparison is strict.
+
+\emph{Step 2 (perturbation).} For a pattern $P$, let $v^{P,\beta}_t(x)=\beta^tx+b_t(\beta)-\theta\sum_{j<t}s_j\beta^{t-j}$ be the pre-reset potential when the spikes of $P$ are imposed. The set of $x$ whose actual pattern is $P$ is $R_P(\beta)=\{x:\ [v^{P,\beta}_t(x)\ge\theta]=s_t\ \forall t\}$. It is an interval, since each constraint is a half-line in $x$. Pick $x_P$ inside the interval of $P$ at $\beta=1$. All constraints hold strictly at $(x_P,1)$ and are continuous in $\beta$, so for $\beta\in(1-\delta,1]$ they hold strictly in a neighbourhood of $x_P$. Thus all $M$ patterns are realized on intervals of positive length.
+
+\emph{Step 3 (distinct pieces).} On $R_P(\beta)$, $u_L(x)=\beta^Lx+b_L(\beta)-\theta\rho_P(\beta)$ with $\rho_P(\beta)=\sum_js_j\beta^{L-j}$. For $P\ne P'$, $\rho_P-\rho_{P'}$ is a non-zero polynomial with coefficients in $\{-1,0,1\}$, so it vanishes for finitely many $\beta$ only. Away from these values, the $M$ disjoint intervals carry affine functions with equal slopes and pairwise distinct intercepts. Hence the map has at least $M$ pieces, and by Theorem~\ref{thm:soft} exactly $M$. \qed
+
 \section{Additional results}
 \label{app:extra}
 
-\begin{table}[h]
+Table~\ref{tab:e1} lists piece counts of exact segment maps for hard and soft reset, Table~\ref{tab:stress} the near-threshold floating-point stress test, and Table~\ref{tab:alif} the region counts for adaptive-threshold neurons.
+
+\begin{table}[!htbp]
 \centering\small
 \input{tab_e1.tex}
 \caption{Pieces of exact segment maps on random inputs $I_t\sim\mathcal N(\mu,0.3^2)$ (quantized to $10^{-3}$, 20 draws per row, rational arithmetic).}
 \label{tab:e1}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[!htbp]
 \centering\small
 \input{tab_stress.tex}
 \caption{Near-threshold stress test (PyTorch prototype on CPU, $T=4096$, 512 neurons; 30\% of the steps are constructed so that the float64 pre-reset potential lies within $\pm\varepsilon$ of $\theta$). Columns 3--4 give the fraction of spike entries that differ. Float32 vs.\ float64 disagreement is the intrinsic rounding noise of the serial recurrence; the scan adds none.}
 \label{tab:stress}
+\end{table}
+
+\begin{table}[!htbp]
+\centering\small
+\input{tab_alif.tex}
+\caption{Number of distinct spike patterns (= affine pieces) of the $L$-step map on the window $u_0\in[-4,1]$, $w_0\in[0,2]$, estimated on a $700\times700$ grid, mean and max over 5 random inputs $\mathcal N(0.15,0.4^2)$. $\beta=0.9$, $\theta_0=1$, $u_r=0$; ALIF threshold $\theta_0+w_{t-1}$ with $w_t=0.95\,w_{t-1}+q\,s_t$. Sampling gives a lower bound.}
+\label{tab:alif}
 \end{table}
 
 \section{Implementation details}

@@ -4,9 +4,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import torch, torch.nn as nn
 from lifscan.shdnet import load, batch_dense, Net
 T = int(sys.argv[1]) if len(sys.argv) > 1 else 1024
+DATASET = os.environ.get("DATASET", "shd")
+NOUT = {"shd": 20, "ssc": 35}[DATASET]
 torch.manual_seed(0)
-ev, y = load("test", T)
-net = Net("serial").cuda()
+ev, y = load("test", T, DATASET)
+net = Net("serial", n_out=NOUT).cuda()
 out = []
 for b in range(5):
     idx = list(range(b * 64, b * 64 + 64))
@@ -26,4 +28,4 @@ for b in range(5):
         row[m] = dict(spikes_equal=bool(torch.equal(s, ref_s)), spike_mismatch=(s != ref_s).float().mean().item(),
                       grad_rel=((gr - ref_g).norm() / ref_g.norm()).item())
     out.append(row); print(b, json.dumps(row), flush=True)
-json.dump(out, open(f"results/e7b_gradcheck_T{T}.json", "w"), indent=1)
+json.dump(out, open(f"results/e7b_gradcheck_T{T}.json" if DATASET == "shd" else f"results/e10_{DATASET}_gradcheck_T{T}.json", "w"), indent=1)

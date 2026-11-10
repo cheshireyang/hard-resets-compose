@@ -1,0 +1,92 @@
+[
+ {
+  "model": "LIF",
+  "L": 4,
+  "mean": 2.6,
+  "max": 4
+ },
+ {
+  "model": "LIF",
+  "L": 8,
+  "mean": 5.0,
+  "max": 6
+ },
+ {
+  "model": "LIF",
+  "L": 16,
+  "mean": 5.0,
+  "max": 7
+ },
+ {
+  "model": "LIF",
+  "L": 32,
+  "mean": 5.4,
+  "max": 8
+ },
+ {
+  "model": "LIF",
+  "L": 64,
+  "mean": 7.0,
+  "max": 9
+ },
+ {
+  "model": "ALIF q=0.5",
+  "L": 4,
+  "mean": 3.6,
+  "max": 5
+ },
+ {
+  "model": "ALIF q=0.5",
+  "L": 8,
+  "mean": 4.4,
+  "max": 6
+ },
+ {
+  "model": "ALIF q=0.5",
+  "L": 16,
+  "mean": 7.0,
+  "max": 10
+ },
+ {
+  "model": "ALIF q=0.5",
+  "L": 32,
+  "mean": 12.6,
+  "max": 18
+ },
+ {
+  "model": "ALIF q=0.5",
+  "L": 64,
+  "mean": 15.4,
+  "max": 28
+ },
+ {
+  "model": "ALIF q=1.0",
+  "L": 4,
+  "mean": 2.4,
+  "max": 4
+ },
+ {
+  "model": "ALIF q=1.0",
+  "L": 8,
+  "mean": 4.8,
+  "max": 8
+ },
+ {
+  "model": "ALIF q=1.0",
+  "L": 16,
+  "mean": 11.8,
+  "max": 15
+ },
+ {
+  "model": "ALIF q=1.0",
+  "L": 32,
+  "mean": 13.4,
+  "max": 21
+ },
+ {
+  "model": "ALIF q=1.0",
+  "L": 64,
+  "mean": 22.0,
+  "max": 33
+ }
+]
