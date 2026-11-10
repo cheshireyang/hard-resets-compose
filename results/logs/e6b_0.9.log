@@ -1,0 +1,16 @@
+N=128    T=1024  | serial f   0.092 b   0.256 | SJ f+b   0.887 | scan f   0.203 (C=64,K=16,ovf=0.00,flip=0e+00) b   0.143 | x fwd  0.45 bwd  1.79 f+b  1.01 vsSJ  2.56
+N=128    T=4096  | serial f   0.172 b   0.744 | SJ f+b   2.893 | scan f   0.220 (C=128,K=32,ovf=0.00,flip=0e+00) b   0.143 | x fwd  0.78 bwd  5.21 f+b  2.53 vsSJ  7.98
+N=128    T=16384 | serial f   0.557 b   2.763 | SJ f+b  11.011 | scan f   0.328 (C=256,K=32,ovf=0.00,flip=0e+00) b   0.143 | x fwd  1.70 bwd 19.26 f+b  7.04 vsSJ 23.36
+N=128    T=65536 | serial f   2.679 b  18.499 | SJ f+b  77.064 | scan f   0.697 (C=256,K=32,ovf=0.00,flip=0e+00) b   0.331 | x fwd  3.84 bwd 55.85 f+b 20.60 vsSJ 74.96
+N=1024   T=1024  | serial f   0.082 b   0.244 | SJ f+b   0.919 | scan f   0.204 (C=64,K=16,ovf=0.00,flip=0e+00) b   0.143 | x fwd  0.40 bwd  1.71 f+b  0.94 vsSJ  2.65
+N=1024   T=4096  | serial f   0.174 b   1.108 | SJ f+b   3.310 | scan f   0.261 (C=128,K=32,ovf=0.00,flip=0e+00) b   0.155 | x fwd  0.67 bwd  7.16 f+b  3.09 vsSJ  7.96
+N=1024   T=16384 | serial f   1.029 b   4.747 | SJ f+b  20.710 | scan f   0.744 (C=256,K=32,ovf=0.00,flip=0e+00) b   0.531 | x fwd  1.38 bwd  8.95 f+b  4.53 vsSJ 16.25
+N=1024   T=65536 | serial f   3.937 b  18.728 | SJ f+b  85.332 | scan f   2.655 (C=256,K=32,ovf=0.00,flip=0e+00) b   2.047 | x fwd  1.48 bwd  9.15 f+b  4.82 vsSJ 18.15
+N=8192   T=1024  | serial f   0.105 b   0.394 | SJ f+b   1.432 | scan f   0.243 (C=256,K=8,ovf=0.52,flip=0e+00) b   0.282 | x fwd  0.43 bwd  1.40 f+b  0.95 vsSJ  2.73
+N=8192   T=4096  | serial f   0.395 b   1.381 | SJ f+b   5.632 | scan f   0.969 (C=128,K=16,ovf=0.00,flip=0e+00) b   1.013 | x fwd  0.41 bwd  1.36 f+b  0.90 vsSJ  2.84
+N=8192   T=16384 | serial f   1.393 b   5.179 | SJ f+b  22.334 | scan f   3.809 (C=256,K=16,ovf=0.00,flip=0e+00) b   3.794 | x fwd  0.37 bwd  1.37 f+b  0.86 vsSJ  2.94
+N=32768  T=1024  | serial f   0.346 b   0.578 | SJ f+b   1.812 | scan f   0.719 (C=128,K=8,ovf=0.52,flip=0e+00) b   0.995 | x fwd  0.48 bwd  0.58 f+b  0.54 vsSJ  1.06
+N=32768  T=4096  | serial f   1.222 b   2.097 | SJ f+b   6.877 | scan f   2.730 (C=256,K=8,ovf=0.56,flip=0e+00) b   3.760 | x fwd  0.45 bwd  0.56 f+b  0.51 vsSJ  1.06
+N=65536  T=1024  | serial f   0.631 b   1.078 | SJ f+b   2.254 | scan f   1.325 (C=128,K=8,ovf=0.52,flip=0e+00) b   1.906 | x fwd  0.48 bwd  0.57 f+b  0.53 vsSJ  0.70
+N=65536  T=4096  | serial f   2.366 b   4.109 | SJ f+b   8.587 | scan f   5.170 (C=256,K=8,ovf=0.56,flip=0e+00) b   7.412 | x fwd  0.46 bwd  0.55 f+b  0.51 vsSJ  0.68
+N=262144 T=1024  | serial f   2.341 b   4.277 | SJ f+b   6.562 | scan f   5.147 (C=256,K=8,ovf=0.52,flip=0e+00) b   7.385 | x fwd  0.45 bwd  0.58 f+b  0.53 vsSJ  0.52

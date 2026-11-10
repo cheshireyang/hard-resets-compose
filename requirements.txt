@@ -1,0 +1,7 @@
+torch>=2.8
+triton>=3.4        # GPU kernels (CUDA)
+numpy
+h5py               # SHD experiments
+scipy              # paired t-test in paper/make_numbers.py
+matplotlib         # figures
+spikingjelly>=2.0  # baseline only

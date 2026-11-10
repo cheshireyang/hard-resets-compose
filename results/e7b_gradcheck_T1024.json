@@ -1,0 +1,87 @@
+[
+ {
+  "serial2": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 0.0
+  },
+  "scan": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 1.1290212853509729e-07
+  },
+  "sj": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 7.504344239350758e-07
+  }
+ },
+ {
+  "serial2": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 0.0
+  },
+  "scan": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 9.543082768459499e-08
+  },
+  "sj": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 6.312503728622687e-07
+  }
+ },
+ {
+  "serial2": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 0.0
+  },
+  "scan": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 8.53190442740015e-08
+  },
+  "sj": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 6.629388735746033e-07
+  }
+ },
+ {
+  "serial2": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 0.0
+  },
+  "scan": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 8.829508857388646e-08
+  },
+  "sj": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 6.314897973425104e-07
+  }
+ },
+ {
+  "serial2": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 0.0
+  },
+  "scan": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 1.1563189161734044e-07
+  },
+  "sj": {
+   "spikes_equal": true,
+   "spike_mismatch": 0.0,
+   "grad_rel": 7.34181980988069e-07
+  }
+ }
+]

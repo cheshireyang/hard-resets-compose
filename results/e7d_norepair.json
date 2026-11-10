@@ -1,0 +1,112 @@
+[
+ {
+  "T": 1024,
+  "batch": 0,
+  "layer": 1,
+  "rate": 0.003663778305053711,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 6,
+  "exact_after": true,
+  "ovf": 0.0
+ },
+ {
+  "T": 1024,
+  "batch": 1,
+  "layer": 1,
+  "rate": 0.0039255619049072266,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 5,
+  "exact_after": true,
+  "ovf": 0.0
+ },
+ {
+  "T": 1024,
+  "batch": 2,
+  "layer": 1,
+  "rate": 0.003880739212036133,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 6,
+  "exact_after": true,
+  "ovf": 0.0
+ },
+ {
+  "T": 1024,
+  "batch": 3,
+  "layer": 1,
+  "rate": 0.0036444664001464844,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 4,
+  "exact_after": true,
+  "ovf": 0.0
+ },
+ {
+  "T": 1024,
+  "batch": 4,
+  "layer": 1,
+  "rate": 0.00398707389831543,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 5,
+  "exact_after": true,
+  "ovf": 0.0
+ },
+ {
+  "T": 8192,
+  "batch": 0,
+  "layer": 1,
+  "rate": 0.00020423531532287598,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 30,
+  "exact_after": true,
+  "ovf": 0.0
+ },
+ {
+  "T": 8192,
+  "batch": 1,
+  "layer": 1,
+  "rate": 0.0002117455005645752,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 29,
+  "exact_after": true,
+  "ovf": 3.814697265625e-06
+ },
+ {
+  "T": 8192,
+  "batch": 2,
+  "layer": 1,
+  "rate": 0.0002187490463256836,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 35,
+  "exact_after": true,
+  "ovf": 7.62939453125e-06
+ },
+ {
+  "T": 8192,
+  "batch": 3,
+  "layer": 1,
+  "rate": 0.00020575523376464844,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 23,
+  "exact_after": true,
+  "ovf": 7.62939453125e-06
+ },
+ {
+  "T": 8192,
+  "batch": 4,
+  "layer": 1,
+  "rate": 0.00021839141845703125,
+  "mismatch_norepair": 0.0,
+  "neurons_affected": 0.0,
+  "repair_rounds": 25,
+  "exact_after": true,
+  "ovf": 0.0
+ }
+]
