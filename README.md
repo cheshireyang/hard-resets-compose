@@ -70,6 +70,16 @@ from lifscan.triton_lif import lif_auto
 spikes = lif_auto(I, u0, beta=0.9)
 ```
 
+### Fitting neuron models
+
+```python
+from lifscan.fit import lif_param            # gradients w.r.t. I, u0, beta, theta, u_r
+spikes = lif_param(I, u0, beta, theta, u_r, mode="auto")
+```
+
+`experiments/e14_fit.py` (synthetic parameter recovery) and `experiments/e15_allen_fit.py` (Allen Cell Types
+recordings, fetched with `experiments/allen_fetch.py`) reproduce Sec. "Application" of the paper.
+
 The dispatch thresholds (`AUTO_FWD_MAX_N`, `AUTO_FWD_MIN_T`, `AUTO_BWD_MAX_N`, `AUTO_BWD_MIN_T` in
 `lifscan/triton_lif.py`) were measured on an RTX 5090; recalibrate them with `experiments/e11_auto.py` on other GPUs.
 

@@ -204,6 +204,72 @@ open(os.path.join(OUT, "tab_alif_exact.tex"), "w").write("\n".join(lines) + "\n"
 macros["AlifMonoChecks"] = f"{e12['mono_checks']:,}".replace(",", "{,}")
 macros["AlifMonoViol"] = str(e12["mono_violations"])
 
+# E13: reset-rule classes
+e13 = load("e13_reset_classes.json")
+rules = ["hard (r=0)", "soft (r=v-1)", "proportional (r=v/2), I>=0", "proportional (r=v/2), any I", "affine (r=v/2-1/2)", "decreasing (r=-v/2)"]
+names = {"hard (r=0)": "constant, $r=0$", "soft (r=v-1)": "soft, $r(v)=v-1$", "proportional (r=v/2), I>=0": "proportional, $r(v)=v/2$, $I_t\\ge0$",
+         "proportional (r=v/2), any I": "proportional, $r(v)=v/2$, any $I_t$", "affine (r=v/2-1/2)": "affine, $r(v)=(v-1)/2$", "decreasing (r=-v/2)": "decreasing, $r(v)=-v/2$"}
+Ls = sorted({r["L"] for r in e13})
+lines = ["\\begin{tabular}{l" + "r" * len(Ls) + "}", "\\toprule", "reset rule & " + " & ".join(f"$L={L}$" for L in Ls) + "\\\\", "\\midrule"]
+for ru in rules:
+    lines.append(names[ru] + " & " + " & ".join(str([r for r in e13 if r["rule"] == ru and r["L"] == L][0]["max"]) for L in Ls) + "\\\\")
+lines.append("\\midrule")
+lines.append("$L+1$ & " + " & ".join(str(L + 1) for L in Ls) + "\\\\")
+lines.append("$1+L(L+1)/2$ & " + " & ".join(str(1 + L * (L + 1) // 2) for L in Ls) + "\\\\")
+lines += ["\\bottomrule", "\\end{tabular}"]
+open(os.path.join(OUT, "tab_resets.tex"), "w").write("\n".join(lines) + "\n")
+
+# E14: parameter recovery (CPU accuracy comparison + GPU timing)
+cpu = load("e14_fit_cpu_T8192_N8.json")
+def agg(kind):
+    rr = [r for r in cpu["runs"] if r["kind"] == kind]
+    return {k: max(r["rel_err"][k] for r in rr) for k in ("beta", "gain", "bias")}, min(r["f1_own"] for r in rr), max(r["f1_own"] for r in rr)
+lines = ["\\begin{tabular}{lrrrr}", "\\toprule", "fitted model & $\\beta$ err. & gain err. & bias err. & held-out F1\\\\", "\\midrule"]
+for kind, nm in (("hard", "hard reset (exact)"), ("soft", "soft reset"), ("noreset", "no reset")):
+    e, lo, hi = agg(kind)
+    f1s = f"{lo:.3f}" if abs(hi - lo) < 5e-4 else f"{lo:.3f}--{hi:.3f}"
+    pct = lambda v: f"{100 * v:.0f}" if 100 * v >= 10 else f"{100 * v:.2g}"
+    lines.append(f"{nm} & {pct(e['beta'])}\\% & {pct(e['gain'])}\\% & {pct(e['bias'])}\\% & {f1s}\\\\")
+lines += ["\\bottomrule", "\\end{tabular}"]
+open(os.path.join(OUT, "tab_fit_synth.tex"), "w").write("\n".join(lines) + "\n")
+gpu_rows = []
+for T in (65536, 262144, 1048576):
+    d = load(f"e14_fit_cuda_T{T}_N16.json")
+    ser = [r for r in d["runs"] if r["kind"] == "hard:serial"]; au = [r for r in d["runs"] if r["kind"] == "hard:auto"]
+    same = all(abs(a["fit"][k] - b["fit"][k]) < 1e-6 for a, b in zip(ser, au) for k in ("beta", "gain", "bias"))
+    gpu_rows.append((T, ser[0]["ms_per_iter"], au[0]["ms_per_iter"], same, max(max(r["rel_err"].values()) for r in au), d["iters"]))
+macros["FitSpeedMin"] = f"{min(r[1] / r[2] for r in gpu_rows):.1f}"
+macros["FitSpeedMax"] = f"{max(r[1] / r[2] for r in gpu_rows):.1f}"
+macros["FitSameAll"] = "identical" if all(r[3] for r in gpu_rows) else "NOT identical"
+macros["FitMsSerialMillion"] = f"{gpu_rows[-1][1]:.0f}"; macros["FitMsAutoMillion"] = f"{gpu_rows[-1][2]:.0f}"
+macros["FitMsSerialShort"] = f"{gpu_rows[0][1]:.1f}"; macros["FitMsAutoShort"] = f"{gpu_rows[0][2]:.1f}"
+macros["FitHardErrMax"] = sci(max(max(r["rel_err"].values()) for r in cpu["runs"] if r["kind"] == "hard"))
+
+# E15: Allen recordings
+al = load("e15_allen_fit_dt0.2.json")
+lines = ["\\begin{tabular}{llrrrrrr}", "\\toprule",
+         "cell & type & rate (Hz) & reliability & hard & soft & no reset & ms/iter serial / auto\\\\", "\\midrule"]
+for r in al:
+    m = r["models"]
+    lines.append(f"{r['cell']['specimen']} & {r['cell']['dendrite']} & {r['rate_hz']:.1f} & {r['reliability']:.2f} & "
+                 f"{m['hard']['f1_test']:.3f} & {m['soft']['f1_test']:.3f} & {m['noreset']['f1_test']:.3f} & "
+                 f"{r['hard_ms_serial']:.1f} / {r['hard_ms_auto']:.1f}\\\\")
+lines += ["\\bottomrule", "\\end{tabular}"]
+open(os.path.join(OUT, "tab_allen.tex"), "w").write("\n".join(lines) + "\n")
+hf = [r["models"]["hard"]["f1_test"] for r in al]; sf = [r["models"]["soft"]["f1_test"] for r in al]
+nf = [r["models"]["noreset"]["f1_test"] for r in al]; rl = [r["reliability"] for r in al]
+from scipy.stats import wilcoxon
+macros["AllenCells"] = str(len(al))
+macros["AllenFHard"] = f"{st.mean(hf):.3f}"; macros["AllenFSoft"] = f"{st.mean(sf):.3f}"; macros["AllenFNo"] = f"{st.mean(nf):.3f}"
+macros["AllenRel"] = f"{st.mean(rl):.3f}"
+macros["AllenHardWins"] = str(sum(h > s for h, s in zip(hf, sf)))
+macros["AllenDiff"] = f"{st.mean([h - s for h, s in zip(hf, sf)]):+.3f}"
+macros["AllenP"] = f"{wilcoxon(hf, sf).pvalue:.2g}" if len(al) >= 6 else "n/a"
+macros["AllenFracRel"] = f"{100 * st.mean([h / r for h, r in zip(hf, rl)]):.0f}"
+sp = [r["hard_ms_serial"] / r["hard_ms_auto"] for r in al]
+macros["AllenSpeed"] = f"{st.mean(sp):.1f}"
+macros["AllenT"] = f"{al[0]['T_train']:,}".replace(",", "{,}")
+
 with open(os.path.join(OUT, "numbers.tex"), "w") as f:
     f.write("% generated by make_numbers.py -- do not edit\n")
     for k, v in sorted(macros.items()):

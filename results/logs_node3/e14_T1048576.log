@@ -1,0 +1,3 @@
+data: T=1048576 N=16 rate=0.1530
+hard:serial  r0 fit beta=0.8948 gain=0.6989 bias=-0.0361 | rel err beta 5.8e-02 gain 1.6e-01 bias 1.9e+00 | F1 held-out own 0.968 | 449.5 ms/iter
+hard:auto    r0 fit beta=0.8948 gain=0.6989 bias=-0.0361 | rel err beta 5.8e-02 gain 1.6e-01 bias 1.9e+00 | F1 held-out own 0.968 | 50.5 ms/iter

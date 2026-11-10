@@ -1029,3 +1029,55 @@ class LIFAuto(torch.autograd.Function):
 def lif_auto(I, u0, beta=0.9, theta=1.0, u_r=0.0, alpha=4.0, K=16, repair=0):
     fwd, bwd = auto_modes(I.shape[1], I.shape[0])
     return LIFAuto.apply(I, u0, beta, theta, u_r, alpha, K, repair, fwd, bwd)
+
+
+# ============================================================================= soft-reset serial kernels
+# (baseline model class for the fitting experiments; serial only)
+@triton.jit
+def soft_fwd_kernel(I, U0, Uout, Sout, T, N, beta, theta, BN: tl.constexpr):
+    pid = tl.program_id(0)
+    n = pid * BN + tl.arange(0, BN)
+    mask = n < N
+    u = tl.load(U0 + n, mask=mask, other=0.0)
+    for t in range(T):
+        x = tl.load(I + t * N + n, mask=mask, other=0.0)
+        v = beta * u + x
+        s = v >= theta
+        u = tl.where(s, v - theta, v)
+        tl.store(Uout + t * N + n, u, mask=mask)
+        tl.store(Sout + t * N + n, s.to(tl.float32), mask=mask)
+
+
+@triton.jit
+def soft_bwd_kernel(I, U0, Uout, GS, Lam, T, N, beta, theta, alpha, BN: tl.constexpr):
+    # detached reset: u_t = v_t - theta*s_t with s detached  =>  du_t/dv_t = 1
+    pid = tl.program_id(0)
+    n = pid * BN + tl.arange(0, BN)
+    mask = n < N
+    lam = tl.zeros([BN], dtype=tl.float32)
+    for i in range(T):
+        t = T - 1 - i
+        x = tl.load(I + t * N + n, mask=mask, other=0.0)
+        if t > 0:
+            up = tl.load(Uout + (t - 1) * N + n, mask=mask, other=0.0)
+        else:
+            up = tl.load(U0 + n, mask=mask, other=0.0)
+        gs = tl.load(GS + t * N + n, mask=mask, other=0.0)
+        v = beta * up + x
+        sig = 1.0 / (1.0 + tl.exp(-alpha * (v - theta)))
+        lam = gs * alpha * sig * (1.0 - sig) + beta * lam
+        tl.store(Lam + t * N + n, lam, mask=mask)
+
+
+def soft_serial_forward(I, beta, theta, u0, BN=32):
+    T, N = I.shape
+    U = torch.empty_like(I); S = torch.empty_like(I)
+    soft_fwd_kernel[(triton.cdiv(N, BN),)](I, u0, U, S, T, N, beta, theta, BN=BN, num_warps=1)
+    return U, S
+
+
+def soft_serial_backward(I, u0, U, GS, beta, theta, alpha=4.0, BN=32):
+    T, N = I.shape
+    Lam = torch.empty_like(I)
+    soft_bwd_kernel[(triton.cdiv(N, BN),)](I, u0, U, GS, Lam, T, N, beta, theta, alpha, BN=BN, num_warps=1)
+    return Lam

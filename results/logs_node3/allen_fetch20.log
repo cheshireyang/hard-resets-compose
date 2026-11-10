@@ -1,0 +1,15 @@
+560817063 aspiny VISam4 {'Sweep_46': ('Noise 1', 28.02, 41), 'Sweep_47': ('Noise 2', 28.02, 47), 'Sweep_48': ('Noise 1', 28.02, 37), 'Sweep_52': ('Noise 1', 28.02, 34)}
+560889670 aspiny VISpm5 {'Sweep_51': ('Noise 1', 28.02, 46), 'Sweep_52': ('Noise 2', 28.02, 50), 'Sweep_53': ('Noise 1', 28.02, 47), 'Sweep_54': ('Noise 2', 28.02, 52), 'Sweep_55': ('Noise 1', 28.02, 45), 'Sweep_56': ('Noise 2', 28.02, 49), 'Sweep_57': ('Noise 1', 28.02, 43), 'Sweep_58': ('Noise 2', 28.02, 46)}
+562003142 aspiny VISp4 {'Sweep_42': ('Noise 1', 28.02, 113), 'Sweep_44': ('Noise 1', 28.02, 123), 'Sweep_45': ('Noise 2', 28.02, 140), 'Sweep_47': ('Noise 2', 28.02, 134)}
+562062132 aspiny VISp2/3 {'Sweep_48': ('Noise 1', 28.02, 50), 'Sweep_49': ('Noise 2', 28.02, 54), 'Sweep_50': ('Noise 1', 28.02, 44), 'Sweep_51': ('Noise 2', 28.02, 52), 'Sweep_52': ('Noise 1', 28.02, 48), 'Sweep_55': ('Noise 2', 28.02, 43)}
+563535101 aspiny VISp4 {'Sweep_57': ('Noise 1', 28.02, 75), 'Sweep_58': ('Noise 2', 28.02, 90), 'Sweep_59': ('Noise 1', 28.02, 72), 'Sweep_61': ('Noise 1', 28.02, 73), 'Sweep_62': ('Noise 2', 28.02, 78), 'Sweep_63': ('Noise 1', 28.02, 70), 'Sweep_64': ('Noise 2', 28.02, 75)}
+563790168 aspiny VISp2/3 {'Sweep_46': ('Noise 1', 28.02, 75), 'Sweep_49': ('Noise 2', 28.02, 77), 'Sweep_52': ('Noise 1', 28.02, 82)}
+563796500 aspiny VISp2/3 {'Sweep_50': ('Noise 1', 28.02, 67), 'Sweep_57': ('Noise 2', 28.02, 74)}
+570459682 aspiny VISl4 {'Sweep_48': ('Noise 2', 28.02, 63), 'Sweep_50': ('Noise 2', 28.02, 56), 'Sweep_51': ('Noise 1', 28.02, 36), 'Sweep_53': ('Noise 1', 28.02, 23), 'Sweep_54': ('Noise 2', 28.02, 24)}
+575772040 sparsely spiny VISp2/3 {'Sweep_55': ('Noise 1', 28.02, 43), 'Sweep_56': ('Noise 2', 28.02, 56), 'Sweep_58': ('Noise 2', 28.02, 51)}
+582613001 sparsely spiny VISp2/3 {'Sweep_53': ('Noise 1', 28.02, 31), 'Sweep_54': ('Noise 2', 28.02, 38), 'Sweep_55': ('Noise 1', 28.02, 31), 'Sweep_56': ('Noise 2', 28.02, 41), 'Sweep_57': ('Noise 1', 28.02, 27), 'Sweep_58': ('Noise 2', 28.02, 32), 'Sweep_59': ('Noise 1', 28.02, 30), 'Sweep_60': ('Noise 2', 28.02, 43)}
+582644266 aspiny VISp2/3 {'Sweep_52': ('Noise 1', 28.02, 73), 'Sweep_53': ('Noise 2', 28.02, 80), 'Sweep_54': ('Noise 1', 28.02, 68), 'Sweep_55': ('Noise 2', 28.02, 69), 'Sweep_56': ('Noise 1', 28.02, 67), 'Sweep_57': ('Noise 2', 28.02, 71), 'Sweep_59': ('Noise 2', 28.02, 73)}
+582644380 sparsely spiny VISp2/3 {'Sweep_59': ('Noise 1', 28.02, 82), 'Sweep_60': ('Noise 2', 28.02, 77), 'Sweep_61': ('Noise 1', 28.02, 75), 'Sweep_63': ('Noise 1', 28.02, 74), 'Sweep_64': ('Noise 2', 28.02, 90), 'Sweep_65': ('Noise 1', 28.02, 80), 'Sweep_66': ('Noise 2', 28.02, 89)}
+582647492 aspiny VISp2/3 {'Sweep_67': ('Noise 1', 28.02, 31), 'Sweep_69': ('Noise 1', 28.02, 37), 'Sweep_70': ('Noise 2', 28.02, 40), 'Sweep_71': ('Noise 1', 28.02, 45)}
+582778095 aspiny VISpm4 {'Sweep_58': ('Noise 1', 28.02, 83), 'Sweep_59': ('Noise 2', 28.02, 88), 'Sweep_61': ('Noise 2', 28.02, 85), 'Sweep_63': ('Noise 2', 28.02, 82), 'Sweep_64': ('Noise 1', 28.02, 66), 'Sweep_65': ('Noise 2', 28.02, 63)}
+cells: 20

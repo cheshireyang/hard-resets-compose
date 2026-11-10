@@ -1,0 +1,14 @@
+cell 518750800 aspiny          VISp2/3  T=140032 N=4 rate 6.9Hz | reliability 0.894 | F1 hard 0.604 soft 0.667 noreset 0.000 | hard ms/iter serial 26.6 auto 3.1
+cell 519220630 aspiny          VISp2/3  T=140032 N=4 rate 2.5Hz | reliability 0.724 | F1 hard 0.582 soft 0.531 noreset 0.047 | hard ms/iter serial 26.6 auto 2.7
+cell 553219924 aspiny          VISp2/3  T=140032 N=4 rate 4.7Hz | reliability 0.764 | F1 hard 0.525 soft 0.406 noreset 0.074 | hard ms/iter serial 26.6 auto 2.8
+cell 556968207 aspiny          VISp4    T=140032 N=4 rate 3.9Hz | reliability 0.764 | F1 hard 0.433 soft 0.500 noreset 0.034 | hard ms/iter serial 26.6 auto 2.8
+cell 557261437 sparsely spiny  VISp2/3  T=140032 N=4 rate 2.8Hz | reliability 0.720 | F1 hard 0.473 soft 0.493 noreset 0.103 | hard ms/iter serial 26.6 auto 2.7
+cell 560889670 aspiny          VISpm5   T=140032 N=4 rate 1.6Hz | reliability 0.720 | F1 hard 0.440 soft 0.368 noreset 0.045 | hard ms/iter serial 26.6 auto 2.4
+cell 562003142 aspiny          VISp4    T=140032 N=2 rate 4.2Hz | reliability 0.832 | F1 hard 0.429 soft 0.502 noreset 0.038 | hard ms/iter serial 24.0 auto 2.1
+cell 562062132 aspiny          VISp2/3  T=140032 N=3 rate 1.7Hz | reliability 0.703 | F1 hard 0.498 soft 0.444 noreset 0.000 | hard ms/iter serial 25.6 auto 2.0
+cell 563535101 aspiny          VISp4    T=140032 N=4 rate 2.6Hz | reliability 0.770 | F1 hard 0.350 soft 0.281 noreset 0.004 | hard ms/iter serial 26.6 auto 2.6
+cell 570459682 aspiny          VISl4    T=140032 N=2 rate 1.1Hz | reliability 0.439 | F1 hard 0.275 soft 0.248 noreset 0.020 | hard ms/iter serial 24.0 auto 1.6
+cell 582613001 sparsely spiny  VISp2/3  T=140032 N=4 rate 1.1Hz | reliability 0.516 | F1 hard 0.297 soft 0.284 noreset 0.070 | hard ms/iter serial 26.6 auto 2.3
+cell 582644266 aspiny          VISp2/3  T=140032 N=3 rate 2.5Hz | reliability 0.646 | F1 hard 0.445 soft 0.380 noreset 0.034 | hard ms/iter serial 25.6 auto 2.2
+cell 582644380 sparsely spiny  VISp2/3  T=140032 N=4 rate 2.8Hz | reliability 0.688 | F1 hard 0.370 soft 0.345 noreset 0.060 | hard ms/iter serial 26.5 auto 2.6
+cell 582778095 aspiny          VISpm4   T=140032 N=2 rate 2.7Hz | reliability 0.632 | F1 hard 0.463 soft 0.396 noreset 0.123 | hard ms/iter serial 23.9 auto 1.9
