@@ -1,0 +1,47 @@
+[
+ {
+  "cell": {
+   "specimen": 323501938,
+   "dendrite": "aspiny",
+   "region": "VISpl5",
+   "line": "Sst-IRES-Cre"
+  },
+  "T_train": 124928,
+  "N_train": 2,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 6.999587872996926,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 299.93431200273335,
+    "rate_model_hz": 0.0
+   },
+   "noreset": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 10.057527106255293,
+    "rate_model_hz": 0.0
+   }
+  }
+ }
+]

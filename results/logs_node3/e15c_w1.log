@@ -1,0 +1,36 @@
+cell 479728896 spiny           VISp4    T=140032 N=4 rate 1.3Hz | reliability 0.293 | F1 hard 0.225 soft 0.237 noreset 0.083
+cell 482652174 spiny           VISp4    T=140032 N=3 rate 1.0Hz | reliability 0.222 | F1 hard 0.204 soft 0.244 noreset 0.000
+cell 484457747 aspiny          VISp4    T=140032 N=2 rate 3.0Hz | reliability 0.639 | F1 hard 0.453 soft 0.486 noreset 0.046
+cell 485932822 spiny           VISp4    T=140032 N=4 rate 0.0Hz | reliability 0.000 | F1 hard 0.000 soft 0.000 noreset 0.000
+cell 486472847 spiny           VISp4    T=140032 N=3 rate 1.2Hz | reliability 0.454 | F1 hard 0.317 soft 0.381 noreset 0.000
+cell 488501165 spiny           VISp5    T=140032 N=2 rate 2.4Hz | reliability 0.360 | F1 hard 0.350 soft 0.357 noreset 0.059
+cell 490779678 spiny           VISp5    T=140032 N=3 rate 2.2Hz | reliability 0.254 | F1 hard 0.279 soft 0.279 noreset 0.000
+cell 500894271 spiny           VISp4    T=140032 N=4 rate 2.6Hz | reliability 0.583 | F1 hard 0.330 soft 0.362 noreset 0.044
+cell 501891177 spiny           VISp5    T=140032 N=3 rate 2.1Hz | reliability 0.169 | F1 hard 0.195 soft 0.196 noreset 0.016
+cell 505795846 spiny           VISp4    T=140032 N=4 rate 0.0Hz | reliability 0.000 | F1 hard 0.000 soft 0.000 noreset 0.000
+cell 507101551 spiny           VISl6a   T=140032 N=2 rate 0.0Hz | reliability 0.000 | F1 hard 0.000 soft 0.000 noreset 0.000
+cell 513510227 spiny           VISp2/3  T=140032 N=3 rate 2.6Hz | reliability 0.742 | F1 hard 0.348 soft 0.450 noreset 0.060
+cell 515511110 spiny           VISp4    T=140032 N=4 rate 0.0Hz | reliability 0.000 | F1 hard 0.000 soft 0.000 noreset 0.000
+cell 518750800 aspiny          VISp2/3  T=140032 N=4 rate 6.9Hz | reliability 0.894 | F1 hard 0.604 soft 0.667 noreset 0.000
+cell 522723828 sparsely spiny  VISp6a   T=140032 N=3 rate 1.2Hz | reliability 0.089 | F1 hard 0.130 soft 0.124 noreset 0.059
+cell 553561593 aspiny          VISp2/3  T=140032 N=3 rate 2.8Hz | reliability 0.428 | F1 hard 0.311 soft 0.330 noreset 0.069
+cell 555079011 sparsely spiny  VISp2/3  T=140032 N=3 rate 1.2Hz | reliability 0.567 | F1 hard 0.283 soft 0.290 noreset 0.000
+cell 555356054 spiny           VISp6a   T=140032 N=4 rate 2.3Hz | reliability 0.590 | F1 hard 0.398 soft 0.387 noreset 0.000
+cell 557261437 sparsely spiny  VISp2/3  T=140032 N=4 rate 2.8Hz | reliability 0.720 | F1 hard 0.473 soft 0.493 noreset 0.103
+cell 560686477 aspiny          VISp1    T=140032 N=4 rate 7.6Hz | reliability 0.868 | F1 hard 0.538 soft 0.553 noreset 0.000
+cell 560968319 spiny           VISp5    T=140032 N=4 rate 0.6Hz | reliability 0.121 | F1 hard 0.095 soft 0.187 noreset 0.051
+cell 562003142 aspiny          VISp4    T=140032 N=2 rate 4.2Hz | reliability 0.832 | F1 hard 0.429 soft 0.502 noreset 0.038
+cell 563535101 aspiny          VISp4    T=140032 N=4 rate 2.6Hz | reliability 0.770 | F1 hard 0.350 soft 0.281 noreset 0.004
+cell 564692405 aspiny          VISp2/3  T=140032 N=6 rate 1.8Hz | reliability 0.287 | F1 hard 0.276 soft 0.306 noreset 0.041
+cell 566671538 aspiny          VISp2/3  T=140032 N=3 rate 2.5Hz | reliability 0.712 | F1 hard 0.421 soft 0.430 noreset 0.012
+cell 570459682 aspiny          VISl4    T=140032 N=2 rate 1.1Hz | reliability 0.439 | F1 hard 0.275 soft 0.248 noreset 0.020
+cell 574968354 aspiny          VISal4   T=140032 N=3 rate 3.3Hz | reliability 0.490 | F1 hard 0.275 soft 0.335 noreset 0.048
+cell 578517952 aspiny          VISl5    T=140032 N=2 rate 0.6Hz | reliability 0.648 | F1 hard 0.086 soft 0.269 noreset 0.000
+cell 579652000 spiny           RSPd6a   T=140032 N=3 rate 1.0Hz | reliability 0.260 | F1 hard 0.184 soft 0.273 noreset 0.100
+cell 580212997 aspiny          VISp4    T=140032 N=3 rate 0.9Hz | reliability 0.542 | F1 hard 0.297 soft 0.315 noreset 0.000
+cell 582613001 sparsely spiny  VISp2/3  T=140032 N=4 rate 1.1Hz | reliability 0.516 | F1 hard 0.297 soft 0.284 noreset 0.070
+cell 582644380 sparsely spiny  VISp2/3  T=140032 N=4 rate 2.8Hz | reliability 0.688 | F1 hard 0.370 soft 0.345 noreset 0.060
+cell 582778095 aspiny          VISpm4   T=140032 N=2 rate 2.7Hz | reliability 0.632 | F1 hard 0.463 soft 0.396 noreset 0.123
+cell 585944237 aspiny          VISp4    T=140032 N=4 rate 2.6Hz | reliability 0.775 | F1 hard 0.487 soft 0.490 noreset 0.000
+cell 593448793 aspiny          VISp4    T=140032 N=4 rate 2.0Hz | reliability 0.660 | F1 hard 0.398 soft 0.408 noreset 0.057
+cell 596619013 aspiny          VISal5   T=140032 N=4 rate 1.5Hz | reliability 0.778 | F1 hard 0.520 soft 0.532 noreset 0.107

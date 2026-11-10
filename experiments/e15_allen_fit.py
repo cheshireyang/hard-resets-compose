@@ -15,6 +15,9 @@ from lifscan.fit import lif_param, lif_soft
 DT_MS = float(sys.argv[1]) if len(sys.argv) > 1 else 0.2
 ITERS = int(sys.argv[2]) if len(sys.argv) > 2 else 600
 RESTARTS = int(sys.argv[3]) if len(sys.argv) > 3 else 3
+WORKER, NWORKERS = (int(sys.argv[4]), int(sys.argv[5])) if len(sys.argv) > 5 else (0, 1)
+TIMING = os.environ.get("E15_TIMING", "1") == "1"
+OUTNAME = os.environ.get("E15_OUT", f"results/e15_allen_fit_dt{DT_MS}.json")
 WIN_MS, TAU_VR_MS = 4.0, 10.0
 dev = "cuda"
 
@@ -114,7 +117,14 @@ def fit(kind, Xtr, Str, seed, mode="auto", iters=ITERS):
 
 
 rows = []
-for path in sorted(glob.glob("data/allen/*.npz")):
+DONE = set()
+for f in glob.glob(os.environ.get("E15_SKIP_GLOB", "results/__none__")):
+    try:
+        DONE |= {r["cell"]["specimen"] for r in json.load(open(f))}
+    except Exception:
+        pass
+todo = [p for p in sorted(glob.glob("data/allen/*.npz")) if int(os.path.basename(p)[:-4]) not in DONE]
+for path in todo[WORKER::NWORKERS]:
     meta, sw = load_cell(path)
     if len(sw["Noise 1"]) < 2 or len(sw["Noise 2"]) < 2:
         continue
@@ -139,13 +149,12 @@ for path in sorted(glob.glob("data/allen/*.npz")):
                                    ms_per_iter=1000 * float(np.median(times[5:])),
                                    rate_model_hz=float(Ste_hat.mean().item() * 1000 / DT_MS))
     # timing of the hard model: serial vs auto (same data, 30 iterations)
-    for mode in ("serial", "auto"):
+    for mode in (("serial", "auto") if TIMING else ()):
         _, _, times = fit("hard", Xtr, Str, 7, mode=mode, iters=30)
         row[f"hard_ms_{mode}"] = 1000 * float(np.median(times[5:]))
     rows.append(row)
     m = row["models"]
     print(f"cell {meta['specimen']} {meta['dendrite']:15s} {meta['region']:8s} T={row['T_train']} N={row['N_train']} "
           f"rate {row['rate_hz']:.1f}Hz | reliability {row['reliability']:.3f} | F1 hard {m['hard']['f1_test']:.3f} "
-          f"soft {m['soft']['f1_test']:.3f} noreset {m['noreset']['f1_test']:.3f} | hard ms/iter serial {row['hard_ms_serial']:.1f} "
-          f"auto {row['hard_ms_auto']:.1f}", flush=True)
-    json.dump(rows, open(f"results/e15_allen_fit_dt{DT_MS}.json", "w"), indent=1)
+          f"soft {m['soft']['f1_test']:.3f} noreset {m['noreset']['f1_test']:.3f}", flush=True)
+    json.dump(rows, open(OUTNAME, "w"), indent=1)

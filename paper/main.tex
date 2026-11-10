@@ -34,7 +34,7 @@
 The hard reset of a leaky integrate-and-fire (LIF) neuron is widely seen as what prevents spiking networks from being parallelized over time, and existing time-parallel methods remove it, soften it, relax it and iterate, or commit one spike per chunk.
 We show that this is unnecessary in discrete time.
 The state map of a hard-reset LIF neuron over $L$ steps is affine below a threshold and piecewise constant above it, with at most $L+1$ pieces, and this family is closed under composition, so the recurrence is an associative scan over piecewise-affine maps.
-We give a closed form for these maps and prove that the bound is tight, whereas soft reset has a tight quadratic bound; more generally, resets that forget the incoming state give linear, order-preserving resets quadratic (proven under a commutation condition), and folding resets super-quadratic map complexity.
+We give a closed form for these maps and prove that the bound is tight, whereas soft reset has a tight quadratic bound; more generally, resets that forget the incoming state give linear, non-expanding order-preserving resets quadratic, and folding resets super-quadratic map complexity.
 Pruned to reachable states, whose lower bound is itself a three-parameter scan, measured maps have 2--5 pieces.
 The resulting forward pass is exact, non-iterative, independent of the number of spikes, and can be made bit-identical to the serial floating-point loop.
 Against tuned fused serial kernels it is up to $\LongFwdMaxNine\times$ faster (forward+backward up to $\LongFbMaxNine\times$) when few neurons run for many steps, and a dispatching layer was never slower than serial evaluation.
@@ -64,7 +64,7 @@ Our contributions:
 \item \textbf{Hard vs.\ soft (Sec.~\ref{sec:soft}).} For subtractive reset we prove a tight quadratic bound, $1+L(L+1)/2$. The upper bound follows from a lexicographic monotonicity lemma for (spike count, membrane potential); the matching construction uses a constant input and a leak close to 1. Empirically, soft-reset segment maps have up to $30\times$ more pieces than hard-reset ones. In map space, the hard reset is the easier nonlinearity. More generally (Sec.~\ref{sec:classes}), resets that forget the incoming state give linear maps, order-preserving resets give quadratic maps, and folding resets exceed the quadratic bound.
 \item \textbf{Typical size (Sec.~\ref{sec:domain}).} Only breakpoints inside the reachable state interval matter. A tight lower end of that interval is itself given by a scan over a three-parameter monoid, and under a bounded-density assumption the expected in-domain size is independent of $L$. Measured chunk maps have 2--5 pieces on average for $\beta$ from 0.9 to 1, whatever the chunk length.
 \item \textbf{Algorithm and exactness (Sec.~\ref{sec:algo}).} A two-level GPU scan (fold chunks into capacity-$K$ maps, carry scalars across chunks, replay chunks in parallel) whose depth is independent of the spike count, with an exact serial fallback on capacity overflow, and a repair iteration that makes the floating-point output bit-identical to the serial kernel. Combined with the (known) affine-scan backward pass, training is BPTT-equivalent, and an automatic dispatcher picks the faster of serial and scan evaluation for each pass.
-\item \textbf{Application (Sec.~\ref{sec:fit}).} Single-neuron model fitting --- few recurrences, very long recordings --- is exactly the regime where the scan pays off. With parameter gradients read off the same adjoint, the exact model recovers ground-truth parameters where soft-reset and reset-free surrogates are biased, and it fits Allen Cell Types recordings about an order of magnitude faster than serial evaluation.
+\item \textbf{Application (Sec.~\ref{sec:fit}).} Single-neuron model fitting --- few recurrences, very long recordings --- is exactly the regime where the scan pays off. With parameter gradients read off the same adjoint, the exact model recovers ground-truth parameters where soft-reset and reset-free surrogates are biased, and it fits Allen Cell Types recordings about an order of magnitude faster than serial evaluation. On 78 recorded cells, the better reset rule depends on the cell class (soft reset for spiny neurons).
 \item \textbf{Measurements (Sec.~\ref{sec:exp}).} Exhaustive exact-arithmetic tests, floating-point stress tests, a best-vs-best GPU benchmark against tuned fused serial kernels and SpikingJelly up to $T=262{,}144$, training on SHD and SSC, and fitting neuron models to synthetic and real (Allen Cell Types) recordings (Sec.~\ref{sec:fit}).
 \end{enumerate}
 We are explicit about the limits: time-parallelism helps only when the serial kernel cannot fill the GPU (small batch$\times$width, long $T$), the method requires the input currents of a layer to be known in advance (feed-forward connectivity within the layer), and the per-step work of the forward scan grows with the map capacity $K$.
@@ -217,14 +217,14 @@ Hard and soft reset are two points in a larger space. Consider a one-dimensional
 \label{thm:classes}
 \begin{enumerate}[label=(\alph*),leftmargin=*]
 \item If $r$ is constant (the reset forgets $v$), there are at most $L+1$ pieces, and this is tight.
-\item If $r$ is continuous and strictly increasing and $f_t(r(u))\ge r(f_t(u))$ for all $u$ and $t$, there are at most $1+L(L+1)/2$ pieces, and this is tight.
+\item If $r$ and all $f_t$ are continuous, strictly increasing and non-expanding ($1$-Lipschitz), and $r(\theta)<\theta$, there are at most $1+L(L+1)/2$ pieces, and this is tight.
 \item Without monotonicity the quadratic bound fails: for $r(v)=-v/2$, $\beta=1/2$ and $I=(-1,\tfrac{11}{20},-\tfrac{11}{20},\tfrac{21}{20})$ the 4-step map has 12 pieces ($>11$).
 \end{enumerate}
 \end{theorem}
 
-Part (a) is Theorem~\ref{thm:structure} together with Corollary~\ref{cor:tv}. Part (c) is verified in exact arithmetic; with $L=5$ the same rule reaches 21 pieces, above the bound of 16. Part (b) generalizes Theorem~\ref{thm:soft}. Its proof (App.~\ref{app:classes}) replaces the potential $\Phi_t$ by the invariant ``$u'_t>r^{d_t}(u_t)$'', where $d_t$ is the spike-count difference and $r^d$ the $d$-fold reset. For affine resets $r(v)=\gamma v+\delta$ with $\gamma>0$, the commutation condition reads $(1-\gamma)I_t\ge(1-\beta_t)\delta$. It holds for soft reset ($\gamma=1$, $\delta=-\theta$) whenever $\beta_t\le1$, and for proportional reset ($\delta=0$) whenever $I_t\ge0$. Tightness follows from Theorem~\ref{thm:softtight}.
+Part (a) is Theorem~\ref{thm:structure} together with Corollary~\ref{cor:tv}. Part (c) is verified in exact arithmetic; with $L=5$ the same rule reaches 21 pieces, above the bound of 16. Part (b) generalizes Theorem~\ref{thm:soft}. Its proof (App.~\ref{app:classes}) replaces the potential $\Phi_t$ by the invariant ``$u'_t-u_t>-d_t\Delta$'', where $d_t\ge0$ is the spike-count difference of two trajectories and $\Delta=\theta-r(\theta)$ is the drop caused by a reset at threshold. For leaky dynamics ($\beta_t\le1$) with any inputs, (b) covers soft reset, proportional reset $r(v)=\gamma v$ ($0<\gamma\le1$, $\theta>0$), and every affine reset $r(v)=\gamma v+\delta$ with $0<\gamma\le1$ and $r(\theta)<\theta$. Tightness follows from Theorem~\ref{thm:softtight}.
 
-The commutation condition is a feature of the proof rather than of the problem. For increasing affine resets outside the condition, the lexicographic monotonicity behind (b) held in all $2.4\times10^6$ exact comparisons we made, and exhaustive hill-climbing never exceeded the quadratic bound (Table~\ref{tab:resets}). We conjecture that every continuous increasing reset gives at most $1+L(L+1)/2$ pieces.
+The non-expansion assumption is not an artefact of the proof. The monotonicity lemma behind (b) held in all $8.9\times10^6$ exact comparisons we made with $\beta\le1$ and $\gamma\le1$, but it fails for expanding dynamics: we found counterexamples both for $\gamma>1$ (e.g.\ $\gamma=1.4$) and for $\beta>1$. Whether the quadratic piece bound itself survives expansion is open.
 
 The resulting picture is a trichotomy. Resets that \emph{forget} give linear maps. Resets that \emph{preserve order} give quadratic maps. Resets that \emph{fold} the state space (decreasing $r$) grow faster: Table~\ref{tab:resets} shows 63 pieces at $L=8$, against 37 for the quadratic bound. The hard reset sits in the cheapest class because it is the only one in which a spike erases the incoming state.
 
@@ -383,15 +383,17 @@ We generated spikes from a hard-reset LIF neuron (leak $\beta=0.95$, input gain 
 \label{tab:fitsynth}
 \end{table}
 
-On a GPU (RTX PRO 6000 Blackwell), the same fit with 16 trials and recordings of $T=65{,}536$, $262{,}144$ and $1{,}048{,}576$ steps takes $\FitSpeedMin$--$\FitSpeedMax\times$ less time per iteration with the dispatching layer than with the tuned serial kernels. At $T=2^{20}$ this is $\FitMsAutoMillion$\,ms instead of $\FitMsSerialMillion$\,ms per iteration. The fitted parameters were \FitSameAll\ to all printed digits.
+On a GPU (one MIG 1g.24gb slice of an RTX PRO 6000 Blackwell; serial and dispatched kernels on the same slice), the same fit with 16 trials and recordings of $T=65{,}536$, $262{,}144$ and $1{,}048{,}576$ steps takes $\FitSpeedMin$--$\FitSpeedMax\times$ less time per iteration with the dispatching layer than with the tuned serial kernels. At $T=2^{20}$ this is $\FitMsAutoMillion$\,ms instead of $\FitMsSerialMillion$\,ms per iteration. The fitted parameters were \FitSameAll\ to all printed digits.
 
 \paragraph{Recordings from mouse visual cortex.}
-We downloaded current-clamp recordings of 20 neurons from the Allen Cell Types Database (mouse visual cortex, mostly aspiny interneurons in the order returned by the database; noise-current sweeps of 28\,s) and kept the \AllenCells\ cells with at least two sweeps of each noise stimulus, binned at 0.2\,ms ($T=\AllenT$ steps per sweep). We fitted each model on the ``Noise 1'' sweeps and tested it on the ``Noise 2'' sweeps, a different noise realisation. Initialization matched the training firing rate, and the loss was van Rossum distance plus a rate term; we kept the best of three restarts. As a ceiling we report each cell's own reliability, the spike-time F1 ($\pm4$\,ms) between repeated presentations of the test stimulus. Table~\ref{tab:allen} lists the results. The hard-reset model reaches a mean test F1 of $\AllenFHard$ ($\AllenFracRel\%$ of the cells' reliability of $\AllenRel$), the soft-reset model $\AllenFSoft$, and the model without reset $\AllenFNo$. The hard-reset model is better than the soft-reset model in \AllenHardWins\ of \AllenCells\ cells (mean difference $\AllenDiff$), but with this number of cells the difference is not significant (Wilcoxon $p=\AllenP$). On real neurons both LIF variants are misspecified, so this experiment speaks to speed and feasibility; the argument for exactness rests on the parameter-recovery experiment above. With two to four training sweeps of $\AllenT$ steps, one training iteration of the hard model takes $\AllenSpeed\times$ less time with the dispatching layer than with the serial kernels.
+We downloaded current-clamp recordings from the Allen Cell Types Database (mouse visual cortex; noise-current sweeps of 28\,s, binned at 0.2\,ms, i.e.\ $T=\AllenT$ steps per sweep). We kept the \BigAllN\ cells that have at least two sweeps of each of the two noise stimuli: \BigSpinyN\ spiny (putatively excitatory) and \BigAspinyN\ aspiny or sparsely spiny (putatively inhibitory) neurons. Each model was fitted on the ``Noise 1'' sweeps and tested on the ``Noise 2'' sweeps, a different noise realisation. Initialization matched the training firing rate, the loss was van Rossum distance plus a rate term, and we kept the best of three restarts. As a ceiling we report each cell's own reliability, the spike-time F1 ($\pm4$\,ms) between repeated presentations of the test stimulus.
+
+Table~\ref{tab:allen} summarizes the results; per-cell values are in App.~\ref{app:extra}. Both reset models clearly beat the model without reset (mean test F1 $\BigAllHard$ for hard reset, $\BigAllSoft$ for soft reset, $\BigAllNo$ without reset, against a reliability ceiling of $\BigAllRel$). Between the two reset models the answer depends on the cell class. On spiny cells, the soft-reset model predicts spike times better in \the\numexpr\BigSpinyN-\BigSpinyWins\relax\ of \BigSpinyN\ cells (Wilcoxon $p=\BigSpinyP$). On aspiny cells, the difference is not significant (hard reset better in \BigAspinyWins\ of \BigAspinyN, $p=\BigAspinyP$). A plausible reading is that excitatory neurons keep part of their suprathreshold depolarization after a spike, which a subtractive reset retains and a reset to a fitted constant $u_r$ does not. This does not affect the parameter-recovery result: if the data come from a hard-reset neuron, only the exact hard-reset model recovers its parameters. It does show that the reset rule is itself an empirical modelling choice, which makes exact parallel training of soft-reset neurons (quadratic maps, Sec.~\ref{sec:classes}) worth pursuing. In a separate run on \AllenCells\ cells without concurrent jobs, one training iteration of the hard-reset model on two to four sweeps took $\AllenSpeed\times$ less time with the dispatching layer than with the serial kernels.
 
 \begin{table}[t]
 \centering\small
-\input{tab_allen.tex}
-\caption{LIF models fitted to Allen Cell Types recordings (mouse V1). Columns 5--7: spike-time F1 ($\pm4$\,ms) on held-out noise sweeps. ``Reliability'' is the cell's own F1 across repeated presentations of the test stimulus, an upper bound for any model. The last column gives the time per training iteration of the hard-reset model with serial and dispatched kernels.}
+\input{tab_allen_summary.tex}
+\caption{LIF models fitted to Allen Cell Types recordings (mouse visual cortex). Columns 3--6: mean spike-time F1 ($\pm4$\,ms) on held-out noise sweeps; ``reliability'' is the cells' own F1 across repeated presentations of the test stimulus, an upper bound for any model. Last two columns: cells in which the hard-reset model has the higher F1, and a two-sided Wilcoxon signed-rank test of hard vs.\ soft.}
 \label{tab:allen}
 \end{table}
 
@@ -402,6 +404,7 @@ We downloaded current-clamp recordings of 20 neurons from the Allen Cell Types D
 \item \textbf{Regime.} Time-parallel evaluation pays only when serial evaluation leaves the GPU idle. With large batch$\times$width, a well-tuned serial kernel is faster. In our measurements, the exact forward wins for $N\le1$k at $T\ge16$k, forward+backward breaks even near $N\approx8$k, and for $N\ge32$k the scan runs at about half the serial speed. Automatic dispatch hides this crossover from the user (it was never slower than the serial kernel in our measurements), but it does not move it.
 \item \textbf{Within-layer recurrence.} The method needs the input currents of a layer for all $t$ in advance; recurrent synaptic connections within a layer break this, as they do for every scan-based method. Current-based synapses are not a problem: the synaptic current is a linear filter of the inputs and can be scanned first.
 \item \textbf{Silent integrators.} With the envelope bound, map sizes are small in every regime we measured except $\beta\to1$ with near-zero drift, where they grow like $\sqrt L$ and overflow becomes more frequent. The output stays exact, but the speed degrades towards serial. A three-level variant reduces the depth further and is exact, but on our hardware it did not beat the two-level scan up to $T=262{,}144$ (Table~\ref{tab:long}).
+\item \textbf{Soft-reset neurons.} On spiny cortical neurons a soft-reset LIF predicts spikes better than a hard-reset one (Sec.~\ref{sec:fit}). Theorem~\ref{thm:classes} shows that its maps are quadratic in the worst case and hence scannable, but we have implemented the scan only for the hard reset.
 \item \textbf{Other neurons.} For adaptive-threshold (ALIF) neurons, segment maps still have a simple structure (App.~\ref{app:alif}): at most $L+1$ convex first-spike regions, and on each of them a one-dimensional map of the adaptation variable alone. The one-dimensional maps stay small in exact computations, but we have neither a size bound nor an implementation; both are the main open problems.
 \item \textbf{Floating point and deployment.} Bit-exactness is with respect to a serial program in the same arithmetic. Deploying to fixed-point neuromorphic hardware still requires simulation in that hardware's arithmetic.
 \end{itemize}
@@ -447,25 +450,21 @@ Hence each $N_t(\cdot)$ is a non-decreasing step function whose jumps are exactl
 \section{Proof of Theorem~\ref{thm:classes}(b)}
 \label{app:classes}
 
-Fix $u_0<u'_0$, let $N_t,N'_t$ be the spike counts, $d_t=N'_t-N_t$, and $r^d$ the $d$-fold composition of $r$ ($r^0=\mathrm{id}$). Since $r$ and $f_t$ are increasing and $f_t\circ r\ge r\circ f_t$, induction on $d$ gives $f_t\circ r^d\ge r^d\circ f_t$: indeed $f_t\circ r^{d+1}=(f_t\circ r^d)\circ r\ge r^d\circ f_t\circ r\ge r^d\circ r\circ f_t$.
+Let $\Delta=\theta-r(\theta)>0$. Because $r$ is non-expanding, $v-r(v)$ is non-decreasing, so $v-r(v)\ge\Delta$ for all $v\ge\theta$. Fix $u_0<u'_0$, let $N_t,N'_t$ be the spike counts, $d_t=N'_t-N_t$ and $e_t=u'_t-u_t$.
 
-\emph{Claim: $d_t\ge0$ and $u'_t>r^{d_t}(u_t)$ for all $t$.} At $t=0$, $d_0=0$ and $u'_0>u_0$. Suppose the claim holds at $t-1$ with $d=d_{t-1}$. Then
-\[
-v'_t=f_t(u'_{t-1})>f_t(r^d(u_{t-1}))\ge r^d(f_t(u_{t-1}))=r^d(v_t).
-\]
-There are four cases.
+\emph{Claim: $d_t\ge0$ and $e_t>-d_t\Delta$ for all $t$.} In particular $d_t=0$ implies $u'_t>u_t$. At $t=0$, $d_0=0$ and $e_0>0$. Suppose the claim holds at $t-1$ with $d=d_{t-1}$, $e=e_{t-1}$, and let $v_t=f_t(u_{t-1})$, $v'_t=f_t(u'_{t-1})$. Since $f_t$ is increasing and non-expanding, $v'_t-v_t>-d\Delta$, and $v'_t>v_t$ if $d=0$. There are four cases.
 \begin{itemize}[leftmargin=*]
-\item No spike in either: $u_t=v_t$, $u'_t=v'_t>r^d(u_t)$.
-\item Spike in both: $u'_t=r(v'_t)>r^{d+1}(v_t)=r^d(u_t)$.
-\item Spike only in the primed trajectory: $d_t=d+1$ and $u'_t=r(v'_t)>r^{d+1}(v_t)=r^{d+1}(u_t)$.
-\item Spike only in the unprimed trajectory: then $d\ge1$, because $d=0$ would give $v'_t>v_t\ge\theta$ and the primed trajectory would spike too. So $d_t=d-1\ge0$ and $u'_t=v'_t>r^d(v_t)=r^{d-1}(r(v_t))=r^{d-1}(u_t)$.
+\item No spike in either: $d_t=d$ and $e_t=v'_t-v_t>-d\Delta$.
+\item Spike in both: $d_t=d$ and $e_t=r(v'_t)-r(v_t)$. This is positive if $v'_t>v_t$, and otherwise at least $v'_t-v_t>-d\Delta$, because $r$ is non-expanding.
+\item Spike only in the primed trajectory: $d_t=d+1$, $v'_t\ge\theta>v_t$, so $e_t=r(v'_t)-v_t>r(\theta)-\theta=-\Delta\ge-(d+1)\Delta$.
+\item Spike only in the unprimed trajectory: $d=0$ is impossible, since it gives $v'_t>v_t\ge\theta$. So $d\ge1$, $d_t=d-1$, and since $v_t\ge\theta$, $e_t=v'_t-r(v_t)\ge v'_t-v_t+\Delta>-(d-1)\Delta$.
 \end{itemize}
 Hence $N_t$ is non-decreasing in $u_0$, and on each level set $\{N_t=n\}$, which is an interval, $u_t$ is strictly increasing. The counting argument of App.~\ref{app:soft} applies verbatim, because between breakpoints $u_{t-1}$ is a composition of continuous increasing maps. \qed
 
 \section{Additional results}
 \label{app:extra}
 
-Table~\ref{tab:e1} lists piece counts of exact segment maps for hard and soft reset, Table~\ref{tab:stress} the near-threshold floating-point stress test, and Table~\ref{tab:alif} the region counts for adaptive-threshold neurons.
+Table~\ref{tab:e1} lists piece counts of exact segment maps for hard and soft reset, Table~\ref{tab:stress} the near-threshold floating-point stress test, Table~\ref{tab:alif} the region counts for adaptive-threshold neurons, and Tables~\ref{tab:allencells1}--\ref{tab:allencells2} the per-cell results of the Allen experiment.
 
 \begin{table}[!htbp]
 \centering\small
@@ -486,6 +485,20 @@ Table~\ref{tab:e1} lists piece counts of exact segment maps for hard and soft re
 \input{tab_alif.tex}
 \caption{Number of distinct spike patterns (= affine pieces) of the $L$-step map on the window $u_0\in[-4,1]$, $w_0\in[0,2]$, estimated on a $700\times700$ grid, mean and max over 5 random inputs $\mathcal N(0.15,0.4^2)$. $\beta=0.9$, $\theta_0=1$, $u_r=0$; ALIF threshold $\theta_0+w_{t-1}$ with $w_t=0.95\,w_{t-1}+q\,s_t$. Sampling gives a lower bound.}
 \label{tab:alif}
+\end{table}
+
+\begin{table}[!htbp]
+\centering\scriptsize
+\input{tab_allen_cells1.tex}
+\caption{Per-cell results of the Allen Cell Types experiment (part 1); columns as in Table~\ref{tab:allen}.}
+\label{tab:allencells1}
+\end{table}
+
+\begin{table}[!htbp]
+\centering\scriptsize
+\input{tab_allen_cells2.tex}
+\caption{Per-cell results of the Allen Cell Types experiment (part 2).}
+\label{tab:allencells2}
 \end{table}
 
 \section{Adaptive-threshold neurons}
