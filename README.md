@@ -16,9 +16,10 @@ on average. The resulting forward pass is exact, non-iterative, and its depth do
 | `lifscan/fast.py` | PyTorch prototype (CPU/MPS): two-level scan, pruning, bit-exact repair, affine-scan backward |
 | `lifscan/triton_lif.py` | CUDA kernels (Triton): fused serial baselines (plain and time-tiled), `scan_forward_v3` (two-level: envelope bound + pruning + capacity-K maps + overflow fallback + optional repair), `scan_forward_v4` (three-level composition), tiled backward scan, and the autograd layer `lif_tuned` |
 | `lifscan/triton_soft.py` | Exact two-level scan for soft-reset (subtractive) LIF neurons, tiled serial baseline, FFT adjoint |
+| `lifscan/triton_affine.py` | Exact scan for affine reset `u <- gamma*v + delta` (`0 <= gamma <= 1`; contains hard and soft reset), serial baseline, autograd layer `lif_affine` (gradients w.r.t. inputs, `u0`, `beta`, `gamma`, `delta`) |
 | `lifscan/shdnet.py` | SHD/SSC data loading and the 700-256-256-20 feed-forward LIF network |
-| `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py` (GPU) |
-| `experiments/` | All experiment scripts (E1–E7, see below) and the GPU job queues |
+| `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py`, `test_affine.py` (GPU) |
+| `experiments/` | All experiment scripts (E1–E22, see below) and the GPU job queues |
 | `results/` | Raw JSON results (and server logs in `results/logs/`) behind every number in the paper |
 | `paper/` | LaTeX source; `make_numbers.py` regenerates every quoted number from `results/`, `figs/make_figs.py` every figure |
 
@@ -49,6 +50,9 @@ DATASET=ssc python3 experiments/e7_shd.py scan 1024 0 20 64   # SSC (also needs 
 python3 experiments/e9_threelevel.py 0.9                      # long sequences, two- vs three-level
 python3 experiments/e11_auto.py                               # automatic dispatch
 python3 experiments/e12_alif_exact.py                         # ALIF post-reset maps (exact, CPU)
+python3 experiments/e20_fpt_psn.py        # head-to-head: FPT (re-implemented from the official code) and PSN vs exact soft scan
+python3 experiments/e21_chunk_restart.py  # head-to-head: spike-by-spike chunk restarts vs map scan, vs firing rate
+python3 experiments/e22_allen_affine.py 0 1   # learned affine reset on Allen cells (E22_WARM=1: warm start; needs data/allen)
 
 # Paper numbers, figures and PDF
 python3 paper/make_numbers.py && python3 paper/figs/make_figs.py

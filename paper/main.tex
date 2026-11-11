@@ -38,6 +38,7 @@ We give a closed form for these maps and prove that the bound is tight, whereas 
 Pruned to reachable states, whose lower bound is itself a three-parameter scan, measured maps have 2--5 pieces.
 The resulting forward pass is exact, non-iterative, independent of the number of spikes, and can be made bit-identical to the serial floating-point loop.
 Against tuned fused serial kernels it is up to $\LongFwdMaxNine\times$ faster (forward+backward up to $\LongFbMaxNine\times$) when few neurons run for many steps, and a dispatching layer was never slower than serial evaluation.
+Head-to-head, relaxed fixed-point training (FPT) gets \FptErrNine\% of spikes wrong at leak 0.9, and exact spike-by-spike restarts slow down as firing rates grow; the scan is exact and its cost is independent of activity.
 On SHD and SSC, training with the scan reproduces serial training.
 In single-neuron model fitting, the natural regime for this method, the exact model is the only one of the compared model classes that recovers ground-truth parameters, and recordings from mouse visual cortex are fitted about ten times faster, with either hard reset or the soft reset that better describes spiny neurons.
 \end{abstract}
@@ -65,7 +66,7 @@ Our contributions:
 \item \textbf{Typical size (Sec.~\ref{sec:domain}).} Only breakpoints inside the reachable state interval matter. A tight lower end of that interval is itself given by a scan over a three-parameter monoid, and under a bounded-density assumption the expected in-domain size is independent of $L$. Measured chunk maps have 2--5 pieces on average for $\beta$ from 0.9 to 1, whatever the chunk length.
 \item \textbf{Algorithm and exactness (Sec.~\ref{sec:algo}).} A two-level GPU scan (fold chunks into capacity-$K$ maps, carry scalars across chunks, replay chunks in parallel) whose depth is independent of the spike count, with an exact serial fallback on capacity overflow, and a repair iteration that makes the floating-point output bit-identical to the serial kernel. Combined with the (known) affine-scan backward pass, training is BPTT-equivalent, and an automatic dispatcher picks the faster of serial and scan evaluation for each pass.
 \item \textbf{Application (Sec.~\ref{sec:fit}).} Single-neuron model fitting --- few recurrences, very long recordings --- is exactly the regime where the scan pays off. With parameter gradients read off the same adjoint, the exact model recovers ground-truth parameters where soft-reset and reset-free surrogates are biased, and it fits Allen Cell Types recordings about an order of magnitude faster than serial evaluation. On 78 recorded cells, the better reset rule depends on the cell class (soft reset for spiny neurons).
-\item \textbf{Measurements (Sec.~\ref{sec:exp}).} Exhaustive exact-arithmetic tests, floating-point stress tests, a best-vs-best GPU benchmark against tuned fused serial kernels and SpikingJelly up to $T=262{,}144$, training on SHD and SSC, and fitting neuron models to synthetic and real (Allen Cell Types) recordings (Sec.~\ref{sec:fit}).
+\item \textbf{Measurements (Sec.~\ref{sec:exp}).} Exhaustive exact-arithmetic tests, floating-point stress tests, a best-vs-best GPU benchmark against tuned fused serial kernels and SpikingJelly up to $T=262{,}144$, head-to-head comparisons with exact fixed-point iteration, relaxed fixed-point training (FPT), PSN and spike-by-spike chunk restarts, training on SHD and SSC, and fitting neuron models to synthetic and real (Allen Cell Types) recordings (Sec.~\ref{sec:fit}).
 \end{enumerate}
 We are explicit about the limits: time-parallelism helps only when the serial kernel cannot fill the GPU (small batch$\times$width, long $T$), the method requires the input currents of a layer to be known in advance (feed-forward connectivity within the layer), and the per-step work of the forward scan grows with the map capacity $K$.
 
@@ -92,7 +93,7 @@ Method & reset & exact & iterative & spike-dependent depth\\
 \midrule
 PSN~\citep{fang2023psn} & removed & -- & no & no\\
 PSU, SPikE-SSM~\citep{li2024psu,zhong2024spikessm} & soft / estimated & no & no & no\\
-FPT~\citep{feng2025fpt} & hard, relaxed & no & yes & no\\
+FPT~\citep{feng2025fpt} & subtractive, relaxed & no & yes & no\\
 FidLIF~\citep{he2026fidlif} & hard, relaxed in solve & no & yes (Newton) & no\\
 Bullet Trains~\citep{morrill2026bullet} & hard, continuous time & yes & chunk restarts & yes\\
 Tachyon~\citep{tachyon2026} & hard & yes & speculative rounds & yes\\
@@ -290,11 +291,11 @@ For GPUs we use a two-level variant (Alg.~\ref{alg:twolevel}). Chunks of $C$ ste
 \hrule
 \end{figure}
 
-\paragraph{Three-level variant.}
-Because the maps form a monoid, chunk maps can themselves be composed. We group $G$ consecutive chunk maps into super-chunk maps (capacity $K_2$, pruned with the envelope bound at the super-chunk entry), carry scalars across the $M/G$ super-chunks, carry inside each super-chunk in parallel, and replay. Composition pushes the left map's constants through the right map and appends the right map's pulled-back breakpoints (Sec.~\ref{sec:structure}). The depth becomes $O(C+G+M/G)$, at the price of $O(KK_2)$ work per composition.
-
 \paragraph{Soft-reset scan.}
 Theorem~\ref{thm:classes}(b) makes the same strategy available for subtractive reset. A soft-reset segment map has a common slope $\beta^L$ and piecewise-constant offsets. We store its pieces with explicit endpoints $[x_l,x_r)$ and offsets. At each step, a piece is either unchanged, shifted down by $\theta$, or split at the preimage of the threshold. The list is then pruned to the reachable entry interval and compacted, with the source of every output slot found by binary search over prefix sums ($O(K\log K)$ work per step). The reachable interval now needs an upper end as well; $h_t=\max(\theta,\beta h_{t-1}+I_t-\theta)$ is again a scan, over max-affine maps. With a detached reset the adjoint has the constant coefficient $\beta$, so the backward pass is a single FFT convolution.
+
+\paragraph{Affine-reset scan.}
+The same representation covers the whole order-preserving class of Theorem~\ref{thm:classes}(b) with affine resets $r(v)=\gamma v+\delta$, $0\le\gamma\le1$, which contains hard ($\gamma=0$) and soft ($\gamma=1$, $\delta=-\theta$) reset. Each piece now carries its own slope ($\beta^L\gamma^k$ after $k$ spikes), and a spike maps a piece $(a,b)$ to $(\gamma\beta a,\gamma(\beta b+I_t)+\delta)$; otherwise build, carry, replay and repair are unchanged. Its gradients with respect to $I$, $u_0$, $\beta$, $\gamma$ and $\delta$ come from a reverse affine scan. In tests over six $(\gamma,\delta)$ pairs and two leaks, the repaired scan was bit-identical to the serial loop, and its gradients matched a float64 BPTT reference to $\sim10^{-6}$. Fitting this model to the recordings of Sec.~\ref{sec:fit} with the scan took a median $\AffSpeed\times$ ($\AffSpeedMin$--$\AffSpeedMax\times$) less time per iteration than with the serial kernel (App.~\ref{app:affine}).
 
 \paragraph{Exactness in floating point.}
 In exact arithmetic, every carried state equals the serial one. In floating point, the scan and the serial loop differ in how the affine part $A=\beta^C$ and the breakpoints are evaluated, so a state within rounding distance of a breakpoint could select a different piece. Since the replay executes the serial instruction sequence, the repair step of Alg.~\ref{alg:twolevel} is a fixed-point iteration whose unique fixed point is the serial trajectory, and it reaches it in at most $M$ rounds (by induction over chunks). In practice it terminates after 0--2 rounds, longer only during long silent stretches when the forgetting property does not apply (Sec.~\ref{sec:exp}).
@@ -336,15 +337,8 @@ Table~\ref{tab:auto} times one layer (forward+backward, library defaults, no per
 \label{tab:auto}
 \end{table}
 
-\paragraph{Long sequences and three-level composition.}
-On a second RTX~5090 node (same software stack), we extended the sequence length to $T=262{,}144$ and compared the two-level scan with the three-level variant, each again tuned per cell (Table~\ref{tab:long}). The two-level forward speedup grows with $T$, reaching $\LongFwdMaxNine\times$ ($\beta=0.9$) and $\LongFwdMaxNineNine\times$ ($\beta=0.99$) over the tuned serial kernel at $N=128$, $T=262{,}144$; forward+backward reaches $\LongFbMaxNine\times$. The three-level variant was exact in every cell (spike flips before repair: \LongMaxFlipNine), and its super-chunk maps, each composed from $G$ chunk maps covering up to 4096 steps, still had only a few pieces on average. It was nevertheless faster than the two-level scan in \LongVFourBestNine\ of the \LongCellsNine\ cells for $\beta=0.9$ and in \LongVFourBestNineNine\ of the \LongCellsNineNine\ cells for $\beta=0.99$. On this hardware and up to this length, the per-step carry is cheap enough that the extra $O(KK_2)$ composition work does not pay off, and the asymptotic depth advantage would only show at longer sequences.
-
-\begin{table}[t]
-\centering\small
-\input{tab_long.tex}
-\caption{Long sequences on the second RTX~5090 node. Columns 5--8 are speedups over the tuned serial kernel (forward: two-level and three-level exact scan; backward: affine scan; forward+backward: the better forward plus the scan backward). Each implementation is tuned per cell.}
-\label{tab:long}
-\end{table}
+\paragraph{Long sequences.}
+The forward speedup grows with $T$: at $T=262{,}144$, $N=128$ it reaches $\LongFwdMaxNine\times$ ($\beta=0.9$) and $\LongFwdMaxNineNine\times$ ($\beta=0.99$) over the tuned serial kernel, and forward+backward reaches $\LongFbMaxNine\times$ (Table~\ref{tab:long}, App.~\ref{app:moreexp}). A three-level variant that composes chunk maps into super-chunk maps was exact but rarely faster on this hardware (App.~\ref{app:moreexp}).
 
 \paragraph{Soft-reset neurons.}
 Table~\ref{tab:soft} compares the exact soft-reset scan with tuned serial soft-reset kernels (RTX~5090, $\beta\in\{0.95,0.97\}$). The pruned soft-reset maps are a few times larger than hard-reset maps, and each step does more work, so the gains are smaller: up to $\SoftMax\times$ (at $\beta=\SoftMaxBeta$, $N=\SoftMaxN$, $T=\SoftMaxT$). The scan is slower than serial evaluation outside the latency-bound regime. Spikes agreed with the serial kernel before repair in every cell (largest mismatch fraction $\SoftMaxFlip$). Because a soft reset never forgets, rounding differences persist, and bit-exact repair needs more rounds than for the hard reset (up to 67 in our tests). In the setting where soft reset is the better model, we fitted spiny Allen cells. On the \SoftAllenCells\ cells whose 100-step fit converged (the fits of the other \SoftAllenDiverged\ of \SoftAllenTested\ diverged identically with both implementations), one training iteration took on average $\SoftAllenMsScan$\,ms with the soft scan and FFT adjoint instead of $\SoftAllenMsSerial$\,ms with serial kernels ($\SoftAllenSpeedMin$--$\SoftAllenSpeedMax\times$, mean $\SoftAllenSpeed\times$). Most of this gain comes from the backward pass: the constant-coefficient adjoint is a convolution, whereas a serial backward pass steps through time. After 100 identical optimization steps, the fitted parameters agreed to $\SoftAllenParamDiff$ relative difference, and held-out F1 to within $\SoftAllenFOneDiff$.
@@ -366,29 +360,29 @@ The natural exact alternative to a scan is a fixed-point iteration on the spike 
 \label{tab:picard}
 \end{table}
 
-\paragraph{Forgetting in the adjoint.}
-With a detached reset, $J_t=0$ at every spike, so the backward recurrence also forgets: a chunk that contains a spike has a composed slope of exactly $0$, and the scan's adjoint inside it is computed by the same instructions as the serial adjoint. On a 1024-step, 4096-neuron test with $\beta=0.95$, the scan's and the serial kernel's float32 adjoints have identical errors relative to a float64 reference ($1.3\times10^{-7}$), at every position within a chunk. Differences arise only from chunks without spikes.
-
-\paragraph{SHD.}
-We train a feed-forward 700--256--256--20 hard-reset LIF network ($\beta=0.95$) on the Spiking Heidelberg Digits~\citep{cramer2020shd} with 1\,ms bins ($T=1024$), batch 64, Adam (lr $10^{-3}$, cosine schedule) and 30 epochs, using the serial kernel, the scan (with repair), or SpikingJelly. On real batches with identical weights, the scan produces bit-identical spikes in both layers (\SpikesEqScanShort\ of 5 batches at $T=1024$, \SpikesEqScanLong\ at $T=8192$) and parameter gradients within $\GradRelScanShort$ ($T=1024$) and $\GradRelScanLong$ ($T=8192$) relative error of the serial kernel. SpikingJelly's gradients differ by up to $\GradRelSJShort$ and $\GradRelSJLong$, and at $T=8192$ a fraction up to $\SpikeMisSJLong$ of its spikes differ from the serial kernel's; serial vs.\ serial gives 0. Final test accuracies are $\AccSerial\%$ (serial, \NSeedsSerial\ seeds), $\AccScan\%$ (scan) and $\AccSJ\%$ (SpikingJelly), and the paired scan$-$serial difference is $\AccDiffScanSerial$ points (paired $t$-test $p=\AccDiffP$; Fig.~\ref{fig:shd}). Same-seed runs drift apart because $10^{-7}$ gradient differences are amplified over thousands of Adam steps; there is no difference in the dynamics. Repair is needed only for bit-identical \emph{membrane potentials}: without it, the first layer's spikes on 10 SHD batches still match the serial kernel's exactly (mismatch fraction \NoRepairMismatch). Repair nevertheless takes \RepairRoundsShort\ rounds at $T=1024$ and \RepairRoundsLong\ at $T=8192$, because with firing rates of \FireRateShort\% and \FireRateLong\% most chunks are silent and their affine parts differ from the serial loop by a few ulps. A long-sequence variant (0.12\,ms bins, $T=8192$, batch 16, 20 epochs, one seed) reaches $\AccLongSerial\%$ / $\AccLongScan\%$ / $\AccLongSJ\%$. Table~\ref{tab:shdtime} gives the per-iteration time of the whole network. Without repair, the scan is faster than the serial kernel for $T\ge4096$ and slower at $T=1024$; with repair, the extra replay rounds make it slower everywhere. The dispatching layer is $\ShdAutoMin\times$ to $\ShdAutoMax\times$ the serial speed. SHD with $N=B\times256$ neurons per layer is a moderate workload. The scan helps when sequences are long and batches small, which is the latency-bound regime of Fig.~\ref{fig:gpu}.
+\paragraph{Head-to-head: relaxed fixed-point training.}
+FPT~\citep{feng2025fpt} is the closest parallel method that keeps a reset. We re-implemented its neuron from the official code (dense lower-triangular $T\times T$ leak matrix, three sigmoid-relaxed fixed-point iterations with sharpening $1,3,12$, subtractive reset by the relaxed spike, Bernoulli output). Its target dynamics are soft-reset LIF, so we compare it with our exact soft-reset scan on the same inputs, and time PSN~\citep{fang2023psn} (no reset, same dense filter) as a reference. Table~\ref{tab:fpt} gives forward+backward times and the fraction of output spikes that differ from the exact soft-reset trajectory. At $\lambda=0.5$, FPT gets \FptErrHalf\% of the spikes wrong; at $\lambda=0.9$, where membrane memory matters, it gets \FptErrNine\% wrong (firing rate $\FptRateNine\%$ against $\ExactRateNine\%$ for the exact dynamics; thresholding the last relaxed iterate instead of sampling gives $\FptDetErrNine\%$). The error does not depend on $T$: it is a property of three relaxed iterations, not of the sequence length. The scan's spikes are exact in every cell ($\ScanErrAll\%$ mismatches). FPT is fast for short sequences, where the dense matrix product is efficient, but its $O(T^2N)$ cost dominates for long ones: at $T=32{,}768$, $N=128$, one step takes $\FptMsLong$\,ms against $\ScanMsLong$\,ms for the scan (PSN: $\PsnMsLong$\,ms), and for $T\ge 65{,}536$ the $T\times T$ matrix no longer fits in 32\,GB. FPT was designed for training networks in which exact dynamics need not be reproduced; the comparison shows that it cannot be used where they must be, e.g.\ to fit or simulate a neuron model.
 
 \begin{table}[t]
-\centering
-\small
-\input{tab_shd_timing.tex}
-\caption{SHD network (two LIF layers plus linear maps), forward+backward time per iteration in ms (median of 10, second RTX~5090 node). ``scan'' includes the bit-exactness repair, ``no repair'' omits it, and ``auto'' uses the dispatching layer.}
-\label{tab:shdtime}
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\input{tab_fpt.tex}
+\caption{FPT (re-implemented from the official code) and PSN vs.\ our soft-reset kernels (RTX~5090, forward+backward, ms, median of 5; inputs $\mathcal N(0.15,0.4^2)$). ``Spikes wrong'': fraction of output entries that differ from the exact soft-reset trajectory with leak $\lambda$ (FPT: Bernoulli output). PSN has no reset; it is timed only.}
+\label{tab:fpt}
 \end{table}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.92\linewidth]{figs/shd.pdf}
-\caption{SHD training with the three kernels. (a) Test accuracy: mean and min--max over seeds. (b) Training accuracy of the seed-0 runs, which start from identical weights and data order.}
-\label{fig:shd}
-\end{figure}
+\paragraph{Head-to-head: chunk restarts.}
+Exact methods that are not map scans make progress spike by spike: Bullet Trains~\citep{morrill2026bullet} and Tachyon~\citep{tachyon2026} evaluate the reset-free trajectory in parallel, commit it up to the first threshold crossing, and restart after the reset, so the number of sequential rounds grows with the number of output spikes. To isolate this effect from implementation differences, we implemented the discrete-time analogue in the same Triton framework as our scan (per neuron and chunk of $C$ steps: cumulative-sum evaluation of the free trajectory, commit up to the first spike, restart after it; best of $C\in\{32,64,128\}$) and varied the firing rate through the input mean at $T=65{,}536$. Table~\ref{tab:chunkrestart} shows that its time grows with the rate, from $\CrLow$\,ms at $\CrRateLow\%$ to $\CrHigh$\,ms at $\CrRateHigh\%$ ($N=128$), and that it is slower than the serial kernel above about $20\%$. The map scan's time is flat ($\ScanFlatLow$--$\ScanFlatHigh$\,ms), because its depth does not depend on the spikes. The map scan's spikes equal the serial ones in every cell; the chunk-restart kernel, which reassociates the sums, differs in at most $2\times10^{-7}$ of the entries (three cells), from threshold crossings within rounding distance. This is the practical content of Theorem~\ref{thm:structure}: the hard reset bounds the complexity of segment maps, not just the number of spikes, so the depth of the exact scan is independent of the activity.
 
-\paragraph{SSC.}
-To check that the equivalence does not depend on the dataset, we repeated the setup on the Spiking Speech Commands~\citep{cramer2020shd} (35 classes, 75{,}466 training samples), with the same network, $T=1024$, batch 64, 20 epochs and three seeds per kernel. On real batches with identical weights, the scan again produced \SscSpikesEqScan\ spikes bit-identical to the serial kernel, with gradient differences up to $\SscGradRelScan$ (SpikingJelly: $\SscGradRelSJ$). Final test accuracies are $\SscAccSerial\%$ (serial), $\SscAccScan\%$ (scan) and $\SscAccSJ\%$ (SpikingJelly), and the mean paired scan$-$serial difference is $\SscDiff$ points.
+\begin{table}[t]
+\centering\small
+\input{tab_chunkrestart.tex}
+\caption{Exact chunk-restart evaluation (discrete analogue of Bullet Trains/Tachyon, our Triton implementation) vs.\ the tuned serial kernel and the map scan, as a function of the firing rate ($T=65{,}536$, $\beta=0.9$, forward, RTX~5090, median ms, each method tuned per cell). All are exact in exact arithmetic.}
+\label{tab:chunkrestart}
+\end{table}
+
+\paragraph{Training networks.}
+On the Spiking Heidelberg Digits and Spiking Speech Commands~\citep{cramer2020shd} (700--256--256--$c$ hard-reset networks, $T=1024$ and $8192$), the scan produces spikes bit-identical to the serial kernel on real batches and gradients within $\GradRelScanShort$; final test accuracies agree (SHD: $\AccSerial\%$ serial vs.\ $\AccScan\%$ scan, paired $p=\AccDiffP$; SSC: $\SscAccSerial\%$ vs.\ $\SscAccScan\%$). SHD-sized networks are a moderate workload: the dispatching layer runs at $\ShdAutoMin$--$\ShdAutoMax\times$ the serial speed. Details, SpikingJelly comparisons and timings are in App.~\ref{app:moreexp}.
 
 % ---------------------------------------------------------------------------
 \section{Application: fitting neuron models to long recordings}
@@ -428,6 +422,7 @@ Table~\ref{tab:allen} summarizes the results; per-cell values are in App.~\ref{a
 \item \textbf{Within-layer recurrence.} The method needs the input currents of a layer for all $t$ in advance; recurrent synaptic connections within a layer break this, as they do for every scan-based method. Current-based synapses are not a problem: the synaptic current is a linear filter of the inputs and can be scanned first.
 \item \textbf{Silent integrators.} With the envelope bound, map sizes are small in every regime we measured except $\beta\to1$ with near-zero drift, where they grow like $\sqrt L$ and overflow becomes more frequent. The output stays exact, but the speed degrades towards serial. A three-level variant reduces the depth further and is exact, but on our hardware it did not beat the two-level scan up to $T=262{,}144$ (Table~\ref{tab:long}).
 \item \textbf{Soft-reset neurons.} On spiny cortical neurons a soft-reset LIF predicts spikes better than a hard-reset one (Sec.~\ref{sec:fit}). Its exact scan works, but its gains are smaller than for the hard reset, because the maps are larger and never forget. Bit-exact repair also needs many rounds.
+\item \textbf{Learned resets and the fitting objective.} Making the reset rule itself learnable (affine reset, App.~\ref{app:affine}) did not improve held-out spike prediction: the extra parameter lowered the training loss but not the test F1. Our van Rossum plus rate loss, fitted to repeats of a single stimulus, is a weak proxy for spike-time F1 on a new stimulus; better objectives, not faster simulators, are the bottleneck there.
 \item \textbf{Other neurons.} For adaptive-threshold (ALIF) neurons, segment maps still have a simple structure (App.~\ref{app:alif}): at most $L+1$ convex first-spike regions, and on each of them a one-dimensional map of the adaptation variable alone. The one-dimensional maps stay small in exact computations, but we have neither a size bound nor an implementation; both are the main open problems.
 \item \textbf{Floating point and deployment.} Bit-exactness is with respect to a serial program in the same arithmetic. Deploying to fixed-point neuromorphic hardware still requires simulation in that hardware's arithmetic.
 \end{itemize}
@@ -523,6 +518,51 @@ Table~\ref{tab:e1} lists piece counts of exact segment maps for hard and soft re
 \caption{Per-cell results of the Allen Cell Types experiment (part 2).}
 \label{tab:allencells2}
 \end{table}
+
+\section{Additional experiments}
+\label{app:moreexp}
+
+\paragraph{Three-level variant.}
+Because the maps form a monoid, chunk maps can themselves be composed. We group $G$ consecutive chunk maps into super-chunk maps (capacity $K_2$, pruned with the envelope bound at the super-chunk entry), carry scalars across the $M/G$ super-chunks, carry inside each super-chunk in parallel, and replay. Composition pushes the left map's constants through the right map and appends the right map's pulled-back breakpoints (Sec.~\ref{sec:structure}). The depth becomes $O(C+G+M/G)$, at the price of $O(KK_2)$ work per composition.
+
+\paragraph{Long sequences and three-level composition.}
+On a second RTX~5090 node (same software stack), we extended the sequence length to $T=262{,}144$ and compared the two-level scan with the three-level variant, each again tuned per cell (Table~\ref{tab:long}). The two-level forward speedup grows with $T$, reaching $\LongFwdMaxNine\times$ ($\beta=0.9$) and $\LongFwdMaxNineNine\times$ ($\beta=0.99$) over the tuned serial kernel at $N=128$, $T=262{,}144$; forward+backward reaches $\LongFbMaxNine\times$. The three-level variant was exact in every cell (spike flips before repair: \LongMaxFlipNine), and its super-chunk maps, each composed from $G$ chunk maps covering up to 4096 steps, still had only a few pieces on average. It was nevertheless faster than the two-level scan in \LongVFourBestNine\ of the \LongCellsNine\ cells for $\beta=0.9$ and in \LongVFourBestNineNine\ of the \LongCellsNineNine\ cells for $\beta=0.99$. On this hardware and up to this length, the per-step carry is cheap enough that the extra $O(KK_2)$ composition work does not pay off, and the asymptotic depth advantage would only show at longer sequences.
+
+\begin{table}[t]
+\centering\small
+\input{tab_long.tex}
+\caption{Long sequences on the second RTX~5090 node. Columns 5--8 are speedups over the tuned serial kernel (forward: two-level and three-level exact scan; backward: affine scan; forward+backward: the better forward plus the scan backward). Each implementation is tuned per cell.}
+\label{tab:long}
+\end{table}
+
+\paragraph{Forgetting in the adjoint.}
+With a detached reset, $J_t=0$ at every spike, so the backward recurrence also forgets: a chunk that contains a spike has a composed slope of exactly $0$, and the scan's adjoint inside it is computed by the same instructions as the serial adjoint. On a 1024-step, 4096-neuron test with $\beta=0.95$, the scan's and the serial kernel's float32 adjoints have identical errors relative to a float64 reference ($1.3\times10^{-7}$), at every position within a chunk. Differences arise only from chunks without spikes.
+
+\paragraph{SHD.}
+We train a feed-forward 700--256--256--20 hard-reset LIF network ($\beta=0.95$) on the Spiking Heidelberg Digits~\citep{cramer2020shd} with 1\,ms bins ($T=1024$), batch 64, Adam (lr $10^{-3}$, cosine schedule) and 30 epochs, using the serial kernel, the scan (with repair), or SpikingJelly. On real batches with identical weights, the scan produces bit-identical spikes in both layers (\SpikesEqScanShort\ of 5 batches at $T=1024$, \SpikesEqScanLong\ at $T=8192$) and parameter gradients within $\GradRelScanShort$ ($T=1024$) and $\GradRelScanLong$ ($T=8192$) relative error of the serial kernel. SpikingJelly's gradients differ by up to $\GradRelSJShort$ and $\GradRelSJLong$, and at $T=8192$ a fraction up to $\SpikeMisSJLong$ of its spikes differ from the serial kernel's; serial vs.\ serial gives 0. Final test accuracies are $\AccSerial\%$ (serial, \NSeedsSerial\ seeds), $\AccScan\%$ (scan) and $\AccSJ\%$ (SpikingJelly), and the paired scan$-$serial difference is $\AccDiffScanSerial$ points (paired $t$-test $p=\AccDiffP$; Fig.~\ref{fig:shd}). Same-seed runs drift apart because $10^{-7}$ gradient differences are amplified over thousands of Adam steps; there is no difference in the dynamics. Repair is needed only for bit-identical \emph{membrane potentials}: without it, the first layer's spikes on 10 SHD batches still match the serial kernel's exactly (mismatch fraction \NoRepairMismatch). Repair nevertheless takes \RepairRoundsShort\ rounds at $T=1024$ and \RepairRoundsLong\ at $T=8192$, because with firing rates of \FireRateShort\% and \FireRateLong\% most chunks are silent and their affine parts differ from the serial loop by a few ulps. A long-sequence variant (0.12\,ms bins, $T=8192$, batch 16, 20 epochs, one seed) reaches $\AccLongSerial\%$ / $\AccLongScan\%$ / $\AccLongSJ\%$. Table~\ref{tab:shdtime} gives the per-iteration time of the whole network. Without repair, the scan is faster than the serial kernel for $T\ge4096$ and slower at $T=1024$; with repair, the extra replay rounds make it slower everywhere. The dispatching layer is $\ShdAutoMin\times$ to $\ShdAutoMax\times$ the serial speed. SHD with $N=B\times256$ neurons per layer is a moderate workload. The scan helps when sequences are long and batches small, which is the latency-bound regime of Fig.~\ref{fig:gpu}.
+
+\begin{table}[t]
+\centering
+\small
+\input{tab_shd_timing.tex}
+\caption{SHD network (two LIF layers plus linear maps), forward+backward time per iteration in ms (median of 10, second RTX~5090 node). ``scan'' includes the bit-exactness repair, ``no repair'' omits it, and ``auto'' uses the dispatching layer.}
+\label{tab:shdtime}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\linewidth]{figs/shd.pdf}
+\caption{SHD training with the three kernels. (a) Test accuracy: mean and min--max over seeds. (b) Training accuracy of the seed-0 runs, which start from identical weights and data order.}
+\label{fig:shd}
+\end{figure}
+
+\paragraph{SSC.}
+To check that the equivalence does not depend on the dataset, we repeated the setup on the Spiking Speech Commands~\citep{cramer2020shd} (35 classes, 75{,}466 training samples), with the same network, $T=1024$, batch 64, 20 epochs and three seeds per kernel. On real batches with identical weights, the scan again produced \SscSpikesEqScan\ spikes bit-identical to the serial kernel, with gradient differences up to $\SscGradRelScan$ (SpikingJelly: $\SscGradRelSJ$). Final test accuracies are $\SscAccSerial\%$ (serial), $\SscAccScan\%$ (scan) and $\SscAccSJ\%$ (SpikingJelly), and the mean paired scan$-$serial difference is $\SscDiff$ points.
+
+\section{Learned affine reset}
+\label{app:affine}
+
+We fitted the affine-reset LIF $u\leftarrow\gamma v+\delta$ (parameters $\beta$, gain, bias, $\gamma\in[0,1]$ via a sigmoid, $\delta$) to the same Allen cells, split and protocol as Sec.~\ref{sec:fit} (400 Adam steps, best of three restarts), with the exact affine scan in the forward pass. \emph{Cold start} (rate-matched initialization): $\AffColdFailed$ of the 78 cells did not reach a usable fit, and on the remaining ones the mean held-out F1 was $\AffColdFOne$, against $\AffHardF$ (hard) and $\AffSoftF$ (soft) on the same cells. \emph{Warm start} (from the better of the hard and soft fits, so that $\gamma\approx0$ or $\gamma\approx1$ initially): on $\AffCells$ cells, the training loss ended below that of both the hard and the soft model in $\AffLossLower$, but the mean held-out F1 fell to $\AffFOne$, against $\AffBestOf$ for the per-cell better of hard and soft. Since the affine family reproduces both special cases exactly, this is not a failure of expressivity or of the simulator: the extra degree of freedom fits idiosyncrasies of the training stimulus (repeats of one noise realization) that do not transfer. We report it as a negative result. The time per iteration was $\AffSpeed\times$ lower with the scan than with the serial kernel (median over cells; range $\AffSpeedMin$--$\AffSpeedMax\times$; same GPU for both).
 
 \section{Adaptive-threshold neurons}
 \label{app:alif}
