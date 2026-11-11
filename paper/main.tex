@@ -356,6 +356,16 @@ Table~\ref{tab:soft} compares the exact soft-reset scan with tuned serial soft-r
 \label{tab:soft}
 \end{table}
 
+\paragraph{Why not iterate?}
+The natural exact alternative to a scan is a fixed-point iteration on the spike pattern, in the spirit of FPT and DEER but without relaxation. Given spikes, the hard-reset recurrence is affine and is solved by one affine scan; the spikes are then recomputed, and the loop repeats until they stop changing. Its fixed point is the serial solution. Table~\ref{tab:picard} shows that this takes $\PicItMin$--$\PicItMax$ iterations, more at higher firing rates and longer sequences, and is $\PicSlowMin$--$\PicSlowMax\times$ slower than the non-iterative map scan. After the three iterations that FPT budgets, $\PicErrMin$--$\PicErrMax\%$ of the spikes are still wrong, which explains why iterative methods relax the hard reset. In float32 the iteration converged to a fixed point that differs from the serial loop in \PicInexact\ of \PicCells\ cells, because the affine scan reorders roundings; the map scan matched the serial spikes in all of them.
+
+\begin{table}[t]
+\centering\small
+\input{tab_picard.tex}
+\caption{Exact fixed-point (Picard) iteration on the spike pattern vs.\ the map scan and the tuned serial kernel ($\beta=0.9$, RTX~5090). ``Error after 3'': fraction of wrong spikes after three iterations. $^*$: the float32 fixed point differs from the serial trajectory.}
+\label{tab:picard}
+\end{table}
+
 \paragraph{Forgetting in the adjoint.}
 With a detached reset, $J_t=0$ at every spike, so the backward recurrence also forgets: a chunk that contains a spike has a composed slope of exactly $0$, and the scan's adjoint inside it is computed by the same instructions as the serial adjoint. On a 1024-step, 4096-neuron test with $\beta=0.95$, the scan's and the serial kernel's float32 adjoints have identical errors relative to a float64 reference ($1.3\times10^{-7}$), at every position within a chunk. Differences arise only from chunks without spikes.
 
