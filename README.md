@@ -15,6 +15,7 @@ on average. The resulting forward pass is exact, non-iterative, and its depth do
 | `lifscan/exact.py` | Exact rational-arithmetic reference: serial recurrence, segment maps and their composition, the closed form (Theorem 1), the tree scan, and a generic piecewise-affine class used to count soft-reset pieces |
 | `lifscan/fast.py` | PyTorch prototype (CPU/MPS): two-level scan, pruning, bit-exact repair, affine-scan backward |
 | `lifscan/triton_lif.py` | CUDA kernels (Triton): fused serial baselines (plain and time-tiled), `scan_forward_v3` (two-level: envelope bound + pruning + capacity-K maps + overflow fallback + optional repair), `scan_forward_v4` (three-level composition), tiled backward scan, and the autograd layer `lif_tuned` |
+| `lifscan/triton_soft.py` | Exact two-level scan for soft-reset (subtractive) LIF neurons, tiled serial baseline, FFT adjoint |
 | `lifscan/shdnet.py` | SHD/SSC data loading and the 700-256-256-20 feed-forward LIF network |
 | `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py` (GPU) |
 | `experiments/` | All experiment scripts (E1–E7, see below) and the GPU job queues |

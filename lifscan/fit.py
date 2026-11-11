@@ -113,3 +113,38 @@ class LIFSoftFn(torch.autograd.Function):
 
 def lif_soft(I, u0, beta, theta=1.0, alpha=4.0):
     return LIFSoftFn.apply(I, u0, beta, theta, alpha)
+
+
+class LIFSoftScanFn(torch.autograd.Function):
+    """Soft-reset LIF with the exact soft scan forward (or serial) and an FFT adjoint;
+    grads w.r.t. I, u0, beta.  mode in {"serial", "scan"}."""
+
+    @staticmethod
+    def forward(ctx, I, u0, beta, theta, alpha, mode, C, K):
+        from . import triton_soft as TS
+        b, th = float(beta), float(theta)
+        I = I.contiguous()
+        if mode == "scan":
+            U, S = TS.soft_scan_forward(I, b, th, u0, C=C, K=K)
+        else:
+            U, S = TS.soft_serial_forward_tiled(I, b, th, u0)
+        ctx.save_for_backward(I, u0, U)
+        ctx.cfg = (b, th, alpha, mode)
+        return S
+
+    @staticmethod
+    def backward(ctx, gS):
+        from . import triton_soft as TS
+        I, u0, U = ctx.saved_tensors
+        b, th, alpha, mode = ctx.cfg
+        uprev = torch.cat([u0[None], U[:-1]], 0)
+        V = b * uprev + I
+        if mode == "scan":
+            lam = TS.soft_adjoint_fft(V, gS, b, th, alpha)
+        else:
+            lam = L.soft_serial_backward(I, u0, U, gS.contiguous(), b, th, alpha)
+        return lam, b * lam[0], (lam * uprev).sum().reshape(()), None, None, None, None, None
+
+
+def lif_soft_scan(I, u0, beta, theta=1.0, alpha=4.0, mode="scan", C=128, K=32):
+    return LIFSoftScanFn.apply(I, u0, beta, theta, alpha, mode, C, K)

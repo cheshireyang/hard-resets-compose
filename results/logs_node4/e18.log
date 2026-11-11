@@ -1,0 +1,12 @@
+cell 476451456 N=2 T=140032 soft ms/iter serial 22.3 scan 2.1 x10.86 | F1 serial 0.283 scan 0.283 | param rel diff 1.2e-05
+cell 479728896 N=4 T=140032 soft ms/iter serial 29.1 scan 2.7 x10.62 | F1 serial 0.221 scan 0.221 | param rel diff 1.6e-05
+cell 480798873 N=2 T=140032 soft ms/iter serial 22.3 scan 7.4 x3.00 | F1 serial 0.000 scan 0.000 | param rel diff nan
+cell 482652174 N=3 T=140032 soft ms/iter serial 25.7 scan 2.4 x10.74 | F1 serial 0.244 scan 0.244 | param rel diff 3.4e-05
+cell 485574721 N=3 T=140032 soft ms/iter serial 25.7 scan 2.5 x10.24 | F1 serial 0.249 scan 0.249 | param rel diff 3.1e-06
+cell 485932822 N=4 T=140032 soft ms/iter serial 29.1 scan 8.1 x3.60 | F1 serial 0.000 scan 0.000 | param rel diff nan
+cell 486264574 N=4 T=140032 soft ms/iter serial 29.1 scan 8.1 x3.61 | F1 serial 0.000 scan 0.000 | param rel diff nan
+cell 486472847 N=3 T=140032 soft ms/iter serial 25.8 scan 2.4 x10.68 | F1 serial 0.327 scan 0.327 | param rel diff 3.5e-05
+cell 487663469 N=3 T=140032 soft ms/iter serial 25.8 scan 2.6 x9.87 | F1 serial 0.376 scan 0.376 | param rel diff 3.9e-06
+cell 488501165 N=2 T=140032 soft ms/iter serial 22.3 scan 2.2 x10.19 | F1 serial 0.351 scan 0.351 | param rel diff 1.3e-05
+cell 490779678 N=3 T=140032 soft ms/iter serial 25.7 scan 2.5 x10.24 | F1 serial 0.283 scan 0.283 | param rel diff 5.1e-05
+cell 500894271 N=4 T=140032 soft ms/iter serial 29.1 scan 2.8 x10.26 | F1 serial 0.375 scan 0.375 | param rel diff 9.4e-06
