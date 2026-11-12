@@ -1,0 +1,133 @@
+experiments/e28_allen_alif.py:38: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  Wpred=Wpred, dw=0.3 * float(q), C=C_SCAN, Cb=64)
+cell 313861828 spiny          : ALIF F1 0.342 (hard 0.260) q=0.206 rho=0.9978
+cell 314822529 spiny          : FAILED
+cell 320668841 spiny          : ALIF F1 0.116 (hard 0.110) q=0.119 rho=0.9985
+cell 322246422 aspiny         : ALIF F1 0.469 (hard 0.446) q=0.094 rho=0.9986
+cell 323834998 aspiny         : ALIF F1 0.282 (hard 0.337) q=0.144 rho=0.9972
+cell 324466858 sparsely spiny : ALIF F1 0.460 (hard 0.467) q=0.344 rho=0.9936
+cell 327566447 aspiny         : FAILED
+cell 328093618 aspiny         : FAILED
+cell 329557305 spiny          : ALIF F1 0.319 (hard 0.390) q=0.081 rho=0.9936
+cell 354833767 spiny          : FAILED
+cell 395830185 spiny          : ALIF F1 0.240 (hard 0.255) q=0.389 rho=0.9974
+cell 422055317 spiny          : ALIF F1 0.135 (hard 0.207) q=0.089 rho=0.9986
+cell 466378900 spiny          : ALIF F1 0.368 (hard 0.342) q=0.058 rho=0.9982
+cell 468120757 spiny          : ALIF F1 0.277 (hard 0.313) q=0.107 rho=0.9947
+cell 469800845 spiny          : ALIF F1 0.156 (hard 0.216) q=0.168 rho=0.9978
+cell 471129934 spiny          : FAILED
+cell 473564515 aspiny         : FAILED
+cell 474626527 aspiny         : ALIF F1 0.333 (hard 0.345) q=0.103 rho=0.9987
+cell 475542907 aspiny         : FAILED
+cell 475740357 aspiny         : ALIF F1 0.422 (hard 0.536) q=0.221 rho=0.9979
+cell 476054829 spiny          : ALIF F1 0.183 (hard 0.185) q=0.173 rho=0.9957
+cell 476178907 spiny          : ALIF F1 0.302 (hard 0.327) q=0.098 rho=0.9985
+cell 476557750 spiny          : ALIF F1 0.270 (hard 0.258) q=0.077 rho=0.9929
+cell 477127614 spiny          : ALIF F1 0.384 (hard 0.326) q=0.172 rho=0.9977
+cell 478110866 aspiny         : ALIF F1 0.442 (hard 0.382) q=0.064 rho=0.9986
+cell 478499902 spiny          : ALIF F1 0.243 (hard 0.354) q=0.177 rho=0.9979
+cell 478949560 aspiny         : ALIF F1 0.812 (hard 0.803) q=0.032 rho=0.9866
+cell 479225052 spiny          : ALIF F1 0.136 (hard 0.122) q=0.135 rho=0.9950
+cell 479704527 spiny          : ALIF F1 0.227 (hard 0.217) q=0.105 rho=0.9986
+cell 480003970 spiny          : ALIF F1 0.360 (hard 0.243) q=0.063 rho=0.9986
+cell 480171348 aspiny         : ALIF F1 0.265 (hard 0.279) q=0.027 rho=0.9979
+cell 480643417 spiny          : ALIF F1 0.327 (hard 0.319) q=0.082 rho=0.9984
+cell 480792667 spiny          : FAILED
+cell 481018305 aspiny         : ALIF F1 0.933 (hard 0.894) q=0.026 rho=0.9967
+cell 482444444 aspiny         : ALIF F1 0.936 (hard 0.905) q=0.026 rho=0.9966
+cell 482726727 spiny          : ALIF F1 0.149 (hard 0.310) q=0.351 rho=0.9981
+cell 483027960 spiny          : ALIF F1 0.505 (hard 0.485) q=0.091 rho=0.9985
+cell 484559000 spiny          : ALIF F1 0.398 (hard 0.292) q=0.047 rho=0.9986
+cell 484770879 spiny          : ALIF F1 0.495 (hard 0.498) q=0.070 rho=0.9985
+cell 485287944 spiny          : ALIF F1 0.551 (hard 0.422) q=0.102 rho=0.9987
+cell 485574832 spiny          : ALIF F1 0.393 (hard 0.321) q=0.095 rho=0.9972
+cell 485837504 spiny          : ALIF F1 0.266 (hard 0.295) q=0.078 rho=0.9926
+cell 485931158 spiny          : FAILED
+cell 486052980 spiny          : ALIF F1 0.289 (hard 0.260) q=0.076 rho=0.9976
+cell 486176465 spiny          : ALIF F1 0.271 (hard 0.282) q=0.600 rho=0.9951
+cell 486352114 aspiny         : ALIF F1 0.793 (hard 0.732) q=0.093 rho=0.9963
+cell 486756093 spiny          : ALIF F1 0.491 (hard 0.544) q=0.130 rho=0.9951
+cell 487358945 spiny          : FAILED
+cell 487661754 spiny          : ALIF F1 0.364 (hard 0.127) q=0.159 rho=0.9990
+cell 488419491 spiny          : ALIF F1 0.435 (hard 0.396) q=0.123 rho=0.9987
+cell 488491186 aspiny         : ALIF F1 0.880 (hard 0.853) q=0.096 rho=0.9963
+cell 488677318 aspiny         : ALIF F1 0.326 (hard 0.371) q=0.256 rho=0.9977
+cell 488688344 spiny          : FAILED
+cell 489259263 spiny          : ALIF F1 0.471 (hard 0.436) q=0.093 rho=0.9986
+cell 489888847 spiny          : ALIF F1 0.224 (hard 0.288) q=0.165 rho=0.9981
+cell 490259892 spiny          : ALIF F1 0.225 (hard 0.220) q=0.141 rho=0.9978
+cell 490558274 spiny          : FAILED
+cell 490772223 spiny          : ALIF F1 0.669 (hard 0.341) q=0.053 rho=0.9985
+cell 491029832 aspiny         : ALIF F1 0.654 (hard 0.399) q=0.062 rho=0.9983
+cell 500879695 aspiny         : ALIF F1 0.827 (hard 0.819) q=0.029 rho=0.9973
+cell 501282204 aspiny         : ALIF F1 0.386 (hard 0.460) q=0.042 rho=0.9986
+cell 501895840 spiny          : ALIF F1 0.176 (hard 0.194) q=0.384 rho=0.9977
+cell 502245101 spiny          : ALIF F1 0.326 (hard 0.319) q=0.111 rho=0.9944
+cell 502665074 spiny          : ALIF F1 0.361 (hard 0.332) q=0.106 rho=0.9986
+cell 503286448 spiny          : FAILED
+cell 504643398 spiny          : ALIF F1 0.354 (hard 0.372) q=0.094 rho=0.9987
+cell 506777471 spiny          : ALIF F1 0.241 (hard 0.258) q=0.363 rho=0.9975
+cell 508566646 spiny          : ALIF F1 0.296 (hard 0.299) q=0.117 rho=0.9942
+cell 509620929 aspiny         : ALIF F1 0.238 (hard 0.230) q=0.365 rho=0.9943
+cell 513593674 spiny          : ALIF F1 0.490 (hard 0.480) q=0.231 rho=0.9978
+cell 515059388 spiny          : ALIF F1 0.310 (hard 0.289) q=0.174 rho=0.9989
+cell 515949222 spiny          : FAILED
+cell 517647182 spiny          : ALIF F1 0.450 (hard 0.486) q=0.200 rho=0.9957
+cell 518623704 aspiny         : ALIF F1 0.583 (hard 0.481) q=0.089 rho=0.9986
+cell 521399472 spiny          : ALIF F1 0.330 (hard 0.276) q=0.122 rho=0.9987
+cell 522257166 aspiny         : ALIF F1 0.511 (hard 0.313) q=0.293 rho=0.9980
+cell 524090036 spiny          : FAILED
+cell 526939383 aspiny         : ALIF F1 0.553 (hard 0.411) q=0.052 rho=0.9984
+cell 527579814 aspiny         : ALIF F1 0.615 (hard 0.379) q=0.084 rho=0.9972
+cell 531342116 aspiny         : ALIF F1 0.367 (hard 0.338) q=0.078 rho=0.9927
+cell 547262585 aspiny         : ALIF F1 0.304 (hard 0.298) q=0.101 rho=0.9946
+cell 553561593 aspiny         : ALIF F1 0.328 (hard 0.274) q=0.129 rho=0.9977
+cell 555251867 spiny          : ALIF F1 0.490 (hard 0.566) q=0.191 rho=0.9974
+cell 556363725 spiny          : ALIF F1 0.160 (hard 0.300) q=0.346 rho=0.9927
+cell 557202210 spiny          : ALIF F1 0.315 (hard 0.376) q=0.121 rho=0.9990
+cell 557864274 spiny          : ALIF F1 0.277 (hard 0.369) q=0.112 rho=0.9979
+cell 558675748 spiny          : ALIF F1 0.111 (hard 0.137) q=0.095 rho=0.9930
+cell 560686477 aspiny         : ALIF F1 0.753 (hard 0.491) q=0.091 rho=0.9974
+cell 560924223 aspiny         : ALIF F1 0.432 (hard 0.288) q=0.533 rho=0.9951
+cell 561533860 aspiny         : ALIF F1 0.231 (hard 0.222) q=0.108 rho=0.9950
+cell 562524605 aspiny         : ALIF F1 0.210 (hard 0.188) q=0.130 rho=0.9977
+cell 563220277 spiny          : ALIF F1 0.282 (hard 0.277) q=0.139 rho=0.9951
+cell 563535101 aspiny         : ALIF F1 0.331 (hard 0.347) q=0.482 rho=0.9980
+cell 565191521 aspiny         : ALIF F1 0.370 (hard 0.345) q=0.138 rho=0.9989
+cell 565698986 spiny          : ALIF F1 0.456 (hard 0.321) q=0.123 rho=0.9979
+cell 565871768 aspiny         : ALIF F1 0.794 (hard 0.546) q=0.092 rho=0.9972
+cell 566466395 aspiny         : ALIF F1 0.262 (hard 0.223) q=0.069 rho=0.9928
+cell 566673170 aspiny         : ALIF F1 0.281 (hard 0.328) q=0.135 rho=0.9976
+cell 567007144 aspiny         : ALIF F1 0.386 (hard 0.344) q=0.134 rho=0.9987
+cell 568584929 spiny          : ALIF F1 0.455 (hard 0.426) q=0.113 rho=0.9989
+cell 569424261 spiny          : ALIF F1 0.145 (hard 0.130) q=0.571 rho=0.9943
+cell 569670455 sparsely spiny : ALIF F1 0.409 (hard 0.468) q=0.075 rho=0.9984
+cell 569997187 aspiny         : ALIF F1 0.862 (hard 0.818) q=0.092 rho=0.9962
+cell 571292875 spiny          : ALIF F1 0.442 (hard 0.336) q=0.353 rho=0.9946
+cell 572416871 aspiny         : ALIF F1 0.254 (hard 0.194) q=0.101 rho=0.9986
+cell 573105010 sparsely spiny : ALIF F1 0.145 (hard 0.238) q=0.149 rho=0.9957
+cell 574038330 aspiny         : ALIF F1 0.411 (hard 0.315) q=0.127 rho=0.9989
+cell 575774870 aspiny         : ALIF F1 0.466 (hard 0.385) q=0.103 rho=0.9988
+cell 577218818 aspiny         : ALIF F1 0.548 (hard 0.472) q=0.148 rho=0.9988
+cell 578938153 spiny          : ALIF F1 0.117 (hard 0.116) q=0.077 rho=0.9985
+cell 579660456 aspiny         : ALIF F1 0.475 (hard 0.509) q=0.048 rho=0.9922
+cell 580014328 aspiny         : ALIF F1 0.557 (hard 0.581) q=0.309 rho=0.9946
+cell 580624725 spiny          : ALIF F1 0.308 (hard 0.229) q=0.060 rho=0.9984
+cell 582613001 sparsely spiny : ALIF F1 0.295 (hard 0.235) q=0.629 rho=0.9986
+cell 583140327 aspiny         : ALIF F1 0.139 (hard 0.325) q=0.140 rho=0.9988
+cell 583822407 aspiny         : ALIF F1 0.321 (hard 0.300) q=0.083 rho=0.9990
+cell 584664194 aspiny         : ALIF F1 0.276 (hard 0.274) q=0.080 rho=0.9936
+cell 585832440 aspiny         : ALIF F1 0.885 (hard 0.799) q=0.085 rho=0.9961
+cell 585951863 aspiny         : ALIF F1 0.693 (hard 0.516) q=0.027 rho=0.9977
+cell 586073850 aspiny         : ALIF F1 0.898 (hard 0.807) q=0.074 rho=0.9957
+cell 587077323 sparsely spiny : ALIF F1 0.227 (hard 0.170) q=0.076 rho=0.9984
+cell 589427435 spiny          : ALIF F1 0.400 (hard 0.360) q=0.079 rho=0.9985
+cell 590932287 aspiny         : ALIF F1 0.840 (hard 0.805) q=0.036 rho=0.9976
+cell 591748519 sparsely spiny : ALIF F1 0.634 (hard 0.499) q=0.101 rho=0.9987
+cell 593398067 aspiny         : ALIF F1 0.156 (hard 0.169) q=0.090 rho=0.9987
+cell 594480606 aspiny         : ALIF F1 0.204 (hard 0.208) q=0.411 rho=0.9943
+cell 596808392 aspiny         : ALIF F1 0.345 (hard 0.372) q=0.100 rho=0.9979
+cell 603502705 aspiny         : ALIF F1 0.412 (hard 0.474) q=0.124 rho=0.9971
+cell 608108585 spiny          : ALIF F1 0.393 (hard 0.279) q=0.149 rho=0.9991
+cell 617745241 aspiny         : ALIF F1 0.268 (hard 0.291) q=0.063 rho=0.9985

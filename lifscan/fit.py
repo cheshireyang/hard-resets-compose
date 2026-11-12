@@ -97,7 +97,10 @@ class LIFSoftFn(torch.autograd.Function):
     def forward(ctx, I, u0, beta, theta, alpha):
         b, th = float(beta), float(theta)
         I = I.contiguous()
-        U, S = L.soft_serial_forward(I, b, th, u0)
+        from . import triton_soft as TS
+        BN, D, _ = L.serial_fwd_cfg(I.shape[1])
+        while I.shape[0] % D: D //= 2
+        U, S = TS.soft_serial_forward_tiled(I, b, th, u0, BN=BN, D=D, num_warps=1)   # bit-identical to the plain kernel
         ctx.save_for_backward(I, u0, U)
         ctx.cfg = (b, th, alpha)
         return S

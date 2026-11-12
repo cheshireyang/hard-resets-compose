@@ -123,7 +123,7 @@ for f in glob.glob(os.environ.get("E15_SKIP_GLOB", "results/__none__")):
         DONE |= {r["cell"]["specimen"] for r in json.load(open(f))}
     except Exception:
         pass
-todo = [p for p in sorted(glob.glob("data/allen/*.npz")) if int(os.path.basename(p)[:-4]) not in DONE]
+todo = [p for p in sorted(glob.glob(os.environ.get("E15_DATA", "data/allen/*.npz"))) if int(os.path.basename(p)[:-4]) not in DONE]
 for path in todo[WORKER::NWORKERS]:
     meta, sw = load_cell(path)
     if len(sw["Noise 1"]) < 2 or len(sw["Noise 2"]) < 2:
@@ -134,7 +134,7 @@ for path in todo[WORKER::NWORKERS]:
     rel = [f1(Ste[:, i:i + 1], Ste[:, j:j + 1], win) for i in range(Ste.shape[1]) for j in range(Ste.shape[1]) if i < j]
     row = dict(cell=meta, T_train=Xtr.shape[0], N_train=Xtr.shape[1], N_test=Xte.shape[1],
                rate_hz=float(Str.mean().item() * 1000 / DT_MS), reliability=float(np.mean(rel)), models={})
-    for kind in ("hard", "soft", "noreset"):
+    for kind in os.environ.get("E15_KINDS", "hard,soft,noreset").split(","):
         best = None
         for rs in range(RESTARTS):
             p, losses, times = fit(kind, Xtr, Str, 1000 + rs)
@@ -154,7 +154,6 @@ for path in todo[WORKER::NWORKERS]:
         row[f"hard_ms_{mode}"] = 1000 * float(np.median(times[5:]))
     rows.append(row)
     m = row["models"]
-    print(f"cell {meta['specimen']} {meta['dendrite']:15s} {meta['region']:8s} T={row['T_train']} N={row['N_train']} "
-          f"rate {row['rate_hz']:.1f}Hz | reliability {row['reliability']:.3f} | F1 hard {m['hard']['f1_test']:.3f} "
-          f"soft {m['soft']['f1_test']:.3f} noreset {m['noreset']['f1_test']:.3f}", flush=True)
+    print(f"cell {meta['specimen']} {str(meta['dendrite']):15s} T={row['T_train']} N={row['N_train']} rate {row['rate_hz']:.1f}Hz | "
+          f"reliability {row['reliability']:.3f} | " + " ".join(f"{k} {v['f1_test']:.3f}" for k, v in m.items()), flush=True)
     json.dump(rows, open(OUTNAME, "w"), indent=1)

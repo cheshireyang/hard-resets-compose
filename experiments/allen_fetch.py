@@ -7,7 +7,7 @@ import h5py
 import numpy as np
 
 API = "https://api.brain-map.org/api/v2/data/query.json?criteria="
-OUT = "data/allen"
+OUT = os.environ.get("ALLEN_OUT", "data/allen")
 os.makedirs(OUT, exist_ok=True)
 
 

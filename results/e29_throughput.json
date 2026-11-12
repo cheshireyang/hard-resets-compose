@@ -1,0 +1,11 @@
+[
+{"mode": "scan", "workers": 8, "cells": 64, "ms": 35769}
+,
+{"mode": "scan", "workers": 16, "cells": 64, "ms": 28936}
+,
+{"mode": "serial", "workers": 8, "cells": 64, "ms": 110052}
+,
+{"mode": "serial", "workers": 16, "cells": 64, "ms": 69608}
+,
+{"mode": "serial", "workers": 32, "cells": 64, "ms": 74793}
+]

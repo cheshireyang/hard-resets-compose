@@ -479,14 +479,20 @@ for N, W in ((16, "Small"), (128, "Mid"), (1024, "Big")):
 macros["AlifCells"] = str(len(e25)); macros["AlifMaxFlip"] = sci(max(max(r["flips_prev"], r["flips_warm4"]) for r in e25))
 macros["AlifBwdErr"] = sci(max(max(r["bwd_rel_err_v"], r["bwd_rel_err_w"]) for r in e25b))
 
-# E27/E27b/E28: exact-gradient fits vs the official Allen GLIF models (same cells, same held-out Noise 2 sweeps)
+# E27/E27b/E28: exact-gradient fits vs the official Allen GLIF models (same cells, same held-out Noise 2 sweeps).
+# Database-wide run (all mouse cells with GLIF models) when available, else the 62-cell pilot.
 import math as _m
-e27 = [r for r in load("e27b_metrics.json") if _m.isfinite(r["ev_repeat"])]          # cells with test spikes
-e28 = load("e28_allen_alif_w0.json"); e28ok = [r for r in e28 if not r.get("failed")]
-nospike = {r["specimen"] for r in load("e27b_metrics.json") if not _m.isfinite(r["ev_repeat"])}
-assert {r["cell"]["specimen"] for r in e28 if r.get("failed")} == nospike, "ALIF failures are exactly the cells without test spikes"
-macros["GlifCellsAll"] = str(len(load("e27_glif_official.json"))); macros["GlifCellsSpk"] = str(len(e27)); macros["GlifNoSpike"] = str(len(nospike))
-sub = [r for r in e27 if "glif5" in r["metrics"]]; macros["GlifCellsSub"] = str(len(sub))
+DBW = os.path.exists(os.path.join(RES, "e27ball_metrics.json"))
+_e27b_all = load("e27ball_metrics.json" if DBW else "e27b_metrics.json")
+e27 = [r for r in _e27b_all if _m.isfinite(r["ev_repeat"]) and all(k in r["metrics"] for k in ("hard", "soft", "alif", "glif1", "glif3"))]
+e28 = []
+for f_ in sorted(glob.glob(os.path.join(RES, "e28all_allen_alif_w*.json" if DBW else "e28_allen_alif_w0.json"))): e28 += json.load(open(f_))
+e28ok = [r for r in e28 if not r.get("failed")]
+nospike = {r["specimen"] for r in _e27b_all if not _m.isfinite(r["ev_repeat"])}
+macros["GlifCellsAll"] = str(len(_e27b_all)); macros["GlifCellsSpk"] = str(len(e27)); macros["GlifNoSpike"] = str(len(nospike))
+macros["AlifFailOther"] = str(sum(1 for r in e28 if r.get("failed") and r["cell"]["specimen"] not in nospike))
+macros["GlifDbScope"] = "all" if DBW else "pilot"
+sub = [r for r in e27 if all(k in r["metrics"] for k in ("glif2", "glif4", "glif5"))]; macros["GlifCellsSub"] = str(len(sub))
 evc = lambda rows: [r for r in rows if r["ev_repeat"] > 0.1]
 macros["GlifEvCells"] = str(len(evc(e27))); macros["GlifEvCellsSub"] = str(len(evc(sub)))
 med = lambda rows, k, m: st.median(r["metrics"][k][m] for r in rows)
@@ -504,25 +510,65 @@ lines += ["\\bottomrule", "\\end{tabular}"]
 open(os.path.join(OUT, "tab_glif.tex"), "w").write("\n".join(lines) + "\n")
 def cmp(rows, a_, b_, m, tag):
     x = [r["metrics"][a_][m] for r in rows]; y = [r["metrics"][b_][m] for r in rows]
-    macros[f"{tag}Wins"] = str(sum(u > v for u, v in zip(x, y))); macros[f"{tag}N"] = str(len(rows)); macros[f"{tag}P"] = sci(wilcoxon(x, y).pvalue) if wilcoxon(x, y).pvalue < 1e-3 else f"{wilcoxon(x, y).pvalue:.2g}"
+    pv = wilcoxon(x, y).pvalue
+    macros[f"{tag}Wins"] = str(sum(u > v for u, v in zip(x, y))); macros[f"{tag}N"] = str(len(rows)); macros[f"{tag}P"] = sci(pv) if pv < 1e-3 else f"{pv:.2g}"
 cmp(e27, "alif", "glif1", "f1_4", "CmpAlifGOneF"); cmp(sub, "alif", "glif5", "f1_4", "CmpAlifGFiveF"); cmp(sub, "alif", "glif5", "f1_10", "CmpAlifGFiveFTen")
 cmp(evc(sub), "alif", "glif5", "ev_ratio", "CmpAlifGFiveEv"); cmp(evc(e27), "alif", "glif1", "ev_ratio", "CmpAlifGOneEv")
 cmp(e27, "hard", "glif1", "f1_4", "CmpHardGOneF"); cmp(evc(e27), "hard", "glif1", "ev_ratio", "CmpHardGOneEv"); cmp(sub, "hard", "glif5", "f1_10", "CmpHardGFiveFTen")
+cmp(evc(e27), "alif", "glif3", "ev_ratio", "CmpAlifGThreeEv")
+# per dendrite type: ALIF vs the best official level of each cell (F1 at 4 ms and EV ratio)
+for d, tag in (("spiny", "Spiny"), ("aspiny", "Aspiny")):
+    rr = [r for r in e27 if r["dendrite"] == d]
+    best = lambda r, m: max(v[m] for k, v in r["metrics"].items() if k.startswith("glif"))
+    macros[f"Glif{tag}N"] = str(len(rr))
+    macros[f"Glif{tag}AlifBeatsBestF"] = str(sum(r["metrics"]["alif"]["f1_4"] > best(r, "f1_4") for r in rr))
+    re_ = evc(rr); macros[f"Glif{tag}EvN"] = str(len(re_))
+    macros[f"Glif{tag}AlifBeatsBestEv"] = str(sum(r["metrics"]["alif"]["ev_ratio"] > best(r, "ev_ratio") for r in re_))
 a28 = [r["f1_test"] for r in e28ok]; h28 = [r["hard_f1"] for r in e28ok]
 macros["AlifFitCells"] = str(len(e28ok)); macros["AlifFitF"] = f"{st.mean(a28):.3f}"; macros["AlifFitHardF"] = f"{st.mean(h28):.3f}"
-macros["AlifFitWins"] = str(sum(u > v for u, v in zip(a28, h28))); macros["AlifFitP"] = f"{wilcoxon(a28, h28).pvalue:.2g}"
+macros["AlifFitWins"] = str(sum(u > v for u, v in zip(a28, h28)))
+_p = wilcoxon(a28, h28).pvalue; macros["AlifFitP"] = sci(_p) if _p < 1e-3 else f"{_p:.2g}"
 macros["AlifFitLossLower"] = str(sum(r["train_loss"] < r["hard_train_loss"] for r in e28ok))
+# hard vs soft reset across the database (E15all)
+if DBW:
+    e15all = []
+    for f_ in glob.glob(os.path.join(RES, "e15all_allen_w*.json")): e15all += json.load(open(f_))
+    e15s = [r for r in e15all if r["cell"]["specimen"] not in nospike]
+    macros["DbCells"] = str(len(e15s))
+    for d, tag in (("spiny", "Spiny"), ("aspiny", "Aspiny"), ("sparsely spiny", "Sparse")):
+        rr = [r for r in e15s if r["cell"]["dendrite"] == d]
+        h = [r["models"]["hard"]["f1_test"] for r in rr]; so = [r["models"]["soft"]["f1_test"] for r in rr]
+        macros[f"Db{tag}N"] = str(len(rr)); macros[f"Db{tag}Hard"] = f"{st.mean(h):.3f}"; macros[f"Db{tag}Soft"] = f"{st.mean(so):.3f}"
+        macros[f"Db{tag}SoftWins"] = str(sum(b > a for a, b in zip(h, so)))
+        pv = wilcoxon(h, so).pvalue; macros[f"Db{tag}P"] = sci(pv) if pv < 1e-3 else f"{pv:.2g}"
 tt = load("e28t_alif_timing.json"); spa = [r["ms_serial"] / r["ms_scan"] for r in tt]
 macros["AlifFitSpeed"] = f"{st.median(spa):.1f}"; macros["AlifFitSpeedMin"] = f"{min(spa):.1f}"; macros["AlifFitSpeedMax"] = f"{max(spa):.1f}"
 macros["AlifFitMsSerial"] = f"{st.median(r['ms_serial'] for r in tt):.1f}"; macros["AlifFitMsScan"] = f"{st.median(r['ms_scan'] for r in tt):.1f}"
 import numpy as _np
 _xs, _ys = [], []
-for m_ in load("allen_glif_models.json"):
+for m_ in load("allen_glif_models_all.json" if DBW else "allen_glif_models.json"):
     r_ = {r["specimen"]: r for r in e27}.get(m_["specimen"])
     if r_ is None or m_["ev"] is None or r_["ev_repeat"] <= 0.1 or f"glif{m_['level']}" not in r_["metrics"]: continue
     _xs.append(m_["ev"]); _ys.append(r_["metrics"][f"glif{m_['level']}"]["ev_ratio"])
 from scipy.stats import spearmanr
 macros["EvOfficialRho"] = f"{spearmanr(_xs, _ys).correlation:.2f}"; macros["EvOfficialPairs"] = str(len(_xs))
+
+# E29: database-scale throughput (64 ALIF fits, concurrent processes under CUDA MPS) and serial/scan equivalence (E29b)
+tp = load("e29_throughput.json")
+bs = min(r["ms"] for r in tp if r["mode"] == "scan"); bser = min(r["ms"] for r in tp if r["mode"] == "serial")
+macros["TpScanS"] = f"{bs / 1000:.0f}"; macros["TpSerialS"] = f"{bser / 1000:.0f}"; macros["TpGain"] = f"{bser / bs:.1f}"
+macros["TpScanW"] = str([r["workers"] for r in tp if r["ms"] == bs][0]); macros["TpSerialW"] = str([r["workers"] for r in tp if r["ms"] == bser][0])
+def _ld(tag):
+    d = {}
+    for f_ in glob.glob(os.path.join(RES, f"e28cmp_{tag}_allen_alif_w*.json")):
+        for r in json.load(open(f_)): d[r["cell"]["specimen"]] = r
+    return d
+_a, _b = _ld("scan"), _ld("serial")
+_c = [k for k in _a if k in _b and not _a[k].get("failed") and not _b[k].get("failed")]
+_fa = [_a[k]["f1_test"] for k in _c]; _fb = [_b[k]["f1_test"] for k in _c]
+macros["EqCells"] = str(len(_c)); macros["EqFScan"] = f"{st.mean(_fa):.3f}"; macros["EqFSerial"] = f"{st.mean(_fb):.3f}"
+macros["EqP"] = f"{wilcoxon(_fa, _fb).pvalue:.2f}"
+macros["EqDiffMed"] = f"{st.median(abs(x - y) for x, y in zip(_fa, _fb)):.3f}"
 
 with open(os.path.join(OUT, "numbers.tex"), "w") as f:
     f.write("% generated by make_numbers.py -- do not edit\n")

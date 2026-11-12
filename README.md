@@ -74,6 +74,11 @@ python3 experiments/glif_fetch.py                                  # neuron_conf
 /path/to/py311/bin/python experiments/e27_glif_official.py 16      # official models simulated with the Allen SDK
 python3 experiments/e28_allen_alif.py                              # ALIF fits with the ALIF scan in the loop
 python3 experiments/e28t_alif_timing.py && python3 experiments/e27b_metrics.py   # timing; F1 and explained-variance comparison
+# Database-wide version (all 1,044 mouse cells with GLIF models; 20 kHz storage; 8 concurrent fits under CUDA MPS):
+python3 experiments/glif_query_all.py && ALLEN_OUT=data/allen_all python3 experiments/allen_fetch_all.py 8
+python3 experiments/glif_fetch.py results/allen_glif_models_raw_all.json results/allen_glif_models_all.json
+bash experiments/queue_database.sh      # E15 (hard/soft LIF) -> E28 (ALIF) -> E27b, after E27 on the database (see the script)
+bash experiments/e29_throughput.sh      # throughput of 64 ALIF fits, serial kernels vs scans, under MPS
 python3 experiments/e23_reset_lower_bounds.py  # Theorem 7(c): exponential lower bounds for order-reversing / expanding resets (exact, CPU)
 python3 experiments/e20_fpt_psn.py        # head-to-head: FPT (re-implemented from the official code) and PSN vs exact soft scan
 python3 experiments/e21_chunk_restart.py  # head-to-head: spike-by-spike chunk restarts vs map scan, vs firing rate

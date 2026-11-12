@@ -18,10 +18,15 @@ INITS = ((0.05, 0.99), (0.2, 0.99), (0.05, 0.998), (0.2, 0.998))
 C_SCAN = 128
 WORKER, NW = (int(sys.argv[1]), int(sys.argv[2])) if len(sys.argv) > 2 else (0, 1)
 BASE = {}
-for f in glob.glob("results/e15b_allen_w*.json") + glob.glob("results/e15c_allen_w*.json"):
+for f in (glob.glob(os.environ["E28_BASE_GLOB"]) if "E28_BASE_GLOB" in os.environ else glob.glob("results/e15b_allen_w*.json") + glob.glob("results/e15c_allen_w*.json")):
     for r in json.load(open(f)):
         BASE[r["cell"]["specimen"]] = r
-GLIF = {m["specimen"] for m in json.load(open("results/allen_glif_models.json"))}
+GLIF = {m["specimen"] for m in json.load(open(os.environ.get("E28_GLIF", "results/allen_glif_models.json")))}
+DATA = os.environ.get("E28_DATA", "data/allen")
+TAG = os.environ.get("E28_TAG", "")
+TIMING = os.environ.get("E28_TIMING", "1") == "1"
+MODE = os.environ.get("E28_MODE", "scan")
+LIMIT = int(os.environ.get("E28_LIMIT", "0"))
 
 
 def sim(X, p, mode, Wprev=None):
@@ -62,13 +67,14 @@ def fit(Xtr, Str, b, q0, rho0, mode="scan", iters=ITERS):
 
 rows = []
 cells = sorted(s for s in BASE if s in GLIF)
+if LIMIT: cells = cells[:LIMIT]
 for sid in cells[WORKER::NW]:
-    meta, sw = load_cell(f"data/allen/{sid}.npz")
+    meta, sw = load_cell(f"{DATA}/{sid}.npz")
     Xtr, Str = stack(sw["Noise 1"]); Xte, Ste = stack(sw["Noise 2"])
     win = int(WIN_MS / DT_MS)
     best = None
     for q0, rho0 in INITS:
-        p, losses, times = fit(Xtr, Str, BASE[sid], q0, rho0)
+        p, losses, times = fit(Xtr, Str, BASE[sid], q0, rho0, mode=MODE)
         if math.isfinite(losses[-1]) and (best is None or losses[-1] < best[1][-1]):
             best = (p, losses, times, (q0, rho0))
     row = dict(cell=meta, T_train=Xtr.shape[0], N_train=Xtr.shape[1])
@@ -84,10 +90,10 @@ for sid in cells[WORKER::NW]:
                    rate_model_hz=float(Ste_hat.mean().item() * 1000 / DT_MS), hard_f1=BASE[sid]["models"]["hard"]["f1_test"],
                    hard_train_loss=BASE[sid]["models"]["hard"]["train_loss"])
         q0, rho0 = init
-        for mode in ("serial", "scan"):
+        for mode in (("serial", "scan") if TIMING else ()):
             _, _, tt = fit(Xtr, Str, BASE[sid], q0, rho0, mode=mode, iters=30)
             row[f"ms_{mode}"] = 1000 * float(np.median(tt[5:]))
     rows.append(row)
     print(f"cell {sid} {meta['dendrite']:15s}: " + ("FAILED" if row.get("failed") else
-          f"ALIF F1 {row['f1_test']:.3f} (hard {row['hard_f1']:.3f}) q={row['q']:.3f} rho={row['rho']:.4f} | ms serial {row['ms_serial']:.1f} scan {row['ms_scan']:.1f}"), flush=True)
-    json.dump(rows, open(f"results/e28_allen_alif_w{WORKER}.json", "w"), indent=1)
+          f"ALIF F1 {row['f1_test']:.3f} (hard {row['hard_f1']:.3f}) q={row['q']:.3f} rho={row['rho']:.4f}"), flush=True)
+    json.dump(rows, open(f"results/e28{TAG}_allen_alif_w{WORKER}.json", "w"), indent=1)

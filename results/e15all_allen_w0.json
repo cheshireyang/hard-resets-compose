@@ -1,0 +1,4718 @@
+[
+ {
+  "cell": {
+   "specimen": 313860745,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "5"
+  },
+  "T_train": 114944,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.4209818618837744,
+  "reliability": 0.22580644488334656,
+  "models": {
+   "hard": {
+    "f1_test": 0.20765027403831482,
+    "train_loss": 1.5483691692352295,
+    "beta": 0.9602509140968323,
+    "gain": 0.040131181478500366,
+    "bias": -0.0033830897882580757,
+    "ur": -1.4315972328186035,
+    "ms_per_iter": 2.0645768381655216,
+    "rate_model_hz": 1.30498330690898
+   },
+   "soft": {
+    "f1_test": 0.13930347561836243,
+    "train_loss": 1.4660345315933228,
+    "beta": 0.9718320965766907,
+    "gain": 0.02582027018070221,
+    "bias": 0.0011578390840440989,
+    "ur": null,
+    "ms_per_iter": 8.53369478136301,
+    "rate_model_hz": 1.5659800556022674
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 314529406,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 114944,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 0.7829900278011337,
+  "reliability": 0.5,
+  "models": {
+   "hard": {
+    "f1_test": 0.27586209774017334,
+    "train_loss": 1.2290631532669067,
+    "beta": 0.9682954549789429,
+    "gain": 0.0215450469404459,
+    "bias": -0.0010194176575168967,
+    "ur": -0.44222044944763184,
+    "ms_per_iter": 2.0319069735705853,
+    "rate_model_hz": 0.65249165345449
+   },
+   "soft": {
+    "f1_test": 0.34210526943206787,
+    "train_loss": 1.2439603805541992,
+    "beta": 0.9646432399749756,
+    "gain": 0.022948045283555984,
+    "bias": 0.0007300112047232687,
+    "ur": null,
+    "ms_per_iter": 8.535688277333975,
+    "rate_model_hz": 1.043986703734845
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 318808427,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Nr5a1-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 114944,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 2.348970010643825,
+  "reliability": 0.7185220718383789,
+  "models": {
+   "hard": {
+    "f1_test": 0.3687500059604645,
+    "train_loss": 1.1042629480361938,
+    "beta": 0.9731398820877075,
+    "gain": 0.013041462749242783,
+    "bias": -0.0004917862243019044,
+    "ur": -1.5411350727081299,
+    "ms_per_iter": 2.0487778820097446,
+    "rate_model_hz": 2.2184716362971812
+   },
+   "soft": {
+    "f1_test": 0.42603549361228943,
+    "train_loss": 1.1419891119003296,
+    "beta": 0.9701822400093079,
+    "gain": 0.01119809690862894,
+    "bias": 0.005453077144920826,
+    "ur": null,
+    "ms_per_iter": 8.087719790637493,
+    "rate_model_hz": 2.4794682394713163
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 321923492,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Nr5a1-Cre",
+   "layer": "4"
+  },
+  "T_train": 124928,
+  "N_train": 3,
+  "N_test": 2,
+  "rate_hz": 0.7871200068620965,
+  "reliability": 0.2790697515010834,
+  "models": {
+   "hard": {
+    "f1_test": 0.37362635135650635,
+    "train_loss": 0.9963943362236023,
+    "beta": 0.9541217684745789,
+    "gain": 0.022992772981524467,
+    "bias": -0.0024737748317420483,
+    "ur": -1.3844985961914062,
+    "ms_per_iter": 2.016578335314989,
+    "rate_model_hz": 0.9605532250134274
+   },
+   "soft": {
+    "f1_test": 0.37647056579589844,
+    "train_loss": 0.9930534362792969,
+    "beta": 0.9678341746330261,
+    "gain": 0.015315568074584007,
+    "bias": 0.00013359238801058382,
+    "ur": null,
+    "ms_per_iter": 8.638160303235054,
+    "rate_model_hz": 0.840484062791802
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 322762730,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Ntsr1-Cre_GN220",
+   "layer": "5"
+  },
+  "T_train": 124928,
+  "N_train": 2,
+  "N_test": 3,
+  "rate_hz": 2.801613591145724,
+  "reliability": 0.7270083626111349,
+  "models": {
+   "hard": {
+    "f1_test": 0.3285714387893677,
+    "train_loss": 1.1416085958480835,
+    "beta": 0.9763848185539246,
+    "gain": 0.010705824941396713,
+    "bias": -0.00038302908069454134,
+    "ur": -1.3030447959899902,
+    "ms_per_iter": 2.001489046961069,
+    "rate_model_hz": 2.761590585578233
+   },
+   "soft": {
+    "f1_test": 0.4018264710903168,
+    "train_loss": 1.1372302770614624,
+    "beta": 0.9711973071098328,
+    "gain": 0.009095296263694763,
+    "bias": 0.007018767762929201,
+    "ur": null,
+    "ms_per_iter": 8.274629712104797,
+    "rate_model_hz": 3.001728910021484
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 324032509,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 124928,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 0.7070739229675382,
+  "reliability": 0.2596153865257899,
+  "models": {
+   "hard": {
+    "f1_test": 0.2888889014720917,
+    "train_loss": 1.2493659257888794,
+    "beta": 0.9683036208152771,
+    "gain": 0.018826795741915703,
+    "bias": -0.0009004608145914972,
+    "ur": -0.4765460193157196,
+    "ms_per_iter": 1.9822330214083195,
+    "rate_model_hz": 0.6003457747283392
+   },
+   "soft": {
+    "f1_test": 0.3333333432674408,
+    "train_loss": 1.255431890487671,
+    "beta": 0.9677090048789978,
+    "gain": 0.01855657249689102,
+    "bias": 0.00043678240035660565,
+    "ur": null,
+    "ms_per_iter": 8.557509165257215,
+    "rate_model_hz": 0.840484062791802
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 325853048,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rbp4-Cre_KL100",
+   "layer": "5"
+  },
+  "T_train": 124928,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.8504898141836748,
+  "reliability": 0.10699832749863465,
+  "models": {
+   "hard": {
+    "f1_test": 0.20645160973072052,
+    "train_loss": 1.5369762182235718,
+    "beta": 0.9699236750602722,
+    "gain": 0.01923360303044319,
+    "bias": -0.0021249703131616116,
+    "ur": -0.8048252463340759,
+    "ms_per_iter": 1.9970010034739971,
+    "rate_model_hz": 0.840484062791802
+   },
+   "soft": {
+    "f1_test": 0.23463687300682068,
+    "train_loss": 1.6807717084884644,
+    "beta": 0.9648428559303284,
+    "gain": 0.019523335620760918,
+    "bias": 0.002504951786249876,
+    "ur": null,
+    "ms_per_iter": 9.653581771999598,
+    "rate_model_hz": 1.0806223872350529
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 327706437,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "2/3"
+  },
+  "T_train": 124928,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 3.3752774470485747,
+  "reliability": 0.7924899359544119,
+  "models": {
+   "hard": {
+    "f1_test": 0.4702194631099701,
+    "train_loss": 0.8414354920387268,
+    "beta": 0.9765350818634033,
+    "gain": 0.01971924677491188,
+    "bias": -0.0026460238732397556,
+    "ur": -1.3866608142852783,
+    "ms_per_iter": 1.970732118934393,
+    "rate_model_hz": 2.881659602280706
+   },
+   "soft": {
+    "f1_test": 0.4225352108478546,
+    "train_loss": 0.8204277753829956,
+    "beta": 0.972700297832489,
+    "gain": 0.015329034067690372,
+    "bias": 0.006708705332130194,
+    "ur": null,
+    "ms_per_iter": 9.423601906746626,
+    "rate_model_hz": 3.602074575610459
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 329224678,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Sst-IRES-Cre",
+   "layer": "5"
+  },
+  "T_train": 124928,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 3.8322070031426847,
+  "reliability": 0.7813952565193176,
+  "models": {
+   "hard": {
+    "f1_test": 0.6177214980125427,
+    "train_loss": 0.649031937122345,
+    "beta": 0.9725373387336731,
+    "gain": 0.013686314225196838,
+    "bias": -0.003063741372898221,
+    "ur": -1.0592588186264038,
+    "ms_per_iter": 1.9908887334167957,
+    "rate_model_hz": 3.602074575610459
+   },
+   "soft": {
+    "f1_test": 0.5847666263580322,
+    "train_loss": 0.6194668412208557,
+    "beta": 0.9701496958732605,
+    "gain": 0.011763690039515495,
+    "bias": 0.002915292512625456,
+    "ur": null,
+    "ms_per_iter": 10.615385137498379,
+    "rate_model_hz": 3.8422129000537097
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 341016267,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Pvalb-IRES-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 150016,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 21.186629310250282,
+  "reliability": 0.9786039988199869,
+  "models": {
+   "hard": {
+    "f1_test": 0.932641327381134,
+    "train_loss": 0.09767159819602966,
+    "beta": 0.9640029668807983,
+    "gain": 0.01139544416218996,
+    "bias": 0.002793758176267147,
+    "ur": -0.025772524997591972,
+    "ms_per_iter": 3.4211380407214165,
+    "rate_model_hz": 20.697792060673237
+   },
+   "soft": {
+    "f1_test": 0.9326130151748657,
+    "train_loss": 0.09798983484506607,
+    "beta": 0.9651145935058594,
+    "gain": 0.010944300331175327,
+    "bias": 0.0032749553211033344,
+    "ur": null,
+    "ms_per_iter": 12.70083012059331,
+    "rate_model_hz": 20.697792060673237
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 382982932,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Nr5a1-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 2.374457399128005,
+  "reliability": 0.625056172410647,
+  "models": {
+   "hard": {
+    "f1_test": 0.47857141494750977,
+    "train_loss": 0.8691748976707458,
+    "beta": 0.9718342423439026,
+    "gain": 0.011364714242517948,
+    "bias": -0.0017650382360443473,
+    "ur": -1.1258388757705688,
+    "ms_per_iter": 2.1214140579104424,
+    "rate_model_hz": 2.677959273569286
+   },
+   "soft": {
+    "f1_test": 0.45703125,
+    "train_loss": 0.8529525399208069,
+    "beta": 0.9688513875007629,
+    "gain": 0.010012033395469189,
+    "bias": 0.0032583174761384726,
+    "ur": null,
+    "ms_per_iter": 12.201625853776932,
+    "rate_model_hz": 2.249485842185095
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 397248752,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Gad2-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 3.2492572790943086,
+  "reliability": 0.587392638127009,
+  "models": {
+   "hard": {
+    "f1_test": 0.2849315106868744,
+    "train_loss": 0.9438394904136658,
+    "beta": 0.9781180024147034,
+    "gain": 0.009037887677550316,
+    "bias": -0.0035498065408319235,
+    "ur": -1.3918607234954834,
+    "ms_per_iter": 2.1506990306079388,
+    "rate_model_hz": 3.284963604528457
+   },
+   "soft": {
+    "f1_test": 0.3682864308357239,
+    "train_loss": 0.9661189317703247,
+    "beta": 0.9758835434913635,
+    "gain": 0.006971979513764381,
+    "bias": 0.003962332848459482,
+    "ur": null,
+    "ms_per_iter": 11.031743604689837,
+    "rate_model_hz": 3.749143215827644
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 464191630,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 1.7615020624361932,
+  "reliability": 0.6357111235459646,
+  "models": {
+   "hard": {
+    "f1_test": 0.42500001192092896,
+    "train_loss": 0.9720587134361267,
+    "beta": 0.9677821397781372,
+    "gain": 0.03154992312192917,
+    "bias": 0.0002851966710295528,
+    "ur": -1.000786304473877,
+    "ms_per_iter": 2.0146542228758335,
+    "rate_model_hz": 1.7138940165750682
+   },
+   "soft": {
+    "f1_test": 0.43119263648986816,
+    "train_loss": 0.9678604006767273,
+    "beta": 0.9694134593009949,
+    "gain": 0.02660660445690155,
+    "bias": 0.003676685504615307,
+    "ur": null,
+    "ms_per_iter": 10.492753703147173,
+    "rate_model_hz": 2.0352491992525756
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 467003163,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 124928,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 2.601498272269964,
+  "reliability": 0.6832900842030843,
+  "models": {
+   "hard": {
+    "f1_test": 0.46305418014526367,
+    "train_loss": 0.8183906078338623,
+    "beta": 0.9706826210021973,
+    "gain": 0.008741798810660839,
+    "bias": 0.00017730184481479228,
+    "ur": -1.1651217937469482,
+    "ms_per_iter": 2.0262151956558228,
+    "rate_model_hz": 2.761590585578233
+   },
+   "soft": {
+    "f1_test": 0.5113122463226318,
+    "train_loss": 0.8289479613304138,
+    "beta": 0.971461296081543,
+    "gain": 0.0067426045425236225,
+    "bias": 0.0061420598067343235,
+    "ur": null,
+    "ms_per_iter": 8.77588801085949,
+    "rate_model_hz": 3.241867234464735
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 469734859,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Nr5a1-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0145741291344166,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 11.443234980106354,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 469832490,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Scnn1a-Tg3-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0664012990891933,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 11.526801157742739,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 471800189,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Ntsr1-Cre_GN220",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0812791772186756,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.164605781435966,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 473943881,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 3.4099348704330623,
+  "reliability": 0.6373195598522822,
+  "models": {
+   "hard": {
+    "f1_test": 0.38031914830207825,
+    "train_loss": 0.9730900526046753,
+    "beta": 0.9789632558822632,
+    "gain": 0.008427942171692848,
+    "bias": -0.003494458505883813,
+    "ur": -1.415640115737915,
+    "ms_per_iter": 2.6563163846731186,
+    "rate_model_hz": 3.4277880331501365
+   },
+   "soft": {
+    "f1_test": 0.4371727705001831,
+    "train_loss": 0.996683657169342,
+    "beta": 0.9734773635864258,
+    "gain": 0.006874377373605967,
+    "bias": 0.005143310409039259,
+    "ur": null,
+    "ms_per_iter": 12.29296624660492,
+    "rate_model_hz": 3.5349064273759723
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 475057898,
+   "dendrite": "sparsely spiny",
+   "region": "VISp5",
+   "line": "Sst-IRES-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 2.927902387455106,
+  "reliability": 0.21249999105930328,
+  "models": {
+   "hard": {
+    "f1_test": 0.2434210479259491,
+    "train_loss": 0.9330635070800781,
+    "beta": 0.9767101407051086,
+    "gain": 0.020840302109718323,
+    "bias": -0.004706529434770346,
+    "ur": -1.3154504299163818,
+    "ms_per_iter": 2.223314717411995,
+    "rate_model_hz": 2.57084087934345
+   },
+   "soft": {
+    "f1_test": 0.37195125222206116,
+    "train_loss": 0.9359315633773804,
+    "beta": 0.9729869365692139,
+    "gain": 0.016780229285359383,
+    "bias": 0.0035797073505818844,
+    "ur": null,
+    "ms_per_iter": 11.689356062561274,
+    "rate_model_hz": 2.9993144562467933
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 475619045,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.083823084831238,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 11.915688868612051,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 475894121,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Pvalb-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 150016,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.055601216852665,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 13.029927387833595,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 476100382,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Sst-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 1.6424818022642285,
+  "reliability": 0.8048780560493469,
+  "models": {
+   "hard": {
+    "f1_test": 0.39534881711006165,
+    "train_loss": 0.9930505752563477,
+    "beta": 0.9715679287910461,
+    "gain": 0.02372361347079277,
+    "bias": -0.0032786077354103327,
+    "ur": -1.3285629749298096,
+    "ms_per_iter": 2.0394809544086456,
+    "rate_model_hz": 1.6067756223492324
+   },
+   "soft": {
+    "f1_test": 0.4285714030265808,
+    "train_loss": 1.0574145317077637,
+    "beta": 0.9702953696250916,
+    "gain": 0.02066199854016304,
+    "bias": 0.002052959054708481,
+    "ur": null,
+    "ms_per_iter": 10.451155714690685,
+    "rate_model_hz": 2.0352491992525756
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 476269122,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Scnn1a-Tg3-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 4,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0743459463119507,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.630118057131767,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 476751360,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Sst-IRES-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0775911398231983,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.605791911482811,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 477880128,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.3035020563402213,
+  "reliability": 0.600809300939242,
+  "models": {
+   "hard": {
+    "f1_test": 0.5813953280448914,
+    "train_loss": 1.0266709327697754,
+    "beta": 0.9636530876159668,
+    "gain": 0.025634335353970528,
+    "bias": -0.0002980439749080688,
+    "ur": -0.4455550014972687,
+    "ms_per_iter": 2.0614308305084705,
+    "rate_model_hz": 0.32135510991793126
+   },
+   "soft": {
+    "f1_test": 0.5813953280448914,
+    "train_loss": 1.1861717700958252,
+    "beta": 0.9670248627662659,
+    "gain": 0.023065412417054176,
+    "bias": 2.3008071366348304e-05,
+    "ur": null,
+    "ms_per_iter": 11.664188001304865,
+    "rate_model_hz": 0.32135510991793126
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 478439166,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Nr5a1-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.6662856796756387,
+  "reliability": 0.5776102344195048,
+  "models": {
+   "hard": {
+    "f1_test": 0.38596490025520325,
+    "train_loss": 0.9540466666221619,
+    "beta": 0.9590380787849426,
+    "gain": 0.02008458785712719,
+    "bias": -0.005033374764025211,
+    "ur": -1.2151033878326416,
+    "ms_per_iter": 2.0269369706511497,
+    "rate_model_hz": 1.6067754768300802
+   },
+   "soft": {
+    "f1_test": 0.41584157943725586,
+    "train_loss": 0.9664198160171509,
+    "beta": 0.9669222235679626,
+    "gain": 0.014090463519096375,
+    "bias": 0.0013529337011277676,
+    "ur": null,
+    "ms_per_iter": 12.043628841638565,
+    "rate_model_hz": 1.8210122652817518
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 478793814,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Pvalb-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 150016,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 13.965176185593009,
+  "reliability": 0.9557470182577769,
+  "models": {
+   "hard": {
+    "f1_test": 0.9052494764328003,
+    "train_loss": 0.15213227272033691,
+    "beta": 0.9734880924224854,
+    "gain": 0.009424342773854733,
+    "bias": -0.0028695787768810987,
+    "ur": -0.29668644070625305,
+    "ms_per_iter": 3.6862753331661224,
+    "rate_model_hz": 13.698538532480597
+   },
+   "soft": {
+    "f1_test": 0.8862191438674927,
+    "train_loss": 0.1510729342699051,
+    "beta": 0.9755209684371948,
+    "gain": 0.00769901042804122,
+    "bias": 0.0011363354278728366,
+    "ur": null,
+    "ms_per_iter": 12.40896387025714,
+    "rate_model_hz": 14.465122949331999
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 479179020,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.487755071138963,
+  "reliability": 0.39177372058232623,
+  "models": {
+   "hard": {
+    "f1_test": 0.3265306353569031,
+    "train_loss": 1.1336960792541504,
+    "beta": 0.9698445200920105,
+    "gain": 0.019393905997276306,
+    "bias": -0.0031797178089618683,
+    "ur": -1.060119390487671,
+    "ms_per_iter": 2.0310552790760994,
+    "rate_model_hz": 1.3925388338975608
+   },
+   "soft": {
+    "f1_test": 0.4482758343219757,
+    "train_loss": 1.132371425628662,
+    "beta": 0.9667069315910339,
+    "gain": 0.017911093309521675,
+    "bias": 0.0025422023609280586,
+    "ur": null,
+    "ms_per_iter": 11.885722633451223,
+    "rate_model_hz": 1.9281306595075876
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 479415457,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Scnn1a-Tg3-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.9462123125558719,
+  "reliability": 0.3048914584020774,
+  "models": {
+   "hard": {
+    "f1_test": 0.2654028534889221,
+    "train_loss": 1.3631393909454346,
+    "beta": 0.9737626910209656,
+    "gain": 0.011247029528021812,
+    "bias": -0.0048990934155881405,
+    "ur": -1.2803120613098145,
+    "ms_per_iter": 2.0806570537388325,
+    "rate_model_hz": 1.0711837967392057
+   },
+   "soft": {
+    "f1_test": 0.2510121166706085,
+    "train_loss": 1.4824159145355225,
+    "beta": 0.9716786742210388,
+    "gain": 0.009852567687630653,
+    "bias": 0.0010476397583261132,
+    "ur": null,
+    "ms_per_iter": 11.886054184287786,
+    "rate_model_hz": 1.3925388338975608
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 479728896,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rbp4-Cre_KL100",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.3032736023887992,
+  "reliability": 0.29336635023355484,
+  "models": {
+   "hard": {
+    "f1_test": 0.22972972691059113,
+    "train_loss": 1.252958059310913,
+    "beta": 0.9726117253303528,
+    "gain": 0.015457861125469208,
+    "bias": -0.0012569638201966882,
+    "ur": -1.2973452806472778,
+    "ms_per_iter": 2.0219371654093266,
+    "rate_model_hz": 1.4996572281233966
+   },
+   "soft": {
+    "f1_test": 0.2207792103290558,
+    "train_loss": 1.3290343284606934,
+    "beta": 0.9649646878242493,
+    "gain": 0.015993546694517136,
+    "bias": 0.004151386208832264,
+    "ur": null,
+    "ms_per_iter": 12.521164026111364,
+    "rate_model_hz": 1.6067756223492324
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 480124551,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 1.3806368224322796,
+  "reliability": 0.656401256720225,
+  "models": {
+   "hard": {
+    "f1_test": 0.47239261865615845,
+    "train_loss": 0.9426388144493103,
+    "beta": 0.9713461995124817,
+    "gain": 0.010890326462686062,
+    "bias": -0.003232609713450074,
+    "ur": -0.8187640905380249,
+    "ms_per_iter": 2.0563919097185135,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.47058823704719543,
+    "train_loss": 1.02291738986969,
+    "beta": 0.9692984223365784,
+    "gain": 0.010188449174165726,
+    "bias": 0.0006947375950403512,
+    "ur": null,
+    "ms_per_iter": 11.244111228734255,
+    "rate_model_hz": 1.7138940165750682
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 480273887,
+   "dendrite": "spiny",
+   "region": "VISl4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.9551388211548328,
+  "reliability": 0.17793684266507626,
+  "models": {
+   "hard": {
+    "f1_test": 0.1690140962600708,
+    "train_loss": 1.4672335386276245,
+    "beta": 0.9717170596122742,
+    "gain": 0.013541461899876595,
+    "bias": -0.0029304607305675745,
+    "ur": -0.9401994943618774,
+    "ms_per_iter": 2.1234266459941864,
+    "rate_model_hz": 0.9640654025133699
+   },
+   "soft": {
+    "f1_test": 0.18666666746139526,
+    "train_loss": 1.6023626327514648,
+    "beta": 0.9696042537689209,
+    "gain": 0.012460075318813324,
+    "bias": 0.0014304674696177244,
+    "ur": null,
+    "ms_per_iter": 11.1831477843225,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 480718588,
+   "dendrite": "spiny",
+   "region": "VISl4",
+   "line": "Rbp4-Cre_KL100",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 0.7766082126181573,
+  "reliability": 0.636363685131073,
+  "models": {
+   "hard": {
+    "f1_test": 0.12244898080825806,
+    "train_loss": 1.255137324333191,
+    "beta": 0.966402530670166,
+    "gain": 0.02097543701529503,
+    "bias": -0.0013215570943430066,
+    "ur": -0.788087785243988,
+    "ms_per_iter": 2.181726973503828,
+    "rate_model_hz": 0.9640654025133699
+   },
+   "soft": {
+    "f1_test": 0.18367347121238708,
+    "train_loss": 1.431971549987793,
+    "beta": 0.9689382314682007,
+    "gain": 0.017517169937491417,
+    "bias": 0.0020131953060626984,
+    "ur": null,
+    "ms_per_iter": 10.97080996260047,
+    "rate_model_hz": 0.9640654025133699
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 481003593,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 2.9993144562467933,
+  "reliability": 0.7791728377342224,
+  "models": {
+   "hard": {
+    "f1_test": 0.5009784698486328,
+    "train_loss": 0.818652868270874,
+    "beta": 0.9787403345108032,
+    "gain": 0.010863476432859898,
+    "bias": -0.00497169466689229,
+    "ur": -1.4947564601898193,
+    "ms_per_iter": 2.0880410447716713,
+    "rate_model_hz": 3.0707265250384808
+   },
+   "soft": {
+    "f1_test": 0.4398496448993683,
+    "train_loss": 0.8470101356506348,
+    "beta": 0.9736697673797607,
+    "gain": 0.008761420845985413,
+    "bias": 0.004096613731235266,
+    "ur": null,
+    "ms_per_iter": 11.551367118954659,
+    "rate_model_hz": 3.320669347885996
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 481127173,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Pvalb-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 150016,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0526652224361897,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.31893477961421,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 482649712,
+   "dendrite": "aspiny",
+   "region": "VISp1",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "1"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 3.856261319015175,
+  "reliability": 0.6485411127408346,
+  "models": {
+   "hard": {
+    "f1_test": 0.40181612968444824,
+    "train_loss": 0.8415999412536621,
+    "beta": 0.9800724983215332,
+    "gain": 0.012392384000122547,
+    "bias": -0.0025999797508120537,
+    "ur": -1.4488153457641602,
+    "ms_per_iter": 2.1107331849634647,
+    "rate_model_hz": 3.8919676444493234
+   },
+   "soft": {
+    "f1_test": 0.4876905083656311,
+    "train_loss": 0.8119871616363525,
+    "beta": 0.9749072790145874,
+    "gain": 0.009740990586578846,
+    "bias": 0.005234447307884693,
+    "ur": null,
+    "ms_per_iter": 11.27639226615429,
+    "rate_model_hz": 3.642024821601808
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 482809953,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Nr5a1-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 0.9164571383735165,
+  "reliability": 0.15559354424476624,
+  "models": {
+   "hard": {
+    "f1_test": 0.20264315605163574,
+    "train_loss": 1.3555940389633179,
+    "beta": 0.9710056185722351,
+    "gain": 0.025204062461853027,
+    "bias": -0.0019899781327694654,
+    "ur": -0.8318107724189758,
+    "ms_per_iter": 2.05420795828104,
+    "rate_model_hz": 1.0711837967392057
+   },
+   "soft": {
+    "f1_test": 0.25550660490989685,
+    "train_loss": 1.436819076538086,
+    "beta": 0.9669666886329651,
+    "gain": 0.024855874478816986,
+    "bias": 0.0016107299597933888,
+    "ur": null,
+    "ms_per_iter": 11.849033646285534,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 483101699,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.6186776338145137,
+  "reliability": 0.5732257763544718,
+  "models": {
+   "hard": {
+    "f1_test": 0.34645670652389526,
+    "train_loss": 1.2968560457229614,
+    "beta": 0.9765010476112366,
+    "gain": 0.010881414636969566,
+    "bias": -0.0029908420983701944,
+    "ur": -1.5170345306396484,
+    "ms_per_iter": 2.065709326416254,
+    "rate_model_hz": 1.4996572281233966
+   },
+   "soft": {
+    "f1_test": 0.37931036949157715,
+    "train_loss": 1.4122774600982666,
+    "beta": 0.967913031578064,
+    "gain": 0.011245801113545895,
+    "bias": 0.003432916011661291,
+    "ur": null,
+    "ms_per_iter": 11.697740759700537,
+    "rate_model_hz": 1.9281306595075876
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 484737013,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Scnn1a-Tg2-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.2497144052758813,
+  "reliability": 0.377683291832606,
+  "models": {
+   "hard": {
+    "f1_test": 0.25806453824043274,
+    "train_loss": 1.2290438413619995,
+    "beta": 0.9709839224815369,
+    "gain": 0.015263687819242477,
+    "bias": -0.005224479362368584,
+    "ur": -1.2875295877456665,
+    "ms_per_iter": 2.059326972812414,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.2996254861354828,
+    "train_loss": 1.3065853118896484,
+    "beta": 0.9673410058021545,
+    "gain": 0.013700229115784168,
+    "bias": 0.0010276933899149299,
+    "ur": null,
+    "ms_per_iter": 11.636768002063036,
+    "rate_model_hz": 1.1783021182054654
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 485061364,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Sst-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 12.916690902784467,
+  "reliability": 0.9289278388023376,
+  "models": {
+   "hard": {
+    "f1_test": 0.8011116981506348,
+    "train_loss": 0.23458264768123627,
+    "beta": 0.9747728705406189,
+    "gain": 0.012449889443814754,
+    "bias": -0.0008229118539020419,
+    "ur": -0.5096465349197388,
+    "ms_per_iter": 3.7038777954876423,
+    "rate_model_hz": 12.747085420414805
+   },
+   "soft": {
+    "f1_test": 0.7662429213523865,
+    "train_loss": 0.23406477272510529,
+    "beta": 0.9776251316070557,
+    "gain": 0.009195118211209774,
+    "bias": 0.0032849458511918783,
+    "ur": null,
+    "ms_per_iter": 11.673746164888144,
+    "rate_model_hz": 12.961322208866477
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 485468180,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Nr5a1-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 2,
+  "rate_hz": 0.32135510991793126,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.444444477558136,
+    "train_loss": 1.3603203296661377,
+    "beta": 0.9521244764328003,
+    "gain": 0.061179134994745255,
+    "bias": -0.002408509375527501,
+    "ur": -1.5578049421310425,
+    "ms_per_iter": 2.065327949821949,
+    "rate_model_hz": 0.32135510991793126
+   },
+   "soft": {
+    "f1_test": 0.37037038803100586,
+    "train_loss": 1.2872234582901,
+    "beta": 0.9676072597503662,
+    "gain": 0.04084518551826477,
+    "bias": -0.00025235890643671155,
+    "ur": null,
+    "ms_per_iter": 11.710675898939371,
+    "rate_model_hz": 0.32135510991793126
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 485608017,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rbp4-Cre_KL100",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 1.8299389921594411,
+  "reliability": 0.7291666865348816,
+  "models": {
+   "hard": {
+    "f1_test": 0.4848484992980957,
+    "train_loss": 0.9338903427124023,
+    "beta": 0.9633474349975586,
+    "gain": 0.011327853426337242,
+    "bias": -0.005598591640591621,
+    "ur": -1.5654616355895996,
+    "ms_per_iter": 2.133606933057308,
+    "rate_model_hz": 1.821012410800904
+   },
+   "soft": {
+    "f1_test": 0.4901961088180542,
+    "train_loss": 0.9870968461036682,
+    "beta": 0.9711222052574158,
+    "gain": 0.007315419148653746,
+    "bias": 0.0017003400716930628,
+    "ur": null,
+    "ms_per_iter": 11.66984997689724,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 485889190,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.3568326539825648,
+  "reliability": 0.5719461838404337,
+  "models": {
+   "hard": {
+    "f1_test": 0.37130802869796753,
+    "train_loss": 0.9557355046272278,
+    "beta": 0.9746555685997009,
+    "gain": 0.01530864555388689,
+    "bias": -0.004864231683313847,
+    "ur": -1.29884934425354,
+    "ms_per_iter": 2.046662848442793,
+    "rate_model_hz": 1.6067754768300802
+   },
+   "soft": {
+    "f1_test": 0.3142857253551483,
+    "train_loss": 1.0882415771484375,
+    "beta": 0.9712387919425964,
+    "gain": 0.013906045816838741,
+    "bias": -0.00021119715529493988,
+    "ur": null,
+    "ms_per_iter": 11.721015442162752,
+    "rate_model_hz": 1.285420439671725
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 485955227,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Cux2-CreERT2",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.7051959983073175,
+  "reliability": 0.6760121484597524,
+  "models": {
+   "hard": {
+    "f1_test": 0.38271602988243103,
+    "train_loss": 1.0287789106369019,
+    "beta": 0.9543061852455139,
+    "gain": 0.015642907470464706,
+    "bias": -0.0024482784792780876,
+    "ur": -1.4753026962280273,
+    "ms_per_iter": 2.0399410277605057,
+    "rate_model_hz": 0.7498286140616983
+   },
+   "soft": {
+    "f1_test": 0.37931033968925476,
+    "train_loss": 1.0263593196868896,
+    "beta": 0.964436411857605,
+    "gain": 0.01125591341406107,
+    "bias": 0.001681303372606635,
+    "ur": null,
+    "ms_per_iter": 11.976032983511686,
+    "rate_model_hz": 0.8569470082875341
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 486132712,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rbp4-Cre_KL100",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 3.8681633304804564,
+  "reliability": 0.3276057814558347,
+  "models": {
+   "hard": {
+    "f1_test": 0.26971426606178284,
+    "train_loss": 1.0271917581558228,
+    "beta": 0.9838871359825134,
+    "gain": 0.012457716278731823,
+    "bias": -0.002109165769070387,
+    "ur": -1.4916777610778809,
+    "ms_per_iter": 2.464876975864172,
+    "rate_model_hz": 3.9633800042793155
+   },
+   "soft": {
+    "f1_test": 0.3243243396282196,
+    "train_loss": 0.963733434677124,
+    "beta": 0.9759197235107422,
+    "gain": 0.010156144388020039,
+    "bias": 0.006656054873019457,
+    "ur": null,
+    "ms_per_iter": 11.742826085537672,
+    "rate_model_hz": 3.749143215827644
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 486236426,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rbp4-Cre_KL100",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0697969011962414,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.458637356758118,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 486510127,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Nr5a1-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.069807145744562,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.10160693153739,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 487158599,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 4,
+  "rate_hz": 2.6065472047775984,
+  "reliability": 0.6372878303130468,
+  "models": {
+   "hard": {
+    "f1_test": 0.40860214829444885,
+    "train_loss": 0.9047491550445557,
+    "beta": 0.9706547260284424,
+    "gain": 0.036656785756349564,
+    "bias": -0.005776587873697281,
+    "ur": -1.6626695394515991,
+    "ms_per_iter": 2.0254128612577915,
+    "rate_model_hz": 2.463722776155919
+   },
+   "soft": {
+    "f1_test": 0.44012942910194397,
+    "train_loss": 0.946652352809906,
+    "beta": 0.9716299772262573,
+    "gain": 0.024807050824165344,
+    "bias": 0.005011176690459251,
+    "ur": null,
+    "ms_per_iter": 11.297792196273804,
+    "rate_model_hz": 2.9993144562467933
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 487446992,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 0.8450449240626767,
+  "reliability": 0.3571508799990018,
+  "models": {
+   "hard": {
+    "f1_test": 0.32863849401474,
+    "train_loss": 1.0147767066955566,
+    "beta": 0.9666609168052673,
+    "gain": 0.010678054764866829,
+    "bias": -0.0015622889623045921,
+    "ur": -0.805622935295105,
+    "ms_per_iter": 2.0565022714436054,
+    "rate_model_hz": 1.0711837967392057
+   },
+   "soft": {
+    "f1_test": 0.3681592047214508,
+    "train_loss": 1.1671820878982544,
+    "beta": 0.9652429819107056,
+    "gain": 0.010157839395105839,
+    "bias": 0.00088355818297714,
+    "ur": null,
+    "ms_per_iter": 11.959891766309738,
+    "rate_model_hz": 0.9640654025133699
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 487667205,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Pvalb-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 150016,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 12.998613528907299,
+  "reliability": 0.9426369766394297,
+  "models": {
+   "hard": {
+    "f1_test": 0.8235238194465637,
+    "train_loss": 0.2478383481502533,
+    "beta": 0.9728376865386963,
+    "gain": 0.011125839315354824,
+    "bias": -0.0012270192382857203,
+    "ur": -0.35887235403060913,
+    "ms_per_iter": 3.4650112502276897,
+    "rate_model_hz": 12.931952951475978
+   },
+   "soft": {
+    "f1_test": 0.8410146832466125,
+    "train_loss": 0.24614779651165009,
+    "beta": 0.9735313653945923,
+    "gain": 0.008985839784145355,
+    "bias": 0.0034105200320482254,
+    "ur": null,
+    "ms_per_iter": 12.964805122464895,
+    "rate_model_hz": 13.26525118201971
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 488440436,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Pvalb-IRES-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 9.962009498849511,
+  "reliability": 0.782312293847402,
+  "models": {
+   "hard": {
+    "f1_test": 0.7335718274116516,
+    "train_loss": 0.3022776246070862,
+    "beta": 0.9773991107940674,
+    "gain": 0.015782292932271957,
+    "bias": -0.0012612082064151764,
+    "ur": -1.0388400554656982,
+    "ms_per_iter": 3.1569129787385464,
+    "rate_model_hz": 9.854891104623675
+   },
+   "soft": {
+    "f1_test": 0.6596773862838745,
+    "train_loss": 0.3029719889163971,
+    "beta": 0.9811609387397766,
+    "gain": 0.010043083690106869,
+    "bias": 0.003804363077506423,
+    "ur": null,
+    "ms_per_iter": 11.468831915408373,
+    "rate_model_hz": 10.247657774016261
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 488501487,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Pvalb-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0265253260731697,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 11.984547600150108,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 488681087,
+   "dendrite": "aspiny",
+   "region": "VISpm5",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 2,
+  "rate_hz": 1.6662856796756387,
+  "reliability": 0.2291666716337204,
+  "models": {
+   "hard": {
+    "f1_test": 0.43434345722198486,
+    "train_loss": 0.9126574397087097,
+    "beta": 0.9636633992195129,
+    "gain": 0.023401224985718727,
+    "bias": -0.012267268262803555,
+    "ur": -1.4139972925186157,
+    "ms_per_iter": 2.0522037521004677,
+    "rate_model_hz": 1.821012410800904
+   },
+   "soft": {
+    "f1_test": 0.44117650389671326,
+    "train_loss": 1.0743014812469482,
+    "beta": 0.9723313450813293,
+    "gain": 0.015344559215009212,
+    "bias": -0.0034826667979359627,
+    "ur": null,
+    "ms_per_iter": 11.543551925569773,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 488697163,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 2.8326857136562467,
+  "reliability": 0.4082477589448293,
+  "models": {
+   "hard": {
+    "f1_test": 0.2915254235267639,
+    "train_loss": 1.0581605434417725,
+    "beta": 0.9784780740737915,
+    "gain": 0.014761961996555328,
+    "bias": -0.002201951341703534,
+    "ur": -1.5306683778762817,
+    "ms_per_iter": 2.1769478917121887,
+    "rate_model_hz": 2.463722776155919
+   },
+   "soft": {
+    "f1_test": 0.3322884142398834,
+    "train_loss": 1.0644441843032837,
+    "beta": 0.9706031084060669,
+    "gain": 0.012348739430308342,
+    "bias": 0.007876009680330753,
+    "ur": null,
+    "ms_per_iter": 11.773021891713142,
+    "rate_model_hz": 2.8921960620209575
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 489751959,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.437171595171094,
+  "reliability": 0.6860223611195883,
+  "models": {
+   "hard": {
+    "f1_test": 0.469565212726593,
+    "train_loss": 1.0762919187545776,
+    "beta": 0.9739177823066711,
+    "gain": 0.009428105317056179,
+    "bias": -0.003797787008807063,
+    "ur": -1.358415126800537,
+    "ms_per_iter": 2.150287851691246,
+    "rate_model_hz": 1.4996572281233966
+   },
+   "soft": {
+    "f1_test": 0.45528456568717957,
+    "train_loss": 1.0895261764526367,
+    "beta": 0.9703071713447571,
+    "gain": 0.00850570760667324,
+    "bias": 0.001916416920721531,
+    "ur": null,
+    "ms_per_iter": 11.885982938110828,
+    "rate_model_hz": 1.7138940165750682
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 490172112,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 1.374685816699639,
+  "reliability": 0.12987013161182404,
+  "models": {
+   "hard": {
+    "f1_test": 0.10322580486536026,
+    "train_loss": 1.7642258405685425,
+    "beta": 0.9720303416252136,
+    "gain": 0.05465412512421608,
+    "bias": 0.0001628539030207321,
+    "ur": -1.0949457883834839,
+    "ms_per_iter": 2.0689163357019424,
+    "rate_model_hz": 1.3925388338975608
+   },
+   "soft": {
+    "f1_test": 0.16759777069091797,
+    "train_loss": 1.6906195878982544,
+    "beta": 0.9647152423858643,
+    "gain": 0.05436072126030922,
+    "bias": 0.0068311854265630245,
+    "ur": null,
+    "ms_per_iter": 11.706747114658356,
+    "rate_model_hz": 1.821012410800904
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 490267468,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.0176245996262878,
+  "reliability": 0.5310113330682119,
+  "models": {
+   "hard": {
+    "f1_test": 0.3346303403377533,
+    "train_loss": 0.9800611138343811,
+    "beta": 0.9697666764259338,
+    "gain": 0.01409854181110859,
+    "bias": -0.004087631590664387,
+    "ur": -1.380575180053711,
+    "ms_per_iter": 2.091999165713787,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.44635194540023804,
+    "train_loss": 1.1292811632156372,
+    "beta": 0.967070996761322,
+    "gain": 0.0124807208776474,
+    "bias": 0.0011776145547628403,
+    "ur": null,
+    "ms_per_iter": 12.19553267583251,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 490626718,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 4.034792073071003,
+  "reliability": 0.8406607309977213,
+  "models": {
+   "hard": {
+    "f1_test": 0.5473465323448181,
+    "train_loss": 0.6414415836334229,
+    "beta": 0.9775886535644531,
+    "gain": 0.007372911088168621,
+    "bias": -0.0028523418586701155,
+    "ur": -1.3344409465789795,
+    "ms_per_iter": 2.491496969014406,
+    "rate_model_hz": 4.284735186956823
+   },
+   "soft": {
+    "f1_test": 0.5556805729866028,
+    "train_loss": 0.6488248109817505,
+    "beta": 0.9752081632614136,
+    "gain": 0.0057070208713412285,
+    "bias": 0.0031654846388846636,
+    "ur": null,
+    "ms_per_iter": 11.876055039465427,
+    "rate_model_hz": 3.642024821601808
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 490916919,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rbp4-Cre_KL100",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0555099472403526,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.198930140584707,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 497583188,
+   "dendrite": "spiny",
+   "region": "VISpm4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 0.7855347939766943,
+  "reliability": 0.27586206793785095,
+  "models": {
+   "hard": {
+    "f1_test": 0.1230769157409668,
+    "train_loss": 1.4093890190124512,
+    "beta": 0.9707415699958801,
+    "gain": 0.03845921531319618,
+    "bias": -0.006546626798808575,
+    "ur": -1.5417734384536743,
+    "ms_per_iter": 2.051874063909054,
+    "rate_model_hz": 0.6427102198358625
+   },
+   "soft": {
+    "f1_test": 0.14457832276821136,
+    "train_loss": 1.543967604637146,
+    "beta": 0.9688586592674255,
+    "gain": 0.032888881862163544,
+    "bias": 0.0005507320747710764,
+    "ur": null,
+    "ms_per_iter": 11.35221403092146,
+    "rate_model_hz": 0.9640654025133699
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 500966656,
+   "dendrite": "aspiny",
+   "region": "VISl5",
+   "line": "Sst-IRES-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 1.7376980395056307,
+  "reliability": 0.4330719659725825,
+  "models": {
+   "hard": {
+    "f1_test": 0.3814432919025421,
+    "train_loss": 1.2232288122177124,
+    "beta": 0.9627910852432251,
+    "gain": 0.03541405498981476,
+    "bias": -0.005341151263564825,
+    "ur": -1.5589563846588135,
+    "ms_per_iter": 2.0298920571804047,
+    "rate_model_hz": 1.7138940165750682
+   },
+   "soft": {
+    "f1_test": 0.35922327637672424,
+    "train_loss": 1.1654285192489624,
+    "beta": 0.9714212417602539,
+    "gain": 0.022815348580479622,
+    "bias": 0.0017178324051201344,
+    "ur": null,
+    "ms_per_iter": 11.23570604249835,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 501730497,
+   "dendrite": "sparsely spiny",
+   "region": "VISp5",
+   "line": "Sst-IRES-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 1.285420439671725,
+  "reliability": 0.2707611372073491,
+  "models": {
+   "hard": {
+    "f1_test": 0.25120773911476135,
+    "train_loss": 1.2437572479248047,
+    "beta": 0.9743578433990479,
+    "gain": 0.03633371740579605,
+    "bias": -0.004863179754465818,
+    "ur": -1.3829981088638306,
+    "ms_per_iter": 2.019293140619993,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.2649572491645813,
+    "train_loss": 1.2904903888702393,
+    "beta": 0.9714917540550232,
+    "gain": 0.03102530539035797,
+    "bias": 0.0019099751953035593,
+    "ur": null,
+    "ms_per_iter": 11.292040813714266,
+    "rate_model_hz": 1.6067754768300802
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 502120615,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 2.0084696006961167,
+  "reliability": 0.4838709831237793,
+  "models": {
+   "hard": {
+    "f1_test": 0.31858405470848083,
+    "train_loss": 1.1422626972198486,
+    "beta": 0.9737117886543274,
+    "gain": 0.01071618776768446,
+    "bias": 0.00037425864138640463,
+    "ur": -1.182901382446289,
+    "ms_per_iter": 2.0570429041981697,
+    "rate_model_hz": 1.821012410800904
+   },
+   "soft": {
+    "f1_test": 0.3620690107345581,
+    "train_loss": 1.1385082006454468,
+    "beta": 0.9709638357162476,
+    "gain": 0.008856323547661304,
+    "bias": 0.007048329804092646,
+    "ur": null,
+    "ms_per_iter": 11.700395960360765,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 502366405,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Ctgf-T2A-dgCre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 2.106661268044263,
+  "reliability": 0.22698413332303366,
+  "models": {
+   "hard": {
+    "f1_test": 0.23949579894542694,
+    "train_loss": 1.2126129865646362,
+    "beta": 0.9682249426841736,
+    "gain": 0.015216401778161526,
+    "bias": -0.003021674230694771,
+    "ur": -1.634468913078308,
+    "ms_per_iter": 2.1579419262707233,
+    "rate_model_hz": 2.1423675934784114
+   },
+   "soft": {
+    "f1_test": 0.2586206793785095,
+    "train_loss": 1.185124158859253,
+    "beta": 0.9714499115943909,
+    "gain": 0.010393480770289898,
+    "bias": 0.004483124241232872,
+    "ur": null,
+    "ms_per_iter": 11.010963935405016,
+    "rate_model_hz": 2.0352491992525756
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 502887600,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.6605633097933605,
+  "reliability": 0.19974346707264581,
+  "models": {
+   "hard": {
+    "f1_test": 0.2721088230609894,
+    "train_loss": 1.4757630825042725,
+    "beta": 0.9549229741096497,
+    "gain": 0.03113040141761303,
+    "bias": -0.0026573422364890575,
+    "ur": -1.5415648221969604,
+    "ms_per_iter": 2.0435783080756664,
+    "rate_model_hz": 0.7498286140616983
+   },
+   "soft": {
+    "f1_test": 0.3142857253551483,
+    "train_loss": 1.678855061531067,
+    "beta": 0.9522483348846436,
+    "gain": 0.029090719297528267,
+    "bias": 0.002352190902456641,
+    "ur": null,
+    "ms_per_iter": 11.862779967486858,
+    "rate_model_hz": 0.7498286140616983
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 504567071,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 3,
+  "rate_hz": 1.2318613880779594,
+  "reliability": 0.38716954986254376,
+  "models": {
+   "hard": {
+    "f1_test": 0.3529411852359772,
+    "train_loss": 1.1976999044418335,
+    "beta": 0.9709993600845337,
+    "gain": 0.011924853548407555,
+    "bias": -0.0018466758774593472,
+    "ur": -0.8618965148925781,
+    "ms_per_iter": 2.023058943450451,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.3947604298591614,
+    "train_loss": 1.1742141246795654,
+    "beta": 0.9550670385360718,
+    "gain": 0.01329102460294962,
+    "bias": 0.009335363283753395,
+    "ur": null,
+    "ms_per_iter": 11.577105149626732,
+    "rate_model_hz": 1.6067754768300802
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 505476170,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Cux2-CreERT2",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 1.368734665447846,
+  "reliability": 0.5117063522338867,
+  "models": {
+   "hard": {
+    "f1_test": 0.3602484166622162,
+    "train_loss": 1.0813182592391968,
+    "beta": 0.9736140370368958,
+    "gain": 0.01521987747400999,
+    "bias": -0.006895033642649651,
+    "ur": -1.4450466632843018,
+    "ms_per_iter": 2.074234653264284,
+    "rate_model_hz": 1.4996572281233966
+   },
+   "soft": {
+    "f1_test": 0.3583814799785614,
+    "train_loss": 1.2129619121551514,
+    "beta": 0.9703418016433716,
+    "gain": 0.012789638713002205,
+    "bias": 0.0010699484264478087,
+    "ur": null,
+    "ms_per_iter": 11.279157362878323,
+    "rate_model_hz": 1.7138940165750682
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 507914933,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Ntsr1-Cre_GN220",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 3.5349061363376677,
+  "reliability": 0.7658626238505045,
+  "models": {
+   "hard": {
+    "f1_test": 0.3035413324832916,
+    "train_loss": 0.9413071274757385,
+    "beta": 0.9806346893310547,
+    "gain": 0.012704405002295971,
+    "bias": -0.002424519509077072,
+    "ur": -1.5070750713348389,
+    "ms_per_iter": 2.108628861606121,
+    "rate_model_hz": 3.499200101941824
+   },
+   "soft": {
+    "f1_test": 0.42953020334243774,
+    "train_loss": 0.9229260683059692,
+    "beta": 0.9753069281578064,
+    "gain": 0.010086431168019772,
+    "bias": 0.0055559901520609856,
+    "ur": null,
+    "ms_per_iter": 11.494639795273542,
+    "rate_model_hz": 3.5349061363376677
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 508980706,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Ntsr1-Cre_GN220",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0698769949376583,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 11.526240035891533,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 510702728,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 4,
+  "rate_hz": 1.0176245996262878,
+  "reliability": 0.27201705425977707,
+  "models": {
+   "hard": {
+    "f1_test": 0.26771649718284607,
+    "train_loss": 1.2553740739822388,
+    "beta": 0.9671364426612854,
+    "gain": 0.028020640835165977,
+    "bias": -0.011375721544027328,
+    "ur": -1.77790105342865,
+    "ms_per_iter": 2.0679738372564316,
+    "rate_model_hz": 1.1783021182054654
+   },
+   "soft": {
+    "f1_test": 0.3388429880142212,
+    "train_loss": 1.3618286848068237,
+    "beta": 0.9733701348304749,
+    "gain": 0.017837146297097206,
+    "bias": -0.001610111678019166,
+    "ur": null,
+    "ms_per_iter": 11.25168614089489,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 514544971,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Nr5a1-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.9997715096687898,
+  "reliability": 0.15533479241033396,
+  "models": {
+   "hard": {
+    "f1_test": 0.1666666716337204,
+    "train_loss": 1.4784698486328125,
+    "beta": 0.9658984541893005,
+    "gain": 0.04741719365119934,
+    "bias": -0.009277400560677052,
+    "ur": -1.821118712425232,
+    "ms_per_iter": 2.0484868437051773,
+    "rate_model_hz": 0.9640654025133699
+   },
+   "soft": {
+    "f1_test": 0.19298245012760162,
+    "train_loss": 1.5965367555618286,
+    "beta": 0.9676028490066528,
+    "gain": 0.033964429050683975,
+    "bias": 0.0016540446085855365,
+    "ur": null,
+    "ms_per_iter": 12.003653682768345,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 515264431,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Vip-IRES-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 0.37491430703084916,
+  "reliability": 0.648648738861084,
+  "models": {
+   "hard": {
+    "f1_test": 0.17910447716712952,
+    "train_loss": 1.6055132150650024,
+    "beta": 0.9640378355979919,
+    "gain": 0.04388495534658432,
+    "bias": 0.0019985907711088657,
+    "ur": -1.0001519918441772,
+    "ms_per_iter": 2.0329272374510765,
+    "rate_model_hz": 0.5355918983696029
+   },
+   "soft": {
+    "f1_test": 0.2181818038225174,
+    "train_loss": 1.7091524600982666,
+    "beta": 0.9493808746337891,
+    "gain": 0.05631224811077118,
+    "bias": 0.004383463878184557,
+    "ur": null,
+    "ms_per_iter": 12.176578864455223,
+    "rate_model_hz": 0.32135510991793126
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 517319635,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Cux2-CreERT2",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.0,
+  "reliability": 0.0,
+  "models": {
+   "hard": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": NaN,
+    "ms_per_iter": 2.0212559029459953,
+    "rate_model_hz": 0.0
+   },
+   "soft": {
+    "f1_test": 0.0,
+    "train_loss": NaN,
+    "beta": NaN,
+    "gain": NaN,
+    "bias": NaN,
+    "ur": null,
+    "ms_per_iter": 12.477601878345013,
+    "rate_model_hz": 0.0
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 517982558,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Scnn1a-Tg2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.404440845362842,
+  "reliability": 0.14079355200131735,
+  "models": {
+   "hard": {
+    "f1_test": 0.18039216101169586,
+    "train_loss": 1.4319928884506226,
+    "beta": 0.975219190120697,
+    "gain": 0.021143445745110512,
+    "bias": -0.002859745640307665,
+    "ur": -1.4867817163467407,
+    "ms_per_iter": 2.0667817443609238,
+    "rate_model_hz": 1.4996572281233966
+   },
+   "soft": {
+    "f1_test": 0.13008131086826324,
+    "train_loss": 1.6176447868347168,
+    "beta": 0.9661046862602234,
+    "gain": 0.021455010399222374,
+    "bias": 0.0035156081430613995,
+    "ur": null,
+    "ms_per_iter": 11.82724442332983,
+    "rate_model_hz": 1.3925388338975608
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 519549081,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.4163428568281233,
+  "reliability": 0.5472433269023895,
+  "models": {
+   "hard": {
+    "f1_test": 0.3822222352027893,
+    "train_loss": 0.9048231840133667,
+    "beta": 0.9717391133308411,
+    "gain": 0.020659683272242546,
+    "bias": -0.003838151227682829,
+    "ur": -0.8332653045654297,
+    "ms_per_iter": 2.0581050775945187,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.4000000059604645,
+    "train_loss": 0.9554728865623474,
+    "beta": 0.9696435332298279,
+    "gain": 0.019459232687950134,
+    "bias": 0.00018712379096541554,
+    "ur": null,
+    "ms_per_iter": 11.295787990093231,
+    "rate_model_hz": 1.8210122652817518
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 521958756,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Cux2-CreERT2",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 2.285192022100091,
+  "reliability": 0.4633135100205739,
+  "models": {
+   "hard": {
+    "f1_test": 0.30000001192092896,
+    "train_loss": 1.0843911170959473,
+    "beta": 0.9752407073974609,
+    "gain": 0.016783419996500015,
+    "bias": -0.0012054803082719445,
+    "ur": -1.1766382455825806,
+    "ms_per_iter": 2.091648057103157,
+    "rate_model_hz": 2.3566042364109308
+   },
+   "soft": {
+    "f1_test": 0.3388429880142212,
+    "train_loss": 1.0584930181503296,
+    "beta": 0.971447765827179,
+    "gain": 0.014611485414206982,
+    "bias": 0.004332327283918858,
+    "ur": null,
+    "ms_per_iter": 11.952358298003674,
+    "rate_model_hz": 2.0352491992525756
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 523205934,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Vip-IRES-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 2.320898202015087,
+  "reliability": 0.7105364799499512,
+  "models": {
+   "hard": {
+    "f1_test": 0.3227272629737854,
+    "train_loss": 1.1687602996826172,
+    "beta": 0.9737590551376343,
+    "gain": 0.01256529986858368,
+    "bias": 0.0017762015340849757,
+    "ur": -1.4211416244506836,
+    "ms_per_iter": 2.0772311836481094,
+    "rate_model_hz": 2.57084087934345
+   },
+   "soft": {
+    "f1_test": 0.4097995162010193,
+    "train_loss": 1.2160937786102295,
+    "beta": 0.9701662063598633,
+    "gain": 0.009863045066595078,
+    "bias": 0.009308267384767532,
+    "ur": null,
+    "ms_per_iter": 11.779163964092731,
+    "rate_model_hz": 2.677959273569286
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 524876305,
+   "dendrite": "sparsely spiny",
+   "region": "VISp2/3",
+   "line": "Vip-IRES-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.6960409993771464,
+  "reliability": 0.7190382679303488,
+  "models": {
+   "hard": {
+    "f1_test": 0.48128342628479004,
+    "train_loss": 1.1445858478546143,
+    "beta": 0.9691218137741089,
+    "gain": 0.02255767211318016,
+    "bias": 0.0005689659155905247,
+    "ur": -1.1472070217132568,
+    "ms_per_iter": 2.068653702735901,
+    "rate_model_hz": 1.6067756223492324
+   },
+   "soft": {
+    "f1_test": 0.3254437744617462,
+    "train_loss": 1.127171277999878,
+    "beta": 0.9673231244087219,
+    "gain": 0.02041172794997692,
+    "bias": 0.003915134817361832,
+    "ur": null,
+    "ms_per_iter": 12.10761908441782,
+    "rate_model_hz": 1.285420439671725
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 526951157,
+   "dendrite": "spiny",
+   "region": "VISp6b",
+   "line": "Ctgf-T2A-dgCre",
+   "layer": "6b"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 2.5351348449476063,
+  "reliability": 0.206077811618646,
+  "models": {
+   "hard": {
+    "f1_test": 0.2266187071800232,
+    "train_loss": 1.2894953489303589,
+    "beta": 0.9785052537918091,
+    "gain": 0.030197687447071075,
+    "bias": -0.0005782537045888603,
+    "ur": -1.4334936141967773,
+    "ms_per_iter": 2.0825201645493507,
+    "rate_model_hz": 2.3566042364109308
+   },
+   "soft": {
+    "f1_test": 0.2757352888584137,
+    "train_loss": 1.2897117137908936,
+    "beta": 0.9728294610977173,
+    "gain": 0.02365068718791008,
+    "bias": 0.008211135864257812,
+    "ur": null,
+    "ms_per_iter": 11.252827942371368,
+    "rate_model_hz": 2.249485842185095
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 530204927,
+   "dendrite": "spiny",
+   "region": "RSPd6a",
+   "line": "Ctgf-T2A-dgCre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 4,
+  "rate_hz": 0.5712980055250227,
+  "reliability": 0.14774983748793602,
+  "models": {
+   "hard": {
+    "f1_test": 0.22058823704719543,
+    "train_loss": 1.4230290651321411,
+    "beta": 0.9658675789833069,
+    "gain": 0.02750902995467186,
+    "bias": -0.0028272082563489676,
+    "ur": -0.5584779381752014,
+    "ms_per_iter": 2.0258347503840923,
+    "rate_model_hz": 0.5355918983696029
+   },
+   "soft": {
+    "f1_test": 0.2142857164144516,
+    "train_loss": 1.4495280981063843,
+    "beta": 0.9692113995552063,
+    "gain": 0.02464662678539753,
+    "bias": -0.0032056625932455063,
+    "ur": null,
+    "ms_per_iter": 10.948868002742529,
+    "rate_model_hz": 0.32135510991793126
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 534524026,
+   "dendrite": "spiny",
+   "region": "VISa6b",
+   "line": "Ctgf-T2A-dgCre",
+   "layer": "6b"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 1.2050817167619243,
+  "reliability": 0.3116883337497711,
+  "models": {
+   "hard": {
+    "f1_test": 0.0979020968079567,
+    "train_loss": 1.471136212348938,
+    "beta": 0.9724737405776978,
+    "gain": 0.05505760759115219,
+    "bias": -0.0007484498783014715,
+    "ur": -1.4216420650482178,
+    "ms_per_iter": 2.0126202143728733,
+    "rate_model_hz": 1.1783021182054654
+   },
+   "soft": {
+    "f1_test": 0.1744966357946396,
+    "train_loss": 1.637587308883667,
+    "beta": 0.9650771617889404,
+    "gain": 0.05208197981119156,
+    "bias": 0.00716054905205965,
+    "ur": null,
+    "ms_per_iter": 12.433740310370922,
+    "rate_model_hz": 1.285420439671725
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 547616623,
+   "dendrite": "aspiny",
+   "region": "VISpor2/3",
+   "line": "Nos1-CreERT2|Sst-IRES-FlpO",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 0.9640654025133699,
+  "reliability": 0.5614035129547119,
+  "models": {
+   "hard": {
+    "f1_test": 0.23423422873020172,
+    "train_loss": 1.2798888683319092,
+    "beta": 0.9712042808532715,
+    "gain": 0.04360673949122429,
+    "bias": -0.002754019107669592,
+    "ur": -0.8656437397003174,
+    "ms_per_iter": 1.2812488712370396,
+    "rate_model_hz": 0.9640654025133699
+   },
+   "soft": {
+    "f1_test": 0.21621620655059814,
+    "train_loss": 1.4153622388839722,
+    "beta": 0.9693394303321838,
+    "gain": 0.03999984636902809,
+    "bias": 0.0012547877850010991,
+    "ur": null,
+    "ms_per_iter": 10.27035666629672,
+    "rate_model_hz": 0.9640654025133699
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 554807988,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Nkx2-1-CreERT2",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 7.908906554803252,
+  "reliability": 0.653763473033905,
+  "models": {
+   "hard": {
+    "f1_test": 0.6314631700515747,
+    "train_loss": 0.41026777029037476,
+    "beta": 0.9795336723327637,
+    "gain": 0.02576896734535694,
+    "bias": -0.0011201266897842288,
+    "ur": -0.9996228814125061,
+    "ms_per_iter": 2.4876901879906654,
+    "rate_model_hz": 7.926760008558631
+   },
+   "soft": {
+    "f1_test": 0.6518065929412842,
+    "train_loss": 0.4160844683647156,
+    "beta": 0.9809151887893677,
+    "gain": 0.01783779263496399,
+    "bias": 0.0033978833816945553,
+    "ur": null,
+    "ms_per_iter": 11.399040929973125,
+    "rate_model_hz": 8.105290471576154
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 555365036,
+   "dendrite": "aspiny",
+   "region": "VISpm5",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.9192042236682028,
+  "reliability": 0.7017433643341064,
+  "models": {
+   "hard": {
+    "f1_test": 0.3752759099006653,
+    "train_loss": 0.9327296614646912,
+    "beta": 0.9719120860099792,
+    "gain": 0.018940946087241173,
+    "bias": -0.0023578095715492964,
+    "ur": -1.253510594367981,
+    "ms_per_iter": 1.595849171280861,
+    "rate_model_hz": 2.0352491992525756
+   },
+   "soft": {
+    "f1_test": 0.4061810076236725,
+    "train_loss": 1.155285358428955,
+    "beta": 0.9709697961807251,
+    "gain": 0.015356423333287239,
+    "bias": 0.003372621489688754,
+    "ur": null,
+    "ms_per_iter": 10.466465260833502,
+    "rate_model_hz": 2.0352491992525756
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 556910601,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Ndnf-IRES2-dgCre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 3.3325713593512774,
+  "reliability": 0.7819779217243195,
+  "models": {
+   "hard": {
+    "f1_test": 0.3704735338687897,
+    "train_loss": 0.9682918787002563,
+    "beta": 0.9741775989532471,
+    "gain": 0.014246262609958649,
+    "bias": -0.0032311982940882444,
+    "ur": -1.6422960758209229,
+    "ms_per_iter": 1.825779676437378,
+    "rate_model_hz": 3.0707268160767853
+   },
+   "soft": {
+    "f1_test": 0.41558438539505005,
+    "train_loss": 0.9716648459434509,
+    "beta": 0.9749186038970947,
+    "gain": 0.008832495659589767,
+    "bias": 0.007100671995431185,
+    "ur": null,
+    "ms_per_iter": 11.10166497528553,
+    "rate_model_hz": 3.5349064273759723
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 557673526,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Sim1-Cre_KJ18",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.8031593936029822,
+  "reliability": 0.5973700682322184,
+  "models": {
+   "hard": {
+    "f1_test": 0.38363170623779297,
+    "train_loss": 1.1752989292144775,
+    "beta": 0.9632788896560669,
+    "gain": 0.014187188819050789,
+    "bias": -0.004257571417838335,
+    "ur": -1.4840153455734253,
+    "ms_per_iter": 1.701998058706522,
+    "rate_model_hz": 1.821012410800904
+   },
+   "soft": {
+    "f1_test": 0.4218362271785736,
+    "train_loss": 1.1668962240219116,
+    "beta": 0.9684965014457703,
+    "gain": 0.010152570903301239,
+    "bias": 0.002150041051208973,
+    "ur": null,
+    "ms_per_iter": 11.294606141746044,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 558476932,
+   "dendrite": "spiny",
+   "region": "VISl5",
+   "line": "Sim1-Cre_KJ18",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.9015796968014911,
+  "reliability": 0.13746646915872893,
+  "models": {
+   "hard": {
+    "f1_test": 0.21495327353477478,
+    "train_loss": 1.4097517728805542,
+    "beta": 0.9728239178657532,
+    "gain": 0.022267233580350876,
+    "bias": -0.007613599766045809,
+    "ur": -1.490342378616333,
+    "ms_per_iter": 1.5953988768160343,
+    "rate_model_hz": 1.1783021182054654
+   },
+   "soft": {
+    "f1_test": 0.2526315748691559,
+    "train_loss": 1.3886659145355225,
+    "beta": 0.9689788818359375,
+    "gain": 0.019551722332835197,
+    "bias": -0.0013512993464246392,
+    "ur": null,
+    "ms_per_iter": 11.235766112804413,
+    "rate_model_hz": 0.9640654025133699
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 559388218,
+   "dendrite": "spiny",
+   "region": "VISp6b",
+   "line": "Ctgf-T2A-dgCre",
+   "layer": "6b"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.0533307067817077,
+  "reliability": 0.3171164033313592,
+  "models": {
+   "hard": {
+    "f1_test": 0.2847457528114319,
+    "train_loss": 1.1948730945587158,
+    "beta": 0.9667358994483948,
+    "gain": 0.024578547105193138,
+    "bias": -0.008927456103265285,
+    "ur": -1.8521356582641602,
+    "ms_per_iter": 1.6483068466186523,
+    "rate_model_hz": 1.6067756223492324
+   },
+   "soft": {
+    "f1_test": 0.2893616855144501,
+    "train_loss": 1.292259931564331,
+    "beta": 0.9706642031669617,
+    "gain": 0.016298169270157814,
+    "bias": 4.387602530186996e-05,
+    "ur": null,
+    "ms_per_iter": 10.609061922878027,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 560750295,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Nos1-CreERT2",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.5355918983696029,
+  "reliability": 0.5556903084119161,
+  "models": {
+   "hard": {
+    "f1_test": 0.3007518947124481,
+    "train_loss": 1.3280376195907593,
+    "beta": 0.9632924795150757,
+    "gain": 0.029752176254987717,
+    "bias": 0.002251075580716133,
+    "ur": -0.7309814095497131,
+    "ms_per_iter": 1.5039467252790928,
+    "rate_model_hz": 0.5355918983696029
+   },
+   "soft": {
+    "f1_test": 0.29357799887657166,
+    "train_loss": 1.3203086853027344,
+    "beta": 0.9618695974349976,
+    "gain": 0.028808169066905975,
+    "bias": 0.003604618599638343,
+    "ur": null,
+    "ms_per_iter": 11.913314927369356,
+    "rate_model_hz": 0.32135510991793126
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 561329890,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Nkx2-1-CreERT2",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 2.308995899511501,
+  "reliability": 0.5481429596741995,
+  "models": {
+   "hard": {
+    "f1_test": 0.32220038771629333,
+    "train_loss": 1.2322931289672852,
+    "beta": 0.977015495300293,
+    "gain": 0.026890095323324203,
+    "bias": -0.0012811877531930804,
+    "ur": -1.337787389755249,
+    "ms_per_iter": 1.967135351151228,
+    "rate_model_hz": 2.463722776155919
+   },
+   "soft": {
+    "f1_test": 0.3685220777988434,
+    "train_loss": 1.1253334283828735,
+    "beta": 0.9734780192375183,
+    "gain": 0.02066785655915737,
+    "bias": 0.006743889767676592,
+    "ur": null,
+    "ms_per_iter": 10.652384255081415,
+    "rate_model_hz": 2.57084087934345
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 562091859,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Chat-IRES-Cre-neo",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 3,
+  "rate_hz": 0.446326557721477,
+  "reliability": 0.2571644087632497,
+  "models": {
+   "hard": {
+    "f1_test": 0.14814814925193787,
+    "train_loss": 1.5845692157745361,
+    "beta": 0.9664068818092346,
+    "gain": 0.022587794810533524,
+    "bias": 0.0015421085990965366,
+    "ur": -0.5425849556922913,
+    "ms_per_iter": 1.3346197083592415,
+    "rate_model_hz": 0.32135510991793126
+   },
+   "soft": {
+    "f1_test": 0.14814814925193787,
+    "train_loss": 1.8564306497573853,
+    "beta": 0.9656738638877869,
+    "gain": 0.02202434651553631,
+    "bias": 0.0040522306226193905,
+    "ur": null,
+    "ms_per_iter": 10.417002253234386,
+    "rate_model_hz": 0.32135510991793126
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 562540395,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Vip-IRES-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 2.4726492119953036,
+  "reliability": 0.7637492914994558,
+  "models": {
+   "hard": {
+    "f1_test": 0.508090615272522,
+    "train_loss": 0.9189967513084412,
+    "beta": 0.9632150530815125,
+    "gain": 0.01706557348370552,
+    "bias": 0.001073018298484385,
+    "ur": -1.4974033832550049,
+    "ms_per_iter": 1.4984570443630219,
+    "rate_model_hz": 2.7850776677951217
+   },
+   "soft": {
+    "f1_test": 0.44329896569252014,
+    "train_loss": 0.8736383318901062,
+    "beta": 0.9707363843917847,
+    "gain": 0.010391172021627426,
+    "bias": 0.0074914488941431046,
+    "ur": null,
+    "ms_per_iter": 10.946404188871384,
+    "rate_model_hz": 2.463722776155919
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 563350008,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Tlx3-Cre_PL56",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.6246286395471543,
+  "reliability": 0.654730349779129,
+  "models": {
+   "hard": {
+    "f1_test": 0.37249287962913513,
+    "train_loss": 1.1694121360778809,
+    "beta": 0.975277304649353,
+    "gain": 0.012943979352712631,
+    "bias": -0.005146765615791082,
+    "ur": -1.3466870784759521,
+    "ms_per_iter": 1.8545538187026978,
+    "rate_model_hz": 1.6067756223492324
+   },
+   "soft": {
+    "f1_test": 0.37402597069740295,
+    "train_loss": 1.275445818901062,
+    "beta": 0.9713411331176758,
+    "gain": 0.012201817706227303,
+    "bias": -0.00019948644330725074,
+    "ur": null,
+    "ms_per_iter": 10.777827817946672,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 564410881,
+   "dendrite": "aspiny",
+   "region": "VISp1",
+   "line": "Ndnf-IRES2-dgCre",
+   "layer": "1"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 4.195469664409757,
+  "reliability": 0.4508027484019597,
+  "models": {
+   "hard": {
+    "f1_test": 0.28688523173332214,
+    "train_loss": 0.9152283072471619,
+    "beta": 0.9827297925949097,
+    "gain": 0.015698479488492012,
+    "bias": -0.0029945934657007456,
+    "ur": -1.7776317596435547,
+    "ms_per_iter": 1.8527000211179256,
+    "rate_model_hz": 4.49897168437019
+   },
+   "soft": {
+    "f1_test": 0.3340080976486206,
+    "train_loss": 0.9960025548934937,
+    "beta": 0.9793268442153931,
+    "gain": 0.010188371874392033,
+    "bias": 0.0059641143307089806,
+    "ur": null,
+    "ms_per_iter": 10.22445224225521,
+    "rate_model_hz": 4.606090078596026
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 565407476,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Oxtr-T2A-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.1247429210925475,
+  "reliability": 0.37261225034793216,
+  "models": {
+   "hard": {
+    "f1_test": 0.2539682388305664,
+    "train_loss": 1.3429588079452515,
+    "beta": 0.9649291634559631,
+    "gain": 0.11376167833805084,
+    "bias": -0.004104127176105976,
+    "ur": -1.8486368656158447,
+    "ms_per_iter": 1.359596848487854,
+    "rate_model_hz": 1.6424818022642285
+   },
+   "soft": {
+    "f1_test": 0.2666666805744171,
+    "train_loss": 1.5359554290771484,
+    "beta": 0.9694035053253174,
+    "gain": 0.08101879060268402,
+    "bias": 0.0016942600486800075,
+    "ur": null,
+    "ms_per_iter": 10.387687012553215,
+    "rate_model_hz": 1.1068899038946256
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 565858209,
+   "dendrite": "spiny",
+   "region": "VISl5",
+   "line": "Oxtr-T2A-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.1068898311350495,
+  "reliability": 0.13854332764943442,
+  "models": {
+   "hard": {
+    "f1_test": 0.2183908075094223,
+    "train_loss": 1.4150176048278809,
+    "beta": 0.9717726707458496,
+    "gain": 0.017474964261054993,
+    "bias": -0.0024485690519213676,
+    "ur": -0.9570723176002502,
+    "ms_per_iter": 1.357662957161665,
+    "rate_model_hz": 1.0711837239796296
+   },
+   "soft": {
+    "f1_test": 0.2189054787158966,
+    "train_loss": 1.6394917964935303,
+    "beta": 0.9694284796714783,
+    "gain": 0.015889881178736687,
+    "bias": 0.002925398526713252,
+    "ur": null,
+    "ms_per_iter": 10.594934690743685,
+    "rate_model_hz": 1.3925388338975608
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 566304697,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Nkx2-1-CreERT2",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 2,
+  "rate_hz": 2.4637224851176143,
+  "reliability": 0.45588237047195435,
+  "models": {
+   "hard": {
+    "f1_test": 0.2761194109916687,
+    "train_loss": 1.074919581413269,
+    "beta": 0.9718524813652039,
+    "gain": 0.018923789262771606,
+    "bias": -0.00469325901940465,
+    "ur": -1.7300641536712646,
+    "ms_per_iter": 1.4167828485369682,
+    "rate_model_hz": 2.3566042364109308
+   },
+   "soft": {
+    "f1_test": 0.31468528509140015,
+    "train_loss": 1.2159909009933472,
+    "beta": 0.9728725552558899,
+    "gain": 0.012325321324169636,
+    "bias": 0.005498959682881832,
+    "ur": null,
+    "ms_per_iter": 10.782937984913588,
+    "rate_model_hz": 2.677959273569286
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 566559909,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Nkx2-1-CreERT2",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 3.597392060328275,
+  "reliability": 0.6835507949193319,
+  "models": {
+   "hard": {
+    "f1_test": 0.3845193684101105,
+    "train_loss": 0.9745699167251587,
+    "beta": 0.9772418737411499,
+    "gain": 0.01707901433110237,
+    "bias": -0.002890778938308358,
+    "ur": -1.6852754354476929,
+    "ms_per_iter": 1.7310427501797676,
+    "rate_model_hz": 3.642024821601808
+   },
+   "soft": {
+    "f1_test": 0.3790849447250366,
+    "train_loss": 0.9873430728912354,
+    "beta": 0.9774226546287537,
+    "gain": 0.010832419618964195,
+    "bias": 0.005207553971558809,
+    "ur": null,
+    "ms_per_iter": 10.427262168377638,
+    "rate_model_hz": 3.3206696389243007
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 566728192,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Nos1-CreERT2",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 2.8297104290686548,
+  "reliability": 0.9018349548180898,
+  "models": {
+   "hard": {
+    "f1_test": 0.35782745480537415,
+    "train_loss": 0.9150365591049194,
+    "beta": 0.9778011441230774,
+    "gain": 0.008128124289214611,
+    "bias": -0.003834477858617902,
+    "ur": -1.4453668594360352,
+    "ms_per_iter": 1.5828749164938927,
+    "rate_model_hz": 2.677959273569286
+   },
+   "soft": {
+    "f1_test": 0.4833836853504181,
+    "train_loss": 0.9710751175880432,
+    "beta": 0.9709283113479614,
+    "gain": 0.00709899514913559,
+    "bias": 0.004437428433448076,
+    "ur": null,
+    "ms_per_iter": 11.567316949367523,
+    "rate_model_hz": 2.9993144562467933
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 567354967,
+   "dendrite": "sparsely spiny",
+   "region": "VISp5",
+   "line": "Chrna2-Cre_OE25",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 1.3925388338975608,
+  "reliability": 0.3499999940395355,
+  "models": {
+   "hard": {
+    "f1_test": 0.3780488073825836,
+    "train_loss": 1.4199825525283813,
+    "beta": 0.9739063382148743,
+    "gain": 0.037298642098903656,
+    "bias": -0.005237921606749296,
+    "ur": -0.982814610004425,
+    "ms_per_iter": 1.2174402363598347,
+    "rate_model_hz": 1.4996572281233966
+   },
+   "soft": {
+    "f1_test": 0.32258063554763794,
+    "train_loss": 1.3622184991836548,
+    "beta": 0.9604248404502869,
+    "gain": 0.042257774621248245,
+    "bias": 0.0015598470345139503,
+    "ur": null,
+    "ms_per_iter": 10.702766943722963,
+    "rate_model_hz": 1.3925388338975608
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 569270348,
+   "dendrite": "aspiny",
+   "region": "VISp1",
+   "line": "Ndnf-IRES2-dgCre",
+   "layer": "1"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 7.783935288898647,
+  "reliability": 0.7694541414578756,
+  "models": {
+   "hard": {
+    "f1_test": 0.6026151776313782,
+    "train_loss": 0.42101535201072693,
+    "beta": 0.9815032482147217,
+    "gain": 0.013182476162910461,
+    "bias": -0.001851468114182353,
+    "ur": -1.0668628215789795,
+    "ms_per_iter": 2.3080031387507915,
+    "rate_model_hz": 7.819641614332795
+   },
+   "soft": {
+    "f1_test": 0.6108640432357788,
+    "train_loss": 0.40206989645957947,
+    "beta": 0.9827860593795776,
+    "gain": 0.008765478618443012,
+    "bias": 0.003432218451052904,
+    "ur": null,
+    "ms_per_iter": 11.29830302670598,
+    "rate_model_hz": 8.248115191236138
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 569615443,
+   "dendrite": "aspiny",
+   "region": "VISp1",
+   "line": "Ndnf-IRES2-dgCre",
+   "layer": "1"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.6067756223492324,
+  "reliability": 0.4223499596118927,
+  "models": {
+   "hard": {
+    "f1_test": 0.30372491478919983,
+    "train_loss": 1.2425594329833984,
+    "beta": 0.9736353158950806,
+    "gain": 0.01950799487531185,
+    "bias": -0.0028028851374983788,
+    "ur": -1.0941041707992554,
+    "ms_per_iter": 1.7310320399701595,
+    "rate_model_hz": 1.6067756223492324
+   },
+   "soft": {
+    "f1_test": 0.2841823101043701,
+    "train_loss": 1.3915162086486816,
+    "beta": 0.9708465337753296,
+    "gain": 0.017697449773550034,
+    "bias": 0.001975376158952713,
+    "ur": null,
+    "ms_per_iter": 10.309771168977022,
+    "rate_model_hz": 1.821012410800904
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 569730838,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Chrna2-Cre_OE25",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 0.7974367326823995,
+  "reliability": 0.14663657546043396,
+  "models": {
+   "hard": {
+    "f1_test": 0.12389381229877472,
+    "train_loss": 1.5830601453781128,
+    "beta": 0.9711154699325562,
+    "gain": 0.028859810903668404,
+    "bias": -0.004052027128636837,
+    "ur": -0.9694550633430481,
+    "ms_per_iter": 1.37295201420784,
+    "rate_model_hz": 0.5355918619898148
+   },
+   "soft": {
+    "f1_test": 0.1744966357946396,
+    "train_loss": 1.7296159267425537,
+    "beta": 0.9522527456283569,
+    "gain": 0.036800187081098557,
+    "bias": 0.005478500854223967,
+    "ur": null,
+    "ms_per_iter": 10.818923823535442,
+    "rate_model_hz": 0.9640653297537938
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 570438732,
+   "dendrite": "sparsely spiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.401465415256098,
+  "reliability": 0.6944217085838318,
+  "models": {
+   "hard": {
+    "f1_test": 0.4357541799545288,
+    "train_loss": 1.328382968902588,
+    "beta": 0.972834050655365,
+    "gain": 0.019680198282003403,
+    "bias": -0.002469397149980068,
+    "ur": -1.0995824337005615,
+    "ms_per_iter": 1.5743491239845753,
+    "rate_model_hz": 1.4996572281233966
+   },
+   "soft": {
+    "f1_test": 0.3891625702381134,
+    "train_loss": 1.4825828075408936,
+    "beta": 0.9670151472091675,
+    "gain": 0.018433954566717148,
+    "bias": 0.004475435707718134,
+    "ur": null,
+    "ms_per_iter": 11.650192085653543,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 571939040,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Vipr2-IRES2-Cre",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 2,
+  "rate_hz": 3.26115929055959,
+  "reliability": 0.6000000238418579,
+  "models": {
+   "hard": {
+    "f1_test": 0.43274855613708496,
+    "train_loss": 0.7120437026023865,
+    "beta": 0.9775615334510803,
+    "gain": 0.01743868738412857,
+    "bias": -0.0024947915226221085,
+    "ur": -1.2205071449279785,
+    "ms_per_iter": 1.712848898023367,
+    "rate_model_hz": 3.0707268160767853
+   },
+   "soft": {
+    "f1_test": 0.5142857432365417,
+    "train_loss": 0.7945448756217957,
+    "beta": 0.9743813872337341,
+    "gain": 0.014557692222297192,
+    "bias": 0.0037711358163505793,
+    "ur": null,
+    "ms_per_iter": 11.095232330262661,
+    "rate_model_hz": 3.213551244698465
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 572804610,
+   "dendrite": "spiny",
+   "region": "RSPv6a",
+   "line": "Glt25d2-Cre_NF107",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.7853060853667557,
+  "reliability": 0.3536572754383087,
+  "models": {
+   "hard": {
+    "f1_test": 0.26989617943763733,
+    "train_loss": 1.149764895439148,
+    "beta": 0.973783552646637,
+    "gain": 0.020772580057382584,
+    "bias": -0.0007829315145500004,
+    "ur": -1.1734559535980225,
+    "ms_per_iter": 1.4489339664578438,
+    "rate_model_hz": 1.713893871055916
+   },
+   "soft": {
+    "f1_test": 0.3020133972167969,
+    "train_loss": 1.1724656820297241,
+    "beta": 0.9710275530815125,
+    "gain": 0.018461477011442184,
+    "bias": 0.004145537503063679,
+    "ur": null,
+    "ms_per_iter": 10.209774132817984,
+    "rate_model_hz": 1.8210122652817518
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 573660880,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Vipr2-IRES2-Cre",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 4,
+  "rate_hz": 2.0173960365355015,
+  "reliability": 0.09807736737032731,
+  "models": {
+   "hard": {
+    "f1_test": 0.22566372156143188,
+    "train_loss": 1.2909729480743408,
+    "beta": 0.9729108810424805,
+    "gain": 0.021762968972325325,
+    "bias": -0.0006102232146076858,
+    "ur": -1.3029227256774902,
+    "ms_per_iter": 1.2448620982468128,
+    "rate_model_hz": 2.1423675934784114
+   },
+   "soft": {
+    "f1_test": 0.20192307233810425,
+    "train_loss": 1.2685250043869019,
+    "beta": 0.9710379838943481,
+    "gain": 0.017522146925330162,
+    "bias": 0.0054553779773414135,
+    "ur": null,
+    "ms_per_iter": 10.335569269955158,
+    "rate_model_hz": 1.821012410800904
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 575201827,
+   "dendrite": "spiny",
+   "region": "VISp6b",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "6b"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 3.320669347885996,
+  "reliability": 0.7432986597220103,
+  "models": {
+   "hard": {
+    "f1_test": 0.3887399435043335,
+    "train_loss": 0.9280614256858826,
+    "beta": 0.9813745617866516,
+    "gain": 0.005947955884039402,
+    "bias": -0.0021963852923363447,
+    "ur": -1.447674036026001,
+    "ms_per_iter": 1.7759674228727818,
+    "rate_model_hz": 3.213551244698465
+   },
+   "soft": {
+    "f1_test": 0.43478256464004517,
+    "train_loss": 0.938400387763977,
+    "beta": 0.9750389456748962,
+    "gain": 0.004640050232410431,
+    "bias": 0.007430197671055794,
+    "ur": null,
+    "ms_per_iter": 11.21123880147934,
+    "rate_model_hz": 3.5349064273759723
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 575937040,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Vip-IRES-Cre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 1.2378122482914478,
+  "reliability": 0.23330342769622803,
+  "models": {
+   "hard": {
+    "f1_test": 0.25365856289863586,
+    "train_loss": 1.6192128658294678,
+    "beta": 0.9719297289848328,
+    "gain": 0.08914877474308014,
+    "bias": -0.002723700599744916,
+    "ur": -1.6033111810684204,
+    "ms_per_iter": 1.348997000604868,
+    "rate_model_hz": 1.2140081526013091
+   },
+   "soft": {
+    "f1_test": 0.2582033574581146,
+    "train_loss": 1.7070614099502563,
+    "beta": 0.9527574181556702,
+    "gain": 0.09445175528526306,
+    "bias": 0.013376161456108093,
+    "ur": null,
+    "ms_per_iter": 10.884346906095743,
+    "rate_model_hz": 1.6424816567450762
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 578774163,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Chat-IRES-Cre-neo",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 2.1423675934784114,
+  "reliability": 0.6092052062352499,
+  "models": {
+   "hard": {
+    "f1_test": 0.3677581548690796,
+    "train_loss": 1.1587847471237183,
+    "beta": 0.971758246421814,
+    "gain": 0.018873820081353188,
+    "bias": -0.0015698883216828108,
+    "ur": -1.8490391969680786,
+    "ms_per_iter": 1.5518967993557453,
+    "rate_model_hz": 2.2494856966659427
+   },
+   "soft": {
+    "f1_test": 0.3173803389072418,
+    "train_loss": 1.3024362325668335,
+    "beta": 0.9714398980140686,
+    "gain": 0.012989907525479794,
+    "bias": 0.007487422786653042,
+    "ur": null,
+    "ms_per_iter": 11.172748170793056,
+    "rate_model_hz": 2.2494856966659427
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 579611597,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Ndnf-IRES2-dgCre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 4.008012474514544,
+  "reliability": 0.7204080919424692,
+  "models": {
+   "hard": {
+    "f1_test": 0.43977898359298706,
+    "train_loss": 0.7689487338066101,
+    "beta": 0.9824344515800476,
+    "gain": 0.006728495005518198,
+    "bias": -0.002243866678327322,
+    "ur": -1.436479926109314,
+    "ms_per_iter": 2.2345958277583122,
+    "rate_model_hz": 4.177616792730987
+   },
+   "soft": {
+    "f1_test": 0.48520711064338684,
+    "train_loss": 0.8419259786605835,
+    "beta": 0.9744622111320496,
+    "gain": 0.005731740966439247,
+    "bias": 0.005338671151548624,
+    "ur": null,
+    "ms_per_iter": 11.214805766940117,
+    "rate_model_hz": 3.642024821601808
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 579981789,
+   "dendrite": "spiny",
+   "region": "VISp6b",
+   "line": "Ndnf-IRES2-dgCre",
+   "layer": "6b"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 2.204853226430714,
+  "reliability": 0.6964541474978129,
+  "models": {
+   "hard": {
+    "f1_test": 0.3903420567512512,
+    "train_loss": 1.117286205291748,
+    "beta": 0.9721236824989319,
+    "gain": 0.018554894253611565,
+    "bias": -0.004552820697426796,
+    "ur": -1.7577219009399414,
+    "ms_per_iter": 1.5358966775238514,
+    "rate_model_hz": 2.249485842185095
+   },
+   "soft": {
+    "f1_test": 0.3587628901004791,
+    "train_loss": 1.0822802782058716,
+    "beta": 0.9730859398841858,
+    "gain": 0.01208470854908228,
+    "bias": 0.0053675491362810135,
+    "ur": null,
+    "ms_per_iter": 11.24292891472578,
+    "rate_model_hz": 2.1423675934784114
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 580203028,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Oxtr-T2A-Cre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 2,
+  "rate_hz": 1.2616164167411625,
+  "reliability": 0.1355932205915451,
+  "models": {
+   "hard": {
+    "f1_test": 0.3206107020378113,
+    "train_loss": 1.1477066278457642,
+    "beta": 0.9749379754066467,
+    "gain": 0.016826508566737175,
+    "bias": -0.006209449842572212,
+    "ur": -1.3166924715042114,
+    "ms_per_iter": 1.4841901138424873,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.2521008551120758,
+    "train_loss": 1.24303138256073,
+    "beta": 0.9722036719322205,
+    "gain": 0.014849073253571987,
+    "bias": -0.001615540706552565,
+    "ur": null,
+    "ms_per_iter": 11.01261842995882,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 581058864,
+   "dendrite": "aspiny",
+   "region": "VISpm2/3",
+   "line": "Nkx2-1-CreERT2",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 3,
+  "rate_hz": 5.614788387902081,
+  "reliability": 0.858109692732493,
+  "models": {
+   "hard": {
+    "f1_test": 0.43609023094177246,
+    "train_loss": 0.6547130942344666,
+    "beta": 0.9843229651451111,
+    "gain": 0.012972977012395859,
+    "bias": -0.002093895571306348,
+    "ur": -1.6469297409057617,
+    "ms_per_iter": 2.6678666472434998,
+    "rate_model_hz": 5.570155335590243
+   },
+   "soft": {
+    "f1_test": 0.5072625875473022,
+    "train_loss": 0.6666315197944641,
+    "beta": 0.9835216999053955,
+    "gain": 0.007964988239109516,
+    "bias": 0.004006426315754652,
+    "ur": null,
+    "ms_per_iter": 11.36091910302639,
+    "rate_model_hz": 5.1416817586869
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 582857314,
+   "dendrite": "aspiny",
+   "region": "RSPagl2/3",
+   "line": "Chat-IRES-Cre-neo",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 2,
+  "rate_hz": 3.151065611746162,
+  "reliability": 0.7914438843727112,
+  "models": {
+   "hard": {
+    "f1_test": 0.43287673592567444,
+    "train_loss": 1.0460861921310425,
+    "beta": 0.9813278317451477,
+    "gain": 0.02201775833964348,
+    "bias": -0.0023730890825390816,
+    "ur": -1.593674898147583,
+    "ms_per_iter": 1.9178921356797218,
+    "rate_model_hz": 3.177845210302621
+   },
+   "soft": {
+    "f1_test": 0.4363636374473572,
+    "train_loss": 1.0530394315719604,
+    "beta": 0.9757000207901001,
+    "gain": 0.017746107652783394,
+    "bias": 0.0062988135032355785,
+    "ur": null,
+    "ms_per_iter": 11.225166264921427,
+    "rate_model_hz": 3.5349064273759723
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 583403073,
+   "dendrite": "aspiny",
+   "region": "VISl6a",
+   "line": "Chrna2-Cre_OE25|Pvalb-T2A-Dre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 6.474710535258055,
+  "reliability": 0.5427719950675964,
+  "models": {
+   "hard": {
+    "f1_test": 0.30916333198547363,
+    "train_loss": 0.6316742897033691,
+    "beta": 0.9709094166755676,
+    "gain": 0.01351237203925848,
+    "bias": -0.0006193818990141153,
+    "ur": -0.7268408536911011,
+    "ms_per_iter": 2.2926339879631996,
+    "rate_model_hz": 6.070041563361883
+   },
+   "soft": {
+    "f1_test": 0.2977084815502167,
+    "train_loss": 0.617843747138977,
+    "beta": 0.9691334366798401,
+    "gain": 0.012259858660399914,
+    "bias": 0.002288985764607787,
+    "ur": null,
+    "ms_per_iter": 11.125780176371336,
+    "rate_model_hz": 6.212865700945258
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 584271064,
+   "dendrite": "spiny",
+   "region": "VISpm6a",
+   "line": "Oxtr-T2A-Cre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 2.5172819732688367,
+  "reliability": 0.26950353384017944,
+  "models": {
+   "hard": {
+    "f1_test": 0.21993125975131989,
+    "train_loss": 1.2259407043457031,
+    "beta": 0.9786788821220398,
+    "gain": 0.020449023693799973,
+    "bias": -0.0023002056404948235,
+    "ur": -1.643027663230896,
+    "ms_per_iter": 1.5982026234269142,
+    "rate_model_hz": 2.677959273569286
+   },
+   "soft": {
+    "f1_test": 0.30927833914756775,
+    "train_loss": 1.2364585399627686,
+    "beta": 0.9716007113456726,
+    "gain": 0.016863850876688957,
+    "bias": 0.006870980840176344,
+    "ur": null,
+    "ms_per_iter": 10.76781889423728,
+    "rate_model_hz": 2.677959273569286
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 585080288,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Vip-IRES-Cre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 3.6420245305635035,
+  "reliability": 0.5165714124838511,
+  "models": {
+   "hard": {
+    "f1_test": 0.32425743341445923,
+    "train_loss": 1.0053941011428833,
+    "beta": 0.9747833013534546,
+    "gain": 0.03887041285634041,
+    "bias": -0.0020998541731387377,
+    "ur": -1.623482346534729,
+    "ms_per_iter": 1.6658296808600426,
+    "rate_model_hz": 3.642024821601808
+   },
+   "soft": {
+    "f1_test": 0.3417085111141205,
+    "train_loss": 1.010406255722046,
+    "beta": 0.9751349091529846,
+    "gain": 0.02616352029144764,
+    "bias": 0.00569740729406476,
+    "ur": null,
+    "ms_per_iter": 10.805489961057901,
+    "rate_model_hz": 3.5349064273759723
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 585944237,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Chat-IRES-Cre-neo",
+   "layer": "4"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 2.624400076456368,
+  "reliability": 0.7749341726303101,
+  "models": {
+   "hard": {
+    "f1_test": 0.4155038595199585,
+    "train_loss": 1.006417989730835,
+    "beta": 0.9763586521148682,
+    "gain": 0.014355997554957867,
+    "bias": -0.0013292221119627357,
+    "ur": -1.4517967700958252,
+    "ms_per_iter": 2.018009778112173,
+    "rate_model_hz": 2.7850776677951217
+   },
+   "soft": {
+    "f1_test": 0.44748857617378235,
+    "train_loss": 1.0545567274093628,
+    "beta": 0.9588758945465088,
+    "gain": 0.013898766599595547,
+    "bias": 0.01388093363493681,
+    "ur": null,
+    "ms_per_iter": 11.571194045245647,
+    "rate_model_hz": 2.8921960620209575
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 586071425,
+   "dendrite": "aspiny",
+   "region": "VISpm2/3",
+   "line": "Chat-IRES-Cre-neo",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 1.821012410800904,
+  "reliability": 0.7795871198177338,
+  "models": {
+   "hard": {
+    "f1_test": 0.3499999940395355,
+    "train_loss": 1.079605221748352,
+    "beta": 0.9697665572166443,
+    "gain": 0.020385509356856346,
+    "bias": -0.0005990734789520502,
+    "ur": -1.128136396408081,
+    "ms_per_iter": 1.9993949681520462,
+    "rate_model_hz": 1.6067756223492324
+   },
+   "soft": {
+    "f1_test": 0.4082568883895874,
+    "train_loss": 1.23686683177948,
+    "beta": 0.9679595828056335,
+    "gain": 0.01832454465329647,
+    "bias": 0.0038417712785303593,
+    "ur": null,
+    "ms_per_iter": 11.374945752322674,
+    "rate_model_hz": 1.9281308050267398
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 586517633,
+   "dendrite": "sparsely spiny",
+   "region": "VISp6a",
+   "line": "Nos1-CreERT2|Sst-IRES-FlpO",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 0.8926530426833779,
+  "reliability": 0.4488348613182704,
+  "models": {
+   "hard": {
+    "f1_test": 0.12871287763118744,
+    "train_loss": 1.367990255355835,
+    "beta": 0.9717652201652527,
+    "gain": 0.029327619820833206,
+    "bias": -0.0029099215753376484,
+    "ur": -1.318583607673645,
+    "ms_per_iter": 1.6008280217647552,
+    "rate_model_hz": 0.9640654025133699
+   },
+   "soft": {
+    "f1_test": 0.19801980257034302,
+    "train_loss": 1.24407958984375,
+    "beta": 0.9698235392570496,
+    "gain": 0.025604795664548874,
+    "bias": 0.0018354107160121202,
+    "ur": null,
+    "ms_per_iter": 11.146788951009512,
+    "rate_model_hz": 0.9640654025133699
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 588711875,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Tlx3-Cre_PL56",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 0.8569470082875341,
+  "reliability": 0.2011138548453649,
+  "models": {
+   "hard": {
+    "f1_test": 0.14705882966518402,
+    "train_loss": 1.438056468963623,
+    "beta": 0.9711069464683533,
+    "gain": 0.06406369805335999,
+    "bias": -0.005457717925310135,
+    "ur": -1.568952202796936,
+    "ms_per_iter": 1.477446872740984,
+    "rate_model_hz": 0.9640654025133699
+   },
+   "soft": {
+    "f1_test": 0.1666666716337204,
+    "train_loss": 1.6255106925964355,
+    "beta": 0.9707098007202148,
+    "gain": 0.05134284496307373,
+    "bias": 0.001796038239262998,
+    "ur": null,
+    "ms_per_iter": 11.464112903922796,
+    "rate_model_hz": 1.0711837967392057
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 589764355,
+   "dendrite": "spiny",
+   "region": "VISl5",
+   "line": "Sim1-Cre_KJ18",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 2.7017632964998484,
+  "reliability": 0.18353136504689851,
+  "models": {
+   "hard": {
+    "f1_test": 0.2305084764957428,
+    "train_loss": 1.2243911027908325,
+    "beta": 0.9700661301612854,
+    "gain": 0.024968774989247322,
+    "bias": -0.0016570240259170532,
+    "ur": -1.6326924562454224,
+    "ms_per_iter": 1.548099797219038,
+    "rate_model_hz": 2.463722776155919
+   },
+   "soft": {
+    "f1_test": 0.19574467837810516,
+    "train_loss": 1.2830727100372314,
+    "beta": 0.9706183671951294,
+    "gain": 0.015934770926833153,
+    "bias": 0.007344517856836319,
+    "ur": null,
+    "ms_per_iter": 11.065296363085508,
+    "rate_model_hz": 1.3925388338975608
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 591616101,
+   "dendrite": "sparsely spiny",
+   "region": "VISl6a",
+   "line": "Vip-IRES-Cre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 1.2318613880779594,
+  "reliability": 0.2461538463830948,
+  "models": {
+   "hard": {
+    "f1_test": 0.17322833836078644,
+    "train_loss": 1.419844150543213,
+    "beta": 0.9657965898513794,
+    "gain": 0.11935286223888397,
+    "bias": -0.008123677223920822,
+    "ur": -1.8112661838531494,
+    "ms_per_iter": 1.37645797803998,
+    "rate_model_hz": 1.1068899038946256
+   },
+   "soft": {
+    "f1_test": 0.19548873603343964,
+    "train_loss": 1.5824049711227417,
+    "beta": 0.9688895344734192,
+    "gain": 0.08221295475959778,
+    "bias": 0.002032311400398612,
+    "ur": null,
+    "ms_per_iter": 11.122473981231451,
+    "rate_model_hz": 1.2140082253608853
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 592868444,
+   "dendrite": "aspiny",
+   "region": "VISpm6a",
+   "line": "Vip-IRES-Cre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 2.4399184621870518,
+  "reliability": 0.1479944015542666,
+  "models": {
+   "hard": {
+    "f1_test": 0.20070421695709229,
+    "train_loss": 1.3059422969818115,
+    "beta": 0.9742063283920288,
+    "gain": 0.04017112776637077,
+    "bias": 0.001863805577158928,
+    "ur": -1.383870005607605,
+    "ms_per_iter": 2.130771055817604,
+    "rate_model_hz": 2.57084087934345
+   },
+   "soft": {
+    "f1_test": 0.1884615421295166,
+    "train_loss": 1.3609354496002197,
+    "beta": 0.9665570855140686,
+    "gain": 0.034609559923410416,
+    "bias": 0.01058098953217268,
+    "ur": null,
+    "ms_per_iter": 11.276531964540482,
+    "rate_model_hz": 2.1423675934784114
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 593618144,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Chrna2-Cre_OE25|Pvalb-T2A-Dre",
+   "layer": "6a"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 15.056082047522068,
+  "reliability": 0.9379847844441732,
+  "models": {
+   "hard": {
+    "f1_test": 0.8676255941390991,
+    "train_loss": 0.1874554604291916,
+    "beta": 0.9681240320205688,
+    "gain": 0.016637492924928665,
+    "bias": 0.002664616098627448,
+    "ur": -0.7547009587287903,
+    "ms_per_iter": 3.3571277745068073,
+    "rate_model_hz": 14.88945446908474
+   },
+   "soft": {
+    "f1_test": 0.8390383720397949,
+    "train_loss": 0.1963661015033722,
+    "beta": 0.9749221205711365,
+    "gain": 0.010947322472929955,
+    "bias": 0.006089730653911829,
+    "ur": null,
+    "ms_per_iter": 11.02482108399272,
+    "rate_model_hz": 14.568099286407232
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 596282602,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Htr3a-Cre_NO152",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 4,
+  "rate_hz": 1.5889226051513106,
+  "reliability": 0.23287633061408997,
+  "models": {
+   "hard": {
+    "f1_test": 0.2445652186870575,
+    "train_loss": 1.393772840499878,
+    "beta": 0.9610161185264587,
+    "gain": 0.03385297581553459,
+    "bias": -0.00250106118619442,
+    "ur": -1.468467116355896,
+    "ms_per_iter": 1.2522749602794647,
+    "rate_model_hz": 1.6067756223492324
+   },
+   "soft": {
+    "f1_test": 0.2163461595773697,
+    "train_loss": 1.3925029039382935,
+    "beta": 0.9699066281318665,
+    "gain": 0.022090550512075424,
+    "bias": 0.004329513758420944,
+    "ur": null,
+    "ms_per_iter": 10.897852014750242,
+    "rate_model_hz": 2.0352491992525756
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 599177740,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Tlx3-Cre_PL56",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "N_test": 2,
+  "rate_hz": 1.2140082253608853,
+  "reliability": 0.5999999642372131,
+  "models": {
+   "hard": {
+    "f1_test": 0.35211268067359924,
+    "train_loss": 1.0897037982940674,
+    "beta": 0.9724236726760864,
+    "gain": 0.01537700742483139,
+    "bias": -0.004099161829799414,
+    "ur": -0.8882955312728882,
+    "ms_per_iter": 1.2884731404483318,
+    "rate_model_hz": 1.285420439671725
+   },
+   "soft": {
+    "f1_test": 0.36250001192092896,
+    "train_loss": 1.2037369012832642,
+    "beta": 0.9702840447425842,
+    "gain": 0.01416293065994978,
+    "bias": 0.0002551971119828522,
+    "ur": null,
+    "ms_per_iter": 10.894556064158678,
+    "rate_model_hz": 1.6067756223492324
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 605690670,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Nkx2-1-CreERT2",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 4,
+  "rate_hz": 2.9398041078820825,
+  "reliability": 0.7201783160368601,
+  "models": {
+   "hard": {
+    "f1_test": 0.4297994077205658,
+    "train_loss": 0.9409255981445312,
+    "beta": 0.9739401936531067,
+    "gain": 0.027442272752523422,
+    "bias": -0.005666422192007303,
+    "ur": -1.6732900142669678,
+    "ms_per_iter": 1.6134916804730892,
+    "rate_model_hz": 3.4277880331501365
+   },
+   "soft": {
+    "f1_test": 0.4792332053184509,
+    "train_loss": 0.9694092273712158,
+    "beta": 0.9786399602890015,
+    "gain": 0.015415557660162449,
+    "bias": 0.002954272087663412,
+    "ur": null,
+    "ms_per_iter": 11.268187314271927,
+    "rate_model_hz": 2.7850776677951217
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 609713212,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Slc32a1-T2A-FlpO|Vipr2-IRES2-Cre",
+   "layer": "2/3"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "N_test": 4,
+  "rate_hz": 8.069584146142006,
+  "reliability": 0.8190573652585348,
+  "models": {
+   "hard": {
+    "f1_test": 0.6139416098594666,
+    "train_loss": 0.34617435932159424,
+    "beta": 0.9788885712623596,
+    "gain": 0.016535678878426552,
+    "bias": -0.002167013008147478,
+    "ur": -0.8219406604766846,
+    "ms_per_iter": 2.887407783418894,
+    "rate_model_hz": 8.033878402784467
+   },
+   "soft": {
+    "f1_test": 0.6848665475845337,
+    "train_loss": 0.34517666697502136,
+    "beta": 0.9785407185554504,
+    "gain": 0.012088287621736526,
+    "bias": 0.0035675186663866043,
+    "ur": null,
+    "ms_per_iter": 10.950871743261814,
+    "rate_model_hz": 8.319527260027826
+   }
+  }
+ },
+ {
+  "cell": {
+   "specimen": 623893177,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Sim1-Cre_KJ18",
+   "layer": "5"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "N_test": 3,
+  "rate_hz": 2.3923102708067745,
+  "reliability": 0.656318207581838,
+  "models": {
+   "hard": {
+    "f1_test": 0.321167916059494,
+    "train_loss": 1.1553407907485962,
+    "beta": 0.9764323234558105,
+    "gain": 0.006495488807559013,
+    "bias": 0.00025681115221232176,
+    "ur": -1.3231277465820312,
+    "ms_per_iter": 1.5413770452141762,
+    "rate_model_hz": 2.4637224851176143
+   },
+   "soft": {
+    "f1_test": 0.3776223659515381,
+    "train_loss": 1.185290813446045,
+    "beta": 0.9683123230934143,
+    "gain": 0.006117160432040691,
+    "bias": 0.007973919622600079,
+    "ur": null,
+    "ms_per_iter": 11.507334187626839,
+    "rate_model_hz": 2.677959273569286
+   }
+  }
+ }
+]

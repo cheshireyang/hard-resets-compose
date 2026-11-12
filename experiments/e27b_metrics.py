@@ -15,14 +15,16 @@ sys.argv = _argv
 from lifscan import triton_alif as A
 
 SIG_MS = 10.0
+DATA = os.environ.get("E27_DATA", "data/allen")
+SPK = os.environ.get("E27_SPK", "results/e27_spikes")
 BASE = {}
-for f in glob.glob("results/e15b_allen_w*.json") + glob.glob("results/e15c_allen_w*.json"):
+for f in (glob.glob(os.environ["E28_BASE_GLOB"]) if "E28_BASE_GLOB" in os.environ else glob.glob("results/e15b_allen_w*.json") + glob.glob("results/e15c_allen_w*.json")):
     for r in json.load(open(f)): BASE[r["cell"]["specimen"]] = r
 ALIF = {}
-for f in glob.glob("results/e28_allen_alif_w*.json"):
+for f in glob.glob(os.environ.get("E28_GLOB", "results/e28_allen_alif_w*.json")):
     for r in json.load(open(f)):
         if not r.get("failed"): ALIF[r["cell"]["specimen"]] = r
-OFF = {r["specimen"]: r for r in json.load(open("results/e27_glif_official.json"))}
+OFF = {r["specimen"]: r for r in json.load(open(os.environ.get("E27_OUT", "results/e27_glif_official.json")))}
 
 
 def smooth(S):                                   # S: [T, n] binned trains -> Gaussian-smoothed (FFT)
@@ -57,7 +59,7 @@ def trains_from_times(times, T):
 rows = []
 for sid in sorted(OFF):
     if sid not in BASE: continue
-    meta, sw = load_cell(f"data/allen/{sid}.npz")
+    meta, sw = load_cell(f"{DATA}/{sid}.npz")
     Xte, Ste = stack(sw["Noise 2"])
     T = Xte.shape[0]
     w4, w10 = int(4.0 / DT_MS), int(10.0 / DT_MS)
@@ -74,7 +76,7 @@ for sid in sorted(OFF):
             I = (a["gain"] * Xte + a["bias"]).contiguous()
             preds["alif"] = A.alif(I, z, z, a["beta"], a["rho"], a["q"], 1.0, a["ur"], fwd="serial")[0]
     for lvl in OFF[sid]["levels"]:
-        z = np.load(f"results/e27_spikes/{sid}_glif{lvl}.npz")
+        z = np.load(f"{SPK}/{sid}_glif{lvl}.npz")
         preds[f"glif{lvl}"] = trains_from_times([z[k] for k in z.files], T)
     row = dict(specimen=sid, dendrite=meta["dendrite"], metrics={})
     for k, Sm in preds.items():
@@ -83,4 +85,4 @@ for sid in sorted(OFF):
     row["ev_repeat"] = rep
     rows.append(row)
     print(sid, {k: round(v["ev_ratio"], 3) for k, v in row["metrics"].items()}, flush=True)
-json.dump(rows, open("results/e27b_metrics.json", "w"), indent=1)
+json.dump(rows, open(os.environ.get("E27B_OUT", "results/e27b_metrics.json"), "w"), indent=1)

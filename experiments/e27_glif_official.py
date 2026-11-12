@@ -8,6 +8,10 @@ import numpy as np
 from allensdk.model.glif.glif_neuron import GlifNeuron
 
 DT_MS, WIN_MS = 0.2, 4.0
+DATA = os.environ.get("E27_DATA", "data/allen")
+MODELS = os.environ.get("E27_MODELS", "results/allen_glif_models.json")
+OUTJ = os.environ.get("E27_OUT", "results/e27_glif_official.json")
+SPK = os.environ.get("E27_SPK", "results/e27_spikes")
 
 
 def binned(sp_s, n):
@@ -56,7 +60,7 @@ def simulate(cfg, i_pa, rate):
 
 def run(job):
     sid, cfgs = job
-    test = load_sweeps(f"data/allen/{sid}.npz", "Noise 2")
+    test = load_sweeps(f"{DATA}/{sid}.npz", "Noise 2")
     if len(test) < 2:
         return None
     # E15 truncation: common length of the binned sweeps, rounded down to a multiple of 256 bins
@@ -71,8 +75,8 @@ def run(job):
             sp_model = [simulate(cfg, i, r) for i, r, _ in test]
             model = [binned(sp, nb) for sp in sp_model]
             res["levels"][lvl] = dict(f1=f1(model, true, w), rate_model=float(np.mean([m.mean() for m in model])) * 1000 / DT_MS)
-            os.makedirs("results/e27_spikes", exist_ok=True)
-            np.savez(f"results/e27_spikes/{sid}_glif{lvl}.npz", *sp_model)
+            os.makedirs(SPK, exist_ok=True)
+            np.savez(f"{SPK}/{sid}_glif{lvl}.npz", *sp_model)
         except Exception as e:
             res["levels"][lvl] = dict(error=repr(e)[:200])
     res["rate_true"] = float(np.mean([t.mean() for t in true])) * 1000 / DT_MS
@@ -82,11 +86,11 @@ def run(job):
 if __name__ == "__main__":
     nproc = int(sys.argv[1]) if len(sys.argv) > 1 else 16
     only = sys.argv[2:]
-    models = json.load(open("results/allen_glif_models.json"))
+    models = json.load(open(MODELS))
     by = {}
     for m in models:
         by.setdefault(m["specimen"], {})[m["level"]] = m["config"]
-    jobs = [(sid, c) for sid, c in sorted(by.items()) if os.path.exists(f"data/allen/{sid}.npz") and (not only or str(sid) in only)]
+    jobs = [(sid, c) for sid, c in sorted(by.items()) if os.path.exists(f"{DATA}/{sid}.npz") and (not only or str(sid) in only)]
     rows = []
     with Pool(nproc) as p:
         for r in p.imap_unordered(run, jobs):
@@ -94,5 +98,5 @@ if __name__ == "__main__":
             rows.append(r)
             print(r["specimen"], {k: round(v.get("f1", -1), 3) for k, v in r["levels"].items()}, f"rate {r['rate_true']:.1f} Hz", flush=True)
     rows.sort(key=lambda r: r["specimen"])
-    json.dump(rows, open("results/e27_glif_official.json" if not only else "results/e27_glif_official_test.json", "w"), indent=1)
+    json.dump(rows, open(OUTJ if not only else "results/e27_glif_official_test.json", "w"), indent=1)
     print(len(rows), "cells")
