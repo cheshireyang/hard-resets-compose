@@ -257,6 +257,8 @@ class PWA:
         for i, (a, b) in enumerate(self.ab):
             lo = self.bps[i - 1] if i > 0 else None
             hi = self.bps[i] if i < n - 1 else None
+            if a < 0:
+                raise ValueError("PWA.then assumes non-negative slopes; use count_pieces_affine for order-reversing resets")
             # image interval of this piece is (a*lo+b, a*hi+b) (a>0)
             # split by g breakpoints lying strictly inside the image
             if i > 0:
@@ -317,3 +319,44 @@ def pwa_segment(steps: List[PWA]) -> PWA:
     for s in steps[1:]:
         M = M.then(s)
     return M
+
+
+def count_pieces_affine(I: Sequence, beta, theta, gamma, delta, lo=None, hi=None, return_pieces=False):
+    """Number of pieces (maximal intervals of initial states with a constant spike pattern) of the L-step map of
+    v = beta*u + I_t;  u <- gamma*v + delta if v >= theta else v,
+    on the interval (lo, hi) (None = unbounded).  Exact for exact inputs; valid for any sign of beta*gamma,
+    unlike ``PWA.then``.  Each piece is tracked as (x_lo, x_hi, a, b, pattern) with u_t = a*x + b."""
+    P = [(lo, hi, 1 + 0 * beta, 0 * beta, ())]
+    for It in I:
+        Q = []
+        for (xl, xr, a, b, pat) in P:
+            va, vb = beta * a, beta * b + It
+
+            def emit(l, r, spike):
+                if spike:
+                    Q.append((l, r, gamma * va, gamma * vb + delta, pat + (1,)))
+                else:
+                    Q.append((l, r, va, vb, pat + (0,)))
+
+            if va == 0:
+                emit(xl, xr, vb >= theta)
+                continue
+            z = (theta - vb) / va
+            if (xl is None or xl < z) and (xr is None or z < xr):
+                if va > 0:
+                    emit(xl, z, False); emit(z, xr, True)
+                else:
+                    emit(xl, z, True); emit(z, xr, False)
+            else:
+                # the whole piece lies on one side of the threshold: test an interior point
+                if xl is not None and xr is not None:
+                    x = (xl + xr) / 2
+                elif xl is not None:
+                    x = xl + 1
+                else:
+                    x = xr - 1
+                emit(xl, xr, va * x + vb >= theta)
+        P = Q
+    n = 1 + sum(1 for i in range(1, len(P)) if P[i][4] != P[i - 1][4])
+    return (n, P) if return_pieces else n
+

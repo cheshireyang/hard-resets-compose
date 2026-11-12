@@ -208,16 +208,43 @@ macros["AlifMonoViol"] = str(e12["mono_violations"])
 e13 = load("e13_reset_classes.json")
 rules = ["hard (r=0)", "soft (r=v-1)", "proportional (r=v/2), I>=0", "proportional (r=v/2), any I", "affine (r=v/2-1/2)", "decreasing (r=-v/2)"]
 names = {"hard (r=0)": "constant, $r=0$", "soft (r=v-1)": "soft, $r(v)=v-1$", "proportional (r=v/2), I>=0": "proportional, $r(v)=v/2$, $I_t\\ge0$",
-         "proportional (r=v/2), any I": "proportional, $r(v)=v/2$, any $I_t$", "affine (r=v/2-1/2)": "affine, $r(v)=(v-1)/2$", "decreasing (r=-v/2)": "decreasing, $r(v)=-v/2$"}
+         "proportional (r=v/2), any I": "proportional, $r(v)=v/2$, any $I_t$", "affine (r=v/2-1/2)": "affine, $r(v)=(v-1)/2$", "decreasing (r=-v/2)": "decreasing, $r(v)=-v/2$ (hill-climbing)"}
 Ls = sorted({r["L"] for r in e13})
 lines = ["\\begin{tabular}{l" + "r" * len(Ls) + "}", "\\toprule", "reset rule & " + " & ".join(f"$L={L}$" for L in Ls) + "\\\\", "\\midrule"]
 for ru in rules:
     lines.append(names[ru] + " & " + " & ".join(str([r for r in e13 if r["rule"] == ru and r["L"] == L][0]["max"]) for L in Ls) + "\\\\")
+# E23: explicit constructions of Theorem 7(c) and the expansion examples (all exact, all checked against the serial recurrence)
+e23 = load("e23_reset_lower_bounds.json")
+assert all(r["serial_ok"] is not False for r in e23)
+rev = [r for r in e23 if r["part"] == "reversing"]
+assert all(r["pieces"] == 2 ** r["L"] and r["serial_ok"] for r in rev)
+def rev_row(beta, gamma, delta):
+    return " & ".join(str([r for r in rev if (r["beta"], r["gamma"], r["delta"]) == (beta, gamma, delta) and r["L"] == L][0]["pieces"]) for L in Ls)
+lines.append("reflecting, $r(v)=2-v$ (construction) & " + rev_row("9/10", "1", "0") + "\\\\")
+lines.append("decreasing, $r(v)=-v/2$ (construction) & " + rev_row("1/2", "1/2", "3/2") + "\\\\")
 lines.append("\\midrule")
 lines.append("$L+1$ & " + " & ".join(str(L + 1) for L in Ls) + "\\\\")
 lines.append("$1+L(L+1)/2$ & " + " & ".join(str(1 + L * (L + 1) // 2) for L in Ls) + "\\\\")
+lines.append("$2^L$ & " + " & ".join(str(2 ** L) for L in Ls) + "\\\\")
 lines += ["\\bottomrule", "\\end{tabular}"]
 open(os.path.join(OUT, "tab_resets.tex"), "w").write("\n".join(lines) + "\n")
+macros["RevConfigs"] = str(len({(r["beta"], r["gamma"], r["delta"]) for r in rev})); macros["RevLmax"] = str(max(r["L"] for r in rev))
+dec = [r for r in e13 if r["rule"] == "decreasing (r=-v/2)"]
+assert all(r["max"] <= 1 + r["L"] * (r["L"] + 1) // 2 for r in dec)       # bounded-input hill-climbing stays below the quadratic bound
+macros["DecHillMax"] = str(max(r["max"] for r in dec)); macros["DecHillL"] = str(max(r["L"] for r in dec))
+def first_above(rows_):
+    return next(r["L"] for r in sorted(rows_, key=lambda r: r["L"]) if r["pieces"] > r["quad"])
+exb = lambda bb: [r for r in e23 if r["part"] == "expanding" and r["beta"] == bb]
+macros["ExpTwoFirst"] = str(first_above(exb("2"))); macros["ExpThreeHalvesFirst"] = str(first_above(exb("3/2")))
+assert all(r["pieces"] == 2 ** r["L"] for r in exb("2"))
+last = max(exb("3/2"), key=lambda r: r["L"])
+macros["ExpThreeHalvesL"] = str(last["L"]); macros["ExpThreeHalvesPieces"] = f"{last['pieces']:,}".replace(",", "{,}"); macros["ExpThreeHalvesQuad"] = str(last["quad"])
+exg = [r for r in e23 if r["part"] == "expanding_reset" and r["gamma"] == "2"]
+assert all(r["pieces"] >= r["lemma_lower"] for r in e23 if r["part"] == "expanding_reset")
+macros["GamTwoFirst"] = str(first_above(exg))
+lk = [r for r in e23 if r["part"] == "expanding_reset_leaky"]
+macros["GamLeakyFirst"] = str(first_above(lk)); r0_ = [r for r in lk if r["L"] == first_above(lk)][0]
+macros["GamLeakyPieces"] = str(r0_["pieces"]); macros["GamLeakyQuad"] = str(r0_["quad"])
 
 # E14: parameter recovery (CPU accuracy comparison + GPU timing)
 cpu = load("e14_fit_cpu_T8192_N8.json")

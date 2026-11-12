@@ -4,7 +4,7 @@ We search (hill-climbing over inputs) for the maximum piece count, inside and ou
 import sys, os, json, random
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from fractions import Fraction as Fr
-from lifscan.exact import PWA, pwa_segment
+from lifscan.exact import PWA, pwa_segment, count_pieces_affine
 
 TH = Fr(1)
 def step(rule, I, beta):
@@ -22,6 +22,10 @@ def step(rule, I, beta):
     return PWA([c], [(beta, I), (a * beta, a * I + d)])
 
 def pieces(rule, I, beta):
+    if rule.startswith("decreasing"):
+        # PWA.then assumes non-negative slopes; an order-reversing reset needs the sign-agnostic counter.
+        # (An earlier version used PWA here and over-counted; see E23 for the correct lower bounds.)
+        return count_pieces_affine(I, beta, TH, Fr(-1, 2), Fr(0))
     return pwa_segment([step(rule, x, beta) for x in I]).pieces
 
 def cond_ok(rule, I, beta):

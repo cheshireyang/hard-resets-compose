@@ -50,6 +50,7 @@ DATASET=ssc python3 experiments/e7_shd.py scan 1024 0 20 64   # SSC (also needs 
 python3 experiments/e9_threelevel.py 0.9                      # long sequences, two- vs three-level
 python3 experiments/e11_auto.py                               # automatic dispatch
 python3 experiments/e12_alif_exact.py                         # ALIF post-reset maps (exact, CPU)
+python3 experiments/e23_reset_lower_bounds.py  # Theorem 7(c): exponential lower bounds for order-reversing / expanding resets (exact, CPU)
 python3 experiments/e20_fpt_psn.py        # head-to-head: FPT (re-implemented from the official code) and PSN vs exact soft scan
 python3 experiments/e21_chunk_restart.py  # head-to-head: spike-by-spike chunk restarts vs map scan, vs firing rate
 python3 experiments/e22_allen_affine.py 0 1   # learned affine reset on Allen cells (E22_WARM=1: warm start; needs data/allen)
