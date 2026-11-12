@@ -79,6 +79,7 @@ python3 experiments/glif_query_all.py && ALLEN_OUT=data/allen_all python3 experi
 python3 experiments/glif_fetch.py results/allen_glif_models_raw_all.json results/allen_glif_models_all.json
 bash experiments/queue_database.sh      # E15 (hard/soft LIF) -> E28 (ALIF) -> E27b, after E27 on the database (see the script)
 bash experiments/e29_throughput.sh      # throughput of 64 ALIF fits, serial kernels vs scans, under MPS
+python3 experiments/e30_typical_pieces.py && python3 experiments/e30b_persistence.py   # Theorem 8: typical map size (CPU)
 python3 experiments/e23_reset_lower_bounds.py  # Theorem 7(c): exponential lower bounds for order-reversing / expanding resets (exact, CPU)
 python3 experiments/e20_fpt_psn.py        # head-to-head: FPT (re-implemented from the official code) and PSN vs exact soft scan
 python3 experiments/e21_chunk_restart.py  # head-to-head: spike-by-spike chunk restarts vs map scan, vs firing rate
