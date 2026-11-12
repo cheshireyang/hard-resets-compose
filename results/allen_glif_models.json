@@ -1,0 +1,1353 @@
+[
+ {
+  "specimen": 486472847,
+  "level": 3,
+  "model_id": 486909370,
+  "ev": 0.716120226522019,
+  "config": "data/glif/486472847_glif3.json"
+ },
+ {
+  "specimen": 582613001,
+  "level": 1,
+  "model_id": 592408382,
+  "ev": 0.42329149671112,
+  "config": "data/glif/582613001_glif1.json"
+ },
+ {
+  "specimen": 527464013,
+  "level": 2,
+  "model_id": 529823421,
+  "ev": 0.818634006732912,
+  "config": "data/glif/527464013_glif2.json"
+ },
+ {
+  "specimen": 589442285,
+  "level": 1,
+  "model_id": 592409151,
+  "ev": 0.732191490698341,
+  "config": "data/glif/589442285_glif1.json"
+ },
+ {
+  "specimen": 582644266,
+  "level": 4,
+  "model_id": 591739036,
+  "ev": 0.770645140490736,
+  "config": "data/glif/582644266_glif4.json"
+ },
+ {
+  "specimen": 482764620,
+  "level": 3,
+  "model_id": 484631922,
+  "ev": 0.540500512374929,
+  "config": "data/glif/482764620_glif3.json"
+ },
+ {
+  "specimen": 487663469,
+  "level": 1,
+  "model_id": 488462847,
+  "ev": 0.848777490294445,
+  "config": "data/glif/487663469_glif1.json"
+ },
+ {
+  "specimen": 558660968,
+  "level": 3,
+  "model_id": 559192900,
+  "ev": 0.427049340726053,
+  "config": "data/glif/558660968_glif3.json"
+ },
+ {
+  "specimen": 487663469,
+  "level": 3,
+  "model_id": 488462851,
+  "ev": 0.813006629746024,
+  "config": "data/glif/487663469_glif3.json"
+ },
+ {
+  "specimen": 580212997,
+  "level": 1,
+  "model_id": 587864920,
+  "ev": 0.550189782437961,
+  "config": "data/glif/580212997_glif1.json"
+ },
+ {
+  "specimen": 484457747,
+  "level": 4,
+  "model_id": 485590920,
+  "ev": 0.804932892619925,
+  "config": "data/glif/484457747_glif4.json"
+ },
+ {
+  "specimen": 582778095,
+  "level": 1,
+  "model_id": 591407245,
+  "ev": 0.764761015409979,
+  "config": "data/glif/582778095_glif1.json"
+ },
+ {
+  "specimen": 500894271,
+  "level": 1,
+  "model_id": 512488064,
+  "ev": 0.777790338451751,
+  "config": "data/glif/500894271_glif1.json"
+ },
+ {
+  "specimen": 522723828,
+  "level": 4,
+  "model_id": 523995099,
+  "ev": 0.364002290517036,
+  "config": "data/glif/522723828_glif4.json"
+ },
+ {
+  "specimen": 563535101,
+  "level": 1,
+  "model_id": 565884076,
+  "ev": 0.501053823857933,
+  "config": "data/glif/563535101_glif1.json"
+ },
+ {
+  "specimen": 518750800,
+  "level": 3,
+  "model_id": 520592439,
+  "ev": 0.93594875271072,
+  "config": "data/glif/518750800_glif3.json"
+ },
+ {
+  "specimen": 485574721,
+  "level": 5,
+  "model_id": 486052428,
+  "ev": 0.625120323303997,
+  "config": "data/glif/485574721_glif5.json"
+ },
+ {
+  "specimen": 476100382,
+  "level": 5,
+  "model_id": 566310596,
+  "ev": 0.698314333199365,
+  "config": "data/glif/476100382_glif5.json"
+ },
+ {
+  "specimen": 515511110,
+  "level": 1,
+  "model_id": 516879756,
+  "ev": 0.578750039146385,
+  "config": "data/glif/515511110_glif1.json"
+ },
+ {
+  "specimen": 513593674,
+  "level": 3,
+  "model_id": 515020098,
+  "ev": 0.776653656233593,
+  "config": "data/glif/513593674_glif3.json"
+ },
+ {
+  "specimen": 479728896,
+  "level": 2,
+  "model_id": 482525585,
+  "ev": 0.651002009899745,
+  "config": "data/glif/479728896_glif2.json"
+ },
+ {
+  "specimen": 522723828,
+  "level": 1,
+  "model_id": 523995093,
+  "ev": 0.439638656884968,
+  "config": "data/glif/522723828_glif1.json"
+ },
+ {
+  "specimen": 490779678,
+  "level": 1,
+  "model_id": 491524736,
+  "ev": 0.764571433792106,
+  "config": "data/glif/490779678_glif1.json"
+ },
+ {
+  "specimen": 582778095,
+  "level": 3,
+  "model_id": 591407249,
+  "ev": 0.850686364107969,
+  "config": "data/glif/582778095_glif3.json"
+ },
+ {
+  "specimen": 513593674,
+  "level": 4,
+  "model_id": 515020100,
+  "ev": 0.830459398201345,
+  "config": "data/glif/513593674_glif4.json"
+ },
+ {
+  "specimen": 585944237,
+  "level": 1,
+  "model_id": 591762167,
+  "ev": 0.708508360922319,
+  "config": "data/glif/585944237_glif1.json"
+ },
+ {
+  "specimen": 565888394,
+  "level": 5,
+  "model_id": 566737694,
+  "ev": 0.822925098134707,
+  "config": "data/glif/565888394_glif5.json"
+ },
+ {
+  "specimen": 502665074,
+  "level": 3,
+  "model_id": 512477014,
+  "ev": 0.649053778789856,
+  "config": "data/glif/502665074_glif3.json"
+ },
+ {
+  "specimen": 476451456,
+  "level": 1,
+  "model_id": 566310781,
+  "ev": 0.549517862864859,
+  "config": "data/glif/476451456_glif1.json"
+ },
+ {
+  "specimen": 491026389,
+  "level": 4,
+  "model_id": 491762223,
+  "ev": 0.739055953712899,
+  "config": "data/glif/491026389_glif4.json"
+ },
+ {
+  "specimen": 482764620,
+  "level": 1,
+  "model_id": 484631918,
+  "ev": 0.448968897919776,
+  "config": "data/glif/482764620_glif1.json"
+ },
+ {
+  "specimen": 560814288,
+  "level": 1,
+  "model_id": 561785630,
+  "ev": 0.638712918685614,
+  "config": "data/glif/560814288_glif1.json"
+ },
+ {
+  "specimen": 487663469,
+  "level": 5,
+  "model_id": 488462855,
+  "ev": 0.849674877109358,
+  "config": "data/glif/487663469_glif5.json"
+ },
+ {
+  "specimen": 565888394,
+  "level": 4,
+  "model_id": 566737692,
+  "ev": 0.768747130839125,
+  "config": "data/glif/565888394_glif4.json"
+ },
+ {
+  "specimen": 479728896,
+  "level": 1,
+  "model_id": 482525583,
+  "ev": 0.577730740465215,
+  "config": "data/glif/479728896_glif1.json"
+ },
+ {
+  "specimen": 488681087,
+  "level": 1,
+  "model_id": 489932491,
+  "ev": 0.834236819264191,
+  "config": "data/glif/488681087_glif1.json"
+ },
+ {
+  "specimen": 476451456,
+  "level": 3,
+  "model_id": 566310785,
+  "ev": 0.601513497983183,
+  "config": "data/glif/476451456_glif3.json"
+ },
+ {
+  "specimen": 485574721,
+  "level": 2,
+  "model_id": 486052422,
+  "ev": 0.600902951262875,
+  "config": "data/glif/485574721_glif2.json"
+ },
+ {
+  "specimen": 491026389,
+  "level": 1,
+  "model_id": 491762217,
+  "ev": 0.781644113886136,
+  "config": "data/glif/491026389_glif1.json"
+ },
+ {
+  "specimen": 485932822,
+  "level": 1,
+  "model_id": 486511352,
+  "ev": 0.738164657956034,
+  "config": "data/glif/485932822_glif1.json"
+ },
+ {
+  "specimen": 565888394,
+  "level": 3,
+  "model_id": 566737689,
+  "ev": 0.781851559663695,
+  "config": "data/glif/565888394_glif3.json"
+ },
+ {
+  "specimen": 484457747,
+  "level": 1,
+  "model_id": 485590914,
+  "ev": 0.793015133119042,
+  "config": "data/glif/484457747_glif1.json"
+ },
+ {
+  "specimen": 527464013,
+  "level": 1,
+  "model_id": 529823419,
+  "ev": 0.926436515635883,
+  "config": "data/glif/527464013_glif1.json"
+ },
+ {
+  "specimen": 560968319,
+  "level": 1,
+  "model_id": 561785670,
+  "ev": 0.325056100261625,
+  "config": "data/glif/560968319_glif1.json"
+ },
+ {
+  "specimen": 578938153,
+  "level": 3,
+  "model_id": 587862759,
+  "ev": 0.543890482436601,
+  "config": "data/glif/578938153_glif3.json"
+ },
+ {
+  "specimen": 558660968,
+  "level": 5,
+  "model_id": 559192904,
+  "ev": 0.560568187788219,
+  "config": "data/glif/558660968_glif5.json"
+ },
+ {
+  "specimen": 513593674,
+  "level": 2,
+  "model_id": 515020096,
+  "ev": 0.744573222952225,
+  "config": "data/glif/513593674_glif2.json"
+ },
+ {
+  "specimen": 555356054,
+  "level": 1,
+  "model_id": 557184757,
+  "ev": 0.668053567338276,
+  "config": "data/glif/555356054_glif1.json"
+ },
+ {
+  "specimen": 488681087,
+  "level": 5,
+  "model_id": 489932499,
+  "ev": 0.842976148816501,
+  "config": "data/glif/488681087_glif5.json"
+ },
+ {
+  "specimen": 480798873,
+  "level": 3,
+  "model_id": 485472233,
+  "ev": 0.705575696439758,
+  "config": "data/glif/480798873_glif3.json"
+ },
+ {
+  "specimen": 519220630,
+  "level": 1,
+  "model_id": 520346196,
+  "ev": 0.756541297933991,
+  "config": "data/glif/519220630_glif1.json"
+ },
+ {
+  "specimen": 500894271,
+  "level": 3,
+  "model_id": 512488068,
+  "ev": 0.807813345706338,
+  "config": "data/glif/500894271_glif3.json"
+ },
+ {
+  "specimen": 570010469,
+  "level": 3,
+  "model_id": 570506163,
+  "ev": 0.440607409815512,
+  "config": "data/glif/570010469_glif3.json"
+ },
+ {
+  "specimen": 596619013,
+  "level": 3,
+  "model_id": 599317403,
+  "ev": 0.812393214098015,
+  "config": "data/glif/596619013_glif3.json"
+ },
+ {
+  "specimen": 482764620,
+  "level": 4,
+  "model_id": 484631924,
+  "ev": 0.541789740810958,
+  "config": "data/glif/482764620_glif4.json"
+ },
+ {
+  "specimen": 477490421,
+  "level": 4,
+  "model_id": 566320782,
+  "ev": 0.986816570411528,
+  "config": "data/glif/477490421_glif4.json"
+ },
+ {
+  "specimen": 582644266,
+  "level": 1,
+  "model_id": 591739019,
+  "ev": 0.693548552815403,
+  "config": "data/glif/582644266_glif1.json"
+ },
+ {
+  "specimen": 491026389,
+  "level": 2,
+  "model_id": 491762219,
+  "ev": 0.844432780190301,
+  "config": "data/glif/491026389_glif2.json"
+ },
+ {
+  "specimen": 579662784,
+  "level": 2,
+  "model_id": 587864214,
+  "ev": 0.583529350397858,
+  "config": "data/glif/579662784_glif2.json"
+ },
+ {
+  "specimen": 578938153,
+  "level": 1,
+  "model_id": 587862755,
+  "ev": 0.588128005859946,
+  "config": "data/glif/578938153_glif1.json"
+ },
+ {
+  "specimen": 579662784,
+  "level": 4,
+  "model_id": 587864218,
+  "ev": 0.821801467320964,
+  "config": "data/glif/579662784_glif4.json"
+ },
+ {
+  "specimen": 518750800,
+  "level": 1,
+  "model_id": 520592435,
+  "ev": 0.920555766617584,
+  "config": "data/glif/518750800_glif1.json"
+ },
+ {
+  "specimen": 522723828,
+  "level": 3,
+  "model_id": 523995097,
+  "ev": 0.419914671930735,
+  "config": "data/glif/522723828_glif3.json"
+ },
+ {
+  "specimen": 488681087,
+  "level": 2,
+  "model_id": 489932493,
+  "ev": 0.800354952583949,
+  "config": "data/glif/488681087_glif2.json"
+ },
+ {
+  "specimen": 558660968,
+  "level": 4,
+  "model_id": 559192902,
+  "ev": 0.315142029216855,
+  "config": "data/glif/558660968_glif4.json"
+ },
+ {
+  "specimen": 585944237,
+  "level": 3,
+  "model_id": 591762171,
+  "ev": 0.77950056460347,
+  "config": "data/glif/585944237_glif3.json"
+ },
+ {
+  "specimen": 517345160,
+  "level": 1,
+  "model_id": 518018547,
+  "ev": 0.18411333924488,
+  "config": "data/glif/517345160_glif1.json"
+ },
+ {
+  "specimen": 479728896,
+  "level": 4,
+  "model_id": 482525589,
+  "ev": 0.69833072364244,
+  "config": "data/glif/479728896_glif4.json"
+ },
+ {
+  "specimen": 485574721,
+  "level": 1,
+  "model_id": 486052420,
+  "ev": 0.669648860890379,
+  "config": "data/glif/485574721_glif1.json"
+ },
+ {
+  "specimen": 527464013,
+  "level": 4,
+  "model_id": 529823425,
+  "ev": 0.932415196996994,
+  "config": "data/glif/527464013_glif4.json"
+ },
+ {
+  "specimen": 513593674,
+  "level": 5,
+  "model_id": 515020102,
+  "ev": 0.839618310045612,
+  "config": "data/glif/513593674_glif5.json"
+ },
+ {
+  "specimen": 582644266,
+  "level": 3,
+  "model_id": 591739033,
+  "ev": 0.759200959768342,
+  "config": "data/glif/582644266_glif3.json"
+ },
+ {
+  "specimen": 519220630,
+  "level": 2,
+  "model_id": 520346198,
+  "ev": 0.814623352914247,
+  "config": "data/glif/519220630_glif2.json"
+ },
+ {
+  "specimen": 486264574,
+  "level": 3,
+  "model_id": 486558939,
+  "ev": 0.694907571935691,
+  "config": "data/glif/486264574_glif3.json"
+ },
+ {
+  "specimen": 477490421,
+  "level": 5,
+  "model_id": 566320784,
+  "ev": 0.985484171003716,
+  "config": "data/glif/477490421_glif5.json"
+ },
+ {
+  "specimen": 560968319,
+  "level": 3,
+  "model_id": 561785674,
+  "ev": 0.48245509760104,
+  "config": "data/glif/560968319_glif3.json"
+ },
+ {
+  "specimen": 555263276,
+  "level": 3,
+  "model_id": 557183770,
+  "ev": 0.711252378440294,
+  "config": "data/glif/555263276_glif3.json"
+ },
+ {
+  "specimen": 485574721,
+  "level": 3,
+  "model_id": 486052424,
+  "ev": 0.487073099398698,
+  "config": "data/glif/485574721_glif3.json"
+ },
+ {
+  "specimen": 570459682,
+  "level": 3,
+  "model_id": 571862364,
+  "ev": 0.608245064903209,
+  "config": "data/glif/570459682_glif3.json"
+ },
+ {
+  "specimen": 479728896,
+  "level": 5,
+  "model_id": 482525591,
+  "ev": 0.667171392702876,
+  "config": "data/glif/479728896_glif5.json"
+ },
+ {
+  "specimen": 578938153,
+  "level": 2,
+  "model_id": 587862757,
+  "ev": 0.521912400220307,
+  "config": "data/glif/578938153_glif2.json"
+ },
+ {
+  "specimen": 560686477,
+  "level": 1,
+  "model_id": 561761403,
+  "ev": 0.83002508046034,
+  "config": "data/glif/560686477_glif1.json"
+ },
+ {
+  "specimen": 558660968,
+  "level": 2,
+  "model_id": 559192898,
+  "ev": 0.320284313377572,
+  "config": "data/glif/558660968_glif2.json"
+ },
+ {
+  "specimen": 565888394,
+  "level": 2,
+  "model_id": 566737687,
+  "ev": 0.710105598752756,
+  "config": "data/glif/565888394_glif2.json"
+ },
+ {
+  "specimen": 560889670,
+  "level": 3,
+  "model_id": 561785594,
+  "ev": 0.665238564610435,
+  "config": "data/glif/560889670_glif3.json"
+ },
+ {
+  "specimen": 519220630,
+  "level": 5,
+  "model_id": 520346204,
+  "ev": 0.831761623031631,
+  "config": "data/glif/519220630_glif5.json"
+ },
+ {
+  "specimen": 572416871,
+  "level": 1,
+  "model_id": 574388891,
+  "ev": 0.468509242397419,
+  "config": "data/glif/572416871_glif1.json"
+ },
+ {
+  "specimen": 486472847,
+  "level": 2,
+  "model_id": 486909368,
+  "ev": 0.707432297192683,
+  "config": "data/glif/486472847_glif2.json"
+ },
+ {
+  "specimen": 488501165,
+  "level": 1,
+  "model_id": 489931037,
+  "ev": 0.799435833109096,
+  "config": "data/glif/488501165_glif1.json"
+ },
+ {
+  "specimen": 486472847,
+  "level": 5,
+  "model_id": 486909374,
+  "ev": 0.725996146256049,
+  "config": "data/glif/486472847_glif5.json"
+ },
+ {
+  "specimen": 482652174,
+  "level": 1,
+  "model_id": 484624383,
+  "ev": 0.514839991322579,
+  "config": "data/glif/482652174_glif1.json"
+ },
+ {
+  "specimen": 485932822,
+  "level": 3,
+  "model_id": 486511356,
+  "ev": 0.818576094084377,
+  "config": "data/glif/485932822_glif3.json"
+ },
+ {
+  "specimen": 553561593,
+  "level": 3,
+  "model_id": 554048824,
+  "ev": 0.692282664551002,
+  "config": "data/glif/553561593_glif3.json"
+ },
+ {
+  "specimen": 480798873,
+  "level": 1,
+  "model_id": 485472229,
+  "ev": 0.69729160317243,
+  "config": "data/glif/480798873_glif1.json"
+ },
+ {
+  "specimen": 579662784,
+  "level": 3,
+  "model_id": 587864216,
+  "ev": 0.798022187470052,
+  "config": "data/glif/579662784_glif3.json"
+ },
+ {
+  "specimen": 491026389,
+  "level": 3,
+  "model_id": 491762221,
+  "ev": 0.783113869075372,
+  "config": "data/glif/491026389_glif3.json"
+ },
+ {
+  "specimen": 553219924,
+  "level": 3,
+  "model_id": 553878748,
+  "ev": 0.838489380562258,
+  "config": "data/glif/553219924_glif3.json"
+ },
+ {
+  "specimen": 485574721,
+  "level": 4,
+  "model_id": 486052426,
+  "ev": 0.553759256075055,
+  "config": "data/glif/485574721_glif4.json"
+ },
+ {
+  "specimen": 594047832,
+  "level": 1,
+  "model_id": 597605463,
+  "ev": 0.642084614997747,
+  "config": "data/glif/594047832_glif1.json"
+ },
+ {
+  "specimen": 560686477,
+  "level": 3,
+  "model_id": 561761407,
+  "ev": 0.932163724497087,
+  "config": "data/glif/560686477_glif3.json"
+ },
+ {
+  "specimen": 486472847,
+  "level": 1,
+  "model_id": 486909366,
+  "ev": 0.711215489897154,
+  "config": "data/glif/486472847_glif1.json"
+ },
+ {
+  "specimen": 527464013,
+  "level": 3,
+  "model_id": 529823423,
+  "ev": 0.900755763243174,
+  "config": "data/glif/527464013_glif3.json"
+ },
+ {
+  "specimen": 486264574,
+  "level": 1,
+  "model_id": 486558935,
+  "ev": 0.709993365617238,
+  "config": "data/glif/486264574_glif1.json"
+ },
+ {
+  "specimen": 513593674,
+  "level": 1,
+  "model_id": 515020094,
+  "ev": 0.779809413220675,
+  "config": "data/glif/513593674_glif1.json"
+ },
+ {
+  "specimen": 491026389,
+  "level": 5,
+  "model_id": 491762225,
+  "ev": 0.850963811419369,
+  "config": "data/glif/491026389_glif5.json"
+ },
+ {
+  "specimen": 519220630,
+  "level": 4,
+  "model_id": 520346202,
+  "ev": 0.825554147087997,
+  "config": "data/glif/519220630_glif4.json"
+ },
+ {
+  "specimen": 579662784,
+  "level": 1,
+  "model_id": 587864212,
+  "ev": 0.741875349437679,
+  "config": "data/glif/579662784_glif1.json"
+ },
+ {
+  "specimen": 476100382,
+  "level": 4,
+  "model_id": 566310594,
+  "ev": 0.69353194233118,
+  "config": "data/glif/476100382_glif4.json"
+ },
+ {
+  "specimen": 557261437,
+  "level": 3,
+  "model_id": 558559719,
+  "ev": 0.838361484575044,
+  "config": "data/glif/557261437_glif3.json"
+ },
+ {
+  "specimen": 510114363,
+  "level": 3,
+  "model_id": 513252594,
+  "ev": 0.797780744505816,
+  "config": "data/glif/510114363_glif3.json"
+ },
+ {
+  "specimen": 488681087,
+  "level": 4,
+  "model_id": 489932497,
+  "ev": 0.843026974006041,
+  "config": "data/glif/488681087_glif4.json"
+ },
+ {
+  "specimen": 515511110,
+  "level": 5,
+  "model_id": 516879764,
+  "ev": 0.669468777901252,
+  "config": "data/glif/515511110_glif5.json"
+ },
+ {
+  "specimen": 527464013,
+  "level": 5,
+  "model_id": 529823427,
+  "ev": 0.926716452134675,
+  "config": "data/glif/527464013_glif5.json"
+ },
+ {
+  "specimen": 578938153,
+  "level": 5,
+  "model_id": 587862764,
+  "ev": 0.681314716441881,
+  "config": "data/glif/578938153_glif5.json"
+ },
+ {
+  "specimen": 513510227,
+  "level": 3,
+  "model_id": 515020641,
+  "ev": 0.755735463213322,
+  "config": "data/glif/513510227_glif3.json"
+ },
+ {
+  "specimen": 522723828,
+  "level": 5,
+  "model_id": 523995101,
+  "ev": 0.400210088738592,
+  "config": "data/glif/522723828_glif5.json"
+ },
+ {
+  "specimen": 570010469,
+  "level": 1,
+  "model_id": 570506159,
+  "ev": 0.625741534820272,
+  "config": "data/glif/570010469_glif1.json"
+ },
+ {
+  "specimen": 478111731,
+  "level": 1,
+  "model_id": 566360661,
+  "ev": 0.528546281567275,
+  "config": "data/glif/478111731_glif1.json"
+ },
+ {
+  "specimen": 572416871,
+  "level": 3,
+  "model_id": 574388895,
+  "ev": 0.578302613476652,
+  "config": "data/glif/572416871_glif3.json"
+ },
+ {
+  "specimen": 563535101,
+  "level": 3,
+  "model_id": 565884080,
+  "ev": 0.586135540445231,
+  "config": "data/glif/563535101_glif3.json"
+ },
+ {
+  "specimen": 479728896,
+  "level": 3,
+  "model_id": 482525587,
+  "ev": 0.609895722494087,
+  "config": "data/glif/479728896_glif3.json"
+ },
+ {
+  "specimen": 518750800,
+  "level": 4,
+  "model_id": 520592441,
+  "ev": 0.970075375910861,
+  "config": "data/glif/518750800_glif4.json"
+ },
+ {
+  "specimen": 502665074,
+  "level": 1,
+  "model_id": 512477010,
+  "ev": 0.708860518706735,
+  "config": "data/glif/502665074_glif1.json"
+ },
+ {
+  "specimen": 558660968,
+  "level": 1,
+  "model_id": 559192896,
+  "ev": 0.420824892590055,
+  "config": "data/glif/558660968_glif1.json"
+ },
+ {
+  "specimen": 476100382,
+  "level": 1,
+  "model_id": 566310588,
+  "ev": 0.731716826553458,
+  "config": "data/glif/476100382_glif1.json"
+ },
+ {
+  "specimen": 484457747,
+  "level": 2,
+  "model_id": 485590916,
+  "ev": 0.803174008699555,
+  "config": "data/glif/484457747_glif2.json"
+ },
+ {
+  "specimen": 579662784,
+  "level": 5,
+  "model_id": 587864220,
+  "ev": 0.838622143309351,
+  "config": "data/glif/579662784_glif5.json"
+ },
+ {
+  "specimen": 579652000,
+  "level": 3,
+  "model_id": 587864132,
+  "ev": 0.434431313401846,
+  "config": "data/glif/579652000_glif3.json"
+ },
+ {
+  "specimen": 580212997,
+  "level": 3,
+  "model_id": 587864924,
+  "ev": 0.504231117855939,
+  "config": "data/glif/580212997_glif3.json"
+ },
+ {
+  "specimen": 517345160,
+  "level": 3,
+  "model_id": 518018551,
+  "ev": 0.260274306782782,
+  "config": "data/glif/517345160_glif3.json"
+ },
+ {
+  "specimen": 324266189,
+  "level": 1,
+  "model_id": 566283999,
+  "ev": 0.763140155582961,
+  "config": "data/glif/324266189_glif1.json"
+ },
+ {
+  "specimen": 579652000,
+  "level": 1,
+  "model_id": 587864128,
+  "ev": 0.559526064219789,
+  "config": "data/glif/579652000_glif1.json"
+ },
+ {
+  "specimen": 510114363,
+  "level": 1,
+  "model_id": 513252590,
+  "ev": 0.733373892415965,
+  "config": "data/glif/510114363_glif1.json"
+ },
+ {
+  "specimen": 553561593,
+  "level": 1,
+  "model_id": 554048820,
+  "ev": 0.711389898197465,
+  "config": "data/glif/553561593_glif1.json"
+ },
+ {
+  "specimen": 487663469,
+  "level": 4,
+  "model_id": 488462853,
+  "ev": 0.828334863143546,
+  "config": "data/glif/487663469_glif4.json"
+ },
+ {
+  "specimen": 582644266,
+  "level": 5,
+  "model_id": 591739038,
+  "ev": 0.777426853616797,
+  "config": "data/glif/582644266_glif5.json"
+ },
+ {
+  "specimen": 564438523,
+  "level": 1,
+  "model_id": 566721204,
+  "ev": 0.437721667798642,
+  "config": "data/glif/564438523_glif1.json"
+ },
+ {
+  "specimen": 482764620,
+  "level": 2,
+  "model_id": 484631920,
+  "ev": 0.451027926426479,
+  "config": "data/glif/482764620_glif2.json"
+ },
+ {
+  "specimen": 484457747,
+  "level": 3,
+  "model_id": 485590918,
+  "ev": 0.812837018506616,
+  "config": "data/glif/484457747_glif3.json"
+ },
+ {
+  "specimen": 515511110,
+  "level": 4,
+  "model_id": 516879762,
+  "ev": 0.657294837271937,
+  "config": "data/glif/515511110_glif4.json"
+ },
+ {
+  "specimen": 478111731,
+  "level": 3,
+  "model_id": 566360665,
+  "ev": 0.48048051509695,
+  "config": "data/glif/478111731_glif3.json"
+ },
+ {
+  "specimen": 589442285,
+  "level": 3,
+  "model_id": 592409155,
+  "ev": 0.685573549133216,
+  "config": "data/glif/589442285_glif3.json"
+ },
+ {
+  "specimen": 561552455,
+  "level": 1,
+  "model_id": 561903272,
+  "ev": 0.773279873973018,
+  "config": "data/glif/561552455_glif1.json"
+ },
+ {
+  "specimen": 513510227,
+  "level": 1,
+  "model_id": 515020637,
+  "ev": 0.613135174617629,
+  "config": "data/glif/513510227_glif1.json"
+ },
+ {
+  "specimen": 578938153,
+  "level": 4,
+  "model_id": 587862761,
+  "ev": 0.520768746682069,
+  "config": "data/glif/578938153_glif4.json"
+ },
+ {
+  "specimen": 557261437,
+  "level": 1,
+  "model_id": 558559715,
+  "ev": 0.760190365177331,
+  "config": "data/glif/557261437_glif1.json"
+ },
+ {
+  "specimen": 477490421,
+  "level": 2,
+  "model_id": 566320778,
+  "ev": 0.957830281473599,
+  "config": "data/glif/477490421_glif2.json"
+ },
+ {
+  "specimen": 560814288,
+  "level": 3,
+  "model_id": 561785634,
+  "ev": 0.751348332338924,
+  "config": "data/glif/560814288_glif3.json"
+ },
+ {
+  "specimen": 570459682,
+  "level": 1,
+  "model_id": 571862359,
+  "ev": 0.663788582014953,
+  "config": "data/glif/570459682_glif1.json"
+ },
+ {
+  "specimen": 515511110,
+  "level": 3,
+  "model_id": 516879760,
+  "ev": 0.576496205606871,
+  "config": "data/glif/515511110_glif3.json"
+ },
+ {
+  "specimen": 488501165,
+  "level": 3,
+  "model_id": 489931041,
+  "ev": 0.667616139725761,
+  "config": "data/glif/488501165_glif3.json"
+ },
+ {
+  "specimen": 324266189,
+  "level": 3,
+  "model_id": 566284003,
+  "ev": 0.657415195777683,
+  "config": "data/glif/324266189_glif3.json"
+ },
+ {
+  "specimen": 477490421,
+  "level": 1,
+  "model_id": 566320776,
+  "ev": 0.976137929779475,
+  "config": "data/glif/477490421_glif1.json"
+ },
+ {
+  "specimen": 556968207,
+  "level": 3,
+  "model_id": 558559664,
+  "ev": 0.824755697435157,
+  "config": "data/glif/556968207_glif3.json"
+ },
+ {
+  "specimen": 566671538,
+  "level": 3,
+  "model_id": 568094838,
+  "ev": 0.652085070331772,
+  "config": "data/glif/566671538_glif3.json"
+ },
+ {
+  "specimen": 579652000,
+  "level": 5,
+  "model_id": 587864136,
+  "ev": 0.506722484110566,
+  "config": "data/glif/579652000_glif5.json"
+ },
+ {
+  "specimen": 561552455,
+  "level": 3,
+  "model_id": 561903276,
+  "ev": 0.694723901666305,
+  "config": "data/glif/561552455_glif3.json"
+ },
+ {
+  "specimen": 582613001,
+  "level": 3,
+  "model_id": 592408386,
+  "ev": 0.504613628517914,
+  "config": "data/glif/582613001_glif3.json"
+ },
+ {
+  "specimen": 553219924,
+  "level": 1,
+  "model_id": 553878744,
+  "ev": 0.746928820635487,
+  "config": "data/glif/553219924_glif1.json"
+ },
+ {
+  "specimen": 579652000,
+  "level": 2,
+  "model_id": 587864130,
+  "ev": 0.511432988119083,
+  "config": "data/glif/579652000_glif2.json"
+ },
+ {
+  "specimen": 476100382,
+  "level": 3,
+  "model_id": 566310592,
+  "ev": 0.682267474486189,
+  "config": "data/glif/476100382_glif3.json"
+ },
+ {
+  "specimen": 490779678,
+  "level": 3,
+  "model_id": 491524740,
+  "ev": 0.700245021538618,
+  "config": "data/glif/490779678_glif3.json"
+ },
+ {
+  "specimen": 518750800,
+  "level": 2,
+  "model_id": 520592437,
+  "ev": 0.607649383472682,
+  "config": "data/glif/518750800_glif2.json"
+ },
+ {
+  "specimen": 596619013,
+  "level": 1,
+  "model_id": 599317394,
+  "ev": 0.649471662739101,
+  "config": "data/glif/596619013_glif1.json"
+ },
+ {
+  "specimen": 518750800,
+  "level": 5,
+  "model_id": 520592443,
+  "ev": 0.9704928934712,
+  "config": "data/glif/518750800_glif5.json"
+ },
+ {
+  "specimen": 566671538,
+  "level": 5,
+  "model_id": 568094842,
+  "ev": 0.738621520575137,
+  "config": "data/glif/566671538_glif5.json"
+ },
+ {
+  "specimen": 556968207,
+  "level": 1,
+  "model_id": 558559658,
+  "ev": 0.755268580706955,
+  "config": "data/glif/556968207_glif1.json"
+ },
+ {
+  "specimen": 482764620,
+  "level": 5,
+  "model_id": 484631926,
+  "ev": 0.606085757520355,
+  "config": "data/glif/482764620_glif5.json"
+ },
+ {
+  "specimen": 555356054,
+  "level": 3,
+  "model_id": 557184761,
+  "ev": 0.747121452130753,
+  "config": "data/glif/555356054_glif3.json"
+ },
+ {
+  "specimen": 564438523,
+  "level": 3,
+  "model_id": 566721208,
+  "ev": 0.480328058592218,
+  "config": "data/glif/564438523_glif3.json"
+ },
+ {
+  "specimen": 486472847,
+  "level": 4,
+  "model_id": 486909372,
+  "ev": 0.720817781630569,
+  "config": "data/glif/486472847_glif4.json"
+ },
+ {
+  "specimen": 482652174,
+  "level": 3,
+  "model_id": 484624387,
+  "ev": 0.632384655770514,
+  "config": "data/glif/482652174_glif3.json"
+ },
+ {
+  "specimen": 487663469,
+  "level": 2,
+  "model_id": 488462849,
+  "ev": 0.605738949177974,
+  "config": "data/glif/487663469_glif2.json"
+ },
+ {
+  "specimen": 522723828,
+  "level": 2,
+  "model_id": 523995095,
+  "ev": 0.434848369519845,
+  "config": "data/glif/522723828_glif2.json"
+ },
+ {
+  "specimen": 515511110,
+  "level": 2,
+  "model_id": 516879758,
+  "ev": 0.6024217478072,
+  "config": "data/glif/515511110_glif2.json"
+ },
+ {
+  "specimen": 565888394,
+  "level": 1,
+  "model_id": 566737683,
+  "ev": 0.693234726389118,
+  "config": "data/glif/565888394_glif1.json"
+ },
+ {
+  "specimen": 476100382,
+  "level": 2,
+  "model_id": 566310590,
+  "ev": 0.744371341875791,
+  "config": "data/glif/476100382_glif2.json"
+ },
+ {
+  "specimen": 477490421,
+  "level": 3,
+  "model_id": 566320780,
+  "ev": 0.983005736759717,
+  "config": "data/glif/477490421_glif3.json"
+ },
+ {
+  "specimen": 328549885,
+  "level": 1,
+  "model_id": 566288530,
+  "ev": 0.624733357188053,
+  "config": "data/glif/328549885_glif1.json"
+ },
+ {
+  "specimen": 519220630,
+  "level": 3,
+  "model_id": 520346200,
+  "ev": 0.809250111298512,
+  "config": "data/glif/519220630_glif3.json"
+ },
+ {
+  "specimen": 582644266,
+  "level": 2,
+  "model_id": 591739027,
+  "ev": 0.699654317713831,
+  "config": "data/glif/582644266_glif2.json"
+ },
+ {
+  "specimen": 488681087,
+  "level": 3,
+  "model_id": 489932495,
+  "ev": 0.800904753909873,
+  "config": "data/glif/488681087_glif3.json"
+ },
+ {
+  "specimen": 566671538,
+  "level": 4,
+  "model_id": 568094840,
+  "ev": 0.696474888032243,
+  "config": "data/glif/566671538_glif4.json"
+ },
+ {
+  "specimen": 566671538,
+  "level": 1,
+  "model_id": 568094834,
+  "ev": 0.508060265432186,
+  "config": "data/glif/566671538_glif1.json"
+ },
+ {
+  "specimen": 484457747,
+  "level": 5,
+  "model_id": 485590922,
+  "ev": 0.808645298913688,
+  "config": "data/glif/484457747_glif5.json"
+ },
+ {
+  "specimen": 560889670,
+  "level": 1,
+  "model_id": 561785590,
+  "ev": 0.599785101623065,
+  "config": "data/glif/560889670_glif1.json"
+ },
+ {
+  "specimen": 501891177,
+  "level": 1,
+  "model_id": 512190807,
+  "ev": 0.626940656343766,
+  "config": "data/glif/501891177_glif1.json"
+ },
+ {
+  "specimen": 579652000,
+  "level": 4,
+  "model_id": 587864134,
+  "ev": 0.467979576096781,
+  "config": "data/glif/579652000_glif4.json"
+ },
+ {
+  "specimen": 566671538,
+  "level": 2,
+  "model_id": 568094836,
+  "ev": 0.543696902090024,
+  "config": "data/glif/566671538_glif2.json"
+ },
+ {
+  "specimen": 555263276,
+  "level": 1,
+  "model_id": 557183766,
+  "ev": 0.705102368478268,
+  "config": "data/glif/555263276_glif1.json"
+ },
+ {
+  "specimen": 594047832,
+  "level": 3,
+  "model_id": 597605467,
+  "ev": 0.713565104867495,
+  "config": "data/glif/594047832_glif3.json"
+ },
+ {
+  "specimen": 328549885,
+  "level": 3,
+  "model_id": 566288534,
+  "ev": 0.61005914136418,
+  "config": "data/glif/328549885_glif3.json"
+ },
+ {
+  "specimen": 501891177,
+  "level": 3,
+  "model_id": 512190811,
+  "ev": 0.531158843001786,
+  "config": "data/glif/501891177_glif3.json"
+ }
+]

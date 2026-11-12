@@ -68,6 +68,12 @@ python3 experiments/e24_alif_killtest.py        # ALIF: exact chunk-map sizes vs
 python3 experiments/e25d_alif_fwd.py results/e25d_alif_fwd.json                                # ALIF scan, forward
 python3 experiments/e25e_alif_fb.py results/e25d_alif_fwd.json results/e25e_alif_fb.json      # ALIF, backward + totals
 python3 experiments/allen_fetch_ids.py results/allen_cells_78.json && python3 experiments/e15t_allen_timing.py
+# Official Allen GLIF models on the same cells (needs allensdk, which requires Python <= 3.11, e.g. via `uv venv --python 3.11`)
+# first query the API for the models (see results/allen_glif_models_raw.json), then:
+python3 experiments/glif_fetch.py                                  # neuron_config.json of every GLIF level
+/path/to/py311/bin/python experiments/e27_glif_official.py 16      # official models simulated with the Allen SDK
+python3 experiments/e28_allen_alif.py                              # ALIF fits with the ALIF scan in the loop
+python3 experiments/e28t_alif_timing.py && python3 experiments/e27b_metrics.py   # timing; F1 and explained-variance comparison
 python3 experiments/e23_reset_lower_bounds.py  # Theorem 7(c): exponential lower bounds for order-reversing / expanding resets (exact, CPU)
 python3 experiments/e20_fpt_psn.py        # head-to-head: FPT (re-implemented from the official code) and PSN vs exact soft scan
 python3 experiments/e21_chunk_restart.py  # head-to-head: spike-by-spike chunk restarts vs map scan, vs firing rate
