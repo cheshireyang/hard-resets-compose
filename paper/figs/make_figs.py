@@ -102,9 +102,9 @@ def fig_gpu():
     from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
     cmap = LinearSegmentedColormap.from_list("div", ["#e34948", "#f0efec", BLUE])
     fig, axs = plt.subplots(1, 3, figsize=(6.4, 2.0))
-    panels = (("e6c_fair_beta0.9.json", "speedup_fwd", r"(a) exact forward, $\beta$=0.9"),
-              ("e6c_fair_beta0.99.json", "speedup_fwd", r"(b) exact forward, $\beta$=0.99"),
-              ("e6c_fair_beta0.9.json", "speedup_fb", r"(c) forward+backward, $\beta$=0.9"))
+    panels = (("e6d_full_beta0.9.json", "speedup_fwd", r"(a) exact forward, $\beta$=0.9"),
+              ("e6d_full_beta0.99.json", "speedup_fwd", r"(b) exact forward, $\beta$=0.99"),
+              ("e6d_full_beta0.9.json", "speedup_fb", r"(c) forward+backward, $\beta$=0.9"))
     for ax, (fn, key, title) in zip(axs, panels):
         path = os.path.join(RES, fn)
         if not os.path.exists(path):

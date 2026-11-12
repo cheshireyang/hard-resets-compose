@@ -661,11 +661,11 @@ class LIFTuned(torch.autograd.Function):
         I = I.contiguous()
         T = I.shape[0]
         if mode == "serial":
-            U, S = serial_forward_tiled(I, beta, theta, u_r, u0, BN=32, D=8, num_warps=1)
+            U, S = serial_forward_auto(I, beta, theta, u_r, u0)
             C = None
         else:
             C = _pick_C(T)
-            U, S = scan_forward_v3(I, beta, theta, u_r, u0, C=C, K=K, repair=repair)
+            U, S = scan_forward_auto(I, beta, theta, u_r, u0, K=K, repair=repair)
         ctx.save_for_backward(I, u0, U, S)
         ctx.cfg = (beta, theta, u_r, alpha, mode, C)
         return S
@@ -677,9 +677,9 @@ class LIFTuned(torch.autograd.Function):
         gS = gS.contiguous()
         GU = torch.zeros_like(gS)
         if mode == "serial":
-            Lam = serial_backward_tiled(I, u0, U, S, gS, GU, beta, theta, u_r, alpha, BN=32, D=4, num_warps=1)
+            Lam = serial_backward_auto(I, u0, U, S, gS, GU, beta, theta, u_r, alpha)
         else:
-            Lam = scan_backward_tiled(I, u0, U, S, gS, GU, beta, theta, u_r, alpha, C=C, BNr=32, D=8, nwr=1)
+            Lam = scan_backward_auto(I, u0, U, S, gS, GU, beta, theta, u_r, alpha)
         return Lam, beta * Lam[0], None, None, None, None, None, None, None
 
 
@@ -990,8 +990,8 @@ def scan_forward_v4(I, beta, theta, u_r, u0, C=64, G=16, K=16, K2=32, BN=32, nw=
 # Thresholds were measured on an RTX 5090 (results/e6c_*, results/e9_*); recalibrate per GPU.
 AUTO_FWD_MAX_N = 1024
 AUTO_FWD_MIN_T = 16384
-AUTO_BWD_MAX_N = 8192
-AUTO_BWD_MIN_T = 2048
+AUTO_BWD_MAX_N = 1024     # E6d: the backward scan loses at N = 8192 against the tuned prefetching serial kernel
+AUTO_BWD_MIN_T = 1024
 
 
 def auto_modes(N, T):
@@ -1006,9 +1006,9 @@ class LIFAuto(torch.autograd.Function):
         I = I.contiguous()
         T, N = I.shape
         if fwd_mode == "scan":
-            U, S = scan_forward_v3(I, beta, theta, u_r, u0, C=_pick_C(T), K=K, repair=repair)
+            U, S = scan_forward_auto(I, beta, theta, u_r, u0, K=K, repair=repair)
         else:
-            U, S = serial_forward_tiled(I, beta, theta, u_r, u0, BN=32, D=8, num_warps=1)
+            U, S = serial_forward_auto(I, beta, theta, u_r, u0)
         ctx.save_for_backward(I, u0, U, S)
         ctx.cfg = (beta, theta, u_r, alpha, bwd_mode)
         return S
@@ -1020,9 +1020,9 @@ class LIFAuto(torch.autograd.Function):
         gS = gS.contiguous(); GU = torch.zeros_like(gS)
         T = I.shape[0]
         if bwd_mode == "scan":
-            Lam = scan_backward_tiled(I, u0, U, S, gS, GU, beta, theta, u_r, alpha, C=_pick_C(T), BNr=32, D=8, nwr=1)
+            Lam = scan_backward_auto(I, u0, U, S, gS, GU, beta, theta, u_r, alpha)
         else:
-            Lam = serial_backward_tiled(I, u0, U, S, gS, GU, beta, theta, u_r, alpha, BN=32, D=4, num_warps=1)
+            Lam = serial_backward_auto(I, u0, U, S, gS, GU, beta, theta, u_r, alpha)
         return Lam, beta * Lam[0], None, None, None, None, None, None, None, None
 
 
@@ -1081,3 +1081,159 @@ def soft_serial_backward(I, u0, U, GS, beta, theta, alpha=4.0, BN=32):
     Lam = torch.empty_like(I)
     soft_bwd_kernel[(triton.cdiv(N, BN),)](I, u0, U, GS, Lam, T, N, beta, theta, alpha, BN=BN, num_warps=1)
     return Lam
+
+
+# ============================================================================= serial backward with tile prefetch
+@triton.jit
+def bwd_tiled_pf_kernel(I, U0, Uout, Sout, GS, GU, Lam, N, T, beta, theta, u_r, alpha,
+                        DETACH: tl.constexpr, BN: tl.constexpr, D: tl.constexpr):
+    """Serial reverse sweep (same arithmetic as bwd_tiled_kernel) that loads tile b-1 while computing tile b."""
+    pid = tl.program_id(0)
+    n = pid * BN + tl.arange(0, BN)
+    mask = n < N
+    rows = tl.arange(0, D)
+    m2 = mask[None, :]
+    lam = tl.zeros([BN], dtype=tl.float32)
+    u0 = tl.load(U0 + n, mask=mask, other=0.0)
+    nt = T // D
+    t0 = (nt - 1) * D
+    off = (t0 + rows[:, None]) * N + n[None, :]
+    xt = tl.load(I + off, mask=m2, other=0.0); stl = tl.load(Sout + off, mask=m2, other=0.0)
+    gst = tl.load(GS + off, mask=m2, other=0.0); gut = tl.load(GU + off, mask=m2, other=0.0)
+    upt = tl.load(Uout + off - N, mask=m2 & (t0 + rows[:, None] > 0), other=0.0)
+    for i in range(0, nt):
+        b = nt - 1 - i
+        t0 = b * D
+        okn = b >= 1
+        offn = (t0 - D + rows[:, None]) * N + n[None, :]
+        mn = m2 & okn
+        xn = tl.load(I + offn, mask=mn, other=0.0); sn = tl.load(Sout + offn, mask=mn, other=0.0)
+        gsn = tl.load(GS + offn, mask=mn, other=0.0); gun = tl.load(GU + offn, mask=mn, other=0.0)
+        upn = tl.load(Uout + offn - N, mask=mn & (t0 - D + rows[:, None] > 0), other=0.0)
+        upc = tl.where(t0 + rows[:, None] == 0, u0[None, :], upt)
+        lt = tl.zeros([D, BN], dtype=tl.float32)
+        for jj in tl.static_range(D):
+            j = D - 1 - jj
+            sel = rows[:, None] == j
+            x = tl.sum(tl.where(sel, xt, 0.0), axis=0)
+            s = tl.sum(tl.where(sel, stl, 0.0), axis=0)
+            gs = tl.sum(tl.where(sel, gst, 0.0), axis=0)
+            gu = tl.sum(tl.where(sel, gut, 0.0), axis=0)
+            up = tl.sum(tl.where(sel, upc, 0.0), axis=0)
+            a, bb = _coef(up, s, x, gs, gu, beta, theta, u_r, alpha, DETACH)
+            lam = bb + a * lam
+            lt = tl.where(sel, lam[None, :], lt)
+        tl.store(Lam + (t0 + rows[:, None]) * N + n[None, :], lt, mask=m2)
+        xt = xn; stl = sn; gst = gsn; gut = gun; upt = upn
+
+
+def serial_backward_tiled_pf(I, u0, U, S, GS, GU, beta, theta, u_r, alpha=4.0, detach=True, BN=32, D=4, num_warps=1):
+    T, N = I.shape
+    Lam = torch.empty_like(I)
+    bwd_tiled_pf_kernel[(triton.cdiv(N, BN),)](I, u0, U, S, GS, GU, Lam, N, T, beta, theta, u_r, alpha,
+                                               DETACH=detach, BN=BN, D=D, num_warps=num_warps)
+    return Lam
+
+
+@triton.jit
+def soft_bwd_tiled_pf_kernel(I, U0, Uout, GS, Lam, T, N, beta, theta, alpha, BN: tl.constexpr, D: tl.constexpr):
+    """Serial soft-reset adjoint (same arithmetic as soft_bwd_kernel), time-tiled, loading tile b-1 while computing b."""
+    pid = tl.program_id(0)
+    n = pid * BN + tl.arange(0, BN)
+    mask = n < N
+    rows = tl.arange(0, D)
+    m2 = mask[None, :]
+    lam = tl.zeros([BN], dtype=tl.float32)
+    u0 = tl.load(U0 + n, mask=mask, other=0.0)
+    nt = T // D
+    t0 = (nt - 1) * D
+    off = (t0 + rows[:, None]) * N + n[None, :]
+    xt = tl.load(I + off, mask=m2, other=0.0); gst = tl.load(GS + off, mask=m2, other=0.0)
+    upt = tl.load(Uout + off - N, mask=m2 & (t0 + rows[:, None] > 0), other=0.0)
+    for i in range(0, nt):
+        b = nt - 1 - i
+        t0 = b * D
+        offn = (t0 - D + rows[:, None]) * N + n[None, :]
+        mn = m2 & (b >= 1)
+        xn = tl.load(I + offn, mask=mn, other=0.0); gsn = tl.load(GS + offn, mask=mn, other=0.0)
+        upn = tl.load(Uout + offn - N, mask=mn & (t0 - D + rows[:, None] > 0), other=0.0)
+        upc = tl.where(t0 + rows[:, None] == 0, u0[None, :], upt)
+        lt = tl.zeros([D, BN], dtype=tl.float32)
+        for jj in tl.static_range(D):
+            j = D - 1 - jj
+            sel = rows[:, None] == j
+            x = tl.sum(tl.where(sel, xt, 0.0), axis=0)
+            gs = tl.sum(tl.where(sel, gst, 0.0), axis=0)
+            up = tl.sum(tl.where(sel, upc, 0.0), axis=0)
+            v = beta * up + x
+            sig = 1.0 / (1.0 + tl.exp(-alpha * (v - theta)))
+            lam = gs * alpha * sig * (1.0 - sig) + beta * lam
+            lt = tl.where(sel, lam[None, :], lt)
+        tl.store(Lam + (t0 + rows[:, None]) * N + n[None, :], lt, mask=m2)
+        xt = xn; gst = gsn; upt = upn
+
+
+def soft_serial_backward_pf(I, u0, U, GS, beta, theta, alpha=4.0, BN=32, D=4, num_warps=1):
+    T, N = I.shape
+    Lam = torch.empty_like(I)
+    soft_bwd_tiled_pf_kernel[(triton.cdiv(N, BN),)](I, u0, U, GS, Lam, T, N, beta, theta, alpha, BN=BN, D=D, num_warps=num_warps)
+    return Lam
+
+
+# ============================================================================= tuned serial defaults (from E26)
+def serial_bwd_cfg(N):
+    """(BN, D, num_warps) of the prefetching serial backward, chosen per width from the E26 sweep (RTX 5090)."""
+    if N <= 8: return 16, 16, 1
+    if N <= 64: return 16, 2, 2
+    if N <= 16384: return 64, 16, 1
+    return 128, 2, 1
+
+
+def soft_bwd_cfg(N):
+    if N <= 8: return 16, 8, 1
+    if N <= 64: return 16, 4, 1
+    if N <= 16384: return 64, 16, 1
+    return 128, 4, 1
+
+
+def serial_backward_auto(I, u0, U, S, GS, GU, beta, theta, u_r, alpha=4.0, detach=True):
+    T, N = I.shape
+    BN, D, nw = serial_bwd_cfg(N)
+    while T % D: D //= 2
+    return serial_backward_tiled_pf(I, u0, U, S, GS, GU, beta, theta, u_r, alpha, detach, BN=BN, D=D, num_warps=nw)
+
+
+def soft_serial_backward_auto(I, u0, U, GS, beta, theta, alpha=4.0):
+    T, N = I.shape
+    BN, D, nw = soft_bwd_cfg(N)
+    while T % D: D //= 2
+    return soft_serial_backward_pf(I, u0, U, GS, beta, theta, alpha, BN=BN, D=D, num_warps=nw)
+
+
+def serial_fwd_cfg(N):
+    """(BN, D, num_warps) of the time-tiled serial forward (hard and soft reset), per width, from E26b (RTX 5090)."""
+    if N <= 8: return 16, 32, 1
+    if N <= 64: return 16, 4, 1
+    if N <= 512: return 128, 16, 1
+    return 64, 32, 1
+
+
+def serial_forward_auto(I, beta, theta, u_r, u0):
+    T, N = I.shape
+    BN, D, nw = serial_fwd_cfg(N)
+    while T % D: D //= 2
+    return serial_forward_tiled(I, beta, theta, u_r, u0, BN=BN, D=D, num_warps=nw)
+
+
+def scan_forward_auto(I, beta, theta, u_r, u0, K=16, repair=0):
+    """Two-level exact forward with defaults read off E6d (replay with deep time tiles)."""
+    T, N = I.shape
+    C = _pick_C(T, D=16)
+    return scan_forward_v3(I, beta, theta, u_r, u0, C=C, K=K, BN=32, nw=1, BNr=64, D=16, nwr=1, repair=repair)
+
+
+def scan_backward_auto(I, u0, U, S, GS, GU, beta, theta, u_r, alpha=4.0):
+    """Affine-scan backward with defaults read off E6d."""
+    T, N = I.shape
+    C = min(128, _pick_C(T, D=2))
+    return scan_backward_tiled(I, u0, U, S, GS, GU, beta, theta, u_r, alpha, C=C, BNr=16 if N <= 256 else 128, D=2, nwr=1)

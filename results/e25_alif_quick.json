@@ -1,0 +1,1394 @@
+[
+ {
+  "name": "lsnn",
+  "beta": 0.95,
+  "rho": 0.995,
+  "q": 0.9,
+  "m": 0.5,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.0035572052001953125,
+  "ms_serial": 2.2902719974517822,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 0.5177599787712097,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.04248046875,
+   "overflow_frac": 0.021240234375,
+   "mean_lines": 6.53662109375,
+   "mean_pieces": 9.281494140625,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.07983999699354172,
+   "build": 0.23654399812221527,
+   "carry": 0.2088959962129593,
+   "replay": 0.01228800043463707
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 0.6292160153388977,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.073974609375,
+   "overflow_frac": 0.020263671875,
+   "mean_lines": 6.544921875,
+   "mean_pieces": 9.287841796875,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.04915200173854828,
+   "build": 0.2252800017595291,
+   "carry": 0.3031040132045746,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "lsnn",
+  "beta": 0.95,
+  "rho": 0.995,
+  "q": 0.9,
+  "m": 0.5,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.003589153289794922,
+  "ms_serial": 3.7373440265655518,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 1.218559980392456,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.0439453125,
+   "overflow_frac": 0.02081298828125,
+   "mean_lines": 6.531646728515625,
+   "mean_pieces": 9.37353515625,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.09151999652385712,
+   "build": 0.7976959943771362,
+   "carry": 0.26009601354599,
+   "replay": 0.0798719972372055
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.345471978187561,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.077117919921875,
+   "overflow_frac": 0.02105712890625,
+   "mean_lines": 6.546142578125,
+   "mean_pieces": 9.412994384765625,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05734400078654289,
+   "build": 0.7700480222702026,
+   "carry": 0.35225600004196167,
+   "replay": 0.0798719972372055
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "lsnn",
+  "beta": 0.95,
+  "rho": 0.995,
+  "q": 0.9,
+  "m": 0.5,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.0035838335752487183,
+  "ms_serial": 3.9502720832824707,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 9.283904075622559,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.04400634765625,
+   "overflow_frac": 0.020038604736328125,
+   "mean_lines": 6.5144195556640625,
+   "mean_pieces": 9.310089111328125,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.2637760043144226,
+   "build": 5.795839786529541,
+   "carry": 2.4008960723876953,
+   "replay": 0.8840960264205933
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 9.196191787719727,
+  "cfg_warm4": {
+   "C": 128,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.37555503845214844,
+   "overflow_frac": 0.0001430511474609375,
+   "mean_lines": 3.8411502838134766,
+   "mean_pieces": 4.031993865966797,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.3604480028152466,
+   "build": 5.851136207580566,
+   "carry": 1.7182719707489014,
+   "replay": 0.8939520120620728
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "lsnn",
+  "beta": 0.95,
+  "rho": 0.995,
+  "q": 0.9,
+  "m": 2.0,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.010023117065429688,
+  "ms_serial": 2.2935359477996826,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 1.0209920406341553,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.21484375,
+   "overflow_frac": 0.079833984375,
+   "mean_lines": 7.64111328125,
+   "mean_pieces": 15.62060546875,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.0793600007891655,
+   "build": 0.24063999950885773,
+   "carry": 0.7024639844894409,
+   "replay": 0.014336000196635723
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.2554559707641602,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.372802734375,
+   "overflow_frac": 0.078369140625,
+   "mean_lines": 7.682373046875,
+   "mean_pieces": 15.689697265625,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.050175998359918594,
+   "build": 0.2181120067834854,
+   "carry": 0.9277439713478088,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "lsnn",
+  "beta": 0.95,
+  "rho": 0.995,
+  "q": 0.9,
+  "m": 2.0,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.01003420352935791,
+  "ms_serial": 3.7366719245910645,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 1.952064037322998,
+  "cfg_prev": {
+   "C": 128,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.1685943603515625,
+   "overflow_frac": 0.01519775390625,
+   "mean_lines": 7.477935791015625,
+   "mean_pieces": 10.847747802734375,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.1260800063610077,
+   "build": 0.7331839799880981,
+   "carry": 1.0199040174484253,
+   "replay": 0.0798719972372055
+  },
+  "flips_prev": 5.960464477539062e-07,
+  "ms_warm4": 2.0927679538726807,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.359893798828125,
+   "overflow_frac": 0.08111572265625,
+   "mean_lines": 7.630859375,
+   "mean_pieces": 15.605133056640625,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05734400078654289,
+   "build": 0.7976959943771362,
+   "carry": 1.0915839672088623,
+   "replay": 0.0798719972372055
+  },
+  "flips_warm4": 2.384185791015625e-07
+ },
+ {
+  "name": "lsnn",
+  "beta": 0.95,
+  "rho": 0.995,
+  "q": 0.9,
+  "m": 2.0,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.010036557912826538,
+  "ms_serial": 3.953824043273926,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 8.986111640930176,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.5905799865722656,
+   "overflow_frac": 0.5458526611328125,
+   "mean_lines": 10.698905944824219,
+   "mean_pieces": 26.638256072998047,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.26710399985313416,
+   "build": 6.07539176940918,
+   "carry": 1.8344000577926636,
+   "replay": 0.883296012878418
+  },
+  "flips_prev": 5.960464477539063e-08,
+  "ms_warm4": 9.24294376373291,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.3640899658203125,
+   "overflow_frac": 0.08211135864257812,
+   "mean_lines": 7.652336120605469,
+   "mean_pieces": 15.667755126953125,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.2805759906768799,
+   "build": 5.879807949066162,
+   "carry": 1.5319039821624756,
+   "replay": 0.8796160221099854
+  },
+  "flips_warm4": 5.960464477539063e-08
+ },
+ {
+  "name": "glif2",
+  "beta": 0.99,
+  "rho": 0.96,
+  "q": 0.2,
+  "m": 0.5,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.0029344558715820312,
+  "ms_serial": 2.2968320846557617,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 0.4230400025844574,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.005126953125,
+   "overflow_frac": 0.0,
+   "mean_lines": 10.050048828125,
+   "mean_pieces": 10.1337890625,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.077504001557827,
+   "build": 0.22732800245285034,
+   "carry": 0.11673600226640701,
+   "replay": 0.014336000196635723
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 0.40534400939941406,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.0,
+   "overflow_frac": 0.0,
+   "mean_lines": 10.052001953125,
+   "mean_pieces": 10.13623046875,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05119999870657921,
+   "build": 0.21299199759960175,
+   "carry": 0.08396799862384796,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "glif2",
+  "beta": 0.99,
+  "rho": 0.96,
+  "q": 0.2,
+  "m": 0.5,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.0030241012573242188,
+  "ms_serial": 3.7383999824523926,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 1.108288049697876,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.005340576171875,
+   "overflow_frac": 0.000213623046875,
+   "mean_lines": 10.12347412109375,
+   "mean_pieces": 10.210906982421875,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.09043200314044952,
+   "build": 0.7997440099716187,
+   "carry": 0.13516800105571747,
+   "replay": 0.08191999793052673
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.0922880172729492,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.00067138671875,
+   "overflow_frac": 0.000213623046875,
+   "mean_lines": 10.12176513671875,
+   "mean_pieces": 10.2093505859375,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05734400078654289,
+   "build": 0.7751680016517639,
+   "carry": 0.10444799810647964,
+   "replay": 0.08191999793052673
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "glif2",
+  "beta": 0.99,
+  "rho": 0.96,
+  "q": 0.2,
+  "m": 0.5,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.003020346164703369,
+  "ms_serial": 3.9468159675598145,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 7.940800189971924,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.00583648681640625,
+   "overflow_frac": 0.000194549560546875,
+   "mean_lines": 10.109832763671875,
+   "mean_pieces": 10.19394302368164,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.2775680124759674,
+   "build": 5.775360107421875,
+   "carry": 1.0209280252456665,
+   "replay": 0.8806399703025818
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 8.340288162231445,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.000896453857421875,
+   "overflow_frac": 0.0001983642578125,
+   "mean_lines": 10.108150482177734,
+   "mean_pieces": 10.192089080810547,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.2764799892902374,
+   "build": 5.777408123016357,
+   "carry": 0.7311360239982605,
+   "replay": 0.886784017086029
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "glif2",
+  "beta": 0.99,
+  "rho": 0.96,
+  "q": 0.2,
+  "m": 2.0,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.014566421508789062,
+  "ms_serial": 2.2905280590057373,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 0.6346880197525024,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.078857421875,
+   "overflow_frac": 0.00244140625,
+   "mean_lines": 16.951904296875,
+   "mean_pieces": 18.603759765625,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.07705599814653397,
+   "build": 0.23347200453281403,
+   "carry": 0.319487988948822,
+   "replay": 0.014336000196635723
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 0.635424017906189,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.076416015625,
+   "overflow_frac": 0.00244140625,
+   "mean_lines": 16.933349609375,
+   "mean_pieces": 18.559814453125,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.050175998359918594,
+   "build": 0.2181120067834854,
+   "carry": 0.30720001459121704,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "glif2",
+  "beta": 0.99,
+  "rho": 0.96,
+  "q": 0.2,
+  "m": 2.0,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.014644503593444824,
+  "ms_serial": 3.737247943878174,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 1.3607360124588013,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.084716796875,
+   "overflow_frac": 0.002838134765625,
+   "mean_lines": 16.98828125,
+   "mean_pieces": 18.61932373046875,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.09059199690818787,
+   "build": 0.8110079765319824,
+   "carry": 0.39526399970054626,
+   "replay": 0.0798719972372055
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.3396480083465576,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.076690673828125,
+   "overflow_frac": 0.002777099609375,
+   "mean_lines": 16.9820556640625,
+   "mean_pieces": 18.612579345703125,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05734400078654289,
+   "build": 0.7690240144729614,
+   "carry": 0.3563520014286041,
+   "replay": 0.0798719972372055
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "glif2",
+  "beta": 0.99,
+  "rho": 0.96,
+  "q": 0.2,
+  "m": 2.0,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.014638826251029968,
+  "ms_serial": 3.948607921600342,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 9.613632202148438,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.08507537841796875,
+   "overflow_frac": 0.002716064453125,
+   "mean_lines": 16.98568344116211,
+   "mean_pieces": 18.626689910888672,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.26159998774528503,
+   "build": 5.825535774230957,
+   "carry": 2.5522239208221436,
+   "replay": 0.8863679766654968
+  },
+  "flips_prev": 1.0579824447631836e-06,
+  "ms_warm4": 9.529376029968262,
+  "cfg_warm4": {
+   "C": 128,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.2841358184814453,
+   "overflow_frac": 7.62939453125e-05,
+   "mean_lines": 16.06760025024414,
+   "mean_pieces": 16.619630813598633,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.3604480028152466,
+   "build": 5.87775993347168,
+   "carry": 2.051071882247925,
+   "replay": 0.894976019859314
+  },
+  "flips_warm4": 1.1473894119262695e-06
+ },
+ {
+  "name": "appD-a",
+  "beta": 0.9,
+  "rho": 0.95,
+  "q": 0.5,
+  "m": 0.5,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.018762588500976562,
+  "ms_serial": 2.2984960079193115,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 0.4238399863243103,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.00830078125,
+   "overflow_frac": 0.0,
+   "mean_lines": 4.116943359375,
+   "mean_pieces": 4.828125,
+   "max_pieces": 19
+  },
+  "phases_prev": {
+   "envelope": 0.07606399804353714,
+   "build": 0.2314240038394928,
+   "carry": 0.11673600226640701,
+   "replay": 0.014336000196635723
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 0.40403199195861816,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.0,
+   "overflow_frac": 0.0,
+   "mean_lines": 3.488525390625,
+   "mean_pieces": 3.71484375,
+   "max_pieces": 13
+  },
+  "phases_warm4": {
+   "envelope": 0.04915200173854828,
+   "build": 0.21913599967956543,
+   "carry": 0.08396799862384796,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-a",
+  "beta": 0.9,
+  "rho": 0.95,
+  "q": 0.5,
+  "m": 0.5,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.01884293556213379,
+  "ms_serial": 3.7412478923797607,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 1.1338239908218384,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.010955810546875,
+   "overflow_frac": 0.0,
+   "mean_lines": 4.131591796875,
+   "mean_pieces": 4.8470458984375,
+   "max_pieces": 23
+  },
+  "phases_prev": {
+   "envelope": 0.0923520028591156,
+   "build": 0.8048639893531799,
+   "carry": 0.159743994474411,
+   "replay": 0.08191999793052673
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.0745919942855835,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.0,
+   "overflow_frac": 0.0,
+   "mean_lines": 4.130645751953125,
+   "mean_pieces": 4.84454345703125,
+   "max_pieces": 23
+  },
+  "phases_warm4": {
+   "envelope": 0.05734400078654289,
+   "build": 0.7987200021743774,
+   "carry": 0.09830400347709656,
+   "replay": 0.08191999793052673
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-a",
+  "beta": 0.9,
+  "rho": 0.95,
+  "q": 0.5,
+  "m": 0.5,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.018848195672035217,
+  "ms_serial": 3.948575973510742,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 8.268383979797363,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.0101776123046875,
+   "overflow_frac": 0.0,
+   "mean_lines": 4.130886077880859,
+   "mean_pieces": 4.855327606201172,
+   "max_pieces": 28
+  },
+  "phases_prev": {
+   "envelope": 0.268095999956131,
+   "build": 5.790719985961914,
+   "carry": 1.3486080169677734,
+   "replay": 0.886784017086029
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 8.32483196258545,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.0,
+   "overflow_frac": 0.0,
+   "mean_lines": 3.5042076110839844,
+   "mean_pieces": 3.7421646118164062,
+   "max_pieces": 16
+  },
+  "phases_warm4": {
+   "envelope": 0.2764799892902374,
+   "build": 5.77945613861084,
+   "carry": 0.7065600156784058,
+   "replay": 0.8826879858970642
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-a",
+  "beta": 0.9,
+  "rho": 0.95,
+  "q": 0.5,
+  "m": 2.0,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.07233905792236328,
+  "ms_serial": 2.296992063522339,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 0.5614079833030701,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.066162109375,
+   "overflow_frac": 0.000732421875,
+   "mean_lines": 6.62841796875,
+   "mean_pieces": 13.935791015625,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.07827199995517731,
+   "build": 0.23654399812221527,
+   "carry": 0.24371199309825897,
+   "replay": 0.014336000196635723
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 0.40745601058006287,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.0,
+   "overflow_frac": 0.0,
+   "mean_lines": 5.938232421875,
+   "mean_pieces": 8.26416015625,
+   "max_pieces": 20
+  },
+  "phases_warm4": {
+   "envelope": 0.04915200173854828,
+   "build": 0.2181120067834854,
+   "carry": 0.08396799862384796,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-a",
+  "beta": 0.9,
+  "rho": 0.95,
+  "q": 0.5,
+  "m": 2.0,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.07242870330810547,
+  "ms_serial": 3.7370240688323975,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 1.313088059425354,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.071929931640625,
+   "overflow_frac": 0.000579833984375,
+   "mean_lines": 6.63641357421875,
+   "mean_pieces": 13.93048095703125,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.091839998960495,
+   "build": 0.8355839848518372,
+   "carry": 0.32153600454330444,
+   "replay": 0.08191999793052673
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.0917760133743286,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 9.1552734375e-05,
+   "overflow_frac": 0.0,
+   "mean_lines": 5.949188232421875,
+   "mean_pieces": 8.2386474609375,
+   "max_pieces": 22
+  },
+  "phases_warm4": {
+   "envelope": 0.05939200147986412,
+   "build": 0.7823359966278076,
+   "carry": 0.10444799810647964,
+   "replay": 0.08396799862384796
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-a",
+  "beta": 0.9,
+  "rho": 0.95,
+  "q": 0.5,
+  "m": 2.0,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.07241854071617126,
+  "ms_serial": 3.9559359550476074,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 9.17625617980957,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.13457870483398438,
+   "overflow_frac": 0.0,
+   "mean_lines": 5.953094482421875,
+   "mean_pieces": 8.266658782958984,
+   "max_pieces": 28
+  },
+  "phases_prev": {
+   "envelope": 0.2674559950828552,
+   "build": 5.863423824310303,
+   "carry": 2.180511951446533,
+   "replay": 0.8791999816894531
+  },
+  "flips_prev": 8.940696716308594e-08,
+  "ms_warm4": 8.428288459777832,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.0001373291015625,
+   "overflow_frac": 0.0,
+   "mean_lines": 5.947673797607422,
+   "mean_pieces": 8.26080322265625,
+   "max_pieces": 26
+  },
+  "phases_warm4": {
+   "envelope": 0.2764799892902374,
+   "build": 5.86137580871582,
+   "carry": 0.7270399928092957,
+   "replay": 0.8796160221099854
+  },
+  "flips_warm4": 8.940696716308594e-08
+ },
+ {
+  "name": "appD-b",
+  "beta": 0.99,
+  "rho": 0.99,
+  "q": 0.25,
+  "m": 0.5,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.0026979446411132812,
+  "ms_serial": 2.297312021255493,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 0.4503999948501587,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.015380859375,
+   "overflow_frac": 0.001220703125,
+   "mean_lines": 9.453369140625,
+   "mean_pieces": 10.054443359375,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.07683199644088745,
+   "build": 0.23244799673557281,
+   "carry": 0.14131200313568115,
+   "replay": 0.014336000196635723
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 0.44441598653793335,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.00537109375,
+   "overflow_frac": 0.001220703125,
+   "mean_lines": 9.4521484375,
+   "mean_pieces": 10.052978515625,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05119999870657921,
+   "build": 0.22015999257564545,
+   "carry": 0.12492799758911133,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-b",
+  "beta": 0.99,
+  "rho": 0.99,
+  "q": 0.25,
+  "m": 0.5,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.0027713775634765625,
+  "ms_serial": 3.7410240173339844,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 1.186784029006958,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.021240234375,
+   "overflow_frac": 0.00201416015625,
+   "mean_lines": 9.537994384765625,
+   "mean_pieces": 10.1383056640625,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.09136000275611877,
+   "build": 0.8161280155181885,
+   "carry": 0.22937600314617157,
+   "replay": 0.08191999793052673
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.1167680025100708,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.007965087890625,
+   "overflow_frac": 0.001953125,
+   "mean_lines": 9.535186767578125,
+   "mean_pieces": 10.133270263671875,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05939200147986412,
+   "build": 0.7628800272941589,
+   "carry": 0.14131200313568115,
+   "replay": 0.08191999793052673
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-b",
+  "beta": 0.99,
+  "rho": 0.99,
+  "q": 0.25,
+  "m": 0.5,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.002768978476524353,
+  "ms_serial": 3.9476161003112793,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 8.87343978881836,
+  "cfg_prev": {
+   "C": 256,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.0326080322265625,
+   "overflow_frac": 0.02337646484375,
+   "mean_lines": 10.016803741455078,
+   "mean_pieces": 11.568904876708984,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.2565760016441345,
+   "build": 5.809152126312256,
+   "carry": 1.8872319459915161,
+   "replay": 0.8796160221099854
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 8.956735610961914,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.0078277587890625,
+   "overflow_frac": 0.002048492431640625,
+   "mean_lines": 9.522083282470703,
+   "mean_pieces": 10.119243621826172,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.27852800488471985,
+   "build": 5.789696216583252,
+   "carry": 1.3250559568405151,
+   "replay": 0.8796160221099854
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-b",
+  "beta": 0.99,
+  "rho": 0.99,
+  "q": 0.25,
+  "m": 2.0,
+  "N": 16,
+  "T": 65536,
+  "rate": 0.011635780334472656,
+  "ms_serial": 2.298624038696289,
+  "serial_cfg": "BN16_D4",
+  "ms_prev": 1.1980160474777222,
+  "cfg_prev": {
+   "C": 128,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.251953125,
+   "overflow_frac": 0.0604248046875,
+   "mean_lines": 17.784423828125,
+   "mean_pieces": 21.7938232421875,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.11964800208806992,
+   "build": 0.20582400262355804,
+   "carry": 0.8806399703025818,
+   "replay": 0.008191999979317188
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 1.5300480127334595,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.42041015625,
+   "overflow_frac": 0.192626953125,
+   "mean_lines": 18.078125,
+   "mean_pieces": 24.989501953125,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.050175998359918594,
+   "build": 0.22835199534893036,
+   "carry": 1.1898880004882812,
+   "replay": 0.014336000196635723
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-b",
+  "beta": 0.99,
+  "rho": 0.99,
+  "q": 0.25,
+  "m": 2.0,
+  "N": 128,
+  "T": 65536,
+  "rate": 0.011702895164489746,
+  "ms_serial": 3.7360000610351562,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 2.0254080295562744,
+  "cfg_prev": {
+   "C": 128,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.2459716796875,
+   "overflow_frac": 0.0617218017578125,
+   "mean_lines": 17.839447021484375,
+   "mean_pieces": 21.842681884765625,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.12742400169372559,
+   "build": 0.7741439938545227,
+   "carry": 1.0567679405212402,
+   "replay": 0.07782399654388428
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 2.2104320526123047,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.421722412109375,
+   "overflow_frac": 0.191253662109375,
+   "mean_lines": 18.14007568359375,
+   "mean_pieces": 25.09246826171875,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.05939200147986412,
+   "build": 0.8058879971504211,
+   "carry": 1.1857919692993164,
+   "replay": 0.0798719972372055
+  },
+  "flips_warm4": 0.0
+ },
+ {
+  "name": "appD-b",
+  "beta": 0.99,
+  "rho": 0.99,
+  "q": 0.25,
+  "m": 2.0,
+  "N": 1024,
+  "T": 65536,
+  "rate": 0.011694997549057007,
+  "ms_serial": 3.948256015777588,
+  "serial_cfg": "BN64_D8",
+  "ms_prev": 9.585760116577148,
+  "cfg_prev": {
+   "C": 128,
+   "dwq": 0.3,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_prev": {
+   "repair_iters": 0,
+   "miss_frac": 0.5067481994628906,
+   "overflow_frac": 0.4492149353027344,
+   "mean_lines": 18.524248123168945,
+   "mean_pieces": 26.47757911682129,
+   "max_pieces": 32
+  },
+  "phases_prev": {
+   "envelope": 0.29183998703956604,
+   "build": 6.428671836853027,
+   "carry": 1.9097599983215332,
+   "replay": 0.8929280042648315
+  },
+  "flips_prev": 0.0,
+  "ms_warm4": 9.510687828063965,
+  "cfg_warm4": {
+   "C": 256,
+   "dwq": 0.1,
+   "K1": 32,
+   "K2": 32,
+   "BN": 4
+  },
+  "stats_warm4": {
+   "repair_iters": 0,
+   "miss_frac": 0.4173851013183594,
+   "overflow_frac": 0.19242095947265625,
+   "mean_lines": 18.13880157470703,
+   "mean_pieces": 25.08481216430664,
+   "max_pieces": 32
+  },
+  "phases_warm4": {
+   "envelope": 0.27238398790359497,
+   "build": 6.02726411819458,
+   "carry": 1.6435199975967407,
+   "replay": 0.8806399703025818
+  },
+  "flips_warm4": 0.0
+ }
+]

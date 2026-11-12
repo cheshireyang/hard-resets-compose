@@ -5,6 +5,8 @@ rounds grows with the number of spikes; the map scan's depth does not."""
 import sys, os, json, math
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import torch, triton, triton.language as tl
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from grids import best_serial
 from lifscan import triton_lif as L
 
 
@@ -66,8 +68,8 @@ for N in (128, 1024):
             if best is None or t < best[0]:
                 best = (t, C, (Sc != Ss).float().mean().item())
         r["ms_chunk_restart"], r["chunk_C"], r["mismatch_chunk_restart"] = best
-        r["ms_serial"] = min(timeit(lambda: L.serial_forward_tiled(I, beta, 1.0, 0.0, u0, BN=32, D=8, num_warps=1)),
-                             timeit(lambda: L.serial_forward(I, beta, 1.0, 0.0, u0)))
+        r["ms_serial"] = best_serial(timeit, lambda: L.serial_forward(I, beta, 1.0, 0.0, u0),
+                                     lambda BN, D, nw: L.serial_forward_tiled(I, beta, 1.0, 0.0, u0, BN=BN, D=D, num_warps=nw), T)[0]
         r["ms_scan"] = min(timeit(lambda: L.scan_forward_v3(I, beta, 1.0, 0.0, u0, C=C2, K=K))
                            for C2 in (128, 256) for K in (8, 16))
         rows.append(r)

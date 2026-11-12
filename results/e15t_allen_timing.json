@@ -1,0 +1,938 @@
+[
+ {
+  "cell": {
+   "specimen": 323501938,
+   "dendrite": "aspiny",
+   "region": "VISpl5",
+   "line": "Sst-IRES-Cre"
+  },
+  "T_train": 124928,
+  "N_train": 2,
+  "hard_ms_serial": 6.2139593064785,
+  "hard_ms_auto": 1.042171847075224
+ },
+ {
+  "cell": {
+   "specimen": 324266189,
+   "dendrite": "sparsely spiny",
+   "region": "VISp2/3",
+   "line": "Sst-IRES-Cre"
+  },
+  "T_train": 124928,
+  "N_train": 2,
+  "hard_ms_serial": 6.216032896190882,
+  "hard_ms_auto": 1.0493961162865162
+ },
+ {
+  "cell": {
+   "specimen": 328549885,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Sst-IRES-Cre"
+  },
+  "T_train": 124928,
+  "N_train": 4,
+  "hard_ms_serial": 6.262992043048143,
+  "hard_ms_auto": 1.0512890294194221
+ },
+ {
+  "cell": {
+   "specimen": 476100382,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Sst-IRES-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.059202995151281,
+  "hard_ms_auto": 1.0799532756209373
+ },
+ {
+  "cell": {
+   "specimen": 476451456,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Nr5a1-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.057390175759792,
+  "hard_ms_auto": 1.1433311738073826
+ },
+ {
+  "cell": {
+   "specimen": 477490421,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Pvalb-IRES-Cre"
+  },
+  "T_train": 150016,
+  "N_train": 4,
+  "hard_ms_serial": 8.497508242726326,
+  "hard_ms_auto": 2.172209322452545
+ },
+ {
+  "cell": {
+   "specimen": 478111731,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.298682350665331,
+  "hard_ms_auto": 1.087837852537632
+ },
+ {
+  "cell": {
+   "specimen": 479728896,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rbp4-Cre_KL100"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.928710896521807,
+  "hard_ms_auto": 1.2001381255686283
+ },
+ {
+  "cell": {
+   "specimen": 480798873,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.0558469742536545,
+  "hard_ms_auto": 1.0876166634261608
+ },
+ {
+  "cell": {
+   "specimen": 482652174,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Nr5a1-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.483747787773609,
+  "hard_ms_auto": 1.153560820966959
+ },
+ {
+  "cell": {
+   "specimen": 482764620,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.733625825494528,
+  "hard_ms_auto": 1.0692030191421509
+ },
+ {
+  "cell": {
+   "specimen": 484457747,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.058772258460522,
+  "hard_ms_auto": 1.1377721093595028
+ },
+ {
+  "cell": {
+   "specimen": 485574721,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rbp4-Cre_KL100"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.262574974447489,
+  "hard_ms_auto": 1.2274086475372314
+ },
+ {
+  "cell": {
+   "specimen": 485932822,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.943459786474705,
+  "hard_ms_auto": 1.0821768082678318
+ },
+ {
+  "cell": {
+   "specimen": 486264574,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Cux2-CreERT2"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.942358031868935,
+  "hard_ms_auto": 1.054785680025816
+ },
+ {
+  "cell": {
+   "specimen": 486472847,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.474911864846945,
+  "hard_ms_auto": 1.1230031959712505
+ },
+ {
+  "cell": {
+   "specimen": 487663469,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rbp4-Cre_KL100"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.186330854892731,
+  "hard_ms_auto": 1.3972069136798382
+ },
+ {
+  "cell": {
+   "specimen": 488501165,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.058782037347555,
+  "hard_ms_auto": 1.1242562904953957
+ },
+ {
+  "cell": {
+   "specimen": 488681087,
+   "dendrite": "aspiny",
+   "region": "VISpm5",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.255349773913622,
+  "hard_ms_auto": 1.1338330805301666
+ },
+ {
+  "cell": {
+   "specimen": 490779678,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Rbp4-Cre_KL100"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.4604349210858345,
+  "hard_ms_auto": 1.1986750178039074
+ },
+ {
+  "cell": {
+   "specimen": 491026389,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Sst-IRES-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.253697607666254,
+  "hard_ms_auto": 1.169741153717041
+ },
+ {
+  "cell": {
+   "specimen": 500894271,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.951375097036362,
+  "hard_ms_auto": 1.340962015092373
+ },
+ {
+  "cell": {
+   "specimen": 501850666,
+   "dendrite": "spiny",
+   "region": "VISp6b",
+   "line": "Ctgf-T2A-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.2556110098958015,
+  "hard_ms_auto": 1.124315895140171
+ },
+ {
+  "cell": {
+   "specimen": 501891177,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Ctgf-T2A-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.464973255991936,
+  "hard_ms_auto": 1.2172101996839046
+ },
+ {
+  "cell": {
+   "specimen": 502665074,
+   "dendrite": "spiny",
+   "region": "VISpl6b",
+   "line": "Ctgf-T2A-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.059643976390362,
+  "hard_ms_auto": 1.1265198700129986
+ },
+ {
+  "cell": {
+   "specimen": 505795846,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Scnn1a-Tg3-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.954330183565617,
+  "hard_ms_auto": 1.2374683283269405
+ },
+ {
+  "cell": {
+   "specimen": 506133241,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.382038049399853,
+  "hard_ms_auto": 1.1444143019616604
+ },
+ {
+  "cell": {
+   "specimen": 507101551,
+   "dendrite": "spiny",
+   "region": "VISl6a",
+   "line": "Rorb-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.077016867697239,
+  "hard_ms_auto": 1.2235022149980068
+ },
+ {
+  "cell": {
+   "specimen": 510114363,
+   "dendrite": "spiny",
+   "region": "VISpl6b",
+   "line": "Ctgf-T2A-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.495040073990822,
+  "hard_ms_auto": 1.3563302345573902
+ },
+ {
+  "cell": {
+   "specimen": 513510227,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Cux2-CreERT2"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.191751152276993,
+  "hard_ms_auto": 1.2284419499337673
+ },
+ {
+  "cell": {
+   "specimen": 513593674,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Cux2-CreERT2"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.925506215542555,
+  "hard_ms_auto": 1.3303919695317745
+ },
+ {
+  "cell": {
+   "specimen": 515511110,
+   "dendrite": "spiny",
+   "region": "VISp4",
+   "line": "Rbp4-Cre_KL100"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.950643077492714,
+  "hard_ms_auto": 1.2954468838870525
+ },
+ {
+  "cell": {
+   "specimen": 517345160,
+   "dendrite": "sparsely spiny",
+   "region": "VISp5",
+   "line": "Nos1-CreERT2|Sst-IRES-FlpO"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.448312360793352,
+  "hard_ms_auto": 1.1376510374248028
+ },
+ {
+  "cell": {
+   "specimen": 518750800,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.9602207988500595,
+  "hard_ms_auto": 1.640132162719965
+ },
+ {
+  "cell": {
+   "specimen": 519220630,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.91618786752224,
+  "hard_ms_auto": 1.325794029980898
+ },
+ {
+  "cell": {
+   "specimen": 522723828,
+   "dendrite": "sparsely spiny",
+   "region": "VISp6a",
+   "line": "Ctgf-T2A-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.2590382769703865,
+  "hard_ms_auto": 1.1246572248637676
+ },
+ {
+  "cell": {
+   "specimen": 527464013,
+   "dendrite": "aspiny",
+   "region": "VISp1",
+   "line": "Ndnf-IRES2-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.465092930942774,
+  "hard_ms_auto": 1.5150578692555428
+ },
+ {
+  "cell": {
+   "specimen": 553219924,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.841939106583595,
+  "hard_ms_auto": 1.4986181631684303
+ },
+ {
+  "cell": {
+   "specimen": 553561593,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.481254171580076,
+  "hard_ms_auto": 1.2432290241122246
+ },
+ {
+  "cell": {
+   "specimen": 554454458,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Esr2-IRES2-Cre-neo|PhiC31-neo"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.0595331490039825,
+  "hard_ms_auto": 1.1276621371507645
+ },
+ {
+  "cell": {
+   "specimen": 555079011,
+   "dendrite": "sparsely spiny",
+   "region": "VISp2/3",
+   "line": "Ndnf-IRES2-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.477045990526676,
+  "hard_ms_auto": 1.0707061737775803
+ },
+ {
+  "cell": {
+   "specimen": 555263276,
+   "dendrite": "sparsely spiny",
+   "region": "VISp5",
+   "line": "Chrna2-Cre_OE25"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.181993220001459,
+  "hard_ms_auto": 1.0739509016275406
+ },
+ {
+  "cell": {
+   "specimen": 555356054,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.9129221849143505,
+  "hard_ms_auto": 1.3221870176494122
+ },
+ {
+  "cell": {
+   "specimen": 556968207,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.947387173771858,
+  "hard_ms_auto": 1.4568190090358257
+ },
+ {
+  "cell": {
+   "specimen": 557261437,
+   "dendrite": "sparsely spiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.925054989755154,
+  "hard_ms_auto": 1.365938689559698
+ },
+ {
+  "cell": {
+   "specimen": 558660968,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Tlx3-Cre_PL56"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.261722814291716,
+  "hard_ms_auto": 1.1296463198959827
+ },
+ {
+  "cell": {
+   "specimen": 560686477,
+   "dendrite": "aspiny",
+   "region": "VISp1",
+   "line": "Ndnf-IRES2-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.949280086904764,
+  "hard_ms_auto": 1.6947351396083832
+ },
+ {
+  "cell": {
+   "specimen": 560814288,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Vip-IRES-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.9556419514119625,
+  "hard_ms_auto": 1.3538254424929619
+ },
+ {
+  "cell": {
+   "specimen": 560889670,
+   "dendrite": "aspiny",
+   "region": "VISpm5",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.910698186606169,
+  "hard_ms_auto": 1.281921286135912
+ },
+ {
+  "cell": {
+   "specimen": 560968319,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Nos1-CreERT2"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.939451839774847,
+  "hard_ms_auto": 1.1326810345053673
+ },
+ {
+  "cell": {
+   "specimen": 561552455,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.4801212176680565,
+  "hard_ms_auto": 1.14858103916049
+ },
+ {
+  "cell": {
+   "specimen": 562003142,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.06434203311801,
+  "hard_ms_auto": 1.2409440241754055
+ },
+ {
+  "cell": {
+   "specimen": 562062132,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.477356120944023,
+  "hard_ms_auto": 1.1450648307800293
+ },
+ {
+  "cell": {
+   "specimen": 563535101,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.776686921715736,
+  "hard_ms_auto": 1.3477648608386517
+ },
+ {
+  "cell": {
+   "specimen": 564438523,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.855013944208622,
+  "hard_ms_auto": 1.2668631970882416
+ },
+ {
+  "cell": {
+   "specimen": 564692405,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Ndnf-IRES2-dgCre"
+  },
+  "T_train": 140032,
+  "N_train": 6,
+  "hard_ms_serial": 8.387952111661434,
+  "hard_ms_auto": 1.4035291969776154
+ },
+ {
+  "cell": {
+   "specimen": 565888394,
+   "dendrite": "sparsely spiny",
+   "region": "VISp4",
+   "line": "Oxtr-T2A-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.26365577429533,
+  "hard_ms_auto": 1.268305815756321
+ },
+ {
+  "cell": {
+   "specimen": 566671538,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Chrna2-Cre_OE25"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.42151215672493,
+  "hard_ms_auto": 1.2268880382180214
+ },
+ {
+  "cell": {
+   "specimen": 570010469,
+   "dendrite": "aspiny",
+   "region": "VISp5",
+   "line": "Chrna2-Cre_OE25"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.957265246659517,
+  "hard_ms_auto": 1.1240951716899872
+ },
+ {
+  "cell": {
+   "specimen": 570459682,
+   "dendrite": "aspiny",
+   "region": "VISl4",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.065595127642155,
+  "hard_ms_auto": 1.1225328780710697
+ },
+ {
+  "cell": {
+   "specimen": 572416871,
+   "dendrite": "aspiny",
+   "region": "VISp6a",
+   "line": "Nos1-CreERT2|Sst-IRES-FlpO"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.061457727104425,
+  "hard_ms_auto": 1.1297063902020454
+ },
+ {
+  "cell": {
+   "specimen": 574968354,
+   "dendrite": "aspiny",
+   "region": "VISal4",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.262563798576593,
+  "hard_ms_auto": 1.2758602388203144
+ },
+ {
+  "cell": {
+   "specimen": 578517952,
+   "dendrite": "aspiny",
+   "region": "VISl5",
+   "line": "Htr3a-Cre_NO152"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.058612070977688,
+  "hard_ms_auto": 1.12175103276968
+ },
+ {
+  "cell": {
+   "specimen": 578938153,
+   "dendrite": "spiny",
+   "region": "VISp6a",
+   "line": "Oxtr-T2A-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.928371895104647,
+  "hard_ms_auto": 1.130217220634222
+ },
+ {
+  "cell": {
+   "specimen": 579652000,
+   "dendrite": "spiny",
+   "region": "RSPd6a",
+   "line": "Vipr2-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.407966069877148,
+  "hard_ms_auto": 1.1214609257876873
+ },
+ {
+  "cell": {
+   "specimen": 579662784,
+   "dendrite": "spiny",
+   "region": "RSPagl5",
+   "line": "Vipr2-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.202450651675463,
+  "hard_ms_auto": 1.386506948620081
+ },
+ {
+  "cell": {
+   "specimen": 580212997,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Oxtr-T2A-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.413046434521675,
+  "hard_ms_auto": 1.124085858464241
+ },
+ {
+  "cell": {
+   "specimen": 580257315,
+   "dendrite": "spiny",
+   "region": "VISp2/3",
+   "line": "Oxtr-T2A-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.927690166980028,
+  "hard_ms_auto": 1.1297757737338543
+ },
+ {
+  "cell": {
+   "specimen": 582613001,
+   "dendrite": "sparsely spiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.911869790405035,
+  "hard_ms_auto": 1.1291750706732273
+ },
+ {
+  "cell": {
+   "specimen": 582644266,
+   "dendrite": "aspiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.217860780656338,
+  "hard_ms_auto": 1.2350832112133503
+ },
+ {
+  "cell": {
+   "specimen": 582644380,
+   "dendrite": "sparsely spiny",
+   "region": "VISp2/3",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.912992034107447,
+  "hard_ms_auto": 1.3369149528443813
+ },
+ {
+  "cell": {
+   "specimen": 582778095,
+   "dendrite": "aspiny",
+   "region": "VISpm4",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.0599340833723545,
+  "hard_ms_auto": 1.1453661136329174
+ },
+ {
+  "cell": {
+   "specimen": 584231995,
+   "dendrite": "sparsely spiny",
+   "region": "VISp5",
+   "line": "Oxtr-T2A-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 2,
+  "hard_ms_serial": 7.061297073960304,
+  "hard_ms_auto": 1.1490918695926666
+ },
+ {
+  "cell": {
+   "specimen": 585944237,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Chat-IRES-Cre-neo"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.92945409193635,
+  "hard_ms_auto": 1.3416940346360207
+ },
+ {
+  "cell": {
+   "specimen": 589442285,
+   "dendrite": "spiny",
+   "region": "VISp5",
+   "line": "Sim1-Cre_KJ18"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.908985018730164,
+  "hard_ms_auto": 1.1143176816403866
+ },
+ {
+  "cell": {
+   "specimen": 593448793,
+   "dendrite": "aspiny",
+   "region": "VISp4",
+   "line": "Slc32a1-T2A-FlpO|Vipr2-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.925335317850113,
+  "hard_ms_auto": 1.22475391253829
+ },
+ {
+  "cell": {
+   "specimen": 594047832,
+   "dendrite": "sparsely spiny",
+   "region": "RSPd6a",
+   "line": "Vip-IRES-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 3,
+  "hard_ms_serial": 7.407805882394314,
+  "hard_ms_auto": 1.282821875065565
+ },
+ {
+  "cell": {
+   "specimen": 596619013,
+   "dendrite": "aspiny",
+   "region": "VISal5",
+   "line": "Slc32a1-T2A-FlpO|Vipr2-IRES2-Cre"
+  },
+  "T_train": 140032,
+  "N_train": 4,
+  "hard_ms_serial": 7.931626867502928,
+  "hard_ms_auto": 1.1602728627622128
+ }
+]

@@ -1,0 +1,10 @@
+{"N": 128, "T": 65536, "mu": -0.05, "rate": 0.0133, "ms_chunk_restart": 0.6263, "chunk_C": 64, "mismatch_chunk_restart": 0.0, "ms_serial": 1.5305, "ms_scan": 0.2902}
+{"N": 128, "T": 65536, "mu": 0.05, "rate": 0.0502, "ms_chunk_restart": 1.1961, "chunk_C": 64, "mismatch_chunk_restart": 0.0, "ms_serial": 1.4036, "ms_scan": 0.2872}
+{"N": 128, "T": 65536, "mu": 0.15, "rate": 0.1082, "ms_chunk_restart": 2.3747, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.5112, "ms_scan": 0.2762}
+{"N": 128, "T": 65536, "mu": 0.3, "rate": 0.2098, "ms_chunk_restart": 4.5, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.522, "ms_scan": 0.2565}
+{"N": 128, "T": 65536, "mu": 0.5, "rate": 0.3453, "ms_chunk_restart": 7.3739, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.522, "ms_scan": 0.2547}
+{"N": 1024, "T": 65536, "mu": -0.05, "rate": 0.0132, "ms_chunk_restart": 1.8907, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.6009, "ms_scan": 1.5866}
+{"N": 1024, "T": 65536, "mu": 0.05, "rate": 0.0502, "ms_chunk_restart": 1.9892, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.6155, "ms_scan": 1.487}
+{"N": 1024, "T": 65536, "mu": 0.15, "rate": 0.1082, "ms_chunk_restart": 2.8204, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.61, "ms_scan": 1.493}
+{"N": 1024, "T": 65536, "mu": 0.3, "rate": 0.2097, "ms_chunk_restart": 5.1048, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.6081, "ms_scan": 1.436}
+{"N": 1024, "T": 65536, "mu": 0.5, "rate": 0.3452, "ms_chunk_restart": 8.4232, "chunk_C": 32, "mismatch_chunk_restart": 0.0, "ms_serial": 1.599, "ms_scan": 1.4201}

@@ -1,0 +1,16 @@
+N=128    T=1024  | serial f   0.043 (tiled128,16,1) b   0.103 (pf32,2,1; old   0.144) | scan f   0.095 b   0.056 | x fwd  0.45 bwd  1.84 f+b  0.97 vsSJ  5.16
+N=128    T=4096  | serial f   0.100 (tiled128,16,1) b   0.341 (pf32,2,1; old   0.477) | scan f   0.098 b   0.056 | x fwd  1.02 bwd  6.07 f+b  2.86 vsSJ 18.10
+N=128    T=16384 | serial f   0.341 (tiled128,16,1) b   1.310 (pf32,2,1; old   1.846) | scan f   0.137 b   0.072 | x fwd  2.49 bwd 18.17 f+b  7.90 vsSJ 52.27
+N=128    T=65536 | serial f   1.495 (tiled128,16,1) b   7.765 (pf64,16,1; old  14.396) | scan f   0.265 b   0.314 | x fwd  5.64 bwd 24.72 f+b 15.99 vsSJ 132.12
+N=1024   T=1024  | serial f   0.042 (tiled128,16,1) b   0.102 (pf16,2,1; old   0.141) | scan f   0.094 b   0.054 | x fwd  0.45 bwd  1.88 f+b  0.97 vsSJ  5.33
+N=1024   T=4096  | serial f   0.113 (tiled64,32,1) b   0.500 (pf64,16,1; old   0.822) | scan f   0.115 b   0.069 | x fwd  0.98 bwd  7.21 f+b  3.32 vsSJ 18.39
+N=1024   T=16384 | serial f   0.411 (tiled64,32,1) b   1.980 (pf64,16,1; old   3.575) | scan f   0.334 b   0.487 | x fwd  1.23 bwd  4.07 f+b  2.91 vsSJ 25.10
+N=1024   T=65536 | serial f   1.600 (tiled64,32,1) b   7.793 (pf64,16,1; old  14.221) | scan f   1.326 b   1.957 | x fwd  1.21 bwd  3.98 f+b  2.86 vsSJ 25.97
+N=8192   T=1024  | serial f   0.051 (tiled64,32,1) b   0.161 (pf64,16,1; old   0.285) | scan f   0.142 b   0.238 | x fwd  0.36 bwd  0.68 f+b  0.56 vsSJ  3.50
+N=8192   T=4096  | serial f   0.298 (tiled128,16,1) b   0.574 (pf64,16,1; old   1.063) | scan f   0.574 b   0.936 | x fwd  0.52 bwd  0.61 f+b  0.58 vsSJ  3.65
+N=8192   T=16384 | serial f   1.131 (tiled128,16,1) b   2.215 (pf64,16,1; old   4.188) | scan f   2.188 b   3.715 | x fwd  0.52 bwd  0.60 f+b  0.57 vsSJ  3.75
+N=32768  T=1024  | serial f   0.296 (tiled128,8,1) b   0.516 (pf64,2,1; old   0.525) | scan f   0.557 b   0.938 | x fwd  0.53 bwd  0.55 f+b  0.54 vsSJ  1.15
+N=32768  T=4096  | serial f   1.130 (tiled64,32,1) b   2.001 (pf128,2,1; old   2.010) | scan f   2.142 b   3.673 | x fwd  0.53 bwd  0.54 f+b  0.54 vsSJ  1.17
+N=65536  T=1024  | serial f   0.568 (tiled128,16,1) b   1.036 (pf128,2,1; old   1.056) | scan f   1.079 b   1.838 | x fwd  0.53 bwd  0.56 f+b  0.55 vsSJ  0.74
+N=65536  T=4096  | serial f   2.226 (tiled64,32,1) b   4.026 (pf128,4,1; old   4.033) | scan f   4.156 b   7.321 | x fwd  0.54 bwd  0.55 f+b  0.54 vsSJ  0.74
+N=262144 T=1024  | serial f   2.241 (tiled128,16,1) b   4.059 (pf128,2,1; old   4.114) | scan f   4.129 b   7.309 | x fwd  0.54 bwd  0.56 f+b  0.55 vsSJ  0.57

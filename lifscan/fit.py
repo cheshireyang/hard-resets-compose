@@ -19,9 +19,9 @@ class LIFParamFn(torch.autograd.Function):
         I = I.contiguous()
         T = I.shape[0]
         if fwd_mode == "scan":
-            U, S = L.scan_forward_v3(I, b, th, ur, u0, C=L._pick_C(T), K=K)
+            U, S = L.scan_forward_auto(I, b, th, ur, u0, K=K)
         else:
-            U, S = L.serial_forward_tiled(I, b, th, ur, u0, BN=32, D=8, num_warps=1)
+            U, S = L.serial_forward_auto(I, b, th, ur, u0)
         ctx.save_for_backward(I, u0, U, S)
         ctx.cfg = (b, th, ur, alpha, bwd_mode)
         return S
@@ -33,9 +33,9 @@ class LIFParamFn(torch.autograd.Function):
         gS = gS.contiguous(); GU = torch.zeros_like(gS)
         T = I.shape[0]
         if bwd_mode == "scan":
-            lam = L.scan_backward_tiled(I, u0, U, S, gS, GU, b, th, ur, alpha, C=L._pick_C(T), BNr=32, D=8, nwr=1)
+            lam = L.scan_backward_auto(I, u0, U, S, gS, GU, b, th, ur, alpha)
         else:
-            lam = L.serial_backward_tiled(I, u0, U, S, gS, GU, b, th, ur, alpha, BN=32, D=4, num_warps=1)
+            lam = L.serial_backward_auto(I, u0, U, S, gS, GU, b, th, ur, alpha)
         uprev = torch.cat([u0[None], U[:-1]], 0)
         v = b * uprev + I
         sg = L.surrogate_grad(v - th, alpha) if hasattr(L, "surrogate_grad") else None
@@ -106,7 +106,7 @@ class LIFSoftFn(torch.autograd.Function):
     def backward(ctx, gS):
         I, u0, U = ctx.saved_tensors
         b, th, alpha = ctx.cfg
-        lam = L.soft_serial_backward(I, u0, U, gS.contiguous(), b, th, alpha)
+        lam = L.soft_serial_backward_auto(I, u0, U, gS.contiguous(), b, th, alpha)
         uprev = torch.cat([u0[None], U[:-1]], 0)
         return lam, b * lam[0], (lam * uprev).sum().reshape(()), None, None
 
@@ -127,7 +127,7 @@ class LIFSoftScanFn(torch.autograd.Function):
         if mode == "scan":
             U, S = TS.soft_scan_forward(I, b, th, u0, C=C, K=K)
         else:
-            U, S = TS.soft_serial_forward_tiled(I, b, th, u0)
+            U, S = TS.soft_serial_forward_tiled(I, b, th, u0, *L.serial_fwd_cfg(I.shape[1])[:2], num_warps=1)
         ctx.save_for_backward(I, u0, U)
         ctx.cfg = (b, th, alpha, mode)
         return S
@@ -142,7 +142,7 @@ class LIFSoftScanFn(torch.autograd.Function):
         if mode == "scan":
             lam = TS.soft_adjoint_fft(V, gS, b, th, alpha)
         else:
-            lam = L.soft_serial_backward(I, u0, U, gS.contiguous(), b, th, alpha)
+            lam = L.soft_serial_backward_auto(I, u0, U, gS.contiguous(), b, th, alpha)
         return lam, b * lam[0], (lam * uprev).sum().reshape(()), None, None, None, None, None
 
 

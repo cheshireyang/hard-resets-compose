@@ -1,0 +1,16 @@
+N=128   T=1024   rate=0.049 | Picard iters     48 (exact=True) err@3 0.138 | ms: picard     17.17 serial   0.046 scan   0.114
+N=128   T=1024   rate=0.107 | Picard iters     77 (exact=True) err@3 0.440 | ms: picard     27.50 serial   0.040 scan   0.106
+N=128   T=4096   rate=0.050 | Picard iters     48 (exact=True) err@3 0.145 | ms: picard     19.84 serial   0.099 scan   0.113
+N=128   T=4096   rate=0.108 | Picard iters     88 (exact=True) err@3 0.453 | ms: picard     36.95 serial   0.100 scan   0.111
+N=128   T=16384  rate=0.050 | Picard iters     51 (exact=True) err@3 0.147 | ms: picard     24.94 serial   0.340 scan   0.168
+N=128   T=16384  rate=0.108 | Picard iters    136 (exact=True) err@3 0.456 | ms: picard     66.38 serial   0.341 scan   0.163
+N=128   T=65536  rate=0.050 | Picard iters     62 (exact=True) err@3 0.148 | ms: picard    226.59 serial   1.516 scan   0.302
+N=128   T=65536  rate=0.108 | Picard iters    150 (exact=True) err@3 0.458 | ms: picard    552.20 serial   1.518 scan   0.301
+N=1024  T=1024   rate=0.050 | Picard iters     50 (exact=True) err@3 0.143 | ms: picard     17.90 serial   0.043 scan   0.101
+N=1024  T=1024   rate=0.108 | Picard iters    103 (exact=True) err@3 0.449 | ms: picard     36.71 serial   0.043 scan   0.103
+N=1024  T=4096   rate=0.050 | Picard iters     61 (exact=True) err@3 0.147 | ms: picard     46.16 serial   0.114 scan   0.126
+N=1024  T=4096   rate=0.108 | Picard iters    131 (exact=True) err@3 0.457 | ms: picard     99.89 serial   0.113 scan   0.128
+N=1024  T=16384  rate=0.050 | Picard iters     61 (exact=False) err@3 0.148 | ms: picard    556.45 serial   0.414 scan   0.415
+N=1024  T=16384  rate=0.108 | Picard iters    139 (exact=True) err@3 0.457 | ms: picard   1263.65 serial   0.414 scan   0.403
+N=1024  T=65536  rate=0.050 | Picard iters     74 (exact=False) err@3 0.148 | ms: picard   3363.99 serial   1.608 scan   1.684
+N=1024  T=65536  rate=0.108 | Picard iters    152 (exact=False) err@3 0.458 | ms: picard   6908.97 serial   1.603 scan   1.677

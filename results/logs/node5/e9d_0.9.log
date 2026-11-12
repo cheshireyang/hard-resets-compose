@@ -1,0 +1,7 @@
+N=128   T=16384   serial f   0.345 | v3   0.139 (x 2.49, C=128,K=8) | v4   0.177 (x 1.95, C=128,G=8,K=8,sovf=0.001,flip=0e+00) | bwd serial   1.323 scan   0.073 | f+b x  7.9
+N=128   T=65536   serial f   1.522 | v3   0.266 (x 5.73, C=256,K=8) | v4   0.337 (x 4.52, C=128,G=8,K=16,sovf=0.000,flip=0e+00) | bwd serial   7.779 scan   0.315 | f+b x 16.0
+N=128   T=262144  serial f   6.072 | v3   1.105 (x 5.50, C=256,K=8) | v4   1.219 (x 4.98, C=128,G=16,K=16,sovf=0.000,flip=0e+00) | bwd serial  31.027 scan   1.256 | f+b x 15.7
+N=1024  T=16384   serial f   0.410 | v3   0.330 (x 1.24, C=256,K=8) | v4   0.446 (x 0.92, C=128,G=8,K=8,sovf=0.002,flip=0e+00) | bwd serial   1.972 scan   0.492 | f+b x  2.9
+N=1024  T=65536   serial f   1.606 | v3   1.326 (x 1.21, C=256,K=8) | v4   1.839 (x 0.87, C=128,G=8,K=16,sovf=0.000,flip=0e+00) | bwd serial   7.813 scan   1.959 | f+b x  2.9
+N=1024  T=262144  serial f   6.460 | v3   5.175 (x 1.25, C=256,K=8) | v4   7.221 (x 0.89, C=128,G=8,K=8,sovf=0.002,flip=0e+00) | bwd serial  31.037 scan   8.089 | f+b x  2.8
+N=8192  T=16384   serial f   1.133 | v3   2.191 (x 0.52, C=256,K=8) | v4   2.914 (x 0.39, C=128,G=8,K=8,sovf=0.002,flip=0e+00) | bwd serial   2.212 scan   3.717 | f+b x  0.6

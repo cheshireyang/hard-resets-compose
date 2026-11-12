@@ -1,0 +1,14 @@
+N=128     T=1024   modes=('serial', 'scan') serial    0.285 scan    0.304 (x 0.94) auto    0.215 (x 1.33) spikes_eq=True grad_rel=0.0e+00
+N=128     T=4096   modes=('serial', 'scan') serial    0.564 scan    0.308 (x 1.83) auto    0.213 (x 2.64) spikes_eq=True grad_rel=0.0e+00
+N=128     T=16384  modes=('scan', 'scan') serial    2.054 scan    0.329 (x 6.25) auto    0.307 (x 6.69) spikes_eq=True grad_rel=0.0e+00
+N=128     T=65536  modes=('scan', 'scan') serial    9.642 scan    0.717 (x13.45) auto    0.716 (x13.47) spikes_eq=True grad_rel=0.0e+00
+N=1024    T=1024   modes=('serial', 'scan') serial    0.242 scan    0.308 (x 0.79) auto    0.217 (x 1.11) spikes_eq=True grad_rel=1.3e-10
+N=1024    T=4096   modes=('serial', 'scan') serial    0.617 scan    0.343 (x 1.80) auto    0.254 (x 2.43) spikes_eq=True grad_rel=0.0e+00
+N=1024    T=16384  modes=('scan', 'scan') serial    2.601 scan    1.089 (x 2.39) auto    1.083 (x 2.40) spikes_eq=True grad_rel=0.0e+00
+N=1024    T=65536  modes=('scan', 'scan') serial   10.534 scan    4.679 (x 2.25) auto    4.671 (x 2.26) spikes_eq=True grad_rel=0.0e+00
+N=8192    T=1024   modes=('serial', 'serial') serial    0.313 scan    0.475 (x 0.66) auto    0.311 (x 1.00) spikes_eq=True grad_rel=0.0e+00
+N=8192    T=4096   modes=('serial', 'serial') serial    1.409 scan    2.171 (x 0.65) auto    1.410 (x 1.00) spikes_eq=True grad_rel=0.0e+00
+N=8192    T=16384  modes=('serial', 'serial') serial    5.690 scan    8.735 (x 0.65) auto    5.690 (x 1.00) spikes_eq=True grad_rel=0.0e+00
+N=32768   T=1024   modes=('serial', 'serial') serial    1.361 scan    2.164 (x 0.63) auto    1.361 (x 1.00) spikes_eq=True grad_rel=0.0e+00
+N=32768   T=4096   modes=('serial', 'serial') serial    5.473 scan    8.676 (x 0.63) auto    5.480 (x 1.00) spikes_eq=True grad_rel=0.0e+00
+N=131072  T=1024   modes=('serial', 'serial') serial    5.506 scan    8.808 (x 0.63) auto    5.502 (x 1.00) spikes_eq=True grad_rel=0.0e+00

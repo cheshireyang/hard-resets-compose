@@ -7,6 +7,8 @@ K = 3 iterations (the budget used by FPT)."""
 import sys, os, json, itertools
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import torch
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from grids import best_serial
 from lifscan import triton_lif as L
 
 def affine_scan_fwd(a, b, u0):
@@ -53,7 +55,8 @@ for N, T in itertools.product((128, 1024), (1024, 4096, 16384, 65536)):
         exact = torch.equal(s, Ss)
         err3 = (s3 != Ss).float().mean().item() if s3 is not None else 0.0
         t_pic = timeit(lambda: picard(I, beta, 1.0, 0.0, u0), reps=1)
-        t_ser = timeit(lambda: L.serial_forward_tiled(I, beta, 1.0, 0.0, u0, BN=32, D=8, num_warps=1))
+        t_ser = best_serial(timeit, lambda: L.serial_forward(I, beta, 1.0, 0.0, u0),
+                            lambda BN, D, nw: L.serial_forward_tiled(I, beta, 1.0, 0.0, u0, BN=BN, D=D, num_warps=nw), T)[0]
         t_scan = timeit(lambda: L.scan_forward_v3(I, beta, 1.0, 0.0, u0, C=L._pick_C(T), K=16))
         r = dict(N=N, T=T, mu=mu, rate=Ss.mean().item(), iters=iters, exact=exact, err_after3=err3,
                  ms_picard=t_pic, ms_serial=t_ser, ms_scan=t_scan, spikes_per_neuron=Ss.sum(0).mean().item())

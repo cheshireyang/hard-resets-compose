@@ -24,7 +24,14 @@ def sci(v):
 
 
 macros = {}
-g9, g99 = load("e6c_fair_beta0.9.json"), load("e6c_fair_beta0.99.json")
+g9, g99 = load("e6d_full_beta0.9.json"), load("e6d_full_beta0.99.json")          # full grids on both sides (E6d supersedes E6c)
+old9 = load("e6c_fair_beta0.9.json")
+assert [(r["N"], r["T"]) for r in old9] == [(r["N"], r["T"]) for r in g9]
+macros["OldFwdMax"] = fmt_x(max(r["speedup_fwd"] for r in old9)); macros["OldFbMax"] = fmt_x(max(r["speedup_fb"] for r in old9))
+bo = [r["serial_bwd_old_best"] / r["serial_bwd"] for r in g9 + g99]
+macros["BwdPfGainMin"] = f"{min(bo):.1f}"; macros["BwdPfGainMax"] = f"{max(bo):.1f}"
+ob = [o["serial_bwd"] / n["serial_bwd"] for o, n in zip(old9, g9)]; of = [o["serial_fwd"] / n["serial_fwd"] for o, n in zip(old9, g9)]
+macros["OldBaselineBwdMax"] = f"{max(ob):.1f}"; macros["OldBaselineFwdMax"] = f"{max(of):.1f}"
 for tag, rows in (("Nine", g9), ("NineNine", g99)):
     best_f = max(rows, key=lambda r: r["speedup_fwd"])
     best_fb = max(rows, key=lambda r: r["speedup_fb"])
@@ -41,6 +48,7 @@ for tag, rows in (("Nine", g9), ("NineNine", g99)):
     macros[f"MaxFlip{tag}"] = "0" if mf == 0 else sci(mf)
     big = [r for r in rows if r["N"] >= 32768]
     macros[f"BigNFb{tag}"] = f"{min(r['speedup_fb'] for r in big):.2f}--{max(r['speedup_fb'] for r in big):.2f}"
+assert all(r["scan_fwd_cfg"]["flip"] == 0 for r in g9 + g99), "text claims zero flips before repair"
 macros["FwdMaxSpeedup"] = fmt_x(max(max(r["speedup_fwd"] for r in g9), max(r["speedup_fwd"] for r in g99)))
 macros["FbMaxSpeedup"] = fmt_x(max(max(r["speedup_fb"] for r in g9), max(r["speedup_fb"] for r in g99)))
 macros["SJMaxSpeedup"] = fmt_x(max(max(r["speedup_fb_vs_sj"] for r in g9), max(r["speedup_fb_vs_sj"] for r in g99)))
@@ -87,7 +95,7 @@ for T, W in ((1024, "Short"), (8192, "Long")):
     macros[f"FireRate{W}"] = f"{100 * st.mean(r['rate'] for r in nr if r['T'] == T):.2f}"
 
 # SHD per-iteration timing table (second node, includes auto dispatch)
-tm = load("e7c_timing_node2.json")
+tm = load("e7c_timing_node5.json")       # rerun with tuned serial kernels and new dispatch thresholds
 cfgs = sorted({(r["T"], r["B"]) for r in tm})
 lines = ["\\begin{tabular}{rrrrrrrr}", "\\toprule",
          "$T$ & batch & $N$/layer & serial & scan & scan, no repair & auto & SpikingJelly\\\\", "\\midrule"]
@@ -138,12 +146,15 @@ open(os.path.join(OUT, "tab_alif.tex"), "w").write("\n".join(lines) + "\n")
 lines = ["\\begin{tabular}{rrrrrrrr}", "\\toprule",
          "$\\beta$ & $N$ & $T$ & serial fwd (ms) & two-level & three-level & bwd $\\times$ & fwd+bwd $\\times$\\\\", "\\midrule"]
 e9max = {}
+fx = lambda x: f"{x:.1f}" if x < 10 else f"{x:.0f}"
 for b in ("0.9", "0.99"):
-    rows9 = load(f"e9_threelevel_beta{b}.json")
+    rows9 = load(f"e9d_long_full_beta{b}.json")
     for r in rows9:
         lines.append(f"{b} & {r['N']:,} & {r['T']:,} & {r['serial_fwd']:.2f} & {r['x_v3']:.1f}$\\times$ & {r['x_v4']:.1f}$\\times$ & "
-                     f"{r['serial_bwd'] / r['scan_bwd']:.0f}$\\times$ & {r['x_fb_v4']:.0f}$\\times$\\\\".replace(",", "{,}"))
+                     f"{fx(r['serial_bwd'] / r['scan_bwd'])}$\\times$ & {fx(r['x_fb_v4'])}$\\times$\\\\".replace(",", "{,}"))
     e9max[b] = max(rows9, key=lambda r: r["x_v3"])
+    lastT = [r for r in rows9 if r["N"] == 128 and r["T"] == 262144][0]
+    macros["LongFwdLast" + ("Nine" if b == "0.9" else "NineNine")] = fmt_x(lastT["x_v3"])
     macros["LongFwdMax" + ("Nine" if b == "0.9" else "NineNine")] = fmt_x(e9max[b]["x_v3"])
     macros["LongFbMax" + ("Nine" if b == "0.9" else "NineNine")] = fmt_x(max(r["x_fb_v4"] for r in rows9))
     macros["LongVFourBest" + ("Nine" if b == "0.9" else "NineNine")] = str(sum(r["x_v4"] > r["x_v3"] for r in rows9))
@@ -293,8 +304,11 @@ macros["AllenHardWins"] = str(sum(h > s for h, s in zip(hf, sf)))
 macros["AllenDiff"] = f"{st.mean([h - s for h, s in zip(hf, sf)]):+.3f}"
 macros["AllenP"] = f"{wilcoxon(hf, sf).pvalue:.2g}" if len(al) >= 6 else "n/a"
 macros["AllenFracRel"] = f"{100 * st.mean([h / r for h, r in zip(hf, rl)]):.0f}"
-sp = [r["hard_ms_serial"] / r["hard_ms_auto"] for r in al]
-macros["AllenSpeed"] = f"{st.mean(sp):.1f}"
+e15t = load("e15t_allen_timing.json")          # timing on all 78 cells, tuned serial kernels (supersedes the 14-cell timing)
+sp = [r["hard_ms_serial"] / r["hard_ms_auto"] for r in e15t]
+macros["AllenSpeed"] = f"{st.median(sp):.1f}"; macros["AllenSpeedMin"] = f"{min(sp):.1f}"; macros["AllenSpeedMax"] = f"{max(sp):.1f}"
+macros["AllenSpeedCells"] = str(len(e15t))
+macros["AllenMsSerial"] = f"{st.median(r['hard_ms_serial'] for r in e15t):.1f}"; macros["AllenMsAuto"] = f"{st.median(r['hard_ms_auto'] for r in e15t):.1f}"
 macros["AllenT"] = f"{al[0]['T_train']:,}".replace(",", "{,}")
 
 # E15b/c: larger, balanced Allen experiment (merged workers; timing comes from the e15 v1 run above)
@@ -390,7 +404,7 @@ macros["FptErrNine"] = f"{100 * min(r['mismatch_fpt_bernoulli'] for r in f9):.0f
 macros["FptDetErrNine"] = f"{100 * max(r['mismatch_fpt_det'] for r in f9):.0f}"
 macros["FptRateNine"] = f"{100 * max(r['rate_fpt_det'] for r in f9):.0f}"; macros["ExactRateNine"] = f"{100 * max(r['rate_exact'] for r in f9):.0f}"
 big = [r for r in e20 if r["T"] == 32768 and r["N"] == 128 and r["lam"] == 0.9][0]
-macros["FptMsLong"] = f"{big['ms_fpt']:.1f}"; macros["ScanMsLong"] = f"{big['ms_soft_scan']:.1f}"; macros["PsnMsLong"] = f"{big['ms_psn']:.1f}"
+macros["FptMsLong"] = f"{big['ms_fpt']:.1f}"; macros["ScanMsLong"] = f"{big['ms_soft_scan']:.1f}"; macros["PsnMsLong"] = f"{big['ms_psn']:.1f}"; macros["SoftSerMsLong"] = f"{big['ms_soft_serial']:.1f}"
 macros["ScanErrAll"] = "0" if max(r["mismatch_scan"] for r in e20) == 0 else sci(max(r["mismatch_scan"] for r in e20))
 
 # E21: chunk-restart (Bullet-Trains-style, discrete) vs firing rate
@@ -425,6 +439,45 @@ cok = [r for r in cold if not r.get("failed") and r.get("ms_serial")]
 ratios = sorted(r["ms_serial"] / r["ms_scan"] for r in cok)
 macros["AffSpeed"] = f"{st.median(ratios):.1f}"; macros["AffSpeedMin"] = f"{ratios[0]:.1f}"; macros["AffSpeedMax"] = f"{ratios[-1]:.1f}"
 macros["AffColdFOne"] = f"{st.mean(r['f1_test'] for r in cok):.3f}"; macros["AffColdFailed"] = str(sum(1 for r in cold if r.get("failed")))
+
+# E24: ALIF go/no-go (exact float64 chunk maps on CPU)
+e24 = load("e24_alif_killtest.json")
+macros["AlifKillChecks"] = f"{sum(r['map_checks'] for r in e24):,}".replace(",", "{,}")
+assert sum(r["map_mismatch"] for r in e24) == 0
+macros["AlifKillRigMax"] = f"{max(r['boxes']['rigorous']['mean'] for r in e24):,.0f}".replace(",", "{,}")
+orc = [r["boxes"]["oracle_0.1"]["mean"] for r in e24]
+macros["AlifKillOracleMin"] = f"{min(orc):.0f}"; macros["AlifKillOracleMax"] = f"{max(orc):.0f}"
+macros["AlifKillOracleQuant"] = f"{max(r['boxes']['oracle_0.1']['p95'] for r in e24):.0f}"
+
+# E25d/E25e: ALIF scan (predicted adaptation box), full grids on both sides
+e25 = load("e25d_alif_fwd.json")
+e25b = load("e25e_alif_fb.json")
+key = lambda r: (r["name"], r["m"], r["N"], r["T"])
+fb = {key(r): r for r in e25b}
+assert all(key(r) in fb for r in e25), "E25e incomplete"
+NAMES = (("lsnn", "0.95, 0.995, 0.9"), ("glif2", "0.99, 0.96, 0.2"), ("appD-a", "0.9, 0.95, 0.5"), ("appD-b", "0.99, 0.99, 0.25"))
+rng = lambda v: f"{min(v):.1f}" if f"{min(v):.1f}" == f"{max(v):.1f}" else f"{min(v):.1f}--{max(v):.1f}"
+lines = ["\\begin{tabular}{lrrrrrr}", "\\toprule",
+         "$(\\beta,\\rho,q)$ & \\multicolumn{3}{c}{forward $\\times$} & mispredicted & \\multicolumn{2}{c}{fwd+bwd $\\times$}\\\\",
+         " & $N=16$ & $N=128$ & $N=1{,}024$ & chunks & $N=16$ & $N=128$\\\\", "\\midrule"]
+for nm, lab in NAMES:
+    rr = [r for r in e25 if r["name"] == nm]
+    fx_ = lambda N: rng([r["ms_serial"] / r["ms_prev"] for r in rr if r["N"] == N])
+    miss = [r["stats_prev"]["miss_frac"] for r in rr if r["N"] <= 128]
+    fbx = lambda N: rng([fb[key(r)]["fb_serial"] / (r["ms_prev"] + fb[key(r)]["ms_bwd_scan"]) for r in rr if r["N"] == N])
+    lines.append(f"{lab} & {fx_(16)} & {fx_(128)} & {fx_(1024)} & {100 * min(miss):.0f}--{100 * max(miss):.0f}\\% & {fbx(16)} & {fbx(128)}\\\\")
+lines += ["\\bottomrule", "\\end{tabular}"]
+open(os.path.join(OUT, "tab_alif_speed.tex"), "w").write("\n".join(lines) + "\n")
+for N, W in ((16, "Small"), (128, "Mid"), (1024, "Big")):
+    for pred, P in (("prev", "Prev"), ("warm4", "Warm")):
+        v = [r["ms_serial"] / r[f"ms_{pred}"] for r in e25 if r["N"] == N]
+        macros[f"AlifFwd{W}{P}Med"] = f"{st.median(v):.1f}"; macros[f"AlifFwd{W}{P}Min"] = f"{min(v):.1f}"; macros[f"AlifFwd{W}{P}Max"] = f"{max(v):.1f}"
+    v = [fb[key(r)]["fb_serial"] / (r["ms_prev"] + fb[key(r)]["ms_bwd_scan"]) for r in e25 if r["N"] == N]
+    macros[f"AlifFb{W}Med"] = f"{st.median(v):.1f}"; macros[f"AlifFb{W}Min"] = f"{min(v):.1f}"; macros[f"AlifFb{W}Max"] = f"{max(v):.1f}"
+    v = [r["ms_bwd_serial"] / r["ms_bwd_scan"] for r in e25b if r["N"] == N]
+    macros[f"AlifBwd{W}Min"] = f"{min(v):.1f}"; macros[f"AlifBwd{W}Max"] = f"{max(v):.1f}"
+macros["AlifCells"] = str(len(e25)); macros["AlifMaxFlip"] = sci(max(max(r["flips_prev"], r["flips_warm4"]) for r in e25))
+macros["AlifBwdErr"] = sci(max(max(r["bwd_rel_err_v"], r["bwd_rel_err_w"]) for r in e25b))
 
 with open(os.path.join(OUT, "numbers.tex"), "w") as f:
     f.write("% generated by make_numbers.py -- do not edit\n")

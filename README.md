@@ -17,14 +17,24 @@ on average. The resulting forward pass is exact, non-iterative, and its depth do
 | `lifscan/triton_lif.py` | CUDA kernels (Triton): fused serial baselines (plain and time-tiled), `scan_forward_v3` (two-level: envelope bound + pruning + capacity-K maps + overflow fallback + optional repair), `scan_forward_v4` (three-level composition), tiled backward scan, and the autograd layer `lif_tuned` |
 | `lifscan/triton_soft.py` | Exact two-level scan for soft-reset (subtractive) LIF neurons, tiled serial baseline, FFT adjoint |
 | `lifscan/triton_affine.py` | Exact scan for affine reset `u <- gamma*v + delta` (`0 <= gamma <= 1`; contains hard and soft reset), serial baseline, autograd layer `lif_affine` (gradients w.r.t. inputs, `u0`, `beta`, `gamma`, `delta`) |
+| `lifscan/triton_alif.py` | Exact scan for adaptive-threshold (ALIF) neurons on a predicted adaptation box (verified carry, serial fallback, replay/repair), serial baselines, backward pass as two affine scans, autograd layer `alif` |
 | `lifscan/shdnet.py` | SHD/SSC data loading and the 700-256-256-20 feed-forward LIF network |
-| `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py`, `test_affine.py` (GPU) |
-| `experiments/` | All experiment scripts (E1–E22, see below) and the GPU job queues |
+| `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py`, `test_affine.py`, `test_alif.py`, `test_alif_grad.py` (GPU) |
+| `experiments/` | All experiment scripts (E1–E26, see below) and the GPU job queues |
 | `results/` | Raw JSON results (and server logs in `results/logs/`) behind every number in the paper |
 | `paper/` | LaTeX source; `make_numbers.py` regenerates every quoted number from `results/`, `figs/make_figs.py` every figure |
 
 Superseded intermediate results are kept for transparency: `e4_*` (Apple M4 prototype timings), `e6_*` (first GPU
 benchmark with an untuned serial baseline) and `e6b_*` (fair benchmark before envelope pruning). The paper uses `e6c_*`.
+
+## Correction in v2 (serial baselines)
+
+The first arXiv version tuned the serial kernels over four tilings only, and its serial backward kernel did not prefetch
+inputs. `e26*` show that full grids and a prefetching backward make the serial baselines up to 2.5x (forward) and 2.4x
+(backward) faster, with bit-identical outputs. All speed results were re-run on one RTX 5090 with full grids on both
+sides (`e6d`, `e9d`, `e11`, `e7c_timing_node5`, `e14`, `e15t`, `e17`-`e21`, `e25d/e`); the headline speedups drop from
+7.8x (forward) / 31x (forward+backward) to 5.7x / 16x.  The superseded results (`e6c_*`, `e9_*`, `e7c_timing_node2`,
+`e25_alif_*`) are kept for transparency.  The library's serial defaults and dispatch thresholds now follow the new data.
 
 ## Reproducing
 
@@ -50,6 +60,14 @@ DATASET=ssc python3 experiments/e7_shd.py scan 1024 0 20 64   # SSC (also needs 
 python3 experiments/e9_threelevel.py 0.9                      # long sequences, two- vs three-level
 python3 experiments/e11_auto.py                               # automatic dispatch
 python3 experiments/e12_alif_exact.py                         # ALIF post-reset maps (exact, CPU)
+python3 experiments/e26_serial_bwd_tune.py      # tuning of the serial baselines (backward) -- see the note below
+python3 experiments/e26b_serial_fwd_tune.py     # ... and forward
+python3 experiments/e6d_gpu_full.py 0.9         # best-vs-best benchmark with full grids on both sides (supersedes e6b/e6c)
+python3 experiments/e9d_long_full.py 0.9        # long sequences, full grids (supersedes e9)
+python3 experiments/e24_alif_killtest.py        # ALIF: exact chunk-map sizes vs entry box (CPU)
+python3 experiments/e25d_alif_fwd.py results/e25d_alif_fwd.json                                # ALIF scan, forward
+python3 experiments/e25e_alif_fb.py results/e25d_alif_fwd.json results/e25e_alif_fb.json      # ALIF, backward + totals
+python3 experiments/allen_fetch_ids.py results/allen_cells_78.json && python3 experiments/e15t_allen_timing.py
 python3 experiments/e23_reset_lower_bounds.py  # Theorem 7(c): exponential lower bounds for order-reversing / expanding resets (exact, CPU)
 python3 experiments/e20_fpt_psn.py        # head-to-head: FPT (re-implemented from the official code) and PSN vs exact soft scan
 python3 experiments/e21_chunk_restart.py  # head-to-head: spike-by-spike chunk restarts vs map scan, vs firing rate

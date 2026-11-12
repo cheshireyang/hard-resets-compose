@@ -1,0 +1,72 @@
+lsnn   m=0.5 N=   16 T=65536: bwd serial    4.69 scan    0.23 (20.09x, err 2e-07) | fwd+bwd serial    6.84 scan    0.75 ( 9.08x) dispatch  9.08x
+lsnn   m=0.5 N=   16 T=262144: bwd serial   32.81 scan    0.72 (45.38x, err 2e-07) | fwd+bwd serial   41.26 scan    2.10 (19.63x) dispatch 19.63x
+lsnn   m=0.5 N=  128 T=65536: bwd serial    8.44 scan    0.60 (14.00x, err 2e-07) | fwd+bwd serial   11.21 scan    1.82 ( 6.15x) dispatch  6.15x
+lsnn   m=0.5 N=  128 T=262144: bwd serial   34.14 scan    2.50 (13.68x, err 2e-07) | fwd+bwd serial   45.12 scan    7.27 ( 6.21x) dispatch  6.21x
+lsnn   m=0.5 N= 1024 T=65536: bwd serial    8.84 scan    3.89 ( 2.27x, err 2e-07) | fwd+bwd serial   11.78 scan   13.23 ( 0.89x) dispatch  1.72x
+lsnn   m=0.5 N= 1024 T=262144: bwd serial   35.19 scan   16.18 ( 2.17x, err 2e-07) | fwd+bwd serial   46.90 scan   58.79 ( 0.80x) dispatch  1.68x
+lsnn   m=1.0 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.03x, err 2e-07) | fwd+bwd serial    6.85 scan    0.91 ( 7.51x) dispatch  7.51x
+lsnn   m=1.0 N=   16 T=262144: bwd serial   33.05 scan    0.72 (45.71x, err 2e-07) | fwd+bwd serial   41.54 scan    2.62 (15.83x) dispatch 15.83x
+lsnn   m=1.0 N=  128 T=65536: bwd serial    8.45 scan    0.60 (14.03x, err 2e-07) | fwd+bwd serial   11.24 scan    1.99 ( 5.65x) dispatch  5.65x
+lsnn   m=1.0 N=  128 T=262144: bwd serial   34.31 scan    2.50 (13.71x, err 2e-07) | fwd+bwd serial   45.29 scan    8.01 ( 5.65x) dispatch  5.65x
+lsnn   m=1.0 N= 1024 T=65536: bwd serial    8.82 scan    3.90 ( 2.26x, err 2e-07) | fwd+bwd serial   11.76 scan   13.32 ( 0.88x) dispatch  1.72x
+lsnn   m=1.0 N= 1024 T=262144: bwd serial   35.11 scan   16.22 ( 2.16x, err 2e-07) | fwd+bwd serial   46.83 scan   60.01 ( 0.78x) dispatch  1.68x
+lsnn   m=2.0 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.11x, err 2e-07) | fwd+bwd serial    6.85 scan    1.26 ( 5.45x) dispatch  5.45x
+lsnn   m=2.0 N=   16 T=262144: bwd serial   33.07 scan    0.72 (45.88x, err 3e-07) | fwd+bwd serial   41.55 scan    3.83 (10.84x) dispatch 10.84x
+lsnn   m=2.0 N=  128 T=65536: bwd serial    8.45 scan    0.60 (14.07x, err 2e-07) | fwd+bwd serial   11.24 scan    2.53 ( 4.44x) dispatch  4.44x
+lsnn   m=2.0 N=  128 T=262144: bwd serial   34.29 scan    2.50 (13.71x, err 2e-07) | fwd+bwd serial   45.33 scan    9.47 ( 4.79x) dispatch  4.79x
+lsnn   m=2.0 N= 1024 T=65536: bwd serial    8.82 scan    3.90 ( 2.26x, err 2e-07) | fwd+bwd serial   11.77 scan   12.91 ( 0.91x) dispatch  1.72x
+lsnn   m=2.0 N= 1024 T=262144: bwd serial   35.11 scan   16.23 ( 2.16x, err 2e-07) | fwd+bwd serial   46.82 scan   52.32 ( 0.89x) dispatch  1.68x
+glif2  m=0.5 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.08x, err 3e-07) | fwd+bwd serial    6.85 scan    0.66 (10.43x) dispatch 10.43x
+glif2  m=0.5 N=   16 T=262144: bwd serial   33.06 scan    0.72 (45.87x, err 3e-07) | fwd+bwd serial   41.55 scan    1.75 (23.80x) dispatch 23.80x
+glif2  m=0.5 N=  128 T=65536: bwd serial    8.44 scan    0.60 (14.04x, err 3e-07) | fwd+bwd serial   11.23 scan    1.71 ( 6.58x) dispatch  6.58x
+glif2  m=0.5 N=  128 T=262144: bwd serial   34.30 scan    2.50 (13.71x, err 3e-07) | fwd+bwd serial   45.33 scan    6.75 ( 6.72x) dispatch  6.72x
+glif2  m=0.5 N= 1024 T=65536: bwd serial    8.82 scan    3.90 ( 2.26x, err 3e-07) | fwd+bwd serial   11.76 scan   11.87 ( 0.99x) dispatch  1.72x
+glif2  m=0.5 N= 1024 T=262144: bwd serial   35.10 scan   16.23 ( 2.16x, err 3e-07) | fwd+bwd serial   46.81 scan   55.18 ( 0.85x) dispatch  1.68x
+glif2  m=1.0 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.15x, err 3e-07) | fwd+bwd serial    6.86 scan    0.71 ( 9.67x) dispatch  9.67x
+glif2  m=1.0 N=   16 T=262144: bwd serial   33.07 scan    0.72 (45.75x, err 3e-07) | fwd+bwd serial   41.56 scan    1.92 (21.68x) dispatch 21.68x
+glif2  m=1.0 N=  128 T=65536: bwd serial    8.44 scan    0.60 (13.99x, err 3e-07) | fwd+bwd serial   11.22 scan    1.73 ( 6.49x) dispatch  6.49x
+glif2  m=1.0 N=  128 T=262144: bwd serial   34.31 scan    2.50 (13.74x, err 3e-07) | fwd+bwd serial   45.35 scan    6.88 ( 6.59x) dispatch  6.59x
+glif2  m=1.0 N= 1024 T=65536: bwd serial    8.82 scan    3.90 ( 2.26x, err 3e-07) | fwd+bwd serial   11.76 scan   12.57 ( 0.94x) dispatch  1.72x
+glif2  m=1.0 N= 1024 T=262144: bwd serial   35.10 scan   16.21 ( 2.17x, err 3e-07) | fwd+bwd serial   46.82 scan   57.51 ( 0.81x) dispatch  1.68x
+glif2  m=2.0 N=   16 T=65536: bwd serial    4.72 scan    0.24 (20.04x, err 2e-07) | fwd+bwd serial    6.85 scan    0.87 ( 7.92x) dispatch  7.92x
+glif2  m=2.0 N=   16 T=262144: bwd serial   33.06 scan    0.72 (45.75x, err 3e-07) | fwd+bwd serial   41.55 scan    2.50 (16.61x) dispatch 16.61x
+glif2  m=2.0 N=  128 T=65536: bwd serial    8.44 scan    0.60 (14.08x, err 3e-07) | fwd+bwd serial   11.21 scan    1.96 ( 5.72x) dispatch  5.72x
+glif2  m=2.0 N=  128 T=262144: bwd serial   34.29 scan    2.50 (13.70x, err 3e-07) | fwd+bwd serial   45.33 scan    7.90 ( 5.74x) dispatch  5.74x
+glif2  m=2.0 N= 1024 T=65536: bwd serial    8.81 scan    3.90 ( 2.26x, err 3e-07) | fwd+bwd serial   11.76 scan   13.50 ( 0.87x) dispatch  1.72x
+glif2  m=2.0 N= 1024 T=262144: bwd serial   35.11 scan   16.23 ( 2.16x, err 3e-07) | fwd+bwd serial   46.84 scan   59.83 ( 0.78x) dispatch  1.68x
+appD-a m=0.5 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.05x, err 1e-07) | fwd+bwd serial    6.85 scan    0.66 (10.40x) dispatch 10.40x
+appD-a m=0.5 N=   16 T=262144: bwd serial   33.05 scan    0.72 (45.86x, err 2e-07) | fwd+bwd serial   41.53 scan    1.79 (23.24x) dispatch 23.24x
+appD-a m=0.5 N=  128 T=65536: bwd serial    8.45 scan    0.60 (13.97x, err 2e-07) | fwd+bwd serial   11.23 scan    1.72 ( 6.53x) dispatch  6.53x
+appD-a m=0.5 N=  128 T=262144: bwd serial   34.31 scan    2.50 (13.72x, err 1e-07) | fwd+bwd serial   45.35 scan    6.79 ( 6.68x) dispatch  6.68x
+appD-a m=0.5 N= 1024 T=65536: bwd serial    8.82 scan    3.90 ( 2.26x, err 2e-07) | fwd+bwd serial   11.76 scan   12.18 ( 0.96x) dispatch  1.72x
+appD-a m=0.5 N= 1024 T=262144: bwd serial   35.11 scan   16.23 ( 2.16x, err 2e-07) | fwd+bwd serial   46.83 scan   56.36 ( 0.83x) dispatch  1.68x
+appD-a m=1.0 N=   16 T=65536: bwd serial    4.71 scan    0.24 (20.04x, err 1e-07) | fwd+bwd serial    6.85 scan    0.75 ( 9.12x) dispatch  9.12x
+appD-a m=1.0 N=   16 T=262144: bwd serial   33.04 scan    0.72 (45.85x, err 2e-07) | fwd+bwd serial   41.53 scan    1.98 (21.01x) dispatch 21.01x
+appD-a m=1.0 N=  128 T=65536: bwd serial    8.45 scan    0.60 (14.02x, err 1e-07) | fwd+bwd serial   11.23 scan    1.75 ( 6.41x) dispatch  6.41x
+appD-a m=1.0 N=  128 T=262144: bwd serial   34.28 scan    2.51 (13.68x, err 2e-07) | fwd+bwd serial   45.32 scan    7.00 ( 6.47x) dispatch  6.47x
+appD-a m=1.0 N= 1024 T=65536: bwd serial    8.81 scan    3.90 ( 2.26x, err 2e-07) | fwd+bwd serial   11.76 scan   12.56 ( 0.94x) dispatch  1.72x
+appD-a m=1.0 N= 1024 T=262144: bwd serial   35.10 scan   16.22 ( 2.16x, err 2e-07) | fwd+bwd serial   46.84 scan   57.36 ( 0.82x) dispatch  1.68x
+appD-a m=2.0 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.07x, err 2e-07) | fwd+bwd serial    6.85 scan    0.80 ( 8.58x) dispatch  8.58x
+appD-a m=2.0 N=   16 T=262144: bwd serial   33.06 scan    0.72 (45.86x, err 1e-07) | fwd+bwd serial   41.55 scan    2.44 (17.04x) dispatch 17.04x
+appD-a m=2.0 N=  128 T=65536: bwd serial    8.45 scan    0.60 (14.03x, err 1e-07) | fwd+bwd serial   11.24 scan    1.91 ( 5.88x) dispatch  5.88x
+appD-a m=2.0 N=  128 T=262144: bwd serial   34.30 scan    2.50 (13.70x, err 2e-07) | fwd+bwd serial   45.35 scan    7.68 ( 5.90x) dispatch  5.90x
+appD-a m=2.0 N= 1024 T=65536: bwd serial    8.81 scan    3.91 ( 2.25x, err 2e-07) | fwd+bwd serial   11.76 scan   13.12 ( 0.90x) dispatch  1.71x
+appD-a m=2.0 N= 1024 T=262144: bwd serial   35.13 scan   16.22 ( 2.17x, err 2e-07) | fwd+bwd serial   46.87 scan   59.10 ( 0.79x) dispatch  1.68x
+appD-b m=0.5 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.05x, err 2e-07) | fwd+bwd serial    6.85 scan    0.68 (10.05x) dispatch 10.05x
+appD-b m=0.5 N=   16 T=262144: bwd serial   33.05 scan    0.72 (45.78x, err 3e-07) | fwd+bwd serial   41.54 scan    1.90 (21.84x) dispatch 21.84x
+appD-b m=0.5 N=  128 T=65536: bwd serial    8.45 scan    0.60 (14.04x, err 2e-07) | fwd+bwd serial   11.23 scan    1.79 ( 6.28x) dispatch  6.28x
+appD-b m=0.5 N=  128 T=262144: bwd serial   34.28 scan    2.51 (13.68x, err 3e-07) | fwd+bwd serial   45.31 scan    7.02 ( 6.45x) dispatch  6.45x
+appD-b m=0.5 N= 1024 T=65536: bwd serial    8.81 scan    3.90 ( 2.26x, err 4e-07) | fwd+bwd serial   11.75 scan   12.81 ( 0.92x) dispatch  1.72x
+appD-b m=0.5 N= 1024 T=262144: bwd serial   35.11 scan   16.22 ( 2.16x, err 3e-07) | fwd+bwd serial   46.82 scan   57.81 ( 0.81x) dispatch  1.68x
+appD-b m=1.0 N=   16 T=65536: bwd serial    4.71 scan    0.24 (20.04x, err 3e-07) | fwd+bwd serial    6.85 scan    0.83 ( 8.27x) dispatch  8.27x
+appD-b m=1.0 N=   16 T=262144: bwd serial   33.07 scan    0.72 (45.87x, err 3e-07) | fwd+bwd serial   41.54 scan    2.47 (16.80x) dispatch 16.80x
+appD-b m=1.0 N=  128 T=65536: bwd serial    8.45 scan    0.60 (13.97x, err 3e-07) | fwd+bwd serial   11.23 scan    1.93 ( 5.83x) dispatch  5.83x
+appD-b m=1.0 N=  128 T=262144: bwd serial   34.29 scan    2.51 (13.68x, err 3e-07) | fwd+bwd serial   45.32 scan    7.62 ( 5.95x) dispatch  5.95x
+appD-b m=1.0 N= 1024 T=65536: bwd serial    8.81 scan    3.90 ( 2.26x, err 4e-07) | fwd+bwd serial   11.76 scan   13.12 ( 0.90x) dispatch  1.72x
+appD-b m=1.0 N= 1024 T=262144: bwd serial   35.10 scan   16.23 ( 2.16x, err 4e-07) | fwd+bwd serial   46.82 scan   59.66 ( 0.78x) dispatch  1.67x
+appD-b m=2.0 N=   16 T=65536: bwd serial    4.71 scan    0.23 (20.08x, err 4e-07) | fwd+bwd serial    6.86 scan    1.43 ( 4.78x) dispatch  4.78x
+appD-b m=2.0 N=   16 T=262144: bwd serial   33.06 scan    0.72 (45.70x, err 3e-07) | fwd+bwd serial   41.54 scan    4.58 ( 9.08x) dispatch  9.08x
+appD-b m=2.0 N=  128 T=65536: bwd serial    8.44 scan    0.60 (14.06x, err 3e-07) | fwd+bwd serial   11.23 scan    2.59 ( 4.34x) dispatch  4.34x
+appD-b m=2.0 N=  128 T=262144: bwd serial   34.30 scan    2.50 (13.71x, err 3e-07) | fwd+bwd serial   45.34 scan   10.51 ( 4.32x) dispatch  4.32x
+appD-b m=2.0 N= 1024 T=65536: bwd serial    8.81 scan    3.91 ( 2.26x, err 3e-07) | fwd+bwd serial   11.75 scan   13.44 ( 0.87x) dispatch  1.72x
+appD-b m=2.0 N= 1024 T=262144: bwd serial   35.10 scan   16.24 ( 2.16x, err 3e-07) | fwd+bwd serial   46.81 scan   55.00 ( 0.85x) dispatch  1.67x
