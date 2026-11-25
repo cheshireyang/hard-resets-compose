@@ -1,0 +1,11 @@
+\begin{tabular}{lrrrrrrr}
+\toprule
+mode & spikes exact & $u$ bit-exact & med.\ $\max|\Delta u|$ & med.\ rel.\ $\Delta g$ & repair rounds & fwd (ms) & e2e iter (ms)$^\dagger$\\
+\midrule
+serial (tuned) & 69/69 & 69/69 & 0 & 0 & -- & 1.65 (1.0$\times$) & 7.52 [7.47]\\
+scan, no repair & 69/69 & 0/69 & $2.4\times10^{-7}$ & $7.7\times10^{-8}$ & 0 & 0.55 (3.0$\times$) & 4.62 (1.66$\times$) [1.17, 6.17$\times$]\\
+scan, 1 repair & 69/69 & 0/69 & $6.0\times10^{-8}$ & $7.0\times10^{-8}$ & 1 & 0.63 (2.6$\times$) & 6.00 (1.28$\times$)\\
+scan, 2 repairs & 69/69 & 0/69 & $6.0\times10^{-8}$ & $7.0\times10^{-8}$ & 2 & 0.67 (2.5$\times$) & 6.59 (1.20$\times$)\\
+scan, bit-exact $u$ & 69/69 & 69/69 & 0 & $1.9\times10^{-9}$ & 134 (max 173) & 7.69 (0.22$\times$) & 12.21 (0.64$\times$)\\
+\bottomrule
+\end{tabular}

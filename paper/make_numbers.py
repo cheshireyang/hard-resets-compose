@@ -1,6 +1,6 @@
 """Single producer of every experimental number quoted in main.tex.
 Reads results/*.json, writes paper/numbers.tex and paper/tab_*.tex.  Fails loudly on missing input."""
-import glob, json, os, statistics as st
+import glob, json, math as _m, os, statistics as st
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(ROOT, "results")
@@ -215,6 +215,22 @@ open(os.path.join(OUT, "tab_alif_exact.tex"), "w").write("\n".join(lines) + "\n"
 macros["AlifMonoChecks"] = f"{e12['mono_checks']:,}".replace(",", "{,}")
 macros["AlifMonoViol"] = str(e12["mono_violations"])
 
+# E33: ALIF spike-time dominance (Theorem alifdom), exact
+e33 = load("e33_alif_dominance.json")
+assert e33["theorem"]["violations"] == 0, e33["theorem"]
+assert all(w["pieces"] == w["bound"] for w in e33["witnesses"])
+assert e33["dropped"]["upward_reset_allowed"]["tests"] == e33["theorem"]["tests"] == e33["dropped"]["rho_up_to_2"]["tests"]
+macros["AlifDomTests"] = f"{e33['theorem']['tests']:,}".replace(",", "{,}")
+macros["AlifDomUpViol"] = str(e33["dropped"]["upward_reset_allowed"]["violations"])
+macros["AlifDomRhoViol"] = f"{e33['dropped']['rho_up_to_2']['violations']:,}".replace(",", "{,}")
+_s = {r["L"]: r["max_found"] for r in e33["search"]}
+macros["AlifDomSearch"] = f"{_s[6]}, {_s[7]} and {_s[8]}"
+_al = e33["allen"]
+macros["AlifDomAllenCells"] = str(_al["cells"])
+macros["AlifDomAllenMedian"] = f"{_al['median_pA']:.0f}".replace("-", "{-}")
+macros["AlifDomAllenNeedPos"] = str(_al["cells_needing_positive_stimulus"])
+macros["AlifDomAllenPosUr"] = str(_al["cells_positive_ur"])
+
 # E13: reset-rule classes
 e13 = load("e13_reset_classes.json")
 rules = ["hard (r=0)", "soft (r=v-1)", "proportional (r=v/2), I>=0", "proportional (r=v/2), any I", "affine (r=v/2-1/2)", "decreasing (r=-v/2)"]
@@ -349,6 +365,11 @@ if len(big) >= 20:
         lines += ["\\bottomrule", "\\end{tabular}"]
         open(os.path.join(OUT, f"tab_allen_cells{ci + 1}.tex"), "w").write("\n".join(lines) + "\n")
     macros["BigChunks"] = str(len(chunks))
+    # Firing cells of the 78-cell cohort where deterministic model F1 exceeds repeat-to-repeat reliability reference
+    _big_fir = [r for r in big if _m.isfinite(r["models"]["hard"]["beta"]) and r["rate_hz"] > 0]
+    macros["RelExceedCells"] = str(len(_big_fir))
+    macros["RelExceedHard"] = str(sum(r["models"]["hard"]["f1_test"] > r["reliability"] for r in _big_fir))
+    macros["RelExceedSoft"] = str(sum(r["models"]["soft"]["f1_test"] > r["reliability"] for r in _big_fir))
 else:
     print("WARNING: balanced Allen run incomplete:", len(big))
 
@@ -497,7 +518,8 @@ evc = lambda rows: [r for r in rows if r["ev_repeat"] > 0.1]
 macros["GlifEvCells"] = str(len(evc(e27))); macros["GlifEvCellsSub"] = str(len(evc(sub)))
 med = lambda rows, k, m: st.median(r["metrics"][k][m] for r in rows)
 lines = ["\\begin{tabular}{lrrrrrr}", "\\toprule",
-         " & \\multicolumn{3}{c}{all cells with GLIF 1, 3} & \\multicolumn{3}{c}{cells with GLIF 2, 4, 5}\\\\",
+         f" & \\multicolumn{{3}}{{c}}{{all cells with GLIF 1, 3 ($n={len(e27)}$; EV: {len(evc(e27))})}} & "
+         f"\\multicolumn{{3}}{{c}}{{paired with GLIF 2, 4, 5 ($n={len(sub)}$; EV: {len(evc(sub))})}}\\\\",
          "model & F1$_{4}$ & F1$_{10}$ & EV ratio & F1$_{4}$ & F1$_{10}$ & EV ratio\\\\", "\\midrule"]
 NM = (("hard", "LIF, hard reset (ours)"), ("soft", "LIF, soft reset (ours)"), ("alif", "ALIF (ours)"), ("glif1", "GLIF 1 (Allen)"),
       ("glif2", "GLIF 2 (Allen)"), ("glif3", "GLIF 3 (Allen)"), ("glif4", "GLIF 4 (Allen)"), ("glif5", "GLIF 5 (Allen)"))
@@ -508,14 +530,26 @@ for k, nm in NM:
     lines.append(f"{nm} & {cA} & {cB}\\\\")
 lines += ["\\bottomrule", "\\end{tabular}"]
 open(os.path.join(OUT, "tab_glif.tex"), "w").write("\n".join(lines) + "\n")
+import numpy as _np
+def _fmt_signed(v):
+    return f"{v:+.3f}".replace("-", "{-}")
 def cmp(rows, a_, b_, m, tag):
     x = [r["metrics"][a_][m] for r in rows]; y = [r["metrics"][b_][m] for r in rows]
     pv = wilcoxon(x, y).pvalue
     macros[f"{tag}Wins"] = str(sum(u > v for u, v in zip(x, y))); macros[f"{tag}N"] = str(len(rows)); macros[f"{tag}P"] = sci(pv) if pv < 1e-3 else f"{pv:.2g}"
+    diffs = _np.array([u - v for u, v in zip(x, y)], dtype=_np.float64)
+    rng = _np.random.default_rng(0)
+    idx = rng.integers(0, len(diffs), size=(10000, len(diffs)))
+    bmed = _np.median(diffs[idx], axis=1)
+    lo, hi = float(_np.quantile(bmed, 0.025)), float(_np.quantile(bmed, 0.975))
+    macros[f"{tag}Med"] = _fmt_signed(float(_np.median(diffs)))
+    macros[f"{tag}Lo"] = _fmt_signed(lo)
+    macros[f"{tag}Hi"] = _fmt_signed(hi)
 cmp(e27, "alif", "glif1", "f1_4", "CmpAlifGOneF"); cmp(sub, "alif", "glif5", "f1_4", "CmpAlifGFiveF"); cmp(sub, "alif", "glif5", "f1_10", "CmpAlifGFiveFTen")
 cmp(evc(sub), "alif", "glif5", "ev_ratio", "CmpAlifGFiveEv"); cmp(evc(e27), "alif", "glif1", "ev_ratio", "CmpAlifGOneEv")
 cmp(e27, "hard", "glif1", "f1_4", "CmpHardGOneF"); cmp(evc(e27), "hard", "glif1", "ev_ratio", "CmpHardGOneEv"); cmp(sub, "hard", "glif5", "f1_10", "CmpHardGFiveFTen")
 cmp(evc(e27), "alif", "glif3", "ev_ratio", "CmpAlifGThreeEv")
+cmp(e27, "alif", "hard", "f1_4", "CmpAlifHardF"); cmp(e27, "soft", "hard", "f1_4", "CmpSoftHardF")
 # per dendrite type: ALIF vs the best official level of each cell (F1 at 4 ms and EV ratio)
 for d, tag in (("spiny", "Spiny"), ("aspiny", "Aspiny")):
     rr = [r for r in e27 if r["dendrite"] == d]
@@ -564,11 +598,21 @@ def _ld(tag):
         for r in json.load(open(f_)): d[r["cell"]["specimen"]] = r
     return d
 _a, _b = _ld("scan"), _ld("serial")
-_c = [k for k in _a if k in _b and not _a[k].get("failed") and not _b[k].get("failed")]
+_c = sorted(k for k in _a if k in _b and not _a[k].get("failed") and not _b[k].get("failed"))
 _fa = [_a[k]["f1_test"] for k in _c]; _fb = [_b[k]["f1_test"] for k in _c]
 macros["EqCells"] = str(len(_c)); macros["EqFScan"] = f"{st.mean(_fa):.3f}"; macros["EqFSerial"] = f"{st.mean(_fb):.3f}"
 macros["EqP"] = f"{wilcoxon(_fa, _fb).pvalue:.2f}"
 macros["EqDiffMed"] = f"{st.median(abs(x - y) for x, y in zip(_fa, _fb)):.3f}"
+_eqd = _np.array([x - y for x, y in zip(_fa, _fb)], dtype=_np.float64)
+_eq_rng = _np.random.default_rng(0)
+_eq_idx = _eq_rng.integers(0, len(_eqd), size=(10000, len(_eqd)))
+_eq_bm = _eqd[_eq_idx].mean(axis=1)
+macros["EqMeanDiff"] = f"{float(_eqd.mean()):+.5f}".replace("-", "{-}")
+macros["EqMeanCiLo"] = f"{float(_np.quantile(_eq_bm, 0.025)):+.4f}".replace("-", "{-}")
+macros["EqMeanCiHi"] = f"{float(_np.quantile(_eq_bm, 0.975)):+.4f}".replace("-", "{-}")
+_eq_big = [k for k in _c if abs(_a[k]["f1_test"] - _b[k]["f1_test"]) > 0.05]
+macros["EqBigDiff"] = str(len(_eq_big))
+macros["EqBigDiffInit"] = str(sum(_a[k].get("init") != _b[k].get("init") for k in _eq_big))
 
 # E30/E30b: typical number of records (Theorem typical)
 e30 = load("e30_typical_pieces.json")
@@ -582,6 +626,385 @@ f4096 = [r for r in e30["rows"] if r["law"] == "gauss" and r["L"] == 4096][0]["f
 e30b = load("e30b_persistence.json")
 zb = [abs(e30b["b"]["pred"][k] - e30b["b"]["sim"][k]) for k in e30b["b"]["pred"]]
 macros["TypSkewMaxDiff"] = f"{max(zb):.2f}"
+
+# E20b: FPT sanity check (hard-threshold fixed point, oscillation of the official rounds)
+e20b = {r["lam"]: r for r in load("e20b_fpt_sanity.json")}
+assert e20b[0.5]["hard_final_err"] == 0 and e20b[0.9]["hard_final_err"] == 0
+macros["FptHardRoundsHalf"] = str(e20b[0.5]["hard_rounds_to_fixed_point"]); macros["FptHardRoundsNine"] = str(e20b[0.9]["hard_rounds_to_fixed_point"])
+_h = e20b[0.9]["hard_err_first10"]
+macros["FptOscA"] = f"{100 * max(_h[0::2][:4]):.0f}"; macros["FptOscB"] = f"{100 * max(_h[1::2][:4]):.0f}"
+_rr = e20b[0.9]["official_rate_per_round"]
+_pc = lambda v: (f"{100 * v:.0f}" if v >= 0.01 else f"{100 * v:.2f}") + r"\%"
+macros["FptRoundRates"] = f"{_pc(_rr[0])}, {_pc(_rr[1])} and {_pc(_rr[2])}"
+macros["FptExactRateCpu"] = _pc(e20b[0.9]["rate_exact"])
+macros["FptExtTenErr"] = f"{100 * e20b[0.9]['extended_det_err']['10']:.0f}"; macros["FptExtFiftyErr"] = f"{100 * e20b[0.9]['extended_det_err']['50']:.0f}"
+macros["FptHalfDetErrCpu"] = f"{100 * e20b[0.5]['official_det_err']:.1f}"
+
+# E30c: in-domain size (Theorem indomain) vs measured, envelope windows
+e30c = load("e30c_indomain.json")["rows"]
+for r in e30c:
+    assert abs(r["e1c_repro"] - r["e1c"]) < 1e-9, r          # direct record count == map builder (E1c)
+pos = [r for r in e30c if r["mu"] > 0]
+macros["InDomGapPos"] = f"{max(r['U_bound'] - r['measured'] for r in pos):.2f}"
+macros["InDomGapOne"] = f"{max(abs(r['U_bound'] - r['measured']) for r in pos if r['beta'] == 1.0 and r['L'] >= 64):.2f}"
+macros["InDomZeroBound"] = f"{[r for r in e30c if r['beta'] == 1.0 and r['mu'] == 0 and r['L'] == 4096][0]['U_bound']:.0f}"
+macros["InDomCells"] = str(len(e30c))
+macros["InDomMaxZ"] = f"{max(r['z_excess'] for r in e30c):.1f}"
+_rz = [(r["reversal_mc"] - r["measured"]) / (r["reversal_se"] ** 2 + r["measured_se"] ** 2) ** 0.5 for r in e30c]
+macros["InDomRevZMean"] = f"{st.mean(_rz):.2f}"; macros["InDomRevZSd"] = f"{st.pstdev(_rz):.2f}"
+macros["InDomChunksMin"] = f"{min(r['n_chunks'] for r in e30c):,}".replace(",", "{,}")
+lines = [r"\begin{tabular}{llrrrrrrr}", r"\toprule",
+         r" & & & \multicolumn{2}{c}{$L=16$} & \multicolumn{2}{c}{$L=256$} & \multicolumn{2}{c}{$L=4096$}\\",
+         r"\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}",
+         r"$\beta$ & $\mu$ & $\bar w$ & meas. & bound & meas. & bound & meas. & bound\\", r"\midrule"]
+for beta in (0.9, 0.99, 0.999, 1.0):
+    for mu in (0.15, 0.0, -0.1):
+        rr = {r["L"]: r for r in e30c if r["beta"] == beta and r["mu"] == mu}
+        cells = " & ".join(f"{rr[L]['measured']:.2f} & {rr[L]['U_bound']:.2f}" for L in (16, 256, 4096))
+        lines.append(f"{beta:g} & {mu:g} & {rr[256]['w_mean']:.1f} & {cells}\\\\")
+lines += [r"\bottomrule", r"\end{tabular}"]
+open(os.path.join(OUT, "tab_indomain.tex"), "w").write("\n".join(lines) + "\n")
+
+# E34: O(n_F + n_g) linear-time composition and O(T log T) exact tree scan
+if os.path.exists(os.path.join(RES, "e34_linear_compose.json")):
+    e34 = load("e34_linear_compose.json")
+    assert e34["exact"]["failures"] == 0
+    macros["LinCompTrials"] = f"{e34['exact']['trials']:,}".replace(",", "{,}")
+    sc = e34["single_compose"]
+    macros["LinCompOpsPerN"] = f"{sc[-1]['ops_linear_per_n']:.2f}"
+    macros["LinCompOldSmall"] = f"{sc[0]['ops_old_per_n']:.2f}"
+    macros["LinCompOldBig"] = f"{sc[-1]['ops_old_per_n']:.2f}"
+    macros["LinCompOpRatio"] = f"{sc[-1]['op_ratio']:.2f}"
+    tr = e34["tree_scan"]
+    macros["LinTreeUp"] = f"{tr[-1]['ops_up_per_TlogT']:.2f}"
+    macros["LinTreeDown"] = f"{tr[-1]['ops_down_per_T']:.2f}"
+
+# E35: ALIF Psi_0 tightness (all L) and rigorous Jacobi dominance-envelope scan
+if os.path.exists(os.path.join(RES, "e35_alif_tight_and_envelope.json")):
+    e35 = load("e35_alif_tight_and_envelope.json")
+    trows = e35["tightness"]["rows"]
+    assert all(r["pieces"] == r["bound"] for r in trows)
+    macros["AlifTightLmax"] = str(trows[-1]["L"])
+    macros["AlifTightMaxPcs"] = str(trows[-1]["pieces"])
+    assert e35["exact_envelope"]["violations"] == 0
+    macros["AlifEnvExactN"] = f"{e35['exact_envelope']['tests']:,}".replace(",", "{,}")
+    bm = e35["benchmark"]
+    assert bm["total_violations"] == 0
+    macros["AlifEnvChunks"] = str(bm["total_chunks"])
+    brows = bm["rows"]
+    macros["AlifEnvShrinkMin"] = f"{min(r['width_shrink'] for r in brows):.0f}"
+    macros["AlifEnvShrinkMax"] = f"{max(r['width_shrink'] for r in brows):.0f}"
+    macros["AlifEnvPcsShrinkMin"] = f"{min(r['piece_shrink'] for r in brows):.1f}"
+    macros["AlifEnvPcsShrinkMax"] = f"{max(r['piece_shrink'] for r in brows):.1f}"
+    macros["AlifEnvMaxPinned"] = str(max(r["exact_pinned"] for r in brows))
+    lines = [r"\begin{tabular}{llrrrrrrr}", r"\toprule",
+             r"family & $m_{\rm free}$ & rate & naive $w/q$ & env.\ $w/q$ & pinned & naive pcs & env.\ pcs & oracle $0.1q$\\",
+             r"\midrule"]
+    for r in brows:
+        lines.append(
+            f"\\texttt{{{r['name']}}} & {r['m_free']:g} & {100*r['rate']:.1f}\\% & "
+            f"{r['naive_width_q']:.1f} & {r['dom_width_q']:.2f} & {r['exact_pinned']}/{r['n_chunks']} & "
+            f"{r['naive_pieces_mean']:.1f} & {r['dom_pieces_mean']:.1f} & {r['oracle_pieces_mean']:.1f}\\\\"
+        )
+    lines += [r"\bottomrule", r"\end{tabular}"]
+    open(os.path.join(OUT, "tab_alif_env.tex"), "w").write("\n".join(lines) + "\n")
+
+# E31: ultra-long single/few-trial recordings (T up to 2^26, vs tuned GPU serial and -O3 C CPU serial)
+if os.path.exists(os.path.join(RES, "e31_long_single_beta0.9.json")) and os.path.exists(os.path.join(RES, "e31_long_single_beta0.99.json")):
+    e31_9 = load("e31_long_single_beta0.9.json")
+    e31_99 = load("e31_long_single_beta0.99.json")
+    e31_all = e31_9 + e31_99
+    assert all(r["v3_cfg"]["flip"] == 0 and (r["v4_cfg"] is None or r["v4_cfg"]["flip"] == 0) for r in e31_all)
+    macros["LongSingleCells"] = str(len(e31_all))
+    macros["LongSingleMaxGpuNine"] = f"{max(r['speedup_fb_gpu'] for r in e31_9):.0f}"
+    macros["LongSingleMaxGpuNineNine"] = f"{max(r['speedup_fb_gpu'] for r in e31_99):.0f}"
+    macros["LongSingleMaxCpuBestNine"] = f"{max(r['speedup_fb_best_serial'] for r in e31_9):.1f}"
+    macros["LongSingleMaxCpuBestNineNine"] = f"{max(r['speedup_fb_best_serial'] for r in e31_99):.1f}"
+    r67 = [r for r in e31_9 if r["N"] == 1 and r["T"] == 2 ** 26][0]
+    macros["LongSingleSixSevenScanFwd"] = f"{r67['scan_fwd']:.1f}"
+    macros["LongSingleSixSevenScanFb"] = f"{r67['scan_fwd'] + r67['scan_bwd']:.1f}"
+    macros["LongSingleSixSevenGpuFb"] = f"{(r67['serial_fwd'] + r67['serial_bwd']) / 1000.0:.2f}"
+    macros["LongSingleSixSevenCpuFb"] = f"{(r67['cpu_fwd'] + r67['cpu_bwd']) / 1000.0:.2f}"
+    macros["LongSingleSixSevenCpuFwdX"] = f"{r67['speedup_fwd_cpu']:.0f}"
+    macros["LongSingleSixSevenGpuFwdX"] = f"{r67['speedup_fwd_gpu']:.0f}"
+    macros["LongSingleSixSevenCpuFbX"] = f"{r67['speedup_fb_cpu']:.1f}"
+    macros["LongSingleSixSevenGpuFbX"] = f"{r67['speedup_fb_gpu']:.0f}"
+    v4_wins = [r for r in e31_all if r["v4_fwd"] is not None and r["v4_fwd"] < r["v3_fwd"]]
+    macros["LongSingleVFourWins"] = str(len(v4_wins))
+    macros["LongSingleVFourMaxGain"] = f"{100 * max(1.0 - r['v4_fwd'] / r['v3_fwd'] for r in v4_wins):.0f}" if v4_wins else "0"
+    lines = [r"\begin{tabular}{rrrrrrrrr}", r"\toprule",
+             r"$N$ & $T$ & GPU ser. & CPU C & scan fwd & scan f+b & vs GPU & vs CPU & v4/v3\\",
+             r" & & (f+b ms) & (f+b ms) & (ms) & (ms) & (f+b $\times$) & (f+b $\times$) & (fwd)\\", r"\midrule"]
+    for r in e31_9:
+        t_lbl = f"$2^{{{r['T'].bit_length() - 1}}}$"
+        g_fb = r["serial_fwd"] + r["serial_bwd"]
+        c_fb = r["cpu_fwd"] + r["cpu_bwd"]
+        s_fb = r["scan_fwd"] + r["scan_bwd"]
+        v4r = r["v4_fwd"] / r["v3_fwd"]
+        lines.append(
+            f"{r['N']} & {t_lbl} & {g_fb:,.1f} & {c_fb:,.1f} & {r['scan_fwd']:.2f} & {s_fb:.2f} & "
+            f"{r['speedup_fb_gpu']:.0f}$\\times$ & {r['speedup_fb_cpu']:.1f}$\\times$ & {v4r:.2f}\\\\"
+            .replace(",", "{,}")
+        )
+    lines += [r"\bottomrule", r"\end{tabular}"]
+    open(os.path.join(OUT, "tab_long_single.tex"), "w").write("\n".join(lines) + "\n")
+
+# E11b: out-of-sample automatic dispatch check (21 unseen cells)
+if os.path.exists(os.path.join(RES, "e11b_auto_oos.json")):
+    e11b = load("e11b_auto_oos.json")
+    assert all(r["spikes_equal"] for r in e11b)
+    macros["OosCells"] = str(len(e11b))
+    long_oos = [r for r in e11b if r["T"] >= 8192]
+    short_sm = [r for r in e11b if r["T"] == 2048 and r["N"] <= 256]
+    macros["OosLongMin"] = f"{min(r['x_auto'] for r in long_oos):.2f}"
+    macros["OosLongMax"] = f"{max(r['x_auto'] for r in long_oos):.1f}"
+    macros["OosShortMin"] = f"{min(r['x_auto'] for r in short_sm):.2f}"
+    macros["OosShortMax"] = f"{max(r['x_auto'] for r in short_sm):.2f}"
+    macros["OosGradRelMax"] = sci(max(r["grad_rel_auto"] for r in e11b)) if max(r["grad_rel_auto"] for r in e11b) > 0 else "0"
+
+# E33b: exact downward-reset verification on real Allen current sweeps
+if os.path.exists(os.path.join(RES, "e33b_allen_downward.json")):
+    e33b = load("e33b_allen_downward.json")["summary"]
+    macros["AlifDownCells"] = str(e33b["cells"])
+    macros["AlifDownHold"] = str(e33b["downward"])
+    macros["AlifDownPct"] = f"{100 * e33b['downward'] / e33b['cells']:.1f}"
+
+# E36: real temporally-correlated biological currents (Allen Noise 1)
+if os.path.exists(os.path.join(RES, "e36_real_stats.json")):
+    e36 = [r for r in load("e36_real_stats.json")["rows"] if _m.isfinite(r["beta"])]
+    assert all(r["K16"]["flip_norepair"] == 0.0 for r in e36)
+    macros["RealCells"] = str(len(e36))
+    macros["RealPcsAvg"] = f"{st.mean(r['K16']['mean_pieces'] for r in e36):.2f}"
+    macros["RealPcsMin"] = f"{min(r['K16']['mean_pieces'] for r in e36):.2f}"
+    macros["RealPcsMax"] = f"{max(r['K16']['mean_pieces'] for r in e36):.2f}"
+    macros["RealOvfAvg"] = f"{100 * st.mean(r['K16']['overflow_frac'] for r in e36):.1f}"
+    macros["RealOvfMax"] = f"{100 * max(r['K16']['overflow_frac'] for r in e36):.1f}"
+
+# E37: Unified exactness + end-to-end latency audit on real Allen recordings (firing cohort of allen_cells_78)
+_e37a_p = os.path.join(RES, "e37_real_exact_acc.json")
+_e37t_p = os.path.join(RES, "e37_real_exact_timing.json")
+if os.path.exists(_e37a_p):
+    e37a = load("e37_real_exact_acc.json")["rows"]
+    macros["RealAuditCells"] = str(len(e37a))
+    macros["RealAuditSilentMed"] = f"{st.median(r['max_silent_chunks'] for r in e37a):.0f}"
+    macros["RealAuditSilentMax"] = str(max(r["max_silent_chunks"] for r in e37a))
+    macros["RealAuditPcsAvg"] = f"{st.mean(r['modes']['r0']['mean_pieces'] for r in e37a):.2f}"
+    macros["RealAuditOvfAvg"] = f"{100 * st.mean(r['modes']['r0']['overflow_frac'] for r in e37a):.1f}"
+    macros["RealAuditOvfMax"] = f"{100 * max(r['modes']['r0']['overflow_frac'] for r in e37a):.1f}"
+    for key, tag in (("r0", "RZero"), ("r1", "ROne"), ("r2", "RTwo"), ("exact", "Exact")):
+        ms = [r["modes"][key] for r in e37a]
+        macros[f"RealAudit{tag}SpkEq"] = str(sum(m["bit_exact_spikes"] for m in ms))
+        macros[f"RealAudit{tag}UEq"] = str(sum(m["bit_exact_u"] for m in ms))
+        mxu = max(m["max_u_err"] for m in ms)
+        medu = st.median(m["max_u_err"] for m in ms)
+        mxg = max(m["grad_rel_err"] for m in ms)
+        medg = st.median(m["grad_rel_err"] for m in ms)
+        macros[f"RealAudit{tag}MaxU"] = "0" if mxu == 0 else sci(mxu)
+        macros[f"RealAudit{tag}MedU"] = "0" if medu == 0 else sci(medu)
+        macros[f"RealAudit{tag}MaxGrad"] = "0" if mxg == 0 else sci(mxg)
+        macros[f"RealAudit{tag}MedGrad"] = "0" if medg == 0 else sci(medg)
+        macros[f"RealAudit{tag}ItersMed"] = f"{st.median(m['repair_iters'] for m in ms):.0f}"
+        macros[f"RealAudit{tag}ItersMax"] = str(max(m["repair_iters"] for m in ms))
+    e37t_by = {}
+    if os.path.exists(_e37t_p):
+        for r in load("e37_real_exact_timing.json")["rows"]:
+            e37t_by[r["specimen"]] = r
+    e15t_by = {r["cell"]["specimen"]: r for r in e15t}
+    has_t = len(e37t_by) >= len(e37a) and len(e37a) > 0
+    if has_t:
+        trows = [e37t_by[r["specimen"]] for r in e37a]
+        _b_rng = _np.random.default_rng(0)
+        def _boot_med_ci(vals):
+            arr = _np.asarray(vals, dtype=_np.float64)
+            idx = _b_rng.integers(0, len(arr), size=(10000, len(arr)))
+            bm = _np.median(arr[idx], axis=1)
+            return float(_np.median(arr)), float(_np.quantile(bm, 0.025)), float(_np.quantile(bm, 0.975))
+        for key, tag in (("serial", "Ser"), ("r0", "RZero"), ("r1", "ROne"), ("r2", "RTwo"), ("exact", "Exact")):
+            med_e2e = st.median(t["e2e_ms"][key] for t in trows)
+            macros[f"RealAudit{tag}IterMs"] = f"{med_e2e:.2f}"
+            if key != "serial":
+                sp_e2e = [t["e2e_ms"]["serial"] / t["e2e_ms"][key] for t in trows]
+                m_, lo_, hi_ = _boot_med_ci(sp_e2e)
+                macros[f"RealAudit{tag}IterX"] = f"{m_:.2f}"
+                macros[f"RealAudit{tag}IterXLo"] = f"{lo_:.2f}"
+                macros[f"RealAudit{tag}IterXHi"] = f"{hi_:.2f}"
+            if key in trows[0]["fwd_ms"]:
+                med_fwd = st.median(t["fwd_ms"][key] for t in trows)
+                macros[f"RealAudit{tag}FwdMs"] = f"{med_fwd:.2f}"
+                if key != "serial":
+                    sp_fwd = [t["fwd_ms"]["serial"] / t["fwd_ms"][key] for t in trows]
+                    macros[f"RealAudit{tag}FwdX"] = f"{st.median(sp_fwd):.2f}"
+        # Same 69 firing cells on quiet-host RTX 5090 (e15t), with paired bootstrap 95% CI
+        q_ser = st.median(e15t_by[r["specimen"]]["hard_ms_serial"] for r in e37a)
+        q_r0 = st.median(e15t_by[r["specimen"]]["hard_ms_auto"] for r in e37a)
+        q_sp = [e15t_by[r["specimen"]]["hard_ms_serial"] / e15t_by[r["specimen"]]["hard_ms_auto"] for r in e37a]
+        qm_, qlo_, qhi_ = _boot_med_ci(q_sp)
+        macros["RealAuditQuietSerMs"] = f"{q_ser:.2f}"
+        macros["RealAuditQuietRZeroMs"] = f"{q_r0:.2f}"
+        macros["RealAuditQuietRZeroX"] = f"{qm_:.2f}"
+        macros["RealAuditQuietRZeroXLo"] = f"{qlo_:.2f}"
+        macros["RealAuditQuietRZeroXHi"] = f"{qhi_:.2f}"
+    # Unified exactness + end-to-end speed table on the exact same 69 real Allen cells
+    lines = [
+        r"\begin{tabular}{lrrrrrrr}",
+        r"\toprule",
+        r"mode & spikes exact & $u$ bit-exact & med.\ $\max|\Delta u|$ & med.\ rel.\ $\Delta g$ & repair rounds & fwd (ms) & e2e iter (ms)$^\dagger$\\",
+        r"\midrule",
+    ]
+    if has_t:
+        q_ser = st.median(e15t_by[r["specimen"]]["hard_ms_serial"] for r in e37a)
+        q_r0 = st.median(e15t_by[r["specimen"]]["hard_ms_auto"] for r in e37a)
+        q_x = st.median(e15t_by[r["specimen"]]["hard_ms_serial"] / e15t_by[r["specimen"]]["hard_ms_auto"] for r in e37a)
+        sfwd = st.median(e37t_by[r["specimen"]]["fwd_ms"]["serial"] for r in e37a)
+        se2e = st.median(e37t_by[r["specimen"]]["e2e_ms"]["serial"] for r in e37a)
+        lines.append(f"serial (tuned) & {len(e37a)}/{len(e37a)} & {len(e37a)}/{len(e37a)} & 0 & 0 & -- & {sfwd:.2f} (1.0$\\times$) & {se2e:.2f} [{q_ser:.2f}]\\\\")
+    else:
+        ser_ms = f"{st.median(r['hard_ms_serial'] for r in e15t):.2f}"
+        lines.append(f"serial (tuned) & {len(e37a)}/{len(e37a)} & {len(e37a)}/{len(e37a)} & 0 & 0 & -- & -- & {ser_ms}\\\\")
+    for key, label in (("r0", "scan, no repair"), ("r1", "scan, 1 repair"), ("r2", "scan, 2 repairs"), ("exact", "scan, bit-exact $u$")):
+        ms = [r["modes"][key] for r in e37a]
+        s_eq = f"{sum(m['bit_exact_spikes'] for m in ms)}/{len(ms)}"
+        u_eq = f"{sum(m['bit_exact_u'] for m in ms)}/{len(ms)}"
+        medu = st.median(m["max_u_err"] for m in ms)
+        medg = st.median(m["grad_rel_err"] for m in ms)
+        u_str = "0" if medu == 0 else f"${sci(medu)}$"
+        g_str = "0" if medg == 0 else f"${sci(medg)}$"
+        rep_str = "0" if key == "r0" else (f"{st.median(m['repair_iters'] for m in ms):.0f} (max {max(m['repair_iters'] for m in ms)})" if key == "exact" else f"{st.median(m['repair_iters'] for m in ms):.0f}")
+        if has_t:
+            f_ms = st.median(e37t_by[r["specimen"]]["fwd_ms"][key] for r in e37a)
+            f_x = st.median(e37t_by[r["specimen"]]["fwd_ms"]["serial"] / e37t_by[r["specimen"]]["fwd_ms"][key] for r in e37a)
+            e_ms = st.median(e37t_by[r["specimen"]]["e2e_ms"][key] for r in e37a)
+            e_x = st.median(e37t_by[r["specimen"]]["e2e_ms"]["serial"] / e37t_by[r["specimen"]]["e2e_ms"][key] for r in e37a)
+            f_str = f"{f_ms:.2f} ({f_x:.2f}$\\times$)" if f_x < 1 else f"{f_ms:.2f} ({f_x:.1f}$\\times$)"
+            if key == "r0":
+                e_str = f"{e_ms:.2f} ({e_x:.2f}$\\times$) [{q_r0:.2f}, {q_x:.2f}$\\times$]"
+            else:
+                e_str = f"{e_ms:.2f} ({e_x:.2f}$\\times$)"
+        else:
+            f_str, e_str = "--", "--"
+        lines.append(f"{label} & {s_eq} & {u_eq} & {u_str} & {g_str} & {rep_str} & {f_str} & {e_str}\\\\")
+    lines += [r"\bottomrule", r"\end{tabular}"]
+    open(os.path.join(OUT, "tab_real_exact_e2e.tex"), "w").write("\n".join(lines) + "\n")
+
+# E27c: Exact 1-to-1 spike matching F1 vs many-to-one window F1
+_e27c_p = os.path.join(RES, "e27c_1to1_f1.json")
+if os.path.exists(_e27c_p):
+    e27c = load("e27c_1to1_f1.json")
+    s27c = e27c["summary"]
+    macros["OneToOneNAll"] = str(s27c["n_all"])
+    macros["OneToOneNGFive"] = str(s27c["n_g5"])
+    for tag, mtag in (("alif_vs_glif5", "OneToOneAlifGFive"), ("alif_vs_glif1", "OneToOneAlifGOne"), ("alif_vs_hard", "OneToOneAlifHard"), ("soft_vs_hard", "OneToOneSoftHard")):
+        if tag in s27c["paired"]:
+            for m, mt in (("f1_4_win", "WinFour"), ("f1_4_1to1", "ExactFour"), ("f1_10_win", "WinTen"), ("f1_10_1to1", "ExactTen")):
+                d = s27c["paired"][tag][m]
+                macros[f"{mtag}{mt}Med"] = _fmt_signed(d["median"])
+                macros[f"{mtag}{mt}Lo"] = _fmt_signed(d["ci_lo"])
+                macros[f"{mtag}{mt}Hi"] = _fmt_signed(d["ci_hi"])
+                macros[f"{mtag}{mt}Wins"] = str(d["wins"])
+                macros[f"{mtag}{mt}N"] = str(d["n"])
+    # Median many-to-one inflation (win - 1to1) across all n_all firing cells at +-4 ms and +-10 ms
+    _g13 = [r for r in e27c["rows"] if all(k in r["metrics"] for k in ("hard", "soft", "alif", "glif1", "glif3"))]
+    for k, kt in (("hard", "Hard"), ("soft", "Soft"), ("alif", "Alif")):
+        macros[f"OneToOne{kt}InflFour"] = f"{st.median(r['metrics'][k]['f1_4_win'] - r['metrics'][k]['f1_4_1to1'] for r in _g13):.4f}"
+        macros[f"OneToOne{kt}InflTen"] = f"{st.median(r['metrics'][k]['f1_10_win'] - r['metrics'][k]['f1_10_1to1'] for r in _g13):.3f}"
+    lines = [
+        r"\begin{tabular}{lrrrr}",
+        r"\toprule",
+        f" & \\multicolumn{{2}}{{c}}{{$\\pm 4$\\,ms F1 ($n={s27c['n_g5']}$ paired)}} & \\multicolumn{{2}}{{c}}{{$\\pm 10$\\,ms F1 ($n={s27c['n_g5']}$ paired)}}\\\\",
+        r"model & window & exact 1-to-1 & window & exact 1-to-1\\",
+        r"\midrule",
+    ]
+    for k, nm in NM:
+        if k == "glif1":
+            lines.append(r"\midrule")
+        d = s27c["medians_g5"].get(k, {})
+        if d:
+            lines.append(f"{nm} & {d['f1_4_win']:.3f} & {d['f1_4_1to1']:.3f} & {d['f1_10_win']:.3f} & {d['f1_10_1to1']:.3f}\\\\")
+    lines += [r"\bottomrule", r"\end{tabular}"]
+    open(os.path.join(OUT, "tab_1to1_f1.tex"), "w").write("\n".join(lines) + "\n")
+
+# E11c: Recalibrated out-of-sample automatic dispatch (backward threshold T >= 4096)
+_e11c_p = os.path.join(RES, "e11c_auto_oos_recal.json")
+if os.path.exists(_e11c_p):
+    e11c = load("e11c_auto_oos_recal.json")
+    assert all(r["spikes_equal"] for r in e11c)
+    macros["OosRecalCells"] = str(len(e11c))
+    macros["OosRecalMin"] = f"{min(r['x_auto'] for r in e11c):.2f}"
+    macros["OosRecalMax"] = f"{max(r['x_auto'] for r in e11c):.1f}"
+    _long_c = [r for r in e11c if r["T"] >= 8192]
+    macros["OosRecalLongMin"] = f"{min(r['x_auto'] for r in _long_c):.2f}"
+    macros["OosRecalGradMax"] = sci(max(r["grad_rel_auto"] for r in e11c)) if max(r["grad_rel_auto"] for r in e11c) > 0 else "0"
+
+# E32b: Fair FFT-based batched serial baseline on real Allen cells
+_e32b_p = os.path.join(RES, "e32b_fair_batched.json")
+if os.path.exists(_e32b_p):
+    e32b = load("e32b_fair_batched.json")["rows"]
+    hd = [r for r in e32b if r["model"] == "hard"]
+    al = [r for r in e32b if r["model"] == "alif"]
+    if hd:
+        b = min(hd, key=lambda r: r["ms_per_iter_per_cell"])
+        macros["BatchedHardCells"] = str(b["cells"])
+        macros["BatchedHardCols"] = str(b["columns"])
+        macros["BatchedHardIterMs"] = f"{b['ms_per_iter']:.1f}"
+        macros["BatchedHardMsCell"] = f"{b['ms_per_iter_per_cell']:.2f}"
+        macros["BatchedHardDbMin"] = f"{b['est_1044_cells_sec'] / 60.0:.1f}"
+    if al:
+        b = min(al, key=lambda r: r["ms_per_iter_per_cell"])
+        macros["BatchedAlifCells"] = str(b["cells"])
+        macros["BatchedAlifCols"] = str(b["columns"])
+        macros["BatchedAlifIterMs"] = f"{b['ms_per_iter']:.1f}"
+        macros["BatchedAlifMsCell"] = f"{b['ms_per_iter_per_cell']:.2f}"
+        macros["BatchedAlifDbMin"] = f"{b['est_1044_cells_sec'] / 60.0:.1f}"
+
+# E38: Same-cell equal-length active-stimulus vs. silent-pause paired control
+_e38_p = os.path.join(RES, "e38_active_vs_silent.json")
+if os.path.exists(_e38_p):
+    e38 = load("e38_active_vs_silent.json")
+    s38 = e38["summary"]
+    pm = s38["pairs"]["mid"]
+    pl = s38["pairs"]["late"]
+    macros["WinCtrlCells"] = str(s38["cells"])
+    macros["WinCtrlChunks"] = str(s38["win_chunks"])
+    macros["WinCtrlSteps"] = f"{s38['win_steps']:,}".replace(",", "{,}")
+    macros["WinCtrlLateActRate"] = f"{pl['act_rate_hz_med']:.1f}"
+    macros["WinCtrlLateActRepMed"] = f"{pl['act_repair_iters']['med']:.0f}"
+    macros["WinCtrlLateActRepMax"] = f"{pl['act_repair_iters']['max']:.0f}"
+    macros["WinCtrlLateSilRepMed"] = f"{pl['sil_repair_iters']['med']:.0f}"
+    macros["WinCtrlLateSilRepMin"] = f"{pl['sil_repair_iters']['min']:.0f}"
+    macros["WinCtrlLateSilRepMax"] = f"{pl['sil_repair_iters']['max']:.0f}"
+    macros["WinCtrlLateSilGtAct"] = str(pl["sil_gt_act_cells"])
+    macros["WinCtrlMidActRepMed"] = f"{pm['act_repair_iters']['med']:.0f}"
+    macros["WinCtrlMidActRepMax"] = f"{pm['act_repair_iters']['max']:.0f}"
+    macros["WinCtrlMidSilRepMed"] = f"{pm['sil_repair_iters']['med']:.0f}"
+    macros["WinCtrlLateActSerMs"] = f"{pl['act_fwd_ser_ms']['med']:.2f}"
+    macros["WinCtrlLateActRZeroMs"] = f"{pl['act_fwd_r0_ms']['med']:.2f}"
+    macros["WinCtrlLateActExMs"] = f"{pl['act_fwd_exact_ms']['med']:.2f}"
+    macros["WinCtrlLateSilExMs"] = f"{pl['sil_fwd_exact_ms']['med']:.2f}"
+    macros["WinCtrlMidActExMs"] = f"{pm['act_fwd_exact_ms']['med']:.2f}"
+    macros["WinCtrlMidSilExMs"] = f"{pm['sil_fwd_exact_ms']['med']:.2f}"
+    macros["WinCtrlLateSilExRatio"] = f"{pl['sil_fwd_exact_ms']['med'] / pl['act_fwd_exact_ms']['med']:.1f}"
+    macros["WinCtrlMidSilExRatio"] = f"{pm['sil_fwd_exact_ms']['med'] / pm['act_fwd_exact_ms']['med']:.1f}"
+    lines = [
+        r"\begin{tabular}{lrrrrrr}",
+        r"\toprule",
+        r"equal-length window (60 chunks, 3.07\,s) & med.\ rate & flips ($r=0$) & repair rounds & serial & scan ($r=0$) & scan (exact $u$)\\",
+        r"\midrule",
+        f"active, subthreshold $[195,255)$ & {pm['act_rate_hz_med']:.1f}\\,Hz & 0 ({pm['act_flips_zero']}/{s38['cells']}) & "
+        f"{pm['act_repair_iters']['med']:.0f} ({pm['act_repair_iters']['min']:.0f}--{pm['act_repair_iters']['max']:.0f}) & "
+        f"{pm['act_fwd_ser_ms']['med']:.2f} & {pm['act_fwd_r0_ms']['med']:.2f} & {pm['act_fwd_exact_ms']['med']:.2f}\\\\",
+        f"active, firing $[351,411)$ & {pl['act_rate_hz_med']:.1f}\\,Hz & 0 ({pl['act_flips_zero']}/{s38['cells']}) & "
+        f"{pl['act_repair_iters']['med']:.0f} ({pl['act_repair_iters']['min']:.0f}--{pl['act_repair_iters']['max']:.0f}) & "
+        f"{pl['act_fwd_ser_ms']['med']:.2f} & {pl['act_fwd_r0_ms']['med']:.2f} & {pl['act_fwd_exact_ms']['med']:.2f}\\\\",
+        f"silent pause $[255,315)$ & {pm['sil_rate_hz_med']:.1f}\\,Hz & 0 ({pm['sil_flips_zero']}/{s38['cells']}) & "
+        f"{pm['sil_repair_iters']['med']:.0f} ({pm['sil_repair_iters']['min']:.0f}--{pm['sil_repair_iters']['max']:.0f}) & "
+        f"{pm['sil_fwd_ser_ms']['med']:.2f} & {pm['sil_fwd_r0_ms']['med']:.2f} & {pm['sil_fwd_exact_ms']['med']:.2f}\\\\",
+        f"silent tail $[411,471)$ & {pl['sil_rate_hz_med']:.1f}\\,Hz & 0 ({pl['sil_flips_zero']}/{s38['cells']}) & "
+        f"{pl['sil_repair_iters']['med']:.0f} ({pl['sil_repair_iters']['min']:.0f}--{pl['sil_repair_iters']['max']:.0f}) & "
+        f"{pl['sil_fwd_ser_ms']['med']:.2f} & {pl['sil_fwd_r0_ms']['med']:.2f} & {pl['sil_fwd_exact_ms']['med']:.2f}\\\\",
+        r"\bottomrule",
+        r"\end{tabular}",
+    ]
+    open(os.path.join(OUT, "tab_active_silent.tex"), "w").write("\n".join(lines) + "\n")
 
 with open(os.path.join(OUT, "numbers.tex"), "w") as f:
     f.write("% generated by make_numbers.py -- do not edit\n")

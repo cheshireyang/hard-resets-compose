@@ -12,17 +12,19 @@ on average. The resulting forward pass is exact, non-iterative, and its depth do
 
 | Path | Content |
 |---|---|
-| `lifscan/exact.py` | Exact rational-arithmetic reference: serial recurrence, segment maps and their composition, the closed form (Theorem 1), the tree scan, and a generic piecewise-affine class used to count soft-reset pieces |
+| `lifscan/exact.py` | Exact rational-arithmetic reference: serial recurrence, segment maps and their composition (`HardMap`, optimal linear-time `LinearHardMap`), the closed form (Theorem 1), the tree scan, and a generic piecewise-affine class used to count soft-reset pieces |
+| `lifscan/cpu_ref.py`, `lifscan/csrc/lif_cpu.c` | Single-thread `-O3` compiled C reference kernel for long single-stream LIF forward+backward |
 | `lifscan/fast.py` | PyTorch prototype (CPU/MPS): two-level scan, pruning, bit-exact repair, affine-scan backward |
 | `lifscan/triton_lif.py` | CUDA kernels (Triton): fused serial baselines (plain and time-tiled), `scan_forward_v3` (two-level: envelope bound + pruning + capacity-K maps + overflow fallback + optional repair), `scan_forward_v4` (three-level composition), tiled backward scan, and the autograd layer `lif_tuned` |
+| `lifscan/triton_batch.py` | Wide batched serial CUDA kernels for multi-cell database throughput benchmarks (`E32`, `E32b`) |
 | `lifscan/triton_soft.py` | Exact two-level scan for soft-reset (subtractive) LIF neurons, tiled serial baseline, FFT adjoint |
 | `lifscan/triton_affine.py` | Exact scan for affine reset `u <- gamma*v + delta` (`0 <= gamma <= 1`; contains hard and soft reset), serial baseline, autograd layer `lif_affine` (gradients w.r.t. inputs, `u0`, `beta`, `gamma`, `delta`) |
 | `lifscan/triton_alif.py` | Exact scan for adaptive-threshold (ALIF) neurons on a predicted adaptation box (verified carry, serial fallback, replay/repair), serial baselines, backward pass as two affine scans, autograd layer `alif` |
 | `lifscan/shdnet.py` | SHD/SSC data loading and the 700-256-256-20 feed-forward LIF network |
-| `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py`, `test_affine.py`, `test_alif.py`, `test_alif_grad.py` (GPU) |
-| `experiments/` | All experiment scripts (E1–E26, see below) and the GPU job queues |
+| `tests/` | `test_exact.py`, `test_fast.py` (CPU); `test_triton.py`, `test_triton_tiled.py`, `test_batch.py`, `test_affine.py`, `test_alif.py`, `test_alif_grad.py` (GPU) |
+| `experiments/` | All experiment scripts (`E1`–`E38`, see below) and the GPU job queues |
 | `results/` | Raw JSON results (and server logs in `results/logs/`) behind every number in the paper |
-| `paper/` | LaTeX source; `make_numbers.py` regenerates every quoted number from `results/`, `figs/make_figs.py` every figure |
+| `paper/` | LaTeX source (`main.tex`, `authorinfo.tex`, `refs.bib`, `tab_*.tex`, `figs/`); `make_numbers.py` regenerates every quoted number and table from `results/` |
 
 Superseded intermediate results are kept for transparency: `e4_*` (Apple M4 prototype timings), `e6_*` (first GPU
 benchmark with an untuned serial baseline) and `e6b_*` (fair benchmark before envelope pruning). The paper uses `e6c_*`.
@@ -80,6 +82,16 @@ python3 experiments/glif_fetch.py results/allen_glif_models_raw_all.json results
 bash experiments/queue_database.sh      # E15 (hard/soft LIF) -> E28 (ALIF) -> E27b, after E27 on the database (see the script)
 bash experiments/e29_throughput.sh      # throughput of 64 ALIF fits, serial kernels vs scans, under MPS
 python3 experiments/e30_typical_pieces.py && python3 experiments/e30b_persistence.py   # Theorem 8: typical map size (CPU)
+python3 experiments/e30c_indomain.py        # Theorem 9: in-domain reachable map size vs renewal bound (CPU)
+python3 experiments/e31_long_single.py 0.9  # N=1 up to T=2^26 vs tuned GPU serial and -O3 C on CPU
+python3 experiments/e32b_fair_batched.py    # Offline database throughput: batched serial with exact FFT loss
+python3 experiments/e33_alif_dominance.py && python3 experiments/e33b_allen_downward.py  # ALIF downward-reset checks
+python3 experiments/e34_linear_compose.py   # Theorem 2: O(n_F + n_g) linear-time composition benchmark
+python3 experiments/e35_alif_tight_and_envelope.py  # Theorems 12-13: ALIF post-reset tightness & rigorous dominance envelope
+python3 experiments/e27c_1to1_f1.py         # Strict 1-to-1 spike matching vs many-to-one window F1 on Allen cells
+python3 experiments/e11c_auto_recal.py      # Out-of-sample automatic dispatch with recalibrated backward threshold (T>=4096)
+python3 experiments/e37_real_exact_e2e.py --mode acc && python3 experiments/e37_real_exact_e2e.py --mode timing  # Unified exactness + latency audit on 69 firing Allen cells
+python3 experiments/e38_active_vs_silent.py # Same-cell paired 60-chunk active vs silent pause repair control
 python3 experiments/e23_reset_lower_bounds.py  # Theorem 7(c): exponential lower bounds for order-reversing / expanding resets (exact, CPU)
 python3 experiments/e20_fpt_psn.py        # head-to-head: FPT (re-implemented from the official code) and PSN vs exact soft scan
 python3 experiments/e21_chunk_restart.py  # head-to-head: spike-by-spike chunk restarts vs map scan, vs firing rate

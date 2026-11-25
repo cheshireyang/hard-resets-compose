@@ -1,0 +1,400 @@
+{
+ "summary": {
+  "cells": 39,
+  "downward": 37,
+  "suff_everywhere": 37,
+  "min_stimulus_pA": 0.0
+ },
+ "rows": [
+  {
+   "specimen": 313860745,
+   "steps": 690600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.027070027047585654,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.4315972328186035,
+   "beta": 0.9769508242607117
+  },
+  {
+   "specimen": 313861608,
+   "steps": 575500,
+   "frac_suff_fail": 0.608601216333623,
+   "downward": false,
+   "min_gap": -0.004950165619915077,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.020389296114444733,
+   "beta": 0.9499282240867615
+  },
+  {
+   "specimen": 313861828,
+   "steps": 575500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.0327227240634258,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.634158968925476,
+   "beta": 0.9733275771141052
+  },
+  {
+   "specimen": 313862167,
+   "steps": 690600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.09895774176003158,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.5956361293792725,
+   "beta": 0.9556273818016052
+  },
+  {
+   "specimen": 313862274,
+   "steps": 690600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.06774753113793963,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.3683613538742065,
+   "beta": 0.9599230289459229
+  },
+  {
+   "specimen": 314529406,
+   "steps": 460400,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.010625534925893021,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.44222044944763184,
+   "beta": 0.9716987013816833
+  },
+  {
+   "specimen": 314617802,
+   "steps": 575500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.04666293092226681,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.8195956945419312,
+   "beta": 0.9727550745010376
+  },
+  {
+   "specimen": 314900022,
+   "steps": 575500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.016976337722347523,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.5982619524002075,
+   "beta": 0.9700072407722473
+  },
+  {
+   "specimen": 318808427,
+   "steps": 690600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.034919162548888494,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.5411350727081299,
+   "beta": 0.9768394827842712
+  },
+  {
+   "specimen": 320639930,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.03370592796649419,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.3180677890777588,
+   "beta": 0.9710950255393982
+  },
+  {
+   "specimen": 320836481,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.0396489903912709,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.350042462348938,
+   "beta": 0.9711968898773193
+  },
+  {
+   "specimen": 321707905,
+   "steps": 625500,
+   "frac_suff_fail": 0.6398880895283773,
+   "downward": false,
+   "min_gap": -0.24198455149065745,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.08006967604160309,
+   "beta": 0.9484203457832336
+  },
+  {
+   "specimen": 322229594,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.02514620822327629,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.0939013957977295,
+   "beta": 0.9756683111190796
+  },
+  {
+   "specimen": 322246422,
+   "steps": 625500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.03523065884755283,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.1023192405700684,
+   "beta": 0.9723462462425232
+  },
+  {
+   "specimen": 322761772,
+   "steps": 625500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.017400967894772634,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.8565152287483215,
+   "beta": 0.9737484455108643
+  },
+  {
+   "specimen": 322762730,
+   "steps": 625500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.0460994016289078,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.3030447959899902,
+   "beta": 0.9720964431762695
+  },
+  {
+   "specimen": 323834998,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.03501562721811524,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.4696606397628784,
+   "beta": 0.9778189659118652
+  },
+  {
+   "specimen": 323838579,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.016549441819442734,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.9531038403511047,
+   "beta": 0.9767757654190063
+  },
+  {
+   "specimen": 324025297,
+   "steps": 625500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.045768960050210694,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.8686168193817139,
+   "beta": 0.9740208983421326
+  },
+  {
+   "specimen": 324025371,
+   "steps": 875700,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.0372655858370905,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.2364070415496826,
+   "beta": 0.9680450558662415
+  },
+  {
+   "specimen": 324032509,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.015107410170136504,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.4765460193157196,
+   "beta": 0.9693042635917664
+  },
+  {
+   "specimen": 324053519,
+   "steps": 625500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.0359461264965546,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.5852702856063843,
+   "beta": 0.9746005535125732
+  },
+  {
+   "specimen": 324065524,
+   "steps": 500400,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.05729371516237336,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.3681055307388306,
+   "beta": 0.9673274755477905
+  },
+  {
+   "specimen": 324266189,
+   "steps": 500400,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.026369171253655566,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.9986433386802673,
+   "beta": 0.9756587743759155
+  },
+  {
+   "specimen": 324466858,
+   "steps": 625500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.022058708765225532,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.9216338992118835,
+   "beta": 0.9734565615653992
+  },
+  {
+   "specimen": 324493977,
+   "steps": 625500,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.03570014505721275,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.6628602743148804,
+   "beta": 0.9774077534675598
+  },
+  {
+   "specimen": 325464516,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.021468671819491192,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.2553989887237549,
+   "beta": 0.9774067401885986
+  },
+  {
+   "specimen": 325480372,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.02062714311819036,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.4406547546386719,
+   "beta": 0.9799092411994934
+  },
+  {
+   "specimen": 325853048,
+   "steps": 1000800,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.0210215520718684,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.8048252463340759,
+   "beta": 0.9722291827201843
+  },
+  {
+   "specimen": 325919795,
+   "steps": 1000800,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.04277553751646934,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.5981031656265259,
+   "beta": 0.9777702689170837
+  },
+  {
+   "specimen": 326734770,
+   "steps": 875700,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.06877206313686202,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.5763757228851318,
+   "beta": 0.9665226936340332
+  },
+  {
+   "specimen": 326774520,
+   "steps": 1000400,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.022757786664868718,
+   "min_stimulus_pA": 0.0,
+   "ur": -0.754448413848877,
+   "beta": 0.9702911972999573
+  },
+  {
+   "specimen": 327644217,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.05243719900661148,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.7088340520858765,
+   "beta": 0.9721688628196716
+  },
+  {
+   "specimen": 327706437,
+   "steps": 875700,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.04594101257984562,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.3866608142852783,
+   "beta": 0.9709063768386841
+  },
+  {
+   "specimen": 327962063,
+   "steps": 750600,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.059469909523684805,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.5432884693145752,
+   "beta": 0.9696897864341736
+  },
+  {
+   "specimen": 328535908,
+   "steps": 875700,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.03443826502955005,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.5100605487823486,
+   "beta": 0.9735842347145081
+  },
+  {
+   "specimen": 328549885,
+   "steps": 1000800,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.022876715033127937,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.4034985303878784,
+   "beta": 0.9793247580528259
+  },
+  {
+   "specimen": 329254830,
+   "steps": 500400,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.0567420790659412,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.3430490493774414,
+   "beta": 0.9556739926338196
+  },
+  {
+   "specimen": 329557305,
+   "steps": 875700,
+   "frac_suff_fail": 0.0,
+   "downward": true,
+   "min_gap": 0.03855257338194917,
+   "min_stimulus_pA": 0.0,
+   "ur": -1.2955502271652222,
+   "beta": 0.9682046175003052
+  }
+ ]
+}

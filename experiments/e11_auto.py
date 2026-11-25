@@ -13,8 +13,11 @@ def timeit(fn, reps=25):
         a.record(); fn(); b.record(); torch.cuda.synchronize(); ts.append(a.elapsed_time(b))
     ts.sort(); return ts[len(ts) // 2]
 
+GRID_N = tuple(int(v) for v in os.environ.get("E11_N", "128,1024,8192,32768,131072").split(","))
+GRID_T = tuple(int(v) for v in os.environ.get("E11_T", "1024,4096,16384,65536").split(","))
+OUTF = os.environ.get("E11_OUT", "results/e11_auto.json")
 rows = []
-for N, T in itertools.product((128, 1024, 8192, 32768, 131072), (1024, 4096, 16384, 65536)):
+for N, T in itertools.product(GRID_N, GRID_T):
     if N * T > 2 ** 28: continue
     torch.manual_seed(0)
     I0 = (0.15 + 0.4 * torch.randn(T, N, device="cuda")).contiguous(); u0 = torch.zeros(N, device="cuda")
@@ -38,5 +41,5 @@ for N, T in itertools.product((128, 1024, 8192, 32768, 131072), (1024, 4096, 163
     rows.append(r)
     print(f"N={N:<7} T={T:<6} modes={r['modes']} serial {r['serial']:8.3f} scan {r['scan']:8.3f} (x{r['x_scan']:5.2f}) "
           f"auto {r['auto']:8.3f} (x{r['x_auto']:5.2f}) spikes_eq={r['spikes_equal']} grad_rel={r['grad_rel_auto']:.1e}", flush=True)
-    json.dump(rows, open("results/e11_auto.json", "w"), indent=1)
+    json.dump(rows, open(OUTF, "w"), indent=1)
     del I0, G, out; torch.cuda.empty_cache()

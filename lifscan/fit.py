@@ -14,12 +14,12 @@ except ImportError:  # pragma: no cover
 
 class LIFParamFn(torch.autograd.Function):
     @staticmethod
-    def forward(ctx, I, u0, beta, theta, u_r, alpha, fwd_mode, bwd_mode, K):
+    def forward(ctx, I, u0, beta, theta, u_r, alpha, fwd_mode, bwd_mode, K, repair):
         b, th, ur = float(beta), float(theta), float(u_r)
         I = I.contiguous()
         T = I.shape[0]
         if fwd_mode == "scan":
-            U, S = L.scan_forward_auto(I, b, th, ur, u0, K=K)
+            U, S = L.scan_forward_auto(I, b, th, ur, u0, K=K, repair=repair)
         else:
             U, S = L.serial_forward_auto(I, b, th, ur, u0)
         ctx.save_for_backward(I, u0, U, S)
@@ -45,16 +45,16 @@ class LIFParamFn(torch.autograd.Function):
         g_theta = -(gS * sg).sum()
         lam_next = torch.cat([lam[1:], torch.zeros_like(lam[:1])], 0)
         g_ur = (S * b * lam_next).sum()
-        return lam, b * lam[0], g_beta.reshape(()), g_theta.reshape(()), g_ur.reshape(()), None, None, None, None
+        return lam, b * lam[0], g_beta.reshape(()), g_theta.reshape(()), g_ur.reshape(()), None, None, None, None, None
 
 
-def lif_param(I, u0, beta, theta, u_r, alpha=4.0, mode="auto", K=16):
+def lif_param(I, u0, beta, theta, u_r, alpha=4.0, mode="auto", K=16, repair=0):
     T, N = I.shape
     if mode == "auto":
         fwd, bwd = L.auto_modes(N, T)
     else:
         fwd = bwd = mode
-    return LIFParamFn.apply(I, u0, beta, theta, u_r, alpha, fwd, bwd, K)
+    return LIFParamFn.apply(I, u0, beta, theta, u_r, alpha, fwd, bwd, K, repair)
 
 
 # ----------------------------------------------------------------------------- CPU / prototype backend

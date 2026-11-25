@@ -1,0 +1,1068 @@
+{
+ "summary": {
+  "cells": 42,
+  "C": 256,
+  "K16_mean_pieces_avg": 2.1269605149115836,
+  "K16_mean_pieces_max": 4.781737327575684,
+  "K16_max_overflow": 0.2293986678123474,
+  "K16_mean_overflow": 0.06200427466648675,
+  "K16_max_flip_norepair": 0.0,
+  "K16_zero_flip_cells": 42,
+  "K16_bit_exact_cells": 0,
+  "K16_median_repair": 64.0,
+  "K8_max_overflow": 0.23385301232337952,
+  "K8_mean_overflow": 0.06969317374750972
+ },
+ "rows": [
+  {
+   "specimen": 313860745,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 114944,
+   "beta": 0.9602509140968323,
+   "ur": -1.4315972328186035,
+   "rate": 0.000260996661381796,
+   "K8": {
+    "mean_pieces": 1.2717149257659912,
+    "max_pieces": 9,
+    "overflow_frac": 0.031180402263998985,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.4922049045562744,
+    "max_pieces": 17,
+    "overflow_frac": 0.02672605961561203,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 313861608,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 114944,
+   "beta": 0.964477002620697,
+   "ur": -0.020389296114444733,
+   "rate": 0.005602728575468063,
+   "K8": {
+    "mean_pieces": 2.9398664236068726,
+    "max_pieces": 9,
+    "overflow_frac": 0.23385301232337952,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 4.781737327575684,
+    "max_pieces": 17,
+    "overflow_frac": 0.2293986678123474,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 313861828,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 114944,
+   "beta": 0.9609614014625549,
+   "ur": -1.634158968925476,
+   "rate": 0.0002348970010643825,
+   "K8": {
+    "mean_pieces": 1.2427617013454437,
+    "max_pieces": 9,
+    "overflow_frac": 0.02672605961561203,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.4320712685585022,
+    "max_pieces": 17,
+    "overflow_frac": 0.020044544711709023,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 313862167,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 114944,
+   "beta": 0.9833245277404785,
+   "ur": -1.5956361293792725,
+   "rate": 0.0015572800766676664,
+   "K8": {
+    "mean_pieces": 2.817371964454651,
+    "max_pieces": 9,
+    "overflow_frac": 0.22717149555683136,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 4.610244989395142,
+    "max_pieces": 17,
+    "overflow_frac": 0.22271715104579926,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 313862274,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 114944,
+   "beta": 0.9636405110359192,
+   "ur": -1.3683613538742065,
+   "rate": 0.0006002923473715782,
+   "K8": {
+    "mean_pieces": 1.6614699363708496,
+    "max_pieces": 9,
+    "overflow_frac": 0.06904231756925583,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.1870824098587036,
+    "max_pieces": 17,
+    "overflow_frac": 0.057906460016965866,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 314529406,
+   "dendrite": "spiny",
+   "N": 2,
+   "T": 114944,
+   "beta": 0.9682954549789429,
+   "ur": -0.44222044944763184,
+   "rate": 0.00015659800556022674,
+   "K8": {
+    "mean_pieces": 1.1982182711362839,
+    "max_pieces": 9,
+    "overflow_frac": 0.01781737245619297,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.3184855282306671,
+    "max_pieces": 17,
+    "overflow_frac": 0.013363029807806015,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 314617802,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 114944,
+   "beta": 0.9631062150001526,
+   "ur": -1.8195956945419312,
+   "rate": 0.00028709633625112474,
+   "K8": {
+    "mean_pieces": 1.3340757191181183,
+    "max_pieces": 9,
+    "overflow_frac": 0.03563474491238594,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.5946547985076904,
+    "max_pieces": 17,
+    "overflow_frac": 0.028953230008482933,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 314800921,
+   "dendrite": "spiny",
+   "N": 2,
+   "T": 114944,
+   "beta": NaN,
+   "ur": NaN,
+   "rate": 0.0,
+   "K8": {
+    "mean_pieces": 1.0,
+    "max_pieces": 1,
+    "overflow_frac": 0.0,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.0,
+    "max_pieces": 1,
+    "overflow_frac": 0.0,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 314900022,
+   "dendrite": "spiny",
+   "N": 2,
+   "T": 114944,
+   "beta": 0.9687272310256958,
+   "ur": -0.5982619524002075,
+   "rate": 0.00015659800556022674,
+   "K8": {
+    "mean_pieces": 1.204899787902832,
+    "max_pieces": 9,
+    "overflow_frac": 0.022271715104579926,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.365256130695343,
+    "max_pieces": 17,
+    "overflow_frac": 0.01781737245619297,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 318808427,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 114944,
+   "beta": 0.9731398820877075,
+   "ur": -1.5411350727081299,
+   "rate": 0.000469794002128765,
+   "K8": {
+    "mean_pieces": 1.7104677557945251,
+    "max_pieces": 9,
+    "overflow_frac": 0.08240535110235214,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.3340758085250854,
+    "max_pieces": 17,
+    "overflow_frac": 0.07126948982477188,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 320639930,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9690491557121277,
+   "ur": -1.3180677890777588,
+   "rate": 0.000384221290005371,
+   "K8": {
+    "mean_pieces": 1.4610655605793,
+    "max_pieces": 9,
+    "overflow_frac": 0.0450819656252861,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.7950819730758667,
+    "max_pieces": 17,
+    "overflow_frac": 0.04098360612988472,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 320836481,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9701400399208069,
+   "ur": -1.350042462348938,
+   "rate": 0.0001921106450026855,
+   "K8": {
+    "mean_pieces": 1.274590164422989,
+    "max_pieces": 9,
+    "overflow_frac": 0.030737703666090965,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.4959016144275665,
+    "max_pieces": 17,
+    "overflow_frac": 0.026639344170689583,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 321707905,
+   "dendrite": "aspiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.9557241797447205,
+   "ur": -0.08006967604160309,
+   "rate": 0.010141841135919094,
+   "K8": {
+    "mean_pieces": 2.8934425115585327,
+    "max_pieces": 9,
+    "overflow_frac": 0.23360654711723328,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 4.661885023117065,
+    "max_pieces": 17,
+    "overflow_frac": 0.17827868461608887,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 322229594,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9743122458457947,
+   "ur": -1.0939013957977295,
+   "rate": 0.0005042904522269964,
+   "K8": {
+    "mean_pieces": 1.6618852019309998,
+    "max_pieces": 9,
+    "overflow_frac": 0.07786884903907776,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.247950792312622,
+    "max_pieces": 17,
+    "overflow_frac": 0.069672130048275,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 322246422,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9739376902580261,
+   "ur": -1.1023192405700684,
+   "rate": 0.00045626278733834624,
+   "K8": {
+    "mean_pieces": 1.6557376980781555,
+    "max_pieces": 9,
+    "overflow_frac": 0.07581967115402222,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.2336065769195557,
+    "max_pieces": 17,
+    "overflow_frac": 0.069672130048275,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 322761772,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9721354246139526,
+   "ur": -0.8565152287483215,
+   "rate": 0.00024013830989133567,
+   "K8": {
+    "mean_pieces": 1.340163916349411,
+    "max_pieces": 9,
+    "overflow_frac": 0.03688524663448334,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.6086065173149109,
+    "max_pieces": 17,
+    "overflow_frac": 0.030737703666090965,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 322762730,
+   "dendrite": "spiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.9763848185539246,
+   "ur": -1.3030447959899902,
+   "rate": 0.0005763319204561412,
+   "K8": {
+    "mean_pieces": 1.7807376384735107,
+    "max_pieces": 9,
+    "overflow_frac": 0.09426228702068329,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.5184425115585327,
+    "max_pieces": 17,
+    "overflow_frac": 0.0901639312505722,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 323452245,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": NaN,
+   "ur": NaN,
+   "rate": 0.0,
+   "K8": {
+    "mean_pieces": 1.0,
+    "max_pieces": 1,
+    "overflow_frac": 0.0,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.0,
+    "max_pieces": 1,
+    "overflow_frac": 0.0,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 323834998,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9829408526420593,
+   "ur": -1.4696606397628784,
+   "rate": 0.0008725025109015405,
+   "K8": {
+    "mean_pieces": 2.188524603843689,
+    "max_pieces": 9,
+    "overflow_frac": 0.14754098653793335,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 3.3668031692504883,
+    "max_pieces": 17,
+    "overflow_frac": 0.14344261586666107,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 323838579,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9726722836494446,
+   "ur": -0.9531038403511047,
+   "rate": 0.00043224895489402115,
+   "K8": {
+    "mean_pieces": 1.6393442153930664,
+    "max_pieces": 9,
+    "overflow_frac": 0.07172130793333054,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.174180269241333,
+    "max_pieces": 17,
+    "overflow_frac": 0.05942622944712639,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324025297,
+   "dendrite": "spiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.9658128619194031,
+   "ur": -1.8686168193817139,
+   "rate": 0.00026415212778374553,
+   "K8": {
+    "mean_pieces": 1.3196721076965332,
+    "max_pieces": 9,
+    "overflow_frac": 0.032786883413791656,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.5696721076965332,
+    "max_pieces": 17,
+    "overflow_frac": 0.028688523918390274,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324025371,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9676598906517029,
+   "ur": -1.2364070415496826,
+   "rate": 0.00017610142822377384,
+   "K8": {
+    "mean_pieces": 1.2172131091356277,
+    "max_pieces": 9,
+    "overflow_frac": 0.02322404272854328,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.3907103836536407,
+    "max_pieces": 17,
+    "overflow_frac": 0.02049180306494236,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324032509,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9683036208152771,
+   "ur": -0.4765460193157196,
+   "rate": 9.605532250134274e-05,
+   "K8": {
+    "mean_pieces": 1.125,
+    "max_pieces": 9,
+    "overflow_frac": 0.012295081280171871,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.2151639312505722,
+    "max_pieces": 17,
+    "overflow_frac": 0.01024590153247118,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324053519,
+   "dendrite": "spiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.9732506275177002,
+   "ur": -1.5852702856063843,
+   "rate": 0.0001440829801140353,
+   "K8": {
+    "mean_pieces": 1.254098355770111,
+    "max_pieces": 9,
+    "overflow_frac": 0.028688523918390274,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.4528688192367554,
+    "max_pieces": 17,
+    "overflow_frac": 0.02254098281264305,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324065524,
+   "dendrite": "spiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.9759265780448914,
+   "ur": -1.3681055307388306,
+   "rate": 0.0006003457820042968,
+   "K8": {
+    "mean_pieces": 1.7766392827033997,
+    "max_pieces": 9,
+    "overflow_frac": 0.09426228702068329,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.5061475038528442,
+    "max_pieces": 17,
+    "overflow_frac": 0.08401639014482498,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324266189,
+   "dendrite": "sparsely spiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.9734513759613037,
+   "ur": -0.9986433386802673,
+   "rate": 0.00043224895489402115,
+   "K8": {
+    "mean_pieces": 1.6495901346206665,
+    "max_pieces": 9,
+    "overflow_frac": 0.07377048581838608,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.1987704038619995,
+    "max_pieces": 17,
+    "overflow_frac": 0.06147540733218193,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324466858,
+   "dendrite": "sparsely spiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.9720283150672913,
+   "ur": -0.9216338992118835,
+   "rate": 0.0002881659602280706,
+   "K8": {
+    "mean_pieces": 1.4282786548137665,
+    "max_pieces": 9,
+    "overflow_frac": 0.04303278401494026,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.7397540807724,
+    "max_pieces": 17,
+    "overflow_frac": 0.032786883413791656,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 324493977,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9740551710128784,
+   "ur": -1.6628602743148804,
+   "rate": 0.0006163549842312932,
+   "K8": {
+    "mean_pieces": 1.7745901346206665,
+    "max_pieces": 9,
+    "overflow_frac": 0.09221310913562775,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.4692622423171997,
+    "max_pieces": 17,
+    "overflow_frac": 0.07786884903907776,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 325464516,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9735682606697083,
+   "ur": -1.2553989887237549,
+   "rate": 0.0003602074575610459,
+   "K8": {
+    "mean_pieces": 1.6270491480827332,
+    "max_pieces": 9,
+    "overflow_frac": 0.07581967115402222,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.1045081615448,
+    "max_pieces": 17,
+    "overflow_frac": 0.04713114723563194,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 325480372,
+   "dendrite": "spiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9734874963760376,
+   "ur": -1.4406547546386719,
+   "rate": 0.00021612447744701058,
+   "K8": {
+    "mean_pieces": 1.3627049028873444,
+    "max_pieces": 9,
+    "overflow_frac": 0.03893442451953888,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.6454917788505554,
+    "max_pieces": 17,
+    "overflow_frac": 0.030737703666090965,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 325853048,
+   "dendrite": "spiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9699236750602722,
+   "ur": -0.8048252463340759,
+   "rate": 0.0001440829801140353,
+   "K8": {
+    "mean_pieces": 1.19672130048275,
+    "max_pieces": 9,
+    "overflow_frac": 0.02049180120229721,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.3606557250022888,
+    "max_pieces": 17,
+    "overflow_frac": 0.02049180120229721,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 325919795,
+   "dendrite": "spiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9774618744850159,
+   "ur": -1.5981031656265259,
+   "rate": 0.0005283042555674911,
+   "K8": {
+    "mean_pieces": 1.7807376384735107,
+    "max_pieces": 9,
+    "overflow_frac": 0.09426228702068329,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.5327868461608887,
+    "max_pieces": 17,
+    "overflow_frac": 0.09221310913562775,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 326734770,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9806066155433655,
+   "ur": -1.5763757228851318,
+   "rate": 0.0005763319786638021,
+   "K8": {
+    "mean_pieces": 1.8934425711631775,
+    "max_pieces": 9,
+    "overflow_frac": 0.10860655456781387,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.741803288459778,
+    "max_pieces": 17,
+    "overflow_frac": 0.10245901346206665,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 326774520,
+   "dendrite": "aspiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9632284045219421,
+   "ur": -0.754448413848877,
+   "rate": 7.204149005701765e-05,
+   "K8": {
+    "mean_pieces": 1.129098355770111,
+    "max_pieces": 9,
+    "overflow_frac": 0.014344261959195137,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.2377049028873444,
+    "max_pieces": 17,
+    "overflow_frac": 0.010245900601148605,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 327566447,
+   "dendrite": "aspiny",
+   "N": 4,
+   "T": 124928,
+   "beta": NaN,
+   "ur": NaN,
+   "rate": 0.0,
+   "K8": {
+    "mean_pieces": 1.0,
+    "max_pieces": 1,
+    "overflow_frac": 0.0,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.0,
+    "max_pieces": 1,
+    "overflow_frac": 0.0,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 327644217,
+   "dendrite": "aspiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9775456786155701,
+   "ur": -1.7088340520858765,
+   "rate": 0.0009125255746766925,
+   "K8": {
+    "mean_pieces": 2.0758196115493774,
+    "max_pieces": 9,
+    "overflow_frac": 0.13114753365516663,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 3.0901637077331543,
+    "max_pieces": 17,
+    "overflow_frac": 0.12295081466436386,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 327706437,
+   "dendrite": "aspiny",
+   "N": 3,
+   "T": 124928,
+   "beta": 0.9765350818634033,
+   "ur": -1.3866608142852783,
+   "rate": 0.0006403688457794487,
+   "K8": {
+    "mean_pieces": 1.8524590134620667,
+    "max_pieces": 9,
+    "overflow_frac": 0.10450819134712219,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.653688430786133,
+    "max_pieces": 17,
+    "overflow_frac": 0.09631147235631943,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 327962063,
+   "dendrite": "aspiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9697889089584351,
+   "ur": -1.5432884693145752,
+   "rate": 0.0007444287766702473,
+   "K8": {
+    "mean_pieces": 1.8196721076965332,
+    "max_pieces": 9,
+    "overflow_frac": 0.09836065024137497,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 2.5614752769470215,
+    "max_pieces": 17,
+    "overflow_frac": 0.08606556802988052,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 328535908,
+   "dendrite": "aspiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9707121253013611,
+   "ur": -1.5100605487823486,
+   "rate": 0.0002561475266702473,
+   "K8": {
+    "mean_pieces": 1.372950792312622,
+    "max_pieces": 9,
+    "overflow_frac": 0.03688524290919304,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.6536884903907776,
+    "max_pieces": 17,
+    "overflow_frac": 0.030737703666090965,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 328549885,
+   "dendrite": "aspiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9678531885147095,
+   "ur": -1.4034985303878784,
+   "rate": 0.0001680968125583604,
+   "K8": {
+    "mean_pieces": 1.2520491778850555,
+    "max_pieces": 9,
+    "overflow_frac": 0.024590162560343742,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.4487704634666443,
+    "max_pieces": 17,
+    "overflow_frac": 0.024590162560343742,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 329254830,
+   "dendrite": "aspiny",
+   "N": 2,
+   "T": 124928,
+   "beta": 0.976351261138916,
+   "ur": -1.3430490493774414,
+   "rate": 0.0017209912184625864,
+   "K8": {
+    "mean_pieces": 2.598360538482666,
+    "max_pieces": 9,
+    "overflow_frac": 0.19672130048274994,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 4.151639223098755,
+    "max_pieces": 17,
+    "overflow_frac": 0.18647539615631104,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  },
+  {
+   "specimen": 329557305,
+   "dendrite": "spiny",
+   "N": 4,
+   "T": 124928,
+   "beta": 0.9675567746162415,
+   "ur": -1.2955502271652222,
+   "rate": 0.0001440829801140353,
+   "K8": {
+    "mean_pieces": 1.2192622870206833,
+    "max_pieces": 9,
+    "overflow_frac": 0.02254098281264305,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   },
+   "K16": {
+    "mean_pieces": 1.3893442451953888,
+    "max_pieces": 17,
+    "overflow_frac": 0.01844262145459652,
+    "flip_norepair": 0.0,
+    "repair_iters": 64,
+    "bit_exact": false
+   }
+  }
+ ]
+}

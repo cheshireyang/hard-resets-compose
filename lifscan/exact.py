@@ -228,6 +228,245 @@ def tree_scan_states(I: Sequence, beta, theta, u_r, u0, merge=True,
 
 
 # ----------------------------------------------------------------------------
+# O(n_F + n_g) linear-time composition and O(T log T) exact tree scan
+# ----------------------------------------------------------------------------
+
+@dataclass
+class LinearHardMap:
+    """Hard-reset segment map with sorted distinct output constants ``v`` and
+    per-piece indices ``cid``, supporting exact O(n_F + n_g) composition.
+
+    M(u) = A*u + B          for u < x[0]
+           v[cid[i]]        for x[i] <= u < x[i+1]   (x[n] = +inf)
+
+    Invariants: ``x`` strictly increasing, ``v`` strictly increasing,
+    ``len(x) == len(cid)``, every entry of ``v`` is referenced by ``cid``
+    (hence ``len(v) <= len(x)``), and ``A > 0``.
+    """
+
+    A: object
+    B: object
+    x: List = field(default_factory=list)
+    v: List = field(default_factory=list)
+    cid: List[int] = field(default_factory=list)
+    L: int = 1
+
+    @staticmethod
+    def step(I_t, beta, theta, u_r) -> "LinearHardMap":
+        return LinearHardMap(beta, I_t, [(theta - I_t) / beta], [u_r], [0], 1)
+
+    @staticmethod
+    def identity(one=1, zero=0) -> "LinearHardMap":
+        return LinearHardMap(one, zero, [], [], [], 0)
+
+    @property
+    def pieces(self) -> int:
+        return 1 + len(self.x)
+
+    @property
+    def c(self) -> List:
+        return [self.v[i] for i in self.cid]
+
+    def __call__(self, u):
+        x = self.x
+        if not x or u < x[0]:
+            return self.A * u + self.B
+        lo, hi = 0, len(x) - 1
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if x[mid] <= u:
+                lo = mid
+            else:
+                hi = mid - 1
+        return self.v[self.cid[lo]]
+
+    def then(self, g: "LinearHardMap", merge: bool = True,
+             op_counter: Optional[List[int]] = None) -> "LinearHardMap":
+        """Exact O(n_F + n_g) composition ``g o self`` using two linear merges."""
+        F = self
+        A, B = F.A, F.B
+        Ap, Bp = g.A, g.B
+        p, q = len(F.x), len(F.v)
+        r, s = len(g.x), len(g.v)
+        ops = 0
+
+        if r == 0:
+            nv = [Ap * u + Bp for u in F.v]
+            ops += q
+            if op_counter is not None:
+                op_counter[0] += ops
+            return LinearHardMap(Ap * A, Ap * B + Bp, list(F.x), nv, list(F.cid), F.L + g.L)
+
+        # 1. Linear two-pointer evaluation of g on F's sorted values F.v
+        a_vals = []
+        u_to_gvid = [0] * q
+        y0 = g.x[0]
+        k = 0
+        while k < q and F.v[k] < y0:
+            a_vals.append(Ap * F.v[k] + Bp)
+            k += 1
+            ops += 1
+        j = 0
+        for t in range(k, q):
+            ut = F.v[t]
+            while j + 1 < r and g.x[j + 1] <= ut:
+                j += 1
+                ops += 1
+            u_to_gvid[t] = g.cid[j]
+            ops += 1
+
+        # 2. Concatenate pulled-back breakpoints of g (< F.x[0]) with F's breakpoints
+        raw_x = []
+        raw_is_w = []
+        raw_idx = []
+        used_a = [False] * k
+        used_w = [False] * s
+
+        x0 = F.x[0] if p > 0 else None
+        for j in range(r):
+            zj = (g.x[j] - B) / A
+            ops += 1
+            if x0 is not None and zj >= x0:
+                break
+            wid = g.cid[j]
+            raw_x.append(zj)
+            raw_is_w.append(True)
+            raw_idx.append(wid)
+            used_w[wid] = True
+
+        for i in range(p):
+            t = F.cid[i]
+            raw_x.append(F.x[i])
+            if t < k:
+                raw_is_w.append(False)
+                raw_idx.append(t)
+                used_a[t] = True
+            else:
+                wid = u_to_gvid[t]
+                raw_is_w.append(True)
+                raw_idx.append(wid)
+                used_w[wid] = True
+            ops += 1
+
+        # 3. Linear two-way merge of used affine images (sorted) and used g.v (sorted)
+        a_list = [t for t in range(k) if used_a[t]]
+        w_list = [b for b in range(s) if used_w[b]]
+        rank_a = [-1] * k
+        rank_w = [-1] * s
+        nv = []
+        ia, iw = 0, 0
+        na, nw = len(a_list), len(w_list)
+        while ia < na and iw < nw:
+            ta, wb = a_list[ia], w_list[iw]
+            va, vw = a_vals[ta], g.v[wb]
+            ops += 1
+            if va < vw:
+                rank_a[ta] = len(nv)
+                nv.append(va)
+                ia += 1
+            elif vw < va:
+                rank_w[wb] = len(nv)
+                nv.append(vw)
+                iw += 1
+            else:
+                idx_new = len(nv)
+                rank_a[ta] = idx_new
+                rank_w[wb] = idx_new
+                nv.append(va)
+                ia += 1
+                iw += 1
+        while ia < na:
+            ta = a_list[ia]
+            rank_a[ta] = len(nv)
+            nv.append(a_vals[ta])
+            ia += 1
+            ops += 1
+        while iw < nw:
+            wb = w_list[iw]
+            rank_w[wb] = len(nv)
+            nv.append(g.v[wb])
+            iw += 1
+            ops += 1
+
+        # 4. Remap piece value indices and drop adjacent equal pieces
+        nx = []
+        ncid = []
+        for xi, is_w, idx in zip(raw_x, raw_is_w, raw_idx):
+            c_new = rank_w[idx] if is_w else rank_a[idx]
+            ops += 1
+            if merge and ncid and ncid[-1] == c_new:
+                continue
+            nx.append(xi)
+            ncid.append(c_new)
+
+        # Compact value table if adjacent deduplication dropped any value
+        if merge and nv:
+            still_used = [False] * len(nv)
+            for c_new in ncid:
+                still_used[c_new] = True
+            if not all(still_used):
+                remap = [-1] * len(nv)
+                nv2 = []
+                for idx_v, ok in enumerate(still_used):
+                    if ok:
+                        remap[idx_v] = len(nv2)
+                        nv2.append(nv[idx_v])
+                nv = nv2
+                ncid = [remap[c] for c in ncid]
+                ops += len(still_used) + len(ncid)
+
+        if op_counter is not None:
+            op_counter[0] += ops
+        return LinearHardMap(Ap * A, Ap * B + Bp, nx, nv, ncid, F.L + g.L)
+
+
+def tree_scan_states_linear(I: Sequence, beta, theta, u_r, u0, merge: bool = True,
+                            stats: Optional[dict] = None):
+    """Exact Blelloch-style tree scan with O(n_F + n_g) composition:
+    O(T log T) total up-sweep work and O(T) down-sweep work."""
+    T = len(I)
+    leaves = [LinearHardMap.step(x, beta, theta, u_r) for x in I]
+    ops = [0]
+
+    def build(lo, hi):
+        if hi - lo == 1:
+            return (leaves[lo], None, None, lo, hi)
+        mid = (lo + hi) // 2
+        Lc, Rc = build(lo, mid), build(mid, hi)
+        M = Lc[0].then(Rc[0], merge=merge, op_counter=ops)
+        if stats is not None:
+            stats.setdefault("max_pieces", 0)
+            stats["max_pieces"] = max(stats["max_pieces"], M.pieces)
+            stats["total_pieces"] = stats.get("total_pieces", 0) + M.pieces
+        return (M, Lc, Rc, lo, hi)
+
+    root = build(0, T)
+    if stats is not None:
+        stats["compose_ops"] = ops[0]
+    start = [None] * T
+
+    def down(node, u_in):
+        M, Lc, Rc, lo, hi = node
+        if Lc is None:
+            start[lo] = u_in
+            return
+        down(Lc, u_in)
+        down(Rc, Lc[0](u_in))
+
+    down(root, u0)
+    us, ss = [], []
+    for t in range(T):
+        v = beta * start[t] + I[t]
+        if v >= theta:
+            us.append(u_r)
+            ss.append(1)
+        else:
+            us.append(v)
+            ss.append(0)
+    return us, ss
+
+
+# ----------------------------------------------------------------------------
 # generic piecewise-affine maps (used to count pieces for soft reset fairly)
 # ----------------------------------------------------------------------------
 

@@ -14,13 +14,21 @@ for trial in range(3000):
     us,ss=serial_hard(I,beta,theta,u_r,u0)
     st={}
     u2,s2=tree_scan_states(I,beta,theta,u_r,u0,stats=st)
+    u3,s3=tree_scan_states_linear(I,beta,theta,u_r,u0)
     M=segment_map(I,beta,theta,u_r,merge=False)
     A,B,x,c=closed_form_segment(I,beta,theta,u_r)
-    ok = us==u2 and ss==s2 and M(u0)==us[-1] and (M.A,M.B,M.x,M.c)==(A,B,x,c) and M.pieces<=T+1
+    ok = us==u2 and ss==s2 and us==u3 and ss==s3 and M(u0)==us[-1] and (M.A,M.B,M.x,M.c)==(A,B,x,c) and M.pieces<=T+1
     # PWA generic agreement
     P=pwa_segment([pwa_step_hard(i,beta,theta,u_r) for i in I])
     ok = ok and P(u0)==us[-1]
     for uu in [Fr(random.randint(-50,20),10) for _ in range(5)]+x:
         ok = ok and M(uu)==serial_hard(I,beta,theta,u_r,uu)[0][-1]==P(uu)
     if not ok: bad+=1; print("BAD",T,beta,u_r,I,u0); break
+# Explicit counterexample: beta=theta=1, u_r=0, I=(2,2) has 3 first-spike intervals (unmerged)
+# that merge to 2 pieces because G_1 = G_2 = 0.
+_M_un = segment_map([Fr(2), Fr(2)], Fr(1), Fr(1), Fr(0), merge=False)
+_M_mg = segment_map([Fr(2), Fr(2)], Fr(1), Fr(1), Fr(0), merge=True)
+assert _M_un.pieces == 3 and _M_mg.pieces == 2 and _M_un.x == [Fr(-3), Fr(-1)] and _M_un.c == [Fr(0), Fr(0)]
+for _u in [Fr(-5), Fr(-3), Fr(-2), Fr(-1), Fr(0), Fr(5)]:
+    assert _M_un(_u) == _M_mg(_u) == serial_hard([Fr(2), Fr(2)], Fr(1), Fr(1), Fr(0), _u)[0][-1]
 print("bad",bad)

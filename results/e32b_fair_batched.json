@@ -1,0 +1,78 @@
+{
+ "T": 140032,
+ "base_cells": 101,
+ "rows": [
+  {
+   "model": "hard",
+   "T": 140032,
+   "cells": 30,
+   "units": 90,
+   "columns": 282,
+   "ms_per_iter": 75.58966064453125,
+   "ms_kernel_fwd": 22.627328872680664,
+   "ms_per_iter_per_cell": 2.5196553548177083,
+   "sec_per_cell_fit": 1.5117932128906248,
+   "est_1044_cells_sec": 1578.3121142578123
+  },
+  {
+   "model": "hard",
+   "T": 140032,
+   "cells": 66,
+   "units": 198,
+   "columns": 636,
+   "ms_per_iter": 103.77046203613281,
+   "ms_kernel_fwd": 11.135680198669434,
+   "ms_per_iter_per_cell": 1.572279727820194,
+   "sec_per_cell_fit": 0.9433678366921165,
+   "est_1044_cells_sec": 984.8760215065697
+  },
+  {
+   "model": "hard",
+   "T": 140032,
+   "cells": 101,
+   "units": 303,
+   "columns": 996,
+   "ms_per_iter": 143.3474884033203,
+   "ms_kernel_fwd": 11.234880447387695,
+   "ms_per_iter_per_cell": 1.419282063399211,
+   "sec_per_cell_fit": 0.8515692380395267,
+   "est_1044_cells_sec": 889.0382845132658
+  },
+  {
+   "model": "alif",
+   "T": 140032,
+   "cells": 30,
+   "units": 120,
+   "columns": 376,
+   "ms_per_iter": 83.86825561523438,
+   "ms_kernel_fwd": 6.6170878410339355,
+   "ms_per_iter_per_cell": 2.7956085205078125,
+   "sec_per_cell_fit": 1.118243408203125,
+   "est_1044_cells_sec": 1167.4461181640625
+  },
+  {
+   "model": "alif",
+   "T": 140032,
+   "cells": 57,
+   "units": 228,
+   "columns": 732,
+   "ms_per_iter": 123.0811538696289,
+   "ms_kernel_fwd": 6.793759822845459,
+   "ms_per_iter_per_cell": 2.159318488940858,
+   "sec_per_cell_fit": 0.8637273955763433,
+   "est_1044_cells_sec": 901.7314009817023
+  },
+  {
+   "model": "alif",
+   "T": 140032,
+   "cells": 76,
+   "units": 304,
+   "columns": 988,
+   "ms_per_iter": 151.64175415039062,
+   "ms_kernel_fwd": 6.891520023345947,
+   "ms_per_iter_per_cell": 1.9952862388209294,
+   "sec_per_cell_fit": 0.7981144955283718,
+   "est_1044_cells_sec": 833.2315333316201
+  }
+ ]
+}
